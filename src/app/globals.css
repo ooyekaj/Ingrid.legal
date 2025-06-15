@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+:root {
+	--background: #ffffff;
+	--foreground: #171717;
+}
+
+@theme inline {
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--font-sans: var(--font-geist-sans);
+	--font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--background: #0a0a0a;
+		--foreground: #ededed;
+	}
+}
+
+body {
+	background: var(--background);
+	color: var(--foreground);
+	font-family: "Inter", sans-serif;
+}
+
+.hero-gradient {
+	background: radial-gradient(
+		ellipse at 50% 30%,
+		rgba(236, 72, 153, 0.1),
+		transparent 70%
+	);
+}
+
+.feature-card {
+	background: #ffffff;
+	border: 1px solid #e5e7eb;
+	transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+	background: #f9fafb;
+	border: 1px solid #d1d5db;
+	transform: translateY(-5px);
+	box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05),
+		0 4px 6px -4px rgb(0 0 0 / 0.05);
+}
+
+.cta-button {
+	transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+	transform: scale(1.05);
+}
+
+/* Scroll reveal animation */
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.fade-in-section {
+	animation: fadeIn 1s ease-out forwards;
+	opacity: 0;
+}

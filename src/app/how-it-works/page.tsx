@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function HowItWorks() {
 	return (
@@ -7,41 +8,13 @@ export default function HowItWorks() {
 			<header className="fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-90 backdrop-blur-md border-b border-gray-200">
 				<div className="container mx-auto px-6 py-4 flex justify-between items-center">
 					<Link href="/" className="flex items-center">
-						<svg
-							width="45"
-							height="50"
-							viewBox="0 0 45 50"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
+						<Image
+							src="/Logo.svg"
+							alt="Ingrid Logo"
+							width={45}
+							height={50}
 							className="mr-3"
-						>
-							<rect
-								x="0"
-								y="5"
-								width="35"
-								height="45"
-								rx="3"
-								fill="#EC4899"
-								opacity="0.6"
-							/>
-							<rect
-								x="8"
-								y="0"
-								width="35"
-								height="45"
-								rx="3"
-								fill="#DB2777"
-								opacity="1"
-							/>
-							<path
-								d="M 20 25 L 25 30 L 35 20"
-								stroke="#FFFFFF"
-								strokeWidth="3"
-								fill="none"
-								strokeLinecap="round"
-								strokeLinejoin="round"
-							/>
-						</svg>
+						/>
 						<span className="text-3xl font-bold text-gray-900 tracking-wider">
 							Ingrid
 						</span>

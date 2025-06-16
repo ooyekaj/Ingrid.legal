@@ -1,0 +1,34 @@
+<svg
+    width="45"
+    height="50"
+    viewBox="0 0 45 50"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+>
+    <rect
+        x="0"
+        y="5"
+        width="35"
+        height="45"
+        rx="3"
+        fill="#EC4899"
+        opacity="0.6"
+    />
+    <rect
+        x="8"
+        y="0"
+        width="35"
+        height="45"
+        rx="3"
+        fill="#DB2777"
+        opacity="1"
+    />
+    <path
+        d="M 20 25 L 25 30 L 35 20"
+        stroke="#FFFFFF"
+        strokeWidth="3"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+    />
+</svg> 

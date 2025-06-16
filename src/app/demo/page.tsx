@@ -283,7 +283,7 @@ export default function Demo() {
 				</aside>
 
 				{/* Main Content */}
-				<main className="flex-1 ml-[28rem]">
+				<main className="flex-1 ml-[28rem] bg-white">
 					<div className="p-12">
 						{showResults && searchResults ? (
 							<div className="max-w-4xl mx-auto">

@@ -3,6 +3,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 // Password Protection Component
 const PasswordProtection = ({
@@ -39,41 +40,13 @@ const PasswordProtection = ({
 			<div className="max-w-md w-full">
 				<div className="bg-white rounded-2xl shadow-xl p-8">
 					<div className="text-center mb-8">
-						<svg
-							width="60"
-							height="65"
-							viewBox="0 0 45 50"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
+						<Image
+							src="/Logo.svg"
+							alt="Ingrid Logo"
+							width={60}
+							height={65}
 							className="mx-auto mb-4"
-						>
-							<rect
-								x="0"
-								y="5"
-								width="35"
-								height="45"
-								rx="3"
-								fill="#EC4899"
-								opacity="0.6"
-							/>
-							<rect
-								x="8"
-								y="0"
-								width="35"
-								height="45"
-								rx="3"
-								fill="#DB2777"
-								opacity="1"
-							/>
-							<path
-								d="M 20 25 L 25 30 L 35 20"
-								stroke="#FFFFFF"
-								strokeWidth="3"
-								fill="none"
-								strokeLinecap="round"
-								strokeLinejoin="round"
-							/>
-						</svg>
+						/>
 						<h1 className="text-3xl font-bold text-gray-900 mb-2">Ingrid</h1>
 						<p className="text-gray-600">
 							Enter password to access the platform
@@ -232,41 +205,13 @@ export default function Home() {
 					<header className="fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-80 backdrop-blur-md border-b border-gray-200">
 						<div className="container mx-auto px-6 py-4 flex justify-between items-center">
 							<Link href="/" className="flex items-center">
-								<svg
-									width="45"
-									height="50"
-									viewBox="0 0 45 50"
-									fill="none"
-									xmlns="http://www.w3.org/2000/svg"
+								<Image
+									src="/Logo.svg"
+									alt="Ingrid Logo"
+									width={45}
+									height={50}
 									className="mr-3"
-								>
-									<rect
-										x="0"
-										y="5"
-										width="35"
-										height="45"
-										rx="3"
-										fill="#EC4899"
-										opacity="0.6"
-									/>
-									<rect
-										x="8"
-										y="0"
-										width="35"
-										height="45"
-										rx="3"
-										fill="#DB2777"
-										opacity="1"
-									/>
-									<path
-										d="M 20 25 L 25 30 L 35 20"
-										stroke="#FFFFFF"
-										strokeWidth="3"
-										fill="none"
-										strokeLinecap="round"
-										strokeLinejoin="round"
-									/>
-								</svg>
+								/>
 								<span className="text-3xl font-bold text-gray-900 tracking-wider">
 									Ingrid
 								</span>
@@ -313,9 +258,9 @@ export default function Home() {
 					</header>
 
 					{/* Main Content */}
-					<main className="pt-24">
+					<main>
 						{/* Hero Section */}
-						<section className="relative py-20 md:py-32 text-center overflow-hidden">
+						<section className="relative py-20 md:py-32 text-center overflow-hidden bg-white">
 							<div
 								id="canvas-container"
 								className="absolute inset-0 pointer-events-none"

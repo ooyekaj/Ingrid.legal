@@ -1,7 +1,9 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function About() {
 	useEffect(() => {
@@ -42,44 +44,16 @@ export default function About() {
 	return (
 		<div className="overflow-x-hidden">
 			{/* Header */}
-			<header className="fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-80 backdrop-blur-md border-b border-gray-200">
+			<header className="fixed top-0 left-0 right-0 z-50 bg-white backdrop-blur-md border-b border-gray-200">
 				<div className="container mx-auto px-6 py-4 flex justify-between items-center">
 					<Link href="/" className="flex items-center">
-						<svg
-							width="45"
-							height="50"
-							viewBox="0 0 45 50"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
+						<Image
+							src="/Logo.svg"
+							alt="Ingrid Logo"
+							width={45}
+							height={50}
 							className="mr-3"
-						>
-							<rect
-								x="0"
-								y="5"
-								width="35"
-								height="45"
-								rx="3"
-								fill="#EC4899"
-								opacity="0.6"
-							/>
-							<rect
-								x="8"
-								y="0"
-								width="35"
-								height="45"
-								rx="3"
-								fill="#DB2777"
-								opacity="1"
-							/>
-							<path
-								d="M 20 25 L 25 30 L 35 20"
-								stroke="#FFFFFF"
-								strokeWidth="3"
-								fill="none"
-								strokeLinecap="round"
-								strokeLinejoin="round"
-							/>
-						</svg>
+						/>
 						<span className="text-3xl font-bold text-gray-900 tracking-wider">
 							Ingrid
 						</span>
@@ -123,9 +97,9 @@ export default function About() {
 			</header>
 
 			{/* Main Content */}
-			<main className="pt-24">
+			<main className="bg-white">
 				{/* Hero Section */}
-				<section className="py-20 md:py-32 text-center">
+				<section className="py-20 md:py-32 text-center bg-white">
 					<div className="container mx-auto px-6">
 						<h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-4">
 							Our Mission

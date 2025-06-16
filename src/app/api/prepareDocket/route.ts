@@ -1,123 +1,163 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const MOCK_DB = {
-	"Motion for Summary Judgment": {
-		"Charles F. Adams": {
-			documents: [
-				{
-					item: "Notice of Motion and Motion",
-					rule: "CCP § 437c(a), CRC Rule 3.1350(b)",
-					link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=437c",
-				},
-				{
-					item: "Memorandum of Points and Authorities",
-					rule: "Limit: 20 pages [CRC Rule 3.1113(d)]",
-					link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1113",
-				},
-				{
-					item: "Separate Statement of Undisputed Material Facts",
-					rule: "MANDATORY [CCP § 437c(b)(1), CRC Rule 3.1350(d)]",
-					link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1350",
-				},
-			],
-			conditional: [
-				{
-					item: "Request for Judicial Notice (RJN)",
-					rule: "If relying on public records. [Evid. Code §§ 451, 452]",
-					link: "https://leginfo.legislature.ca.gov/faces/sections_search.xhtml?sectionNum=451&lawCode=EVID",
-				},
-				{
-					item: "Proposed Judgment",
-					rule: "If MSJ is dispositive of entire case. [CRC Rule 3.1312]",
-					link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1312",
-				},
-			],
-			rules: [
-				{
-					name: "Governing Statute",
-					text: "CCP § 437c is the comprehensive law for MSJs, setting the 75-day notice period and mandating the Separate Statement.",
-					link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=437c",
-				},
-				{
-					name: "Formatting and Structure",
-					text: "CRC Rule 3.1350 dictates the specific two-column format for the Separate Statement and sets the 20-page limit for the legal brief.",
-					link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1350",
-				},
-			],
-			checklist: [
-				{
-					phase: "Pre-Filing",
-					task: "Reserve Hearing Date (CRS)",
-					notes:
-						"Must be at least 75 calendar days out, plus time for service.",
-					rule: "[Local Protocol]",
-					link: "#",
-				},
-				{
-					phase: "Pre-Filing",
-					task: "Review Judge Adams's Standing Orders",
-					notes: "Check the court's website under his department directory.",
-					rule: "[Judge Directory]",
-					link: "https://www.scscourt.org/divisions/civil/judges.shtml",
-				},
-				{
-					phase: "Drafting",
-					task: "Draft Notice of Motion & Motion",
-					notes: "Include hearing date, time, and department.",
-					rule: "CCP § 1010",
-					link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1010",
-				},
-				{
-					phase: "Drafting",
-					task: "Draft Separate Statement",
-					notes: "Use two-column format. Do not include argument.",
-					rule: "CRC 3.1350(h)",
-					link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1350",
-				},
-				{
-					phase: "Filing & Service",
-					task: "File Documents with Court",
-					notes: "E-file via the court's portal.",
-					rule: "[Local Rules]",
-					link: "#",
-				},
-				{
-					phase: "Filing & Service",
-					task: "Serve All Parties",
-					notes: "Serve via method agreed upon by parties (e-service typical).",
-					rule: "CCP § 1010.6",
-					link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1010.6",
-				},
-			],
-		},
-	},
-};
-
 export async function POST(request: NextRequest) {
 	try {
-		const requestData = await request.json();
+		const { state, county, division, judge, document_type } =
+			await request.json();
+		const apiKey = "AIzaSyDqfzvfuUrRazJsyJobHNCnbM8ybQtHZXk";
 
-		const document_type = requestData.document_type || "";
-		const judge = requestData.judge || "";
+		// System prompt for legal docket preparation
+		const systemPrompt = `You are an expert legal assistant specializing in court procedures and legal document preparation. Your role is to provide accurate, jurisdiction-specific guidance for legal practitioners preparing court filings.
 
-		const data =
-			MOCK_DB[document_type as keyof typeof MOCK_DB]?.[
-				judge as keyof (typeof MOCK_DB)[keyof typeof MOCK_DB]
-			];
+IMPORTANT INSTRUCTIONS:
+1. Generate ONLY valid JSON objects - no additional text, explanations, or markdown formatting
+2. Use actual, verifiable legal citations and statutes for the specified jurisdiction
+3. Provide working links to official legal resources when possible
+4. Structure your response exactly as specified in the template
+5. If you cannot find specific information for a judge, provide general rules for that court/division
+6. Include practical, actionable guidance in checklists and notes`;
 
-		if (!data) {
+		// User prompt template
+		const userPrompt = `Generate a comprehensive legal docket preparation guide for:
+- State: ${state}
+- County: ${county}  
+- Division: ${division}
+- Judge: ${judge}
+- Document Type: ${document_type}
+
+Return ONLY a JSON object with this exact structure:
+
+{
+  "documents": [
+    {
+      "item": "Document name",
+      "rule": "Legal citation/rule reference", 
+      "link": "Official legal resource URL"
+    }
+  ],
+  "conditional": [
+    {
+      "item": "Optional document name",
+      "rule": "Condition when required [Legal citation]",
+      "link": "Official legal resource URL"
+    }
+  ],
+  "rules": [
+    {
+      "name": "Rule category name",
+      "text": "Detailed explanation of the legal requirement",
+      "link": "Official legal resource URL"
+    }
+  ],
+  "checklist": [
+    {
+      "phase": "Preparation phase (e.g., Pre-Filing, Drafting, etc.)",
+      "task": "Specific actionable task",
+      "notes": "Practical guidance and timing requirements",
+      "rule": "Applicable legal citation",
+      "link": "Official legal resource URL"
+    }
+  ]
+}
+
+REQUIREMENTS:
+- Include all mandatory documents for the specified document type in the jurisdiction
+- List conditional documents that may be required based on case circumstances
+- Provide governing legal rules and statutes
+- Create a practical step-by-step checklist organized by phases
+- Use official government/court websites for links when possible
+- If specific judge preferences/standing orders are known, incorporate them
+- Ensure all legal citations are accurate for the specified jurisdiction
+
+Focus on practical, actionable guidance that a legal practitioner can immediately use.`;
+
+		try {
+			console.log("Calling Gemini API for legal docket preparation...");
+			const response = await fetch(
+				`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${apiKey}`,
+				{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						contents: [
+							{
+								parts: [
+									{
+										text: systemPrompt + "\n\n" + userPrompt,
+									},
+								],
+							},
+						],
+						generationConfig: {
+							temperature: 0.3, // Lower temperature for more consistent legal guidance
+						},
+					}),
+				}
+			);
+
+			if (!response.ok) {
+				throw new Error(`Gemini API error: ${response.status}`);
+			}
+
+			const geminiResponse = await response.json();
+			const rawContent =
+				geminiResponse.candidates?.[0]?.content?.parts?.[0]?.text || "";
+
+			// Clean the response to ensure it's valid JSON
+			let cleanedContent = rawContent.trim();
+
+			// Remove any markdown code block formatting if present
+			if (cleanedContent.startsWith("```json")) {
+				cleanedContent = cleanedContent
+					.replace(/^```json\s*/, "")
+					.replace(/\s*```$/, "");
+			} else if (cleanedContent.startsWith("```")) {
+				cleanedContent = cleanedContent
+					.replace(/^```\s*/, "")
+					.replace(/\s*```$/, "");
+			}
+
+			try {
+				const parsedData = JSON.parse(cleanedContent);
+
+				return NextResponse.json({
+					success: true,
+					data: parsedData,
+					request_params: { state, county, division, judge, document_type },
+				});
+			} catch (parseError) {
+				console.error("JSON parsing error:", parseError);
+				console.error("Raw content:", rawContent);
+
+				return NextResponse.json(
+					{
+						error: "Failed to parse AI response as JSON",
+						raw_response: rawContent,
+					},
+					{ status: 500 }
+				);
+			}
+		} catch (error) {
+			console.error("Error calling Gemini API:", error);
 			return NextResponse.json(
-				{ error: "No data found for the specified parameters" },
-				{ status: 404 }
+				{
+					error: "Failed to generate legal docket guide",
+					details: error instanceof Error ? error.message : "Unknown error",
+				},
+				{ status: 500 }
 			);
 		}
-
-		return NextResponse.json({
-			success: true,
-			data: data,
-			request_params: requestData,
-		});
-	} catch {
-		return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
+	} catch (error) {
+		console.error("Request parsing error:", error);
+		return NextResponse.json(
+			{
+				error: "Invalid request format",
+				details:
+					"Expected JSON with state, county, division, judge, and document_type",
+			},
+			{ status: 400 }
+		);
 	}
 }

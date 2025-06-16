@@ -9,6 +9,11 @@ const JUDGES = [
 	{ name: "Julia Alloggiamento", division: "Civil Division" },
 ];
 
-export async function GET() {
-	return NextResponse.json({ judges: JUDGES });
+export async function GET(request: Request) {
+	const { searchParams } = new URL(request.url);
+	const division = searchParams.get("division");
+	const judges = JUDGES.filter((judge) => judge.division === division);
+	return NextResponse.json({
+		judges,
+	});
 }

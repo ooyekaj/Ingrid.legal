@@ -1,0 +1,2947 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Ingrid | Procedural Rules Search Engine</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+			integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		></script>
+		<style>
+			body {
+				font-family: "Inter", sans-serif;
+				background: linear-gradient(135deg, #f7f8fa 0%, #e9eaf3 100%);
+			}
+			.tab-button {
+				padding: 10px 16px;
+				cursor: pointer;
+				border-bottom: 3px solid transparent;
+				transition: all 0.3s ease;
+				font-weight: 500;
+				white-space: nowrap;
+			}
+			.tab-button.active {
+				color: #db2777;
+				border-bottom-color: #db2777;
+				font-weight: 600;
+			}
+			.tab-content {
+				display: none;
+			}
+			.tab-content.active {
+				display: block;
+				animation: fadeIn 0.5s ease;
+			}
+			@keyframes fadeIn {
+				from {
+					opacity: 0;
+					transform: translateY(10px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+			#main-container.centered-start {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				min-height: 100vh;
+				width: 100vw;
+				background: transparent;
+			}
+			#search-panel.centered {
+				max-width: 700px;
+				width: 100%;
+				margin: 0 auto;
+				box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+				background: white;
+				border-radius: 1.25rem;
+				padding: 48px 32px;
+				border: 1.5px solid #ececf0;
+				transition: box-shadow 0.5s, border 0.5s;
+			}
+			#main-container {
+				transition: grid-template-columns 0.7s
+						cubic-bezier(0.68, -0.55, 0.27, 1.55),
+					display 0.7s;
+			}
+			.shifted {
+				display: grid !important;
+				grid-template-columns: 1.2fr 0.04fr 2fr;
+			}
+			.not-shifted {
+				display: grid !important;
+				grid-template-columns: 1fr;
+			}
+			#search-panel,
+			#results-panel {
+				transition: all 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+			}
+			#search-panel.shrunk {
+				max-width: 420px;
+				margin-right: 0;
+				opacity: 0.97;
+				background: white;
+				box-shadow: 0 4px 24px 0 rgba(31, 38, 135, 0.09);
+				padding: 32px 20px;
+				border-radius: 1.25rem;
+				border: 1.5px solid #ececf0;
+				position: relative;
+				left: 0;
+				transform: translateX(-30px) scale(0.97);
+			}
+			#search-panel {
+				max-width: 600px;
+				margin-left: auto;
+				margin-right: auto;
+				padding-top: 48px;
+				padding-bottom: 48px;
+				z-index: 2;
+			}
+			#results-panel {
+				opacity: 0;
+				pointer-events: none;
+				transform: translateX(40px);
+				height: 100vh;
+				min-height: 100vh;
+				max-height: 100vh;
+				overflow-y: auto;
+				position: relative;
+				top: 0;
+				padding-left: 48px;
+				padding-right: 48px;
+				background: white;
+				border-radius: 1.25rem 0 0 1.25rem;
+				box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+				border: 1.5px solid #ececf0;
+			}
+			#results-panel.visible {
+				opacity: 1;
+				pointer-events: auto;
+				transform: translateX(0);
+			}
+			.soft-divider {
+				width: 100%;
+				height: 100vh;
+				background: linear-gradient(to bottom, #ececf0 0%, #f7f8fa 100%);
+				opacity: 0.7;
+				z-index: 1;
+			}
+			@media (max-width: 1200px) {
+				.shifted {
+					grid-template-columns: 1fr 0.04fr 1.3fr;
+				}
+				#results-panel {
+					padding-left: 24px;
+					padding-right: 24px;
+				}
+			}
+			@media (max-width: 900px) {
+				#main-container.shifted,
+				#main-container.not-shifted,
+				#main-container.centered-start {
+					display: flex !important;
+					flex-direction: column;
+					align-items: center;
+					justify-content: center;
+					min-height: 100vh;
+				}
+				#results-panel {
+					margin-top: 24px;
+					transform: none !important;
+					height: auto;
+					min-height: 0;
+					max-height: none;
+					position: static;
+					padding-left: 0;
+					padding-right: 0;
+					border-radius: 1.25rem;
+				}
+				.search-panel-outer {
+					height: auto !important;
+					min-height: 0 !important;
+					display: flex !important;
+					align-items: center !important;
+					justify-content: center !important;
+					width: 100% !important;
+					background: transparent !important;
+				}
+				#search-panel.shrunk,
+				#search-panel,
+				#search-panel.centered {
+					max-width: 100%;
+					padding-top: 24px;
+					padding-bottom: 24px;
+					left: 0;
+					transform: none;
+					min-height: 0;
+					height: auto;
+					margin-top: 0;
+					margin-bottom: 0;
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					justify-content: center;
+				}
+				.soft-divider {
+					display: none;
+				}
+			}
+			@media (min-width: 901px) {
+				.search-panel-outer {
+					height: 100vh;
+					min-height: 100vh;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					background: transparent;
+				}
+				#search-panel.shrunk,
+				#search-panel,
+				#search-panel.centered {
+					height: auto;
+					min-height: 0;
+					margin-top: 0;
+					margin-bottom: 0;
+					display: block;
+				}
+			}
+		</style>
+	</head>
+	<body class="bg-gray-100">
+		<div id="main-container" class="centered-start">
+			<div
+				class="search-panel-outer flex items-center justify-center h-screen md:h-screen w-full bg-transparent"
+			>
+				<div id="search-panel" class="centered">
+					<div class="w-full max-w-xl mx-auto">
+						<div class="flex justify-center items-center mb-4">
+							<svg
+								width="45"
+								height="50"
+								viewBox="0 0 45 50"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+								class="mr-3 h-10 w-auto"
+							>
+								<rect
+									x="0"
+									y="5"
+									width="35"
+									height="45"
+									rx="3"
+									fill="#EC4899"
+									opacity="0.6"
+								/>
+								<rect
+									x="8"
+									y="0"
+									width="35"
+									height="45"
+									rx="3"
+									fill="#DB2777"
+									opacity="1"
+								/>
+								<path
+									d="M 20 25 L 25 30 L 35 20"
+									stroke="#FFFFFF"
+									stroke-width="3"
+									fill="none"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								/>
+							</svg>
+							<h1 class="text-3xl font-bold text-gray-900">Ingrid</h1>
+						</div>
+						<p class="text-center text-gray-600 mb-6">
+							Procedural Compliance Engine
+						</p>
+
+						<div
+							class="bg-white p-6 md:p-8 rounded-2xl shadow-lg border border-gray-200"
+						>
+							<form id="search-form" class="space-y-4">
+								<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+									<div>
+										<label
+											for="state"
+											class="block text-sm font-medium text-gray-700 mb-1"
+											>State</label
+										>
+										<select
+											id="state"
+											name="state"
+											class="w-full mt-1 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm rounded-md shadow-sm"
+										>
+											<option>California</option>
+										</select>
+									</div>
+									<div>
+										<label
+											for="county"
+											class="block text-sm font-medium text-gray-700 mb-1"
+											>County</label
+										>
+										<select
+											id="county"
+											name="county"
+											class="w-full mt-1 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm rounded-md shadow-sm"
+										>
+											<option>Santa Clara</option>
+										</select>
+									</div>
+								</div>
+
+								<div>
+									<label
+										for="division"
+										class="block text-sm font-medium text-gray-700 mb-1"
+										>Division</label
+									>
+									<select
+										id="division"
+										name="division"
+										class="w-full mt-1 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm rounded-md shadow-sm"
+									>
+										<option>Complex Civil Litigation</option>
+										<option>Civil Division</option>
+									</select>
+								</div>
+
+								<div>
+									<label
+										for="judge"
+										class="block text-sm font-medium text-gray-700 mb-1"
+										>Judge</label
+									>
+									<select
+										id="judge"
+										name="judge"
+										class="w-full mt-1 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm rounded-md shadow-sm"
+									></select>
+								</div>
+
+								<div>
+									<label
+										for="document-type"
+										class="block text-sm font-medium text-gray-700 mb-1"
+										>Document Type</label
+									>
+									<select
+										id="document-type"
+										name="document-type"
+										class="w-full mt-1 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm rounded-md shadow-sm"
+									>
+										<option>Complaint</option>
+										<option>Motion for Summary Judgment</option>
+										<option>Motion to Dismiss (Demurrer)</option>
+										<option>
+											Motion to Compel Further Discovery Responses
+										</option>
+										<option>Motion to Strike</option>
+										<option>Answer</option>
+									</select>
+								</div>
+
+								<div>
+									<button
+										type="submit"
+										id="generate-report-btn"
+										class="w-full mt-1 bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
+									>
+										Generate Report
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="soft-divider" style="display: none"></div>
+			<div
+				id="results-panel"
+				class="bg-white p-4 md:p-8 overflow-y-auto transition-all duration-700 h-screen min-h-screen max-h-screen"
+				style="display: none"
+			>
+				<div id="results-container" class="hidden">
+					<div
+						class="flex justify-between items-center pb-4 border-b border-gray-200"
+					>
+						<div>
+							<h2 class="text-xl font-bold text-gray-800">
+								Filing Requirements Report
+							</h2>
+							<p id="results-header" class="text-sm text-gray-500"></p>
+						</div>
+						<div class="flex items-center space-x-2">
+							<button
+								id="download-pdf-btn"
+								class="no-print bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-3 rounded-lg flex items-center transition"
+							>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									class="mr-2"
+								>
+									<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+									<polyline points="7 10 12 15 17 10" />
+									<line x1="12" y1="15" x2="12" y2="3" />
+								</svg>
+								PDF
+							</button>
+							<button
+								id="new-search-btn"
+								class="no-print bg-pink-600 hover:bg-pink-700 text-white font-semibold py-2 px-3 rounded-lg flex items-center transition"
+							>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									class="mr-2"
+								>
+									<path d="M19 12H5" />
+									<path d="m12 19-7-7 7-7" />
+								</svg>
+								New Search
+							</button>
+						</div>
+					</div>
+					<div class="border-b border-gray-200 no-print mt-4">
+						<nav id="tabs" class="flex space-x-2 px-6" aria-label="Tabs">
+							<button class="tab-button active" data-target="checklist">
+								Checklist
+							</button>
+							<button class="tab-button" data-target="documents">
+								Mandatory Docs
+							</button>
+							<button class="tab-button" data-target="conditional">
+								Conditional Docs
+							</button>
+							<button
+								class="tab-button"
+								data-target="rules"
+								id="governing-rules-tab-btn"
+							>
+								Governing Rules
+							</button>
+							<button
+								class="tab-button"
+								data-target="docx-shell"
+								id="docx-shell-tab-btn"
+							>
+								.docx Shell
+							</button>
+						</nav>
+					</div>
+					<div class="py-6">
+						<div id="tab-content-container">
+							<div id="checklist" class="tab-content active"></div>
+							<div id="documents" class="tab-content"></div>
+							<div id="conditional" class="tab-content"></div>
+							<div id="rules" class="tab-content"></div>
+							<div
+								id="docx-shell"
+								class="tab-content flex flex-col items-center justify-center"
+							>
+								<h3 class="text-lg font-semibold text-gray-900 mb-4">
+									Download .docx Shell
+								</h3>
+								<p class="text-gray-600 mb-4 text-center max-w-xl">
+									Download a perfectly formatted, editable Word template for a
+									Motion for Summary Judgment. This shell includes all standard
+									headings and placeholders for your arguments, facts, and
+									supporting evidence.
+								</p>
+								<button
+									id="download-docx-shell-btn"
+									class="bg-pink-600 hover:bg-pink-700 text-white font-semibold py-2 px-6 rounded-lg flex items-center transition mb-2"
+								>
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="20"
+										height="20"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										class="mr-2"
+									>
+										<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+										<polyline points="7 10 12 15 17 10" />
+										<line x1="12" y1="15" x2="12" y2="3" />
+									</svg>
+									Download .docx Shell
+								</button>
+								<span class="text-xs text-gray-400"
+									>For use in Santa Clara County, Dept. 7 (Judge Adams)</span
+								>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			// --- Mock Database ---
+			const JUDGES = [
+				{ name: "Charles F. Adams", division: "Complex Civil Litigation" },
+				{ name: "Carol Overton", division: "Complex Civil Litigation" },
+				{ name: "Panteha E. Saban", division: "Civil Division" },
+				{ name: "Lori E. Pegg", division: "Civil Division" },
+				{ name: "JoAnne McCracken", division: "Civil Division" },
+				{ name: "Julia Alloggiamento", division: "Civil Division" },
+			];
+			const MOCK_DB = {
+				"Motion to Compel Further Discovery Responses": {
+					"Charles F. Adams": {
+						// mandatory
+						documents: [
+							{
+								item: "Notice of Motion and Motion",
+								rule: "[CCP § 2031.310]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2031.310",
+							},
+							{
+								item: "Separate Statement",
+								rule: "MANDATORY [CRC 3.1345(a)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1345",
+							},
+							{
+								item: "Memorandum of Points and Authorities",
+								rule: "Limit: 15 pages [CRC Rule 3.1113(d)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1113",
+							},
+							{
+								item: "Declaration in Support of Motion",
+								rule: "Must include meet-and-confer efforts. [CCP § 2016.040]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2016.040",
+							},
+							{
+								item: "Request for Sanctions",
+								rule: "Often included in Notice of Motion. [CCP § 2023.030]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2023.030",
+							},
+							{
+								item: "Proposed Order",
+								rule: "[CRC Rule 3.1312]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1312",
+							},
+							{
+								item: "Proof of Service",
+								rule: "[CCP § 1013a, POS-040]",
+								link: "https://www.courts.ca.gov/forms/pdf/pos040.pdf",
+							},
+						],
+						// conditional
+						conditional: [],
+						// rules
+						rules: [
+							{
+								name: "Meet-and-Confer Requirement",
+								text: "Before filing, parties MUST meet and confer in person to resolve the dispute. An Informal Discovery Conference (IDC) with the court is also mandatory in Santa Clara complex cases.",
+								link: "https://www.scscourt.org/divisions/civil/complex_litigation.shtml",
+							},
+							{
+								name: "Filing Deadline",
+								text: "A motion to compel further responses must be filed within 45 days of the service of the deficient, verified responses.",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2031.310",
+							},
+							{
+								name: "Separate Statement is Not Optional",
+								text: "Failure to file a Separate Statement that complies with CRC 3.1345 is grounds for denial of the motion. It must include the full text of the request, the response, and why it's inadequate.",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1345",
+							},
+						],
+						// checklist
+						checklist: [
+							{
+								phase: "Phase 1: Pre-Filing Requirements",
+								task: "Conduct Mandatory Meet-and-Confer",
+								notes:
+									"Must be in-person for Santa Clara complex cases unless excused by the court.",
+								rule: "[Complex Civil Guidelines § VI.2]",
+								link: "https://www.scscourt.org/divisions/civil/complex_litigation.shtml",
+							},
+							{
+								phase: "Phase 1: Pre-Filing Requirements",
+								task: "Schedule Informal Discovery Conference (IDC)",
+								notes:
+									"Contact Complex Litigation Coordinator. Submit 3-page brief 2 court days before IDC.",
+								rule: "[Complex Civil Guidelines § VI.2]",
+								link: "https://www.scscourt.org/divisions/civil/complex_litigation.shtml",
+							},
+							{
+								phase: "Phase 1: Pre-Filing Requirements",
+								task: "Calendar Critical Deadlines",
+								notes:
+									"File motion within 45 days of receiving deficient responses. Hearing must be at least 15 days before trial.",
+								rule: "[CCP § 2031.310(c), § 2024.020(a)]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2031.310",
+							},
+							{
+								phase: "Phase 2: Drafting the Motion",
+								task: "Prepare Notice of Motion and Motion",
+								notes:
+									"Use pleading paper. State statutory basis and specify deficient responses.",
+								rule: "[CCP § 1010]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1010",
+							},
+							{
+								phase: "Phase 2: Drafting the Motion",
+								task: "Draft Separate Statement",
+								notes:
+									"MANDATORY. Must include full text of each request, the full response, and your argument.",
+								rule: "[CRC 3.1345(a)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1345",
+							},
+							{
+								phase: "Phase 2: Drafting the Motion",
+								task: "Attach Meet-and-Confer Declaration",
+								notes:
+									"Detail all efforts (dates, participants, what was discussed) to resolve disputes informally.",
+								rule: "[CCP § 2016.040]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2016.040",
+							},
+							{
+								phase: "Phase 2: Drafting the Motion",
+								task: "Request Sanctions",
+								notes:
+									"Sanctions are generally mandatory against the losing party unless they acted with substantial justification.",
+								rule: "[CCP § 2023.030]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2023.030",
+							},
+							{
+								phase: "Phase 3: Filing & Service",
+								task: "E-File via Approved EFSP",
+								notes:
+									"Assemble packet: Notice, Memo, Declaration with exhibits (IDC brief), Separate Statement, Proposed Order.",
+								rule: "[Local E-Filing Rules]",
+								link: "https://www.scscourt.org/online_services/efiling.shtml",
+							},
+							{
+								phase: "Phase 3: Filing & Service",
+								task: "Serve Opposing Counsel",
+								notes:
+									"Serve 16 court days before the hearing (+ days for non-electronic service).",
+								rule: "[CCP § 1005]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1005",
+							},
+							{
+								phase: "Phase 4: Post-Filing Compliance",
+								task: "Check Tentative Ruling",
+								notes:
+									"Check the online portal 2 court days before the hearing. Follow department rules to contest.",
+								rule: "[Local Rule 3.D]",
+								link: "https://www.scscourt.org/general_info/rules/civil_rules.shtml#rule3",
+							},
+						],
+					},
+					"Lori E. Pegg": {
+						documents: [
+							{
+								item: "Notice of Motion and Motion",
+								rule: "[CCP § 1010]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1010",
+							},
+							{
+								item: "Separate Statement",
+								rule: "MANDATORY [CRC 3.1345(a)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1345",
+							},
+							{
+								item: "Memorandum of Points and Authorities",
+								rule: "Limit: 15 pages [CRC Rule 3.1113(d)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1113",
+							},
+							{
+								item: "Meet and Confer Declaration",
+								rule: "MANDATORY [CCP § 2016.040]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2016.040",
+							},
+							{
+								item: "Request for Sanctions",
+								rule: "[CCP § 2023.030]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2023.030",
+							},
+							{
+								item: "Proposed Order",
+								rule: "[CRC Rule 3.1312]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1312",
+							},
+							{
+								item: "Proof of Service",
+								rule: "[CCP § 1013a, POS-040]",
+								link: "https://www.courts.ca.gov/forms/pdf/pos040.pdf",
+							},
+						],
+						conditional: [],
+						rules: [
+							{
+								name: "Strict 45-Day Deadline",
+								text: "The motion must be served within 45 days of receiving the verified, deficient discovery responses. This deadline is strictly enforced and is not extended by meet-and-confer efforts.",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2031.310",
+							},
+							{
+								name: "Good Faith Meet and Confer",
+								text: "Parties must attempt to resolve all issues informally before filing. The supporting declaration must detail these efforts, including attaching written communications.",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2016.040",
+							},
+							{
+								name: "Self-Contained Separate Statement",
+								text: "The Separate Statement must be complete and self-contained, including the full text of requests, responses, and justifications. Do not incorporate other documents by reference.",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1345",
+							},
+							{
+								name: "Mandatory Sanctions",
+								text: "The court MUST award sanctions to the prevailing party unless it finds the other party acted with substantial justification or other circumstances make the award unjust.",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2023.030",
+							},
+						],
+						checklist: [
+							{
+								phase: "Phase 1: Pre-Filing Requirements",
+								task: "Identify the Discovery at Issue",
+								notes:
+									"Confirm you received verified responses to the discovery you intend to challenge.",
+								rule: "[CCP § 2030.300, etc.]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2030.300",
+							},
+							{
+								phase: "Phase 1: Pre-Filing Requirements",
+								task: "Calendar the 45-Day Deadline",
+								notes:
+									"Serve the motion within 45 days of service of the verified response. This is a strict deadline.",
+								rule: "[CCP § 2031.310(c)]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2031.310",
+							},
+							{
+								phase: "Phase 1: Pre-Filing Requirements",
+								task: "Meet and Confer in Good Faith",
+								notes:
+									"Attempt to resolve all issues informally. Attach emails/letters to your declaration.",
+								rule: "[CCP § 2016.040]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2016.040",
+							},
+							{
+								phase: "Phase 2: Drafting the Motion",
+								task: "Prepare Separate Statement",
+								notes:
+									"Required. Must include full text of request, response, and reasons for compelling.",
+								rule: "[CRC 3.1345(a)-(c)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1345",
+							},
+							{
+								phase: "Phase 2: Drafting the Motion",
+								task: "Prepare Meet and Confer Declaration",
+								notes:
+									"Detail all efforts, including dates, methods, and the substance of communications.",
+								rule: "[CCP § 2016.040]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2016.040",
+							},
+							{
+								phase: "Phase 2: Drafting the Motion",
+								task: "Request Sanctions",
+								notes:
+									"Include a request for monetary sanctions against the non-complying party.",
+								rule: "[CCP § 2030.300(d)]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2030.300",
+							},
+							{
+								phase: "Phase 3: Filing and Service",
+								task: "E-File the Motion",
+								notes: "File the complete motion packet via an approved EFSP.",
+								rule: "[Santa Clara Local Rules]",
+								link: "https://www.scscourt.org/online_services/efiling.shtml",
+							},
+							{
+								phase: "Phase 3: Filing and Service",
+								task: "Serve All Parties",
+								notes:
+									"Serve at least 16 court days before the hearing, plus extensions for service method.",
+								rule: "[CCP § 1013]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1013",
+							},
+							{
+								phase: "Phase 4: Post-Filing and Hearing",
+								task: "Review Tentative Rulings",
+								notes:
+									"Check the court's tentative rulings online before the hearing.",
+								rule: "[Santa Clara Tentative Rulings]",
+								link: "https://www.scscourt.org/general_info/rules/civil_rules.shtml#rule3",
+							},
+						],
+					},
+					"JoAnne McCracken": {
+						documents: [
+							{
+								item: "Notice of Motion and Motion",
+								rule: "[CCP § 1010]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1010",
+							},
+							{
+								item: "Separate Statement",
+								rule: "MANDATORY [CRC 3.1345(a)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1345",
+							},
+							{
+								item: "Memorandum of Points and Authorities",
+								rule: "Limit: 15 pages [CRC Rule 3.1113(d)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1113",
+							},
+							{
+								item: "Meet and Confer Declaration",
+								rule: "MANDATORY [CCP § 2016.040]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2016.040",
+							},
+							{
+								item: "Request for Sanctions",
+								rule: "[CCP § 2023.030]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2023.030",
+							},
+							{
+								item: "Proposed Order",
+								rule: "[CRC Rule 3.1312]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1312",
+							},
+							{
+								item: "Proof of Service",
+								rule: "[CCP § 1013a, POS-040]",
+								link: "https://www.courts.ca.gov/forms/pdf/pos040.pdf",
+							},
+						],
+						conditional: [],
+						rules: [
+							{
+								name: "Strict 45-Day Deadline",
+								text: "The motion must be served within 45 days of receiving the verified, deficient discovery responses. This deadline is strictly enforced and is not extended by meet-and-confer efforts.",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2031.310",
+							},
+							{
+								name: "Good Faith Meet and Confer",
+								text: "Parties must attempt to resolve all issues informally before filing. The supporting declaration must detail these efforts, including attaching written communications.",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2016.040",
+							},
+							{
+								name: "Self-Contained Separate Statement",
+								text: "The Separate Statement must be complete and self-contained, including the full text of requests, responses, justifications, and relevant definitions. Do not incorporate other documents by reference.",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1345",
+							},
+							{
+								name: "Mandatory Sanctions",
+								text: "The court MUST award sanctions to the prevailing party unless it finds the other party acted with substantial justification or other circumstances make the award unjust.",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2023.030",
+							},
+						],
+						checklist: [
+							{
+								phase: "Phase 1: Pre-Filing Requirements",
+								task: "Identify the Discovery at Issue",
+								notes:
+									"Confirm you received verified responses to the discovery you intend to challenge.",
+								rule: "[CCP § 2030.300, etc.]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2030.300",
+							},
+							{
+								phase: "Phase 1: Pre-Filing Requirements",
+								task: "Calendar the 45-Day Deadline",
+								notes:
+									"Serve the motion within 45 days of service of the verified response. This is a strict deadline.",
+								rule: "[CCP § 2031.310(c)]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2031.310",
+							},
+							{
+								phase: "Phase 1: Pre-Filing Requirements",
+								task: "Meet and Confer in Good Faith",
+								notes:
+									"Attempt to resolve all issues informally. Attach emails/letters to your declaration.",
+								rule: "[CCP § 2016.040]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2016.040",
+							},
+							{
+								phase: "Phase 2: Drafting the Motion",
+								task: "Prepare Separate Statement",
+								notes:
+									"Required. Must include full text of request, response, all definitions, and reasons for compelling.",
+								rule: "[CRC 3.1345(a)-(c)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1345",
+							},
+							{
+								phase: "Phase 2: Drafting the Motion",
+								task: "Prepare Meet and Confer Declaration",
+								notes:
+									"Detail all efforts, including dates, methods, and the substance of communications.",
+								rule: "[CCP § 2016.040]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2016.040",
+							},
+							{
+								phase: "Phase 2: Drafting the Motion",
+								task: "Request Sanctions",
+								notes:
+									"Include a request for monetary sanctions against the non-complying party.",
+								rule: "[CCP § 2030.300(d)]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2030.300",
+							},
+							{
+								phase: "Phase 3: Filing and Service",
+								task: "E-File the Motion",
+								notes: "File the complete motion packet via an approved EFSP.",
+								rule: "[Santa Clara Local Rules]",
+								link: "https://www.scscourt.org/online_services/efiling.shtml",
+							},
+							{
+								phase: "Phase 3: Filing and Service",
+								task: "Serve All Parties",
+								notes:
+									"Serve at least 16 court days before the hearing, plus extensions for service method.",
+								rule: "[CCP § 1013]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1013",
+							},
+							{
+								phase: "Phase 4: Post-Filing and Hearing",
+								task: "Review Tentative Rulings",
+								notes:
+									"Check Dept. 8's tentative rulings online before the hearing.",
+								rule: "[Santa Clara Tentative Rulings]",
+								link: "https://www.scscourt.org/general_info/rules/civil_rules.shtml#rule3",
+							},
+						],
+					},
+				},
+				"Motion to Strike": {
+					"JoAnne McCracken": {
+						documents: [
+							{
+								item: "Notice of Motion and Motion to Strike",
+								rule: "[CCP § 435, § 1010]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=435",
+							},
+							{
+								item: "Memorandum of Points and Authorities",
+								rule: "Limit: 15 pages [CRC Rule 3.1113(d)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1113",
+							},
+							{
+								item: "Meet and Confer Declaration",
+								rule: "MANDATORY [CCP § 435.5(a)(3)]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=435.5",
+							},
+							{
+								item: "Request for Judicial Notice (if necessary)",
+								rule: "[Evidence Code § 452]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=EVID",
+							},
+							{
+								item: "Proposed Order",
+								rule: "[CRC Rule 3.1312]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1312",
+							},
+							{
+								item: "Proof of Service",
+								rule: "[CCP § 1013a, POS-040]",
+								link: "https://www.courts.ca.gov/forms/pdf/pos040.pdf",
+							},
+						],
+						conditional: [
+							{
+								item: "Demurrer",
+								rule: "Must be filed and heard concurrently with Motion to Strike. [CRC 3.1322(b)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1322",
+							},
+						],
+						rules: [
+							{
+								name: "Mandatory Meet and Confer",
+								text: "CCP § 435.5 requires the moving party to meet and confer in person or by telephone before filing a motion to strike. A declaration detailing these efforts MUST be filed with the motion.",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=435.5",
+							},
+							{
+								name: "Grounds and Notice",
+								text: "The motion must quote the portions to be stricken in full and number them consecutively. Grounds must appear on the face of the pleading or from judicially noticeable matters.",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1322",
+							},
+							{
+								name: "Timing and Hearing Notice",
+								text: "The motion must be filed within the time allowed to respond to the pleading. The hearing must be set at least 16 court days from service, with extensions for mail/etc.",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1005",
+							},
+						],
+						checklist: [
+							{
+								phase: "Phase 1: Pre-Filing Preparation",
+								task: "Calendar Your Deadline",
+								notes:
+									"File within time to respond to the challenged pleading (e.g., 30 days).",
+								rule: "[CCP § 435(b)(1)]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=435",
+							},
+							{
+								phase: "Phase 1: Pre-Filing Preparation",
+								task: "Conduct Mandatory Meet-and-Confer",
+								notes:
+									"Must meet and confer in person or by phone. An email is not sufficient.",
+								rule: "[CCP § 435.5(a)]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=435.5",
+							},
+							{
+								phase: "Phase 1: Pre-Filing Preparation",
+								task: "Identify Grounds for Motion",
+								notes:
+									"Confirm defect (irrelevant, false, improper matter) is on the face of the pleading.",
+								rule: "[CCP § 436, § 437]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=436",
+							},
+							{
+								phase: "Phase 2: Drafting the Motion",
+								task: "Draft Meet-and-Confer Declaration",
+								notes:
+									"Detail the time, date, participants, and outcome of your meet-and-confer efforts.",
+								rule: "[CCP § 435.5(a)(3)]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=435.5",
+							},
+							{
+								phase: "Phase 2: Drafting the Motion",
+								task: "Draft Notice of Motion",
+								notes:
+									"Quote the challenged material in full and number each specification consecutively.",
+								rule: "[CRC 3.1322(a)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1322",
+							},
+							{
+								phase: "Phase 2: Drafting the Motion",
+								task: "Draft Memo of Points and Authorities",
+								notes:
+									"Cite statutes and case law supporting your grounds to strike. Limit is 15 pages.",
+								rule: "[CRC 3.1113(d)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1113",
+							},
+							{
+								phase: "Phase 3: Filing and Service",
+								task: "File and Serve Concurrently with Demurrer",
+								notes:
+									"If also filing a demurrer, it must be noticed for the same hearing time.",
+								rule: "[CRC 3.1322(b)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1322",
+							},
+							{
+								phase: "Phase 3: Filing and Service",
+								task: "Pay Filing Fee",
+								notes: "Pay required motion fee at the time of e-filing.",
+								rule: "[Court Fee Schedule]",
+								link: "https://www.scscourt.org/general_info/fee_schedule.shtml",
+							},
+							{
+								phase: "Phase 3: Filing and Service",
+								task: "Serve All Parties",
+								notes:
+									"Serve 16 court days before hearing, plus extensions for service method.",
+								rule: "[CCP § 1005(b)]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1005",
+							},
+							{
+								phase: "Phase 4: Hearing",
+								task: "Review Tentative Ruling",
+								notes:
+									"Check Dept. 8's tentative rulings online before the hearing.",
+								rule: "[Local Rule 3.D]",
+								link: "https://www.scscourt.org/general_info/rules/civil_rules.shtml#rule3",
+							},
+						],
+					},
+					"Lori E. Pegg": {
+						documents: [
+							{
+								item: "Notice of Motion and Motion to Strike",
+								rule: "[CCP § 435, § 1010]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=435",
+							},
+							{
+								item: "Memorandum of Points and Authorities",
+								rule: "Limit: 15 pages [CRC Rule 3.1113(d)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1113",
+							},
+							{
+								item: "Meet and Confer Declaration",
+								rule: "MANDATORY [CCP § 435.5(a)(3)]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=435.5",
+							},
+							{
+								item: "Request for Judicial Notice (if necessary)",
+								rule: "[Evidence Code § 452]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=EVID",
+							},
+							{
+								item: "Proposed Order",
+								rule: "[CRC Rule 3.1312]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1312",
+							},
+							{
+								item: "Proof of Service",
+								rule: "[CCP § 1013a, POS-040]",
+								link: "https://www.courts.ca.gov/forms/pdf/pos040.pdf",
+							},
+						],
+						conditional: [
+							{
+								item: "Demurrer",
+								rule: "Must be filed and heard concurrently with Motion to Strike. [CRC 3.1322(b)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1322",
+							},
+						],
+						rules: [
+							{
+								name: "Mandatory Meet and Confer",
+								text: "CCP § 435.5 requires the moving party to meet and confer in person or by telephone before filing a motion to strike. A declaration detailing these efforts MUST be filed with the motion.",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=435.5",
+							},
+							{
+								name: "Grounds and Notice",
+								text: "The motion must quote the portions to be stricken in full and number them consecutively. Grounds must appear on the face of the pleading or from judicially noticeable matters.",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1322",
+							},
+							{
+								name: "Timing and Hearing Notice",
+								text: "The motion must be filed within the time allowed to respond to the pleading. The hearing must be set at least 16 court days from service, with extensions for mail/etc.",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1005",
+							},
+						],
+						checklist: [
+							{
+								phase: "Phase 1: Pre-Filing Preparation",
+								task: "Calendar Your Deadline",
+								notes:
+									"File within time to respond to the challenged pleading (e.g., 30 days).",
+								rule: "[CCP § 435(b)(1)]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=435",
+							},
+							{
+								phase: "Phase 1: Pre-Filing Preparation",
+								task: "Conduct Mandatory Meet-and-Confer",
+								notes:
+									"Must meet and confer in person or by phone. An email is not sufficient.",
+								rule: "[CCP § 435.5(a)]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=435.5",
+							},
+							{
+								phase: "Phase 1: Pre-Filing Preparation",
+								task: "Identify Grounds for Motion",
+								notes:
+									"Confirm defect (irrelevant, false, improper matter) is on the face of the pleading.",
+								rule: "[CCP § 436, § 437]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=436",
+							},
+							{
+								phase: "Phase 2: Drafting the Motion",
+								task: "Draft Meet-and-Confer Declaration",
+								notes:
+									"Detail the time, date, participants, and outcome of your meet-and-confer efforts.",
+								rule: "[CCP § 435.5(a)(3)]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=435.5",
+							},
+							{
+								phase: "Phase 2: Drafting the Motion",
+								task: "Draft Notice of Motion",
+								notes:
+									"Quote the challenged material in full and number each specification consecutively.",
+								rule: "[CRC 3.1322(a)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1322",
+							},
+							{
+								phase: "Phase 2: Drafting the Motion",
+								task: "Draft Memo of Points and Authorities",
+								notes:
+									"Cite statutes and case law supporting your grounds to strike. Limit is 15 pages.",
+								rule: "[CRC 3.1113(d)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1113",
+							},
+							{
+								phase: "Phase 3: Filing and Service",
+								task: "File and Serve Concurrently with Demurrer",
+								notes:
+									"If also filing a demurrer, it must be noticed for the same hearing time.",
+								rule: "[CRC 3.1322(b)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1322",
+							},
+							{
+								phase: "Phase 3: Filing and Service",
+								task: "Serve All Parties",
+								notes:
+									"Serve 16 court days before hearing, plus extensions for service method.",
+								rule: "[CCP § 1005(b)]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1005",
+							},
+							{
+								phase: "Phase 4: Hearing",
+								task: "Review Tentative Ruling",
+								notes:
+									"Check Dept. 5's tentative rulings online before the hearing.",
+								rule: "[Local Rule 3.D]",
+								link: "https://www.scscourt.org/general_info/rules/civil_rules.shtml#rule3",
+							},
+						],
+					},
+					"Charles F. Adams": {
+						documents: [
+							{
+								item: "Notice of Motion and Motion to Strike",
+								rule: "[CCP § 435, § 1010]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=435",
+							},
+							{
+								item: "Memorandum of Points and Authorities",
+								rule: "Limit: 15 pages [CRC Rule 3.1113(d)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1113",
+							},
+							{
+								item: "Declaration in Support (if necessary)",
+								rule: "To support Request for Judicial Notice, etc.",
+								link: "#",
+							},
+							{
+								item: "Request for Judicial Notice (if necessary)",
+								rule: "[Evidence Code § 452]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=EVID",
+							},
+							{
+								item: "Proposed Order",
+								rule: "[CRC Rule 3.1312]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1312",
+							},
+							{
+								item: "Proof of Service",
+								rule: "[CCP § 1013a, POS-040]",
+								link: "https://www.courts.ca.gov/forms/pdf/pos040.pdf",
+							},
+						],
+						conditional: [
+							{
+								item: "Demurrer",
+								rule: "Must be filed and heard concurrently with Motion to Strike. [CRC 3.1322(b)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1322",
+							},
+							{
+								item: "Redline Comparison of Pleadings",
+								rule: "Required if opposing a successive motion after leave to amend was granted. [Complex Civil Guidelines § 6]",
+								link: "https://www.scscourt.org/divisions/civil/complex_litigation.shtml",
+							},
+						],
+						rules: [
+							{
+								name: "Grounds for Motion",
+								text: "A court may strike any 'irrelevant, false, or improper matter' from a pleading, or any pleading not filed in conformity with law. The defect must appear on the face of the pleading or from judicially noticeable matters.",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=436",
+							},
+							{
+								name: "Notice Requirements",
+								text: "A motion to strike must quote the portions to be stricken in full and number them consecutively. Notice of hearing is 16 court days, plus extensions for service method.",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1322",
+							},
+							{
+								name: "Timing",
+								text: "The motion must be filed within the time allowed to respond to the pleading (e.g., 30 days for a complaint).",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=435",
+							},
+						],
+						checklist: [
+							{
+								phase: "Phase 1: Pre-Filing Preparation",
+								task: "Calendar Your Deadline",
+								notes:
+									"File within time to respond to the challenged pleading (e.g., 30 days).",
+								rule: "[CCP § 435(b)(1)]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=435",
+							},
+							{
+								phase: "Phase 1: Pre-Filing Preparation",
+								task: "Identify Grounds for Motion",
+								notes:
+									"Confirm defect (irrelevant, false, improper matter) is on the face of the pleading.",
+								rule: "[CCP § 436, § 437]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=436",
+							},
+							{
+								phase: "Phase 1: Pre-Filing Preparation",
+								task: "Meet and Confer",
+								notes:
+									"Best practice in complex cases is to meet and confer before filing, though not always mandatory.",
+								rule: "[Complex Civil Guidelines]",
+								link: "https://www.scscourt.org/divisions/civil/complex_litigation.shtml",
+							},
+							{
+								phase: "Phase 2: Drafting the Motion",
+								task: "Use Proper Pleading Format",
+								notes:
+									"Comply with all CRC formatting rules (12-pt font, 28-line paper, etc.).",
+								rule: "[CRC 2.100 et seq.]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=two&linkid=rule2_100",
+							},
+							{
+								phase: "Phase 2: Drafting the Motion",
+								task: "Draft Notice of Motion",
+								notes:
+									"Quote the challenged material in full and number each specification consecutively.",
+								rule: "[CRC 3.1322(a)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1322",
+							},
+							{
+								phase: "Phase 2: Drafting the Motion",
+								task: "Draft Memo of Points and Authorities",
+								notes:
+									"Cite statutes and case law supporting your grounds to strike. Limit is 15 pages.",
+								rule: "[CRC 3.1113(d)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1113",
+							},
+							{
+								phase: "Phase 3: Filing and Service",
+								task: "File and Serve Concurrently with Demurrer",
+								notes:
+									"If also filing a demurrer, it must be noticed for the same hearing time.",
+								rule: "[CRC 3.1322(b)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1322",
+							},
+							{
+								phase: "Phase 3: Filing and Service",
+								task: "Pay Filing Fee",
+								notes: "Pay required motion fee at the time of e-filing.",
+								rule: "[Court Fee Schedule]",
+								link: "https://www.scscourt.org/general_info/fee_schedule.shtml",
+							},
+							{
+								phase: "Phase 3: Filing and Service",
+								task: "Serve All Parties",
+								notes:
+									"Serve 16 court days before hearing, plus extensions for service method.",
+								rule: "[CCP § 1005(b)]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1005",
+							},
+							{
+								phase: "Phase 4: Hearing",
+								task: "Review Tentative Ruling",
+								notes:
+									"Check the department's tentative rulings online before the hearing.",
+								rule: "[Local Rule 3.D]",
+								link: "https://www.scscourt.org/general_info/rules/civil_rules.shtml#rule3",
+							},
+						],
+					},
+				},
+				Answer: {
+					"JoAnne McCracken": {
+						documents: [
+							{
+								item: "Answer",
+								rule: "Use Judicial Council Form (e.g., PLD-C-010) or draft on pleading paper",
+								link: "https://www.courts.ca.gov/forms/pldc010.pdf",
+							},
+							{
+								item: "Proof of Service",
+								rule: "Must be completed and filed with the Answer [CCP § 465]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=465",
+							},
+						],
+						conditional: [
+							{
+								item: "Verification",
+								rule: "Your Answer must be verified if the Complaint is verified",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=446",
+							},
+							{
+								item: "Request to Waive Court Fees",
+								rule: "File if you cannot afford the first appearance fee",
+								link: "https://www.courts.ca.gov/forms/fw001.pdf",
+							},
+							{
+								item: "Civil Lawsuit Notice (CV-5012)",
+								rule: "Serve an updated notice if you are adding new parties via cross-complaint",
+								link: "https://www.scscourt.org/forms/CV5012.pdf",
+							},
+						],
+						rules: [
+							{
+								name: "Filing Deadline & Extensions",
+								text: "File and serve within 30 days of service. You may stipulate with the other party for one 15-day extension without a court order.",
+								rule: "[CCP § 412.20(a)(3), CRC 3.110(d)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_110",
+							},
+							{
+								name: "Mandatory E-Filing for Attorneys",
+								text: "E-filing is mandatory for all parties represented by an attorney. It is available, but optional, for self-represented parties.",
+								rule: "[Santa Clara Gen Ct Admin Rule 6(B)]",
+								link: "https://www.scscourt.org/general_info/rules/civil_rules.shtml#rule6",
+							},
+							{
+								name: "Respond to Every Paragraph",
+								text: "You must respond to each paragraph of the complaint by admitting, denying, or stating you lack sufficient information to answer.",
+								rule: "[CCP § 431.30(b)]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=431.30",
+							},
+						],
+						checklist: [
+							{
+								phase: "Phase 1: Pre-Filing Preparation",
+								task: "Calendar Your Deadline",
+								notes:
+									"File within 30 days of service. You can stipulate to a single 15-day extension with the other party.",
+								rule: "[CCP § 412.20(a)(3), CRC 3.110(d)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_110",
+							},
+							{
+								phase: "Phase 1: Pre-Filing Preparation",
+								task: "Decide on Response and Prepare Form",
+								notes:
+									"Determine if an Answer is appropriate. Use a Judicial Council form (e.g., PLD-C-010) or draft on pleading paper.",
+								link: "https://www.courts.ca.gov/forms/pldc010.pdf",
+							},
+							{
+								phase: "Phase 1: Pre-Filing Preparation",
+								task: "List All Defenses",
+								notes:
+									"Respond to each paragraph of the Complaint and list all applicable affirmative defenses.",
+								rule: "[CCP § 431.30(b)]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=431.30",
+							},
+							{
+								phase: "Phase 1: Pre-Filing Preparation",
+								task: "Verify the Answer if Required",
+								notes:
+									"If the complaint you received was verified, your Answer must also be verified.",
+								rule: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=446",
+							},
+							{
+								phase: "Phase 2: Serving and Filing",
+								task: "Serve the Plaintiff",
+								notes:
+									"Have a non-party adult serve a copy of the Answer on the plaintiff's attorney and complete a Proof of Service form.",
+								rule: "[CCP § 465]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=465",
+							},
+							{
+								phase: "Phase 2: Serving and Filing",
+								task: "E-File the Answer and Proof of Service",
+								notes:
+									"E-file the original Answer and the completed Proof of Service via an approved e-filing service provider (EFSP).",
+								rule: "[Santa Clara Gen Ct Admin Rule 6(B)]",
+								link: "https://www.scscourt.org/general_info/rules/civil_rules.shtml#rule6",
+							},
+							{
+								phase: "Phase 2: Serving and Filing",
+								task: "Pay Filing Fee or Request Waiver",
+								notes:
+									"Pay the required first appearance fee or submit a fee waiver request when you e-file.",
+								rule: "https://www.scscourt.org/general_info/fee_schedule.shtml",
+							},
+							{
+								phase: "Phase 3: After Filing",
+								task: "Monitor for Court Notices",
+								notes:
+									"Watch for the Civil Lawsuit Notice (CV-5012) which will contain your Case Management Conference (CMC) date. Notify the court if your address changes.",
+								rule: "https://www.scscourt.org/forms/CV5012.pdf",
+							},
+						],
+					},
+					"Lori E. Pegg": {
+						documents: [
+							{
+								item: "Answer",
+								rule: "Use Judicial Council Form or draft on pleading paper",
+								link: "https://www.courts.ca.gov/forms.htm?query=Answer",
+							},
+							{
+								item: "Proof of Service",
+								rule: "Shows that the plaintiff was properly served with the Answer",
+								link: "https://www.courts.ca.gov/forms/pdf/pos030.pdf",
+							},
+						],
+						conditional: [
+							{
+								item: "Verification",
+								rule: "Required if the Complaint is verified; sign under penalty of perjury",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=446",
+							},
+							{
+								item: "Request to Waive Court Fees",
+								rule: "File if you cannot afford the filing fee ($225-$450)",
+								link: "https://www.courts.ca.gov/forms/fw001.pdf",
+							},
+						],
+						rules: [
+							{
+								name: "Mandatory E-Filing",
+								text: "Santa Clara County requires e-filing for most civil cases. You must file your Answer and Proof of Service electronically.",
+								link: "https://www.scscourt.org/online_services/efiling.shtml",
+							},
+							{
+								name: "Respond to Every Paragraph",
+								text: "Your Answer must respond to each paragraph of the Complaint by either admitting, denying, or stating you lack sufficient information to answer.",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=431.30",
+							},
+							{
+								name: "Affirmative Defenses",
+								text: "You must include all applicable affirmative defenses (e.g., statute of limitations) in your Answer, or you may waive them.",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=431.30",
+							},
+							{
+								name: "Filing Deadline",
+								text: "The Answer must be filed and served within 30 days of when you were served with the Complaint.",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=412.20",
+							},
+						],
+						checklist: [
+							{
+								phase: "Phase 1: Pre-Filing Preparation",
+								task: "Calendar Your Deadline",
+								notes:
+									"You have 30 days to file and serve the Answer after being served. Missing this can lead to a default judgment.",
+								rule: "[Self-Help Guide]",
+								link: "https://selfhelp.courts.ca.gov/civil-case-index",
+							},
+							{
+								phase: "Phase 1: Pre-Filing Preparation",
+								task: "Decide on Response Type",
+								notes:
+									"Determine if an Answer is the correct response, or if a demurrer or motion to strike is more appropriate.",
+								rule: "[Self-Help Guide]",
+								link: "https://selfhelp.courts.ca.gov/if-you-are-sued-civil-case",
+							},
+							{
+								phase: "Phase 1: Pre-Filing Preparation",
+								task: "Prepare the Answer and List Defenses",
+								notes:
+									"Use the correct Judicial Council form (e.g., PLD-050) or pleading paper. Respond to each paragraph and list all affirmative defenses.",
+								rule: "[CRC 2.104, 2.111]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=two&linkid=rule2_100",
+							},
+							{
+								phase: "Phase 2: Serving and Filing",
+								task: "Serve the Plaintiff",
+								notes:
+									"Have someone over 18 (who is not you) serve a copy of the Answer on the plaintiff or their attorney.",
+								rule: "[Self-Help Guide]",
+								link: "https://selfhelp.courts.ca.gov/serve-legal-papers",
+							},
+							{
+								phase: "Phase 2: Serving and Filing",
+								task: "Complete and File Proof of Service",
+								notes:
+									"Fill out a Proof of Service form and e-file it along with the original Answer.",
+								rule: "[Santa Clara Local Rules]",
+								link: "https://www.scscourt.org/general_info/rules/civil_rules.shtml",
+							},
+							{
+								phase: "Phase 2: Serving and Filing",
+								task: "Pay Filing Fee or Request Waiver",
+								notes:
+									"Pay the first appearance fee ($225-$450) or file a fee waiver request when you file the Answer.",
+								rule: "https://www.scscourt.org/general_info/fee_schedule.shtml",
+							},
+							{
+								phase: "Phase 3: After Filing",
+								task: "Monitor Mail and Update Address",
+								notes:
+									"Watch for court notices. If you move, you must formally update your address with the court and the plaintiff.",
+								rule: "[Self-Help Guide]",
+								link: "https://selfhelp.courts.ca.gov/civil-case-index",
+							},
+							{
+								phase: "Phase 3: After Filing",
+								task: "Prepare for Next Steps",
+								notes:
+									"Be ready to participate in discovery (exchanging information and documents). Calendar all future court dates.",
+								rule: "https://selfhelp.courts.ca.gov/discovery-civil-cases",
+							},
+						],
+					},
+					"Charles F. Adams": {
+						documents: [
+							{
+								item: "Answer to Complaint",
+								rule: "[CCP § 431.30]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=431.30",
+							},
+							{
+								item: "Proof of Service",
+								rule: "[CCP § 1013a, POS-030]",
+								link: "https://www.courts.ca.gov/forms/pdf/pos030.pdf",
+							},
+						],
+						conditional: [
+							{
+								item: "Verification",
+								rule: "Required if the Complaint is verified. [CCP § 446]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=446",
+							},
+						],
+						rules: [
+							{
+								name: "Deadline to Respond",
+								text: "An Answer or other responsive pleading must be filed within 30 days of the date the Summons and Complaint were served.",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=412.20",
+							},
+							{
+								name: "Content and Denials",
+								text: "The Answer must contain a general or specific denial of the material allegations of the complaint. It is also where all affirmative defenses must be pleaded.",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=431.30",
+							},
+							{
+								name: "Complex Case Guidelines",
+								text: "As a responding party, you are expected to be familiar with and adhere to the Santa Clara Complex Civil Litigation Guidelines.",
+								link: "https://www.scscourt.org/divisions/civil/complex_litigation.shtml",
+							},
+						],
+						checklist: [
+							{
+								phase: "Pre-Filing Preparation",
+								task: "Review the Summons, Complaint, and All Attachments",
+								notes:
+									"Carefully read all documents served, including the Civil Lawsuit Notice (CV-5012).",
+								rule: "[Best Practice]",
+								link: "#",
+							},
+							{
+								phase: "Pre-Filing Preparation",
+								task: "Calendar Your Deadline",
+								notes:
+									"File and serve within 30 days of service. Add 5 days for mail service.",
+								rule: "[CCP § 412.20, § 1013]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=412.20",
+							},
+							{
+								phase: "Pre-Filing Preparation",
+								task: "Review Complex Civil Litigation Guidelines",
+								notes:
+									"If you did not receive these from the plaintiff, download them from the court's website.",
+								rule: "[Local Practice]",
+								link: "https://www.scscourt.org/divisions/civil/complex_litigation.shtml",
+							},
+							{
+								phase: "Drafting the Answer",
+								task: "Use Proper Pleading Format",
+								notes:
+									"Comply with all CRC formatting rules (12-pt font, 28-line paper, etc.).",
+								rule: "[CRC 2.100 et seq.]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=two&linkid=rule2_100",
+							},
+							{
+								phase: "Drafting the Answer",
+								task: "Respond to Each Allegation",
+								notes:
+									"Admit, deny, or state lack of sufficient information for each allegation in the Complaint.",
+								rule: "[CCP § 431.30]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=431.30",
+							},
+							{
+								phase: "Drafting the Answer",
+								task: "Include All Affirmative Defenses",
+								notes:
+									"Failure to raise an affirmative defense in the Answer may waive it.",
+								rule: "[CCP § 431.30(b)(2)]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=431.30",
+							},
+							{
+								phase: "Filing and Serving",
+								task: "E-File the Answer",
+								notes:
+									"File via an approved EFSP and pay the 'first appearance' fee if applicable.",
+								rule: "[Local E-Filing Rules]",
+								link: "https://www.scscourt.org/online_services/efiling.shtml",
+							},
+							{
+								phase: "Filing and Serving",
+								task: "Serve the Answer on Plaintiff's Counsel",
+								notes:
+									"Serve a copy of the filed Answer by mail or other agreed-upon method.",
+								rule: "[CCP § 1013]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1013",
+							},
+							{
+								phase: "Filing and Serving",
+								task: "File Proof of Service",
+								notes: "E-file the completed Proof of Service with the court.",
+								rule: "[CCP § 1013a]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1013a",
+							},
+							{
+								phase: "Post-Filing Actions",
+								task: "Calendar the Case Management Conference (CMC)",
+								notes:
+									"The date is on the Civil Lawsuit Notice (CV-5012). Attendance is mandatory.",
+								rule: "[Local Rule 5]",
+								link: "https://www.scscourt.org/general_info/rules/civil_rules.shtml#rule5",
+							},
+						],
+					},
+				},
+				Complaint: {
+					"JoAnne McCracken": {
+						documents: [
+							{
+								item: "Complaint",
+								rule: "Follows CCP § 425.10 format with all required elements.",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=425.10",
+							},
+							{
+								item: "Civil Case Cover Sheet (CM-010)",
+								rule: "Required for all initial civil filings.",
+								link: "https://www.courts.ca.gov/forms/cm010.pdf",
+							},
+							{
+								item: "Summons (SUM-100)",
+								rule: "One for each defendant being served.",
+								link: "https://www.courts.ca.gov/forms/sum100.pdf",
+							},
+							{
+								item: "Civil Lawsuit Notice (CV-5012)",
+								rule: "Submit a blank form; the clerk will issue the completed notice.",
+								link: "https://www.scscourt.org/forms/CV5012.pdf",
+							},
+						],
+						conditional: [
+							{
+								item: "Request to Waive Court Fees",
+								rule: "File if the plaintiff is unable to pay the court filing fees.",
+								link: "https://www.courts.ca.gov/forms/fw001.pdf",
+							},
+						],
+						rules: [
+							{
+								name: "Mandatory E-Filing & Size Limits",
+								text: "All documents must be e-filed. Individual documents cannot exceed 25 MB, and the total submission cannot exceed 35 MB.",
+								link: "https://www.scscourt.org/online_services/efiling.shtml",
+							},
+							{
+								name: "Signature Requirement",
+								text: "Every pleading or paper must be signed by the attorney or self-represented party, including their address and phone number.",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=128.7",
+							},
+							{
+								name: "Civil Lawsuit Notice (CV-5012)",
+								text: "You must submit a blank CV-5012 form with your initial filing. The clerk will complete it with your case assignment and hearing dates and return it to you.",
+								link: "https://www.scscourt.org/forms/CV5012.pdf",
+							},
+						],
+						checklist: [
+							{
+								phase: "Phase 1: Pre-Filing Preparation",
+								task: "Determine Case Type and Jurisdiction",
+								notes:
+									"Decide if your case is Limited Civil (≤$25,000) or Unlimited Civil (>$25,000) and confirm Santa Clara is the proper venue.",
+								rule: "[Civil Division Info, Self-Help Civil Lawsuits]",
+								link: "https://selfhelp.scscourt.org/civil",
+							},
+							{
+								phase: "Phase 1: Pre-Filing Preparation",
+								task: "Identify Parties and Gather Facts",
+								notes:
+									"List full legal names and addresses for all parties and collect all evidence.",
+								rule: "[Self-Help Civil Lawsuits]",
+								link: "https://selfhelp.scscourt.org/civil/suing/starting",
+							},
+							{
+								phase: "Phase 2: Drafting the Complaint",
+								task: "Use Proper Formatting and Include Required Elements",
+								notes:
+									"Draft on 28-line pleading paper with 12-point font. Include caption, jurisdiction, parties, facts, causes of action, and prayer for relief.",
+								rule: "[Santa Clara eFiling Guide, CCP § 425.10]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=425.10",
+							},
+							{
+								phase: "Phase 2: Drafting the Complaint",
+								task: "Sign the Pleading",
+								notes:
+									"The complaint must be signed by the attorney or self-represented party, with their address and phone number included.",
+								rule: "[CCP § 128.7]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=128.7",
+							},
+							{
+								phase: "Phase 2: Drafting the Complaint",
+								task: "Complete Other Required Forms",
+								notes:
+									"Prepare the Civil Case Cover Sheet (CM-010), Summons (SUM-100), and a blank Civil Lawsuit Notice (CV-5012).",
+								rule: "[Local Forms]",
+								link: "https://www.scscourt.org/forms_and_filing/forms.shtml",
+							},
+							{
+								phase: "Phase 3: Filing the Complaint",
+								task: "Assemble and E-File the Packet",
+								notes:
+									"File the Complaint, Cover Sheet, Summons, and blank CV-5012 electronically. Adhere to file size limits (25MB per doc, 35MB total).",
+								rule: "[Santa Clara eFiling Guide]",
+								link: "https://www.scscourt.org/online_services/efiling.shtml",
+							},
+							{
+								phase: "Phase 3: Filing the Complaint",
+								task: "Pay Filing Fee or Request Waiver",
+								notes:
+									"Pay the initial filing fee or submit a fee waiver request at the time of filing.",
+								rule: "https://www.scscourt.org/general_info/fee_schedule.shtml",
+							},
+							{
+								phase: "Phase 4: Service of Process",
+								task: "Serve Each Defendant",
+								notes:
+									"Serve the filed Complaint, Summons, and the clerk-issued Civil Lawsuit Notice on each defendant.",
+								rule: "[Self-Help Civil Lawsuits]",
+								link: "https://selfhelp.courts.ca.gov/serve-legal-papers",
+							},
+							{
+								phase: "Phase 4: Service of Process",
+								task: "File Proof of Service",
+								notes:
+									"After service is complete, file a Proof of Service with the court for each defendant.",
+								rule: "https://www.courts.ca.gov/forms/pdf/pos010.pdf",
+							},
+							{
+								phase: "Phase 5: Next Steps",
+								task: "Calendar Defendant's Response Deadline",
+								notes:
+									"Defendants must respond within 30 days of being served.",
+								rule: "[Self-Help Civil Lawsuits]",
+								link: "https://selfhelp.courts.ca.gov/if-you-are-sued-civil-case",
+							},
+							{
+								phase: "Phase 5: Next Steps",
+								task: "Prepare for Case Management Conference (CMC)",
+								notes:
+									"The Civil Lawsuit Notice (CV-5012) you receive back from the court will contain the date for the CMC.",
+								rule: "https://www.scscourt.org/forms/CV5012.pdf",
+							},
+						],
+					},
+					"Lori E. Pegg": {
+						documents: [
+							{
+								item: "Civil Case Cover Sheet (CM-010)",
+								rule: "Required for all new civil filings ",
+								link: "https://www.courts.ca.gov/forms/cm010.pdf",
+							},
+							{
+								item: "Complaint",
+								rule: "Drafted on pleading paper following CCP § 425.10 format ",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=425.10",
+							},
+							{
+								item: "Summons (SUM-100)",
+								rule: "One for each defendant to be served ",
+								link: "https://www.courts.ca.gov/forms/sum100.pdf",
+							},
+							{
+								item: "Proof of Service",
+								rule: "File within 60 days of initial complaint filing ",
+								link: "https://www.courts.ca.gov/forms/pdf/pos010.pdf",
+							},
+						],
+						conditional: [
+							{
+								item: "Verification",
+								rule: "Required if mandated by statute or for certain case types ",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=446",
+							},
+							{
+								item: "Request to Waive Court Fees",
+								rule: "Submit if the plaintiff is eligible due to financial hardship ",
+								link: "https://www.courts.ca.gov/forms/fw001.pdf",
+							},
+						],
+						rules: [
+							{
+								name: "Mandatory E-Filing",
+								text: "All civil complaints must be filed electronically through an approved provider in Santa Clara County ",
+								link: "https://www.scscourt.org/online_services/efiling.shtml",
+							},
+							{
+								name: "Document Formatting",
+								text: "All documents must use 12-point font on 28-line pleading paper with proper margins and page numbering ",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=two&linkid=rule2_100",
+							},
+							{
+								name: "Service of Process",
+								text: "The Complaint, Summons, and all initial documents must be served on each defendant by a non-party adult. Proof of Service must be filed within 60 days of the complaint's filing ",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=583.210",
+							},
+							{
+								name: "Defendant Response Deadline",
+								text: "Defendants have 30 days from the date of service to file a response with the court ",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=412.20",
+							},
+						],
+						checklist: [
+							{
+								phase: "Phase 1: Pre-Filing Preparation",
+								task: "Determine Case Type and Jurisdiction",
+								notes:
+									"Decide if your case is limited (≤$35,000) or unlimited (>$35,000) and confirm Santa Clara is the proper venue ",
+								rule: "[Self-Help Guide, Civil Filing Info]",
+								link: "https://selfhelp.courts.ca.gov/civil-lawsuit",
+							},
+							{
+								phase: "Phase 1: Pre-Filing Preparation",
+								task: "Identify All Parties and Gather Facts",
+								notes:
+									"List full legal names and addresses for all parties and gather all supporting documents ",
+								rule: "[Self-Help Guide]",
+								link: "https://selfhelp.courts.ca.gov/civil/suing/starting",
+							},
+							{
+								phase: "Phase 1: Pre-Filing Preparation",
+								task: "Select and Prepare the Correct Complaint Form",
+								notes:
+									"Use a Judicial Council form for common cases or draft a custom pleading for complex matters ",
+								rule: "[CCP § 425.10]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=425.10",
+							},
+							{
+								phase: "Phase 2: Drafting the Complaint",
+								task: "Use Proper Formatting",
+								notes:
+									"Adhere to 12-point font, 28-line pleading paper, and correct margins/page numbering ",
+								rule: "[CRC 2.104, 2.108, 2.109, 2.111]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=two&linkid=rule2_100",
+							},
+							{
+								phase: "Phase 2: Drafting the Complaint",
+								task: "Include Required Pleading Elements",
+								notes:
+									"Draft the caption, jurisdiction, parties, factual allegations, causes of action, and prayer for relief ",
+								rule: "[CCP § 425.10]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=425.10",
+							},
+							{
+								phase: "Phase 2: Drafting the Complaint",
+								task: "Complete Other Required Forms",
+								notes:
+									"Fill out the Civil Case Cover Sheet (CM-010) and a Summons (SUM-100) for each defendant ",
+								rule: "[Local Forms]",
+								link: "https://www.scscourt.org/forms_and_filing/forms.shtml",
+							},
+							{
+								phase: "Phase 3: Filing the Complaint",
+								task: "Assemble and E-File the Packet",
+								notes:
+									"Combine the Complaint, exhibits, Cover Sheet, and Summons and file via an approved e-filing service provider ",
+								rule: "[Civil Filing Info]",
+								link: "https://www.scscourt.org/online_services/efiling.shtml",
+							},
+							{
+								phase: "Phase 3: Filing the Complaint",
+								task: "Pay Filing Fee",
+								notes:
+									"Pay the required fee at the time of filing or submit a fee waiver request ",
+								rule: "[Filing a Lawsuit]",
+								link: "https://www.scscourt.org/general_info/fee_schedule.shtml",
+							},
+							{
+								phase: "Phase 4: Service of Process",
+								task: "Serve Each Defendant",
+								notes:
+									"Arrange for a non-party adult to serve the complete filing packet on every defendant ",
+								rule: "[CCP § 412.20]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=412.20",
+							},
+							{
+								phase: "Phase 4: Service of Process",
+								task: "File Proof of Service",
+								notes:
+									"File a completed Proof of Service form for each defendant within 60 days of the initial complaint filing ",
+								rule: "[CCP § 583.210]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=583.210",
+							},
+							{
+								phase: "Phase 5: Next Steps",
+								task: "Calendar Defendant's Response Deadline",
+								notes:
+									"Defendants have 30 days after being served to file their response. Calendar this date carefully ",
+								rule: "[CCP § 412.20]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=412.20",
+							},
+						],
+					},
+					"Charles F. Adams": {
+						documents: [
+							{
+								item: "Civil Case Cover Sheet (CM-010)",
+								rule: "[CRC Rule 3.220, Local Rule 2.B]",
+								link: "https://www.courts.ca.gov/forms/cm010.pdf",
+							},
+							{
+								item: "Complaint",
+								rule: "[CCP § 425.10]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=425.10",
+							},
+							{
+								item: "Summons (SUM-100)",
+								rule: "[CCP § 412.20]",
+								link: "https://www.courts.ca.gov/forms/sum100.pdf",
+							},
+							{
+								item: "Civil Lawsuit Notice (CV-5012)",
+								rule: "[Local Rule 2.F]",
+								link: "https://www.scscourt.org/forms/CV5012.pdf",
+							},
+							{
+								item: "Alternative Dispute Resolution (ADR) Information Package",
+								rule: "[CCP § 412.20(a)(4)]",
+								link: "https://www.scscourt.org/forms_and_filing/forms.shtml#adr",
+							},
+						],
+						conditional: [
+							{
+								item: "Application for Waiver of Court Fees and Costs (FW-001)",
+								rule: "If client qualifies. [CRC Rules 3.50-3.63]",
+								link: "https://www.courts.ca.gov/forms/fw001.pdf",
+							},
+						],
+						rules: [
+							{
+								name: "Complex Case Designation",
+								text: "CRC Rule 3.400 defines the criteria for a complex case. Local Rule 2.B requires marking the Civil Case Cover Sheet accordingly.",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_400",
+							},
+							{
+								name: "General Document Formatting",
+								text: "All documents must comply with CRC Rules 2.100-2.119, governing font size (12-pt), line spacing, margins, and the specific format of the first page.",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=two&linkid=rule2_100",
+							},
+							{
+								name: "Service of Process",
+								text: "The Complaint, Summons, and other initial papers must be served on all defendants according to the methods outlined in CCP § 415.10 et seq.",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=415.10",
+							},
+						],
+						checklist: [
+							{
+								phase: "Pre-Drafting & Information Gathering",
+								task: "Determine if Case is 'Complex'",
+								notes:
+									"Confirm your case meets criteria in CRC Rule 3.400 (e.g., antitrust, mass tort).",
+								rule: "[CRC Rule 3.400]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_400",
+							},
+							{
+								phase: "Pre-Drafting & Information Gathering",
+								task: "Identify All Parties",
+								notes:
+									"List full, correct legal names for the Complaint's caption.",
+								rule: "[CCP § 422.40]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=422.40",
+							},
+							{
+								phase: "Pre-Drafting & Information Gathering",
+								task: "Gather Necessary Forms",
+								notes:
+									"Download latest versions of CM-010, SUM-100, and local CV-5012.",
+								rule: "[Court Websites]",
+								link: "https://www.scscourt.org/forms_and_filing/forms.shtml",
+							},
+							{
+								phase: "Drafting & Formatting",
+								task: "Draft Complaint",
+								notes: "Draft factual allegations and legal causes of action.",
+								rule: "[CCP § 425.10]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=425.10",
+							},
+							{
+								phase: "Drafting & Formatting",
+								task: "Adhere to Document Formatting Rules",
+								notes:
+									"12-pt font, 28-line paper, correct margins, and first-page layout.",
+								rule: "[CRC Rules 2.100-2.119]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=two&linkid=rule2_100",
+							},
+							{
+								phase: "Drafting & Formatting",
+								task: "Complete Civil Case Cover Sheet",
+								notes: "Check box 1.b for 'Complex Case Designation'.",
+								rule: "[Local Rule 2.B]",
+								link: "https://www.scscourt.org/general_info/rules/civil_rules.shtml#rule2",
+							},
+							{
+								phase: "Filing & Service",
+								task: "Assemble & E-File Packet",
+								notes:
+									"Order: Cover Sheet, Summons, Complaint. Submit via approved EFSP.",
+								rule: "[CRC Rule 2.250]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=two&linkid=rule2_250",
+							},
+							{
+								phase: "Filing & Service",
+								task: "Pay Initial Filing Fee",
+								notes: "Fee is required at the time of e-filing.",
+								rule: "[Gov. Code]",
+								link: "https://www.scscourt.org/general_info/fee_schedule.shtml",
+							},
+							{
+								phase: "Filing & Service",
+								task: "Serve Defendants",
+								notes: "Serve the complete initial packet on all defendants.",
+								rule: "[CCP § 415.10 et seq.]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=415.10",
+							},
+							{
+								phase: "Filing & Service",
+								task: "File Proof of Service",
+								notes:
+									"After service is complete, file a Proof of Service (POS-010) for each defendant.",
+								rule: "[CCP § 417.10]",
+								link: "https://www.courts.ca.gov/forms/pdf/pos010.pdf",
+							},
+						],
+					},
+				},
+				"Motion for Summary Judgment": {
+					"Lori E. Pegg": {
+						documents: [
+							{
+								item: "Notice of Motion and Motion",
+								rule: "[CCP § 437c(a)]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=437c",
+							},
+							{
+								item: "Memorandum of Points and Authorities",
+								rule: "Limit: 20 pages [CRC Rule 3.1113(d)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1113",
+							},
+							{
+								item: "Separate Statement of Undisputed Material Facts",
+								rule: "MANDATORY [CRC 3.1350(d)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1350",
+							},
+							{
+								item: "Declarations/Affidavits in Support",
+								rule: "[CCP § 437c(b)(1)]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=437c",
+							},
+							{
+								item: "Supporting Evidence (Exhibits)",
+								rule: "[CRC 3.1350(c)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1350",
+							},
+							{
+								item: "Proposed Order",
+								rule: "[CRC Rule 3.1312]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1312",
+							},
+							{
+								item: "Proof of Service",
+								rule: "[CCP § 1013a, POS-040]",
+								link: "https://www.courts.ca.gov/forms/pdf/pos040.pdf",
+							},
+						],
+						conditional: [
+							{
+								item: "Request for Judicial Notice",
+								rule: "File if relying on judicially noticeable facts. [Evid. Code § 452]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=EVID",
+							},
+							{
+								item: "Proposed Judgment",
+								rule: "File if the motion is dispositive of the entire action.",
+								link: "#",
+							},
+						],
+						rules: [
+							{
+								name: "Timing of Notice",
+								text: "The motion must be served and filed at least 75 calendar days before the hearing. This deadline is strictly enforced.",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=437c",
+							},
+							{
+								name: "Separate Statement Requirement",
+								text: "Failure to provide a proper Separate Statement in the required two-column format is a common reason for motions to be denied or taken off calendar.",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1350",
+							},
+							{
+								name: "Evidentiary Objections",
+								text: "All evidence must be properly authenticated via declarations. Evidentiary objections must be made in writing with your opposition or reply papers.",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=437c",
+							},
+						],
+						checklist: [
+							{
+								phase: "Phase 1: Strategic & Procedural Preparation",
+								task: "Assess Suitability for Summary Judgment",
+								notes:
+									"Confirm there is 'no triable issue of material fact' and you are entitled to judgment as a matter of law.",
+								rule: "[CCP § 437c]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=437c",
+							},
+							{
+								phase: "Phase 1: Strategic & Procedural Preparation",
+								task: "Calendar Deadlines",
+								notes:
+									"Serve motion 75 days before hearing; Opposition 14 days before; Reply 5 days before.",
+								rule: "[CCP § 437c(a)-(b)]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=437c",
+							},
+							{
+								phase: "Phase 2: Drafting the Motion",
+								task: "Use Proper Formatting",
+								notes:
+									"12-pt font, 28-line pleading paper, proper margins and page numbering.",
+								rule: "[CRC 2.100 et seq.]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=two&linkid=rule2_100",
+							},
+							{
+								phase: "Phase 2: Drafting the Motion",
+								task: "Prepare Separate Statement of Undisputed Material Facts",
+								notes:
+									"Each fact must be numbered and cite to supporting evidence.",
+								rule: "[CRC 3.1350(d)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1350",
+							},
+							{
+								phase: "Phase 2: Drafting the Motion",
+								task: "Prepare Memorandum of Points and Authorities",
+								notes:
+									"Argue legal grounds. Limit is 20 pages unless otherwise permitted.",
+								rule: "[CRC 3.1113(d)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1113",
+							},
+							{
+								phase: "Phase 2: Drafting the Motion",
+								task: "Prepare Declarations and Authenticate Exhibits",
+								notes: "All evidence must be supported by sworn declarations.",
+								rule: "[CCP § 437c(b)(1)]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=437c",
+							},
+							{
+								phase: "Phase 3: Filing and Service",
+								task: "E-File All Documents",
+								notes: "File the complete motion packet via an approved EFSP.",
+								rule: "[Santa Clara Local Rules]",
+								link: "https://www.scscourt.org/online_services/efiling.shtml",
+							},
+							{
+								phase: "Phase 3: Filing and Service",
+								task: "Serve All Parties",
+								notes:
+									"Serve at least 75 days before the hearing, plus extensions for method of service.",
+								rule: "[CCP § 437c(a)]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=437c",
+							},
+							{
+								phase: "Phase 4: Hearing",
+								task: "Review Tentative Ruling",
+								notes:
+									"Check Dept. 5's tentative rulings online before the hearing.",
+								rule: "[Local Rule 3.D]",
+								link: "https://www.scscourt.org/general_info/rules/civil_rules.shtml#rule3",
+							},
+						],
+					},
+					"JoAnne McCracken": {
+						documents: [
+							{
+								item: "Notice of Motion and Motion",
+								rule: "[CCP § 437c(a)]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=437c",
+							},
+							{
+								item: "Memorandum of Points and Authorities",
+								rule: "Limit: 20 pages [CRC Rule 3.1113(d)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1113",
+							},
+							{
+								item: "Separate Statement of Undisputed Material Facts",
+								rule: "MANDATORY [CRC 3.1350(d)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1350",
+							},
+							{
+								item: "Declarations/Affidavits in Support",
+								rule: "[CCP § 437c(b)(1)]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=437c",
+							},
+							{
+								item: "Supporting Evidence (Exhibits)",
+								rule: "[CRC 3.1350(c)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1350",
+							},
+							{
+								item: "Proposed Order",
+								rule: "[CRC Rule 3.1312]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1312",
+							},
+							{
+								item: "Proof of Service",
+								rule: "[CCP § 1013a, POS-040]",
+								link: "https://www.courts.ca.gov/forms/pdf/pos040.pdf",
+							},
+						],
+						conditional: [
+							{
+								item: "Request for Judicial Notice",
+								rule: "File if relying on judicially noticeable facts. [Evid. Code § 452]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=EVID",
+							},
+							{
+								item: "Proposed Judgment",
+								rule: "File if the motion is dispositive of the entire action.",
+								link: "#",
+							},
+						],
+						rules: [
+							{
+								name: "Timing of Notice",
+								text: "The motion must be served and filed at least 75 calendar days before the hearing. This deadline is strictly enforced.",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=437c",
+							},
+							{
+								name: "Separate Statement Requirement",
+								text: "Failure to provide a proper Separate Statement in the required two-column format is a common reason for motions to be denied or taken off calendar.",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1350",
+							},
+							{
+								name: "Evidence and Objections",
+								text: "All evidence must be properly authenticated via declarations. Evidentiary objections must be made in writing with your opposition or reply papers.",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=437c",
+							},
+						],
+						checklist: [
+							{
+								phase: "Phase 1: Strategic & Procedural Preparation",
+								task: "Assess Suitability for Summary Judgment",
+								notes:
+									"Confirm there is 'no triable issue of material fact' and you are entitled to judgment as a matter of law.",
+								rule: "[CCP § 437c]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=437c",
+							},
+							{
+								phase: "Phase 1: Strategic & Procedural Preparation",
+								task: "Calendar Deadlines",
+								notes:
+									"Serve motion 75 days before hearing; Opposition 14 days before; Reply 5 days before.",
+								rule: "[CCP § 437c(a)-(b)]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=437c",
+							},
+							{
+								phase: "Phase 2: Drafting the Motion",
+								task: "Use Proper Formatting",
+								notes:
+									"12-pt font, 28-line pleading paper, proper margins and page numbering.",
+								rule: "[CRC 2.100 et seq.]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=two&linkid=rule2_100",
+							},
+							{
+								phase: "Phase 2: Drafting the Motion",
+								task: "Prepare Separate Statement of Undisputed Material Facts",
+								notes:
+									"Each fact must be numbered and cite to supporting evidence.",
+								rule: "[CRC 3.1350(d)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1350",
+							},
+							{
+								phase: "Phase 2: Drafting the Motion",
+								task: "Prepare Memorandum of Points and Authorities",
+								notes:
+									"Argue legal grounds. Limit is 20 pages unless otherwise permitted.",
+								rule: "[CRC 3.1113(d)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1113",
+							},
+							{
+								phase: "Phase 2: Drafting the Motion",
+								task: "Prepare Declarations and Authenticate Exhibits",
+								notes: "All evidence must be supported by sworn declarations.",
+								rule: "[CCP § 437c(b)(1)]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=437c",
+							},
+							{
+								phase: "Phase 3: Filing and Service",
+								task: "E-File All Documents",
+								notes: "File the complete motion packet via an approved EFSP.",
+								rule: "[Santa Clara Local Rules]",
+								link: "https://www.scscourt.org/online_services/efiling.shtml",
+							},
+							{
+								phase: "Phase 3: Filing and Service",
+								task: "Serve All Parties",
+								notes:
+									"Serve at least 75 days before the hearing, plus extensions for method of service.",
+								rule: "[CCP § 437c(a)]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=437c",
+							},
+							{
+								phase: "Phase 4: Hearing",
+								task: "Review Tentative Ruling",
+								notes:
+									"Check Dept. 8's tentative rulings online before the hearing.",
+								rule: "[Local Rule 3.D]",
+								link: "https://www.scscourt.org/general_info/rules/civil_rules.shtml#rule3",
+							},
+						],
+					},
+					"Charles F. Adams": {
+						documents: [
+							{
+								item: "Notice of Motion and Motion",
+								rule: "[CCP § 437c(a), CRC Rule 3.1350(b)]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=437c",
+							},
+							{
+								item: "Memorandum of Points and Authorities",
+								rule: "Limit: 20 pages [CRC Rule 3.1113(d)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1113",
+							},
+							{
+								item: "Separate Statement of Undisputed Material Facts",
+								rule: "<b>MANDATORY</b> [CCP § 437c(b)(1), CRC Rule 3.1350(d)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1350",
+							},
+							{
+								item: "Supporting Declarations",
+								rule: "[CRC Rule 3.1350(c), Evidence Code §§ 1400-1402]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=EVID",
+							},
+							{
+								item: "Supporting Evidence",
+								rule: "Attach as labeled exhibits [CRC Rule 3.1350(c), Evidence Code § 452]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=EVID",
+							},
+							{
+								item: "Proposed Order",
+								rule: "Editable Word format required [Local Rule 6.H, CRC Rule 3.1312]",
+								link: "https://www.scscourt.org/general_info/rules/civil_rules.shtml#rule6",
+							},
+							{
+								item: "Proof of Service",
+								rule: "[CCP § 1013, CRC Rule 2.251]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1013",
+							},
+						],
+						conditional: [
+							{
+								item: "Request for Judicial Notice (RJN)",
+								rule: "If relying on public records. [Evidence Code §§ 451, 452; CRC Rule 3.1113(l)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1113",
+							},
+							{
+								item: "Proposed Judgment",
+								rule: "If MSJ is dispositive of the entire case. [Best Practice, CRC Rule 3.1312]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1312",
+							},
+							{
+								item: "Evidentiary Objections",
+								rule: "May be raised in reply or separate written objections. [CRC Rule 3.1352, CCP § 437c(q)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1352",
+							},
+							{
+								item: "Exhibit Index or Binder Tabs",
+								rule: "For voluminous exhibits for the courtesy copy. [Best Practice, Local Judicial Preferences]",
+								link: "#",
+							},
+							{
+								item: "Highlighted Exhibits",
+								rule: "Consider highlighting relevant excerpts for clarity. [Judicial Preference, CRC Rule 3.1110(f)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1110",
+							},
+							{
+								item: "Tentative Rulings & Procedures to Contest",
+								rule: "Review Judge Adams's process and deadlines to contest. [Local Rule 3.D, Dept. 7 Standing Orders]",
+								link: "https://www.scscourt.org/divisions/civil/judges.shtml",
+							},
+						],
+						rules: [
+							{
+								name: "Governing Statute",
+								text: "CCP § 437c is the comprehensive law for MSJs, setting the 75-day notice period and mandating the Separate Statement. 'The required 81-day period of notice shall be increased by 5 days if the place of address is within the State of California, 10 days if the place of address is outside the State of California but within the United States, and 20 days if the place of address is outside the United States. If the notice is served by facsimile transmission, express mail, or another method of delivery providing for overnight delivery, the required 81-day period of notice shall be increased by two court days'",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=437c",
+							},
+							{
+								name: "Formatting and Structure",
+								text: "CRC Rule 3.1350 dictates the specific two-column format for the Separate Statement and sets the 20-page limit for the legal brief.",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1350",
+							},
+							{
+								name: "Local Court Procedures",
+								text: "Santa Clara Local Rules (e.g., 5.F for courtesy copies, 6.H for editable orders) add a layer of mandatory operational requirements.",
+								link: "https://www.scscourt.org/general_info/rules/civil_rules.shtml",
+							},
+							{
+								name: "Judge-Specific Practices",
+								text: "Always check Judge Adams's courtroom page or contact the Dept. 7 Clerk to verify any standing orders or specific preferences not covered by local rules.",
+								link: "https://www.scscourt.org/divisions/civil/judges.shtml",
+							},
+						],
+						checklist: [
+							{
+								phase: "Pre-Filing",
+								task: "Reserve Hearing Date (CRS)",
+								notes:
+									"Must be at least 75 calendar days out, plus time for service (+2 for e-service, +5 for mail).",
+								rule: "[Local Protocol]",
+								link: "https://www.scscourt.org/online/crs.shtml",
+							},
+							{
+								phase: "Pre-Filing",
+								task: "Review Judge Adams's Standing Orders",
+								notes:
+									"Check the court's website under his department directory.",
+								rule: "[Judge Directory]",
+								link: "https://www.scscourt.org/divisions/civil/judges.shtml",
+							},
+							{
+								phase: "Prepare & Assemble Documents",
+								task: "Draft Notice of Motion & Motion",
+								notes: "Clearly state the relief sought.",
+								rule: "[CCP § 437c(a)]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=437c",
+							},
+							{
+								phase: "Prepare & Assemble Documents",
+								task: "Draft Memo of Points & Authorities (20-page limit)",
+								notes: "Cite evidence, case law, and statutes.",
+								rule: "[CRC Rule 3.1113(d)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1113",
+							},
+							{
+								phase: "Prepare & Assemble Documents",
+								task: "Prepare Separate Statement",
+								notes:
+									"<b>MANDATORY</b> Must be in the required two-column format.",
+								rule: "[CCP § 437c(b)(1)]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=437c",
+							},
+							{
+								phase: "Formatting Requirements",
+								task: "Use 28-line Pleading Paper & 12-pt Font",
+								notes: "",
+								rule: "[CRC Rules 2.104, 2.108]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=two&linkid=rule2_100",
+							},
+							{
+								phase: "Formatting Requirements",
+								task: "Bookmark PDF Headings & Exhibits",
+								notes: "",
+								rule: "[Local E-Filing Protocol]",
+								link: "https://www.scscourt.org/online_services/efiling.shtml",
+							},
+							{
+								phase: "File and Serve",
+								task: "File via Approved EFSP & Serve Parties",
+								notes: "Adjust for mail/e-service timelines.",
+								rule: "[CRC Rule 2.250, CCP § 437c(a)]",
+								link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=two&linkid=rule2_250",
+							},
+							{
+								phase: "File and Serve",
+								task: "Deliver Courtesy Copy to Dept. 7",
+								notes:
+									"Must be delivered by 5:00 PM on the same day as e-filing.",
+								rule: "[Local Rule 5.F]",
+								link: "https://www.scscourt.org/general_info/rules/civil_rules.shtml#rule5",
+							},
+							{
+								phase: "File and Serve",
+								task: "Email Editable Proposed Order to Dept. 7",
+								notes: "Use the correct department email.",
+								rule: "[Local Rule 6.H]",
+								link: "https://www.scscourt.org/general_info/rules/civil_rules.shtml#rule6",
+							},
+							{
+								phase: "Post-Filing Deadlines",
+								task: "Calendar Opposition & Reply Dates",
+								notes:
+									"Opposition is 14 calendar days before hearing; Reply is 5 calendar days before.",
+								rule: "[CCP § 437c(b)]",
+								link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=437c",
+							},
+						],
+					},
+				},
+			};
+
+			// --- DOM Element References ---
+			const divisionSelect = document.getElementById("division");
+			const judgeSelect = document.getElementById("judge");
+			const resultsHeader = document.getElementById("results-header");
+			const checklistContainer = document.getElementById("checklist");
+			const documentsContainer = document.getElementById("documents");
+			const conditionalContainer = document.getElementById("conditional");
+			const rulesContainer = document.getElementById("rules");
+			const tabs = document.getElementById("tabs");
+			const downloadPdfBtn = document.getElementById("download-pdf-btn");
+
+			// --- Core Functions ---
+			function updateJudgeDropdown() {
+				const selectedDivision = divisionSelect.value;
+				const currentJudgeValue = judgeSelect.value;
+				judgeSelect.innerHTML = "";
+				const filteredJudges = JUDGES.filter(
+					(j) => j.division === selectedDivision
+				);
+				filteredJudges.forEach((judge) => {
+					const option = document.createElement("option");
+					option.value = judge.name;
+					option.textContent = judge.name;
+					judgeSelect.appendChild(option);
+				});
+				if (filteredJudges.some((j) => j.name === currentJudgeValue)) {
+					judgeSelect.value = currentJudgeValue;
+				}
+			}
+
+			function performSearch() {
+				const docType = document.getElementById("document-type").value;
+				const judge = judgeSelect.value;
+				const county = document.getElementById("county").value;
+				const division = divisionSelect.value;
+
+				const data = MOCK_DB[docType]?.[judge];
+
+				if (data) {
+					resultsHeader.textContent = `${docType} before Judge ${judge} in ${county}, ${division}`;
+					populateDocuments(data.documents);
+					populateConditional(data.conditional);
+					populateRules(data.rules);
+					populateChecklist(data.checklist);
+					document
+						.getElementById("results-container")
+						.classList.remove("hidden");
+					tabs.querySelector(".tab-button").click();
+				} else {
+					document
+						.getElementById("results-container")
+						.classList.remove("hidden");
+					resultsHeader.textContent = `No verified data for your selection.`;
+					checklistContainer.innerHTML = `<p class="text-gray-500">Our database is constantly expanding. Please check back soon.</p>`;
+					documentsContainer.innerHTML = "";
+					conditionalContainer.innerHTML = "";
+					rulesContainer.innerHTML = "";
+					tabs.querySelector(".tab-button").click();
+				}
+			}
+
+			function populateDocuments(docs) {
+				const explanations = {
+					"Notice of Motion and Motion":
+						"The primary document that states the legal relief being sought from the court and provides the date, time, and location of the hearing.",
+					"Memorandum of Points and Authorities":
+						"A legal brief that provides the factual and legal arguments, citing relevant statutes, case law, and evidence to support the motion.",
+					"Separate Statement of Undisputed Material Facts":
+						"A critical document required for summary judgment motions, listing each material fact claimed to be undisputed, followed by citations to the supporting evidence.",
+					"Separate Statement":
+						"A mandatory document for discovery motions that sets forth each discovery request, the complete response, and the legal reasons for compelling a further response.",
+					"Supporting Declarations":
+						"Sworn statements from parties or witnesses that provide facts and authenticate the evidence presented.",
+					"Declarations/Affidavits in Support":
+						"Sworn statements from parties or witnesses that provide facts and authenticate the evidence presented.",
+					"Declaration in Support of Motion":
+						"A sworn statement providing the factual basis for the motion, which for discovery motions must include a detailed description of meet-and-confer efforts.",
+					"Meet and Confer Declaration":
+						"A mandatory, sworn statement detailing the good-faith efforts made to resolve the issues with the opposing party before filing the motion.",
+					"Supporting Evidence":
+						"The actual documents, discovery responses, or other tangible items that support your motion, typically attached as exhibits to a declaration.",
+					"Supporting Evidence (Exhibits)":
+						"The actual documents, discovery responses, or other tangible items that support your motion, typically attached as exhibits to a declaration.",
+					"Proposed Order":
+						"A document for the judge to sign that clearly specifies the rulings and relief requested in the motion.",
+					"Request for Sanctions":
+						"A request for the court to order the opposing party to pay reasonable expenses and fees incurred due to their improper conduct or opposition to the motion.",
+					"Proof of Service":
+						"A signed declaration stating when and how the motion documents were served on all other parties in the case.",
+					"Civil Case Cover Sheet":
+						"A mandatory Judicial Council form that provides the court with basic information about the type of case being filed.",
+					Complaint:
+						"The initial pleading filed by the plaintiff that outlines the factual allegations and legal claims against the defendant, thereby starting the lawsuit.",
+					Answer:
+						"The defendant's formal response to the Complaint, admitting or denying the allegations and asserting any affirmative defenses.",
+					"Answer to Complaint":
+						"The defendant's formal response to the Complaint, admitting or denying the allegations and asserting any affirmative defenses.",
+					Summons:
+						"An official notice to the defendant(s) that they have been sued and must file a response with the court by a specific deadline.",
+					"Civil Lawsuit Notice":
+						"A local Santa Clara form used for scheduling the initial Case Management Conference and providing important case information.",
+					"Alternative Dispute Resolution (ADR) Information Package":
+						"A package of documents that must be served with the Complaint to inform the parties about available ADR options like mediation.",
+					"Notice of Motion and Motion to Strike":
+						"A request asking the court to remove specific parts of an opponent's pleading that are legally improper, irrelevant, or false.",
+					"Declaration in Support":
+						"A general sworn statement used to provide factual support for a motion or request, such as authenticating documents for a Request for Judicial Notice.",
+				};
+
+				let html =
+					'<h3 class="text-lg font-semibold text-gray-900 mb-4">A. Required Documents</h3><ul class="list-decimal list-inside space-y-4">';
+				docs.forEach((doc) => {
+					let mainItem = doc.item.split("(")[0].trim();
+					let subItem = doc.item.includes("(")
+						? "(" + doc.item.split("(")[1]
+						: "";
+					let explanation =
+						explanations[mainItem] || "No explanation available.";
+
+					html += `<li class="text-gray-800 ml-4">
+                    <span class="font-medium">${mainItem}</span><span class="text-gray-500 text-sm">${subItem}</span>
+                    <div class="text-sm text-gray-600 pl-1 mt-1">${explanation}</div>
+                    <div class="text-xs text-pink-600 font-sans hover:underline mt-1 pl-1">
+                        <a href="${doc.link || "#"}" target="_blank">${
+						doc.rule || ""
+					}</a>
+                    </div>
+                </li>`;
+				});
+				html += "</ul>";
+				documentsContainer.innerHTML = html;
+			}
+
+			function populateConditional(docs) {
+				const conditionalExplanations = {
+					"Request for Judicial Notice":
+						"A formal request asking the court to accept certain facts as true without formal proof, typically for matters of public record or law.",
+					"Request for Judicial Notice (RJN)":
+						"A formal request asking the court to accept certain facts as true without formal proof, typically for matters of public record or law.",
+					"Proposed Judgment":
+						"A document to be signed by the judge that officially ends the case, typically submitted when a motion will resolve all remaining issues.",
+					"Evidentiary Objections":
+						"A formal statement challenging the admissibility of specific evidence submitted by the opposing party.",
+					"Exhibit Index or Binder Tabs":
+						"An organizational tool for motions with many exhibits, helping the judge navigate the evidence. Often required as a courtesy copy.",
+					"Highlighted Exhibits":
+						"A best practice of highlighting key passages in evidence to draw the court's attention to the most relevant information.",
+					"Tentative Rulings & Procedures to Contest":
+						"The process of checking the judge's preliminary ruling online and following specific procedures to request oral argument if you disagree.",
+					"Standing Orders":
+						"Specific rules issued by a judge that supplement the state and local rules and govern practice in their individual courtroom.",
+					"Application for Waiver of Court Fees and Costs":
+						"A form filed to ask the court to waive filing fees due to the party's financial hardship.",
+					Verification:
+						"A sworn statement at the end of a pleading, signed under penalty of perjury, attesting that the factual allegations are true.",
+					Demurrer:
+						"A pleading that challenges the legal sufficiency of an opponent's pleading, arguing that it fails to state a valid claim or defense even if the facts are true.",
+					"Redline Comparison of Pleadings":
+						"A document showing the changes between a previous pleading and an amended one, typically required when challenging an amended pleading.",
+					"Civil Lawsuit Notice":
+						"A local Santa Clara form used for scheduling the initial Case Management Conference. An updated notice must be served if new parties are added.",
+				};
+
+				let html =
+					'<h3 class="text-lg font-semibold text-gray-900 mb-4">B. Conditional/If-Applicable Documents</h3><ul class="list-decimal list-inside space-y-4">';
+				docs.forEach((doc) => {
+					let mainItem = doc.item.split("(")[0].trim();
+					let subItem = doc.item.includes("(")
+						? "(" + doc.item.split("(")[1]
+						: "";
+					let explanation =
+						conditionalExplanations[mainItem] || "No explanation available.";
+
+					html += `<li class="text-gray-800 ml-4">
+                    <span class="font-medium">${mainItem}</span><span class="text-gray-500 text-sm">${subItem}</span>
+                    <div class="text-sm text-gray-600 pl-1 mt-1">${explanation}</div>
+                    <div class="text-xs text-pink-600 font-sans hover:underline mt-1 pl-1">
+                         <a href="${doc.link || "#"}" target="_blank">${
+						doc.rule || ""
+					}</a>
+                    </div>
+                </li>`;
+				});
+				html += "</ul>";
+				conditionalContainer.innerHTML = html;
+			}
+
+			function populateRules(rules) {
+				let rulesHtml =
+					'<h3 class="text-lg font-semibold text-gray-900 mb-4">Governing Legal Authority</h3><div class="space-y-4">';
+				rules.forEach((rule) => {
+					rulesHtml += `
+                    <div class="p-4 bg-gray-100 rounded-lg border border-gray-200">
+                        <p class="font-semibold text-gray-800">${rule.name}</p>
+                        <p class="text-sm text-gray-600 mt-1">${rule.text}</p>
+                        <a href="${rule.link}" target="_blank" class="text-sm text-pink-600 hover:underline mt-2 inline-block">Source Link &rarr;</a>
+                    </div>
+                `;
+				});
+				rulesHtml += "</div>";
+				rulesContainer.innerHTML = rulesHtml;
+			}
+
+			function populateChecklist(checklist) {
+				let html = '<div class="space-y-6">';
+				let phases = {};
+				checklist.forEach((item) => {
+					if (!phases[item.phase]) {
+						phases[item.phase] = [];
+					}
+					phases[item.phase].push(item);
+				});
+				for (const phase in phases) {
+					html += `<div class="phase-group"><h4 class="text-md font-bold text-pink-700 mb-4 border-b border-pink-200 pb-2">${phase}</h4><div class="space-y-4">`;
+					phases[phase].forEach((item) => {
+						const uniqueId = item.task.replace(/\s+/g, "") + Math.random();
+						let taskHtml = `<span class="font-medium">${item.task}</span>`;
+
+						html += `
+                        <div class="flex items-start">
+                            <input id="${uniqueId}" type="checkbox" class="h-5 w-5 rounded border-gray-300 text-pink-600 focus:ring-pink-500 mt-0.5 flex-shrink-0">
+                            <label for="${uniqueId}" class="ml-3 text-sm text-gray-800 w-full">
+                                ${taskHtml}
+                                <span class="block text-gray-500">${
+																	item.notes
+																}</span>
+                                <div class="text-xs text-pink-600 font-sans hover:underline mt-1">
+                                    <a href="${
+																			item.link || "#"
+																		}" target="_blank">${item.rule || ""}</a>
+                                </div>
+                            </label>
+                        </div>
+                    `;
+					});
+					html += "</div></div>";
+				}
+				html += "</div>";
+				checklistContainer.innerHTML = html;
+			}
+
+			document
+				.getElementById("division")
+				.addEventListener("change", updateJudgeDropdown);
+			document.getElementById("search-form").addEventListener("submit", (e) => {
+				e.preventDefault();
+				showResultsPanel();
+				performSearch();
+			});
+
+			tabs.addEventListener("click", function (event) {
+				if (event.target.classList.contains("tab-button")) {
+					document
+						.querySelectorAll(".tab-button")
+						.forEach((btn) => btn.classList.remove("active"));
+					document
+						.querySelectorAll(".tab-content")
+						.forEach((content) => content.classList.remove("active"));
+					event.target.classList.add("active");
+					document
+						.getElementById(event.target.dataset.target)
+						.classList.add("active");
+				}
+			});
+
+			downloadPdfBtn.addEventListener("click", function () {
+				const elementToPrint = document.createElement("div");
+				elementToPrint.style.padding = "2rem";
+				elementToPrint.style.fontFamily = "'Inter', sans-serif";
+
+				const title = document.createElement("h1");
+				title.className = "text-2xl font-bold text-gray-900 mb-1";
+				title.textContent = "Ingrid Filing Report";
+				elementToPrint.appendChild(title);
+
+				const header = document
+					.getElementById("results-header")
+					.cloneNode(true);
+				header.className = "text-base text-gray-600 mb-6";
+				elementToPrint.appendChild(header);
+
+				const separator =
+					'<div style="height: 1px; background-color: #e5e7eb; margin: 24px 0;"></div>';
+
+				elementToPrint.innerHTML += separator;
+				elementToPrint.appendChild(
+					document.getElementById("documents").cloneNode(true)
+				);
+				elementToPrint.innerHTML += separator;
+				elementToPrint.appendChild(
+					document.getElementById("conditional").cloneNode(true)
+				);
+				elementToPrint.innerHTML +=
+					'<div style="page-break-before: always;"></div>';
+				elementToPrint.appendChild(
+					document.getElementById("rules").cloneNode(true)
+				);
+				elementToPrint.innerHTML +=
+					'<div style="page-break-before: always;"></div>';
+				elementToPrint.appendChild(
+					document.getElementById("checklist").cloneNode(true)
+				);
+
+				// Remove checkboxes for PDF
+				elementToPrint
+					.querySelectorAll('input[type="checkbox"]')
+					.forEach((el) => (el.style.display = "none"));
+
+				const docType = document
+					.getElementById("document-type")
+					.value.replace(/ /g, "_");
+				const judge = document.getElementById("judge").value.replace(/ /g, "_");
+
+				const opt = {
+					margin: [0.7, 0.5, 0.7, 0.5],
+					filename: `Ingrid_Report_${docType}_${judge}.pdf`,
+					image: { type: "jpeg", quality: 0.98 },
+					html2canvas: { scale: 2 },
+					jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+				};
+
+				html2pdf().from(elementToPrint).set(opt).save();
+			});
+
+			document.addEventListener("DOMContentLoaded", () => {
+				updateJudgeDropdown();
+			});
+
+			// --- UI Dynamic/Reactive Logic ---
+			const mainContainer = document.getElementById("main-container");
+			const searchPanel = document.getElementById("search-panel");
+			const resultsPanel = document.getElementById("results-panel");
+			const newSearchBtn = document.getElementById("new-search-btn");
+			const searchForm = document.getElementById("search-form");
+			const softDivider = document.querySelector(".soft-divider");
+
+			function showResultsPanel() {
+				mainContainer.classList.remove("centered-start");
+				mainContainer.classList.remove("not-shifted");
+				mainContainer.classList.add("shifted");
+				searchPanel.classList.remove("centered");
+				searchPanel.classList.add("shrunk");
+				resultsPanel.classList.add("visible");
+				resultsPanel.style.display = "";
+				softDivider.style.display = "";
+			}
+			function hideResultsPanel() {
+				mainContainer.classList.remove("shifted");
+				mainContainer.classList.add("centered-start");
+				searchPanel.classList.remove("shrunk");
+				searchPanel.classList.add("centered");
+				resultsPanel.classList.remove("visible");
+				setTimeout(() => {
+					resultsPanel.style.display = "none";
+					softDivider.style.display = "none";
+				}, 500);
+			}
+
+			searchForm.addEventListener("submit", function (e) {
+				e.preventDefault();
+				performSearch();
+				showResultsPanel();
+			});
+			if (newSearchBtn) {
+				newSearchBtn.addEventListener("click", function () {
+					hideResultsPanel();
+				});
+			}
+		</script>
+	</body>
+</html>

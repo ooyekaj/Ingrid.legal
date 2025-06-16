@@ -1,8 +1,6 @@
 {
 	"functions": {
-		"backend/main.py": {
-			"runtime": "python3.9"
-		}
+		"backend/main.py": {}
 	},
 	"routes": [
 		{

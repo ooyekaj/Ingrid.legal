@@ -1,10 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
+import { getApiUrl } from "@/lib/config";
 
 export async function POST(request: NextRequest) {
 	try {
 		const body = await request.json();
 
-		const response = await fetch("https://ingrid.legal/api/prepareDocket", {
+		console.log(
+			"getApiUrl(/api/prepareDocket)",
+			getApiUrl("/api/prepareDocket")
+		);
+		const response = await fetch(getApiUrl("/api/prepareDocket"), {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",

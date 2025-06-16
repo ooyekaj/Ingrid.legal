@@ -167,6 +167,7 @@ async def hello():
 
 @app.get("/api/judges")
 async def get_judges():
+    print("Getting judges")
     """Get all available judges"""
     return {"judges": JUDGES}
 

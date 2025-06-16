@@ -1,8 +1,10 @@
 import { NextResponse } from "next/server";
+import { getApiUrl } from "@/lib/config";
 
 export async function GET() {
 	try {
-		const response = await fetch("https://ingrid.legal/api/hello");
+		console.log("getApiUrl(/api/hello)", getApiUrl("/api/hello"));
+		const response = await fetch(getApiUrl("/api/hello"));
 		const data = await response.json();
 		return NextResponse.json(data);
 	} catch (error) {

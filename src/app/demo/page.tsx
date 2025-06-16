@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { getApiUrl } from "@/lib/config";
 
 // Types
 interface Judge {
@@ -55,7 +56,12 @@ export default function Demo() {
 	useEffect(() => {
 		const fetchJudges = async () => {
 			try {
-				const response = await fetch("/api/judges");
+				const response = await fetch(getApiUrl("/api/judges"), {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+					},
+				});
 				const data = await response.json();
 				if (data.judges) {
 					setJudges(data.judges);
@@ -77,7 +83,7 @@ export default function Demo() {
 		setError(null);
 
 		try {
-			const response = await fetch("/api/prepareDocket", {
+			const response = await fetch(getApiUrl("/api/prepareDocket"), {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { ParticleBackground } from "@/components/ParticleBackground";
 
 const inter = Inter({
 	subsets: ["latin"],
@@ -30,7 +31,7 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={`${inter.variable} antialiased relative`}>
-				<div className="fixed inset-0 -z-10" id="canvas-container"></div>
+				<ParticleBackground />
 				{children}
 			</body>
 		</html>

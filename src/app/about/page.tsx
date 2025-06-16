@@ -4,6 +4,7 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { ParticleBackground } from "@/components/ParticleBackground";
 
 export default function About() {
 	useEffect(() => {
@@ -43,6 +44,7 @@ export default function About() {
 
 	return (
 		<div className="overflow-x-hidden">
+			<ParticleBackground />
 			{/* Header */}
 			<header className="fixed top-0 left-0 right-0 z-50 bg-white backdrop-blur-md border-b border-gray-200">
 				<div className="container mx-auto px-6 py-4 flex justify-between items-center">

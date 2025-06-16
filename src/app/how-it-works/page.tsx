@@ -227,7 +227,7 @@ export default function HowItWorks() {
 								</div>
 							</div>
 
-							<div className="bg-white p-8 rounded-2xl shadow-lg">
+							<div className="p-8 rounded-2xl shadow-lg">
 								<h4 className="text-lg font-semibold text-gray-900 mb-4">
 									Sample Output
 								</h4>
@@ -401,7 +401,7 @@ export default function HowItWorks() {
 						</p>
 						<Link
 							href="/#beta"
-							className="bg-white text-pink-600 hover:bg-gray-100 font-bold px-8 py-4 rounded-lg text-lg inline-block"
+							className=" text-pink-600 hover:bg-gray-100 font-bold px-8 py-4 rounded-lg text-lg inline-block"
 						>
 							Request Beta Access
 						</Link>

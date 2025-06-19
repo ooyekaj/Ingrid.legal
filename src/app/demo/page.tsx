@@ -5,11 +5,7 @@ import Link from "next/link";
 import { getApiUrl } from "@/lib/config";
 import jsPDF from "jspdf";
 
-// Types
-interface Judge {
-	name: string;
-	division: string;
-}
+// Types (Judge interface removed as it's not used)
 
 interface Document {
 	item: string;
@@ -110,7 +106,7 @@ export default function Demo() {
 			if (saved) {
 				const parsed = JSON.parse(saved);
 				// Convert timestamp strings back to Date objects
-				const queriesWithDates = parsed.map((query: any) => ({
+				const queriesWithDates = parsed.map((query: PreviousQuery & { timestamp: string }) => ({
 					...query,
 					timestamp: new Date(query.timestamp)
 				}));
@@ -166,7 +162,15 @@ export default function Demo() {
 
 
 	// Function to save a query to previous queries
-	const saveQuery = (formData: any, results: SearchResults) => {
+	const saveQuery = (formData: {
+		state: string;
+		county: string;
+		division: string;
+		judge: string;
+		documentType: string;
+		courtType: string;
+		department: string;
+	}, results: SearchResults) => {
 		const queryId = Date.now().toString();
 		const title = `${formData.documentType} - ${formData.judge}`;
 		
@@ -209,7 +213,7 @@ export default function Demo() {
 	};
 
 	// Function to generate mind map data from search results
-	const generateMindMapData = (searchResults: SearchResults): MindMapData => {
+	const generateMindMapData = (): MindMapData => {
 		return {
 			centralTopic: {
 				title: `${formData.documentType} Filing`,
@@ -327,7 +331,7 @@ export default function Demo() {
 				setShowResults(true);
 				setActiveTab("Checklist");
 				// Generate mind map data
-				const generatedMindMapData = generateMindMapData(result.data);
+				const generatedMindMapData = generateMindMapData();
 				setMindMapData(generatedMindMapData);
 				// Save this query to previous queries
 				saveQuery(formData, result.data);
@@ -1404,7 +1408,7 @@ export default function Demo() {
 
 																{/* Scenarios */}
 																<div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-																	{mindMapData.scenarios.map((scenario, index) => (
+																	{mindMapData.scenarios.map((scenario) => (
 																		<div key={scenario.id} className="flex flex-col">
 																			<div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm h-full">
 																				<div className="flex items-start justify-between mb-3">
@@ -1488,9 +1492,9 @@ export default function Demo() {
 														</tr>
 													</thead>
 													<tbody className="divide-y divide-gray-200">
-														{searchResults.documents.map((doc, index) => (
+														{searchResults.documents.map((doc) => (
 															<tr
-																key={`${doc.item}-${index}`}
+																key={doc.item}
 																className="hover:bg-gray-50"
 															>
 																<td className="px-4 py-4">
@@ -1553,9 +1557,9 @@ export default function Demo() {
 														</tr>
 													</thead>
 													<tbody className="divide-y divide-gray-200">
-														{searchResults.conditional.map((doc, index) => (
+														{searchResults.conditional.map((doc) => (
 															<tr
-																key={`${doc.item}-${index}`}
+																key={doc.item}
 																className="hover:bg-gray-50"
 															>
 																<td className="px-4 py-4">

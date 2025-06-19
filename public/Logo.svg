@@ -1,34 +1,17 @@
 <svg
-    width="45"
-    height="50"
-    viewBox="0 0 45 50"
+    width="32"
+    height="32"
+    viewBox="0 0 32 32"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
 >
-    <rect
-        x="0"
-        y="5"
-        width="35"
-        height="45"
-        rx="3"
-        fill="#EC4899"
-        opacity="0.6"
-    />
-    <rect
-        x="8"
-        y="0"
-        width="35"
-        height="45"
-        rx="3"
-        fill="#DB2777"
-        opacity="1"
-    />
-    <path
-        d="M 20 25 L 25 30 L 35 20"
-        stroke="#FFFFFF"
-        strokeWidth="3"
-        fill="none"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-    />
+    <defs>
+        <linearGradient id="primaryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#ec4899;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+    
+    <!-- Checkmark icon only -->
+    <path d="M8 16l4 4 12-12" stroke="#ec4899" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
 </svg> 

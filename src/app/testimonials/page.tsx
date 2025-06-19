@@ -1,447 +1,432 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ParticleBackground } from "@/components/ParticleBackground";
 
-export default function Testimonials() {
-	return (
-		<div className="min-h-screen bg-white">
-			<ParticleBackground />
-			{/* Header */}
-			<header className="fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-90 backdrop-blur-md border-b border-gray-200">
-				<div className="container mx-auto px-6 py-4 flex justify-between items-center">
-					<Link href="/" className="flex items-center">
-						<Image
-							src="/Logo.svg"
-							alt="Ingrid Logo"
-							width={45}
-							height={50}
-							className="mr-3"
-						/>
-						<span className="text-3xl font-bold text-gray-900 tracking-wider">
-							Ingrid
-						</span>
-					</Link>
-					<nav className="hidden md:flex items-center space-x-8">
-						<Link
-							href="/"
-							className="text-gray-600 hover:text-pink-600 transition"
-						>
-							Home
-						</Link>
-						<Link
-							href="/how-it-works"
-							className="text-gray-600 hover:text-pink-600 transition"
-						>
-							How It Works
-						</Link>
-						<Link href="/testimonials" className="text-pink-600 font-semibold">
-							Testimonials
-						</Link>
-						<Link
-							href="/about"
-							className="text-gray-600 hover:text-pink-600 transition"
-						>
-							About Us
-						</Link>
-						<Link
-							href="/faq"
-							className="text-gray-600 hover:text-pink-600 transition"
-						>
-							FAQ
-						</Link>
-					</nav>
-					<Link
-						href="/#beta"
-						className="bg-pink-600 hover:bg-pink-500 text-white font-semibold px-5 py-2 rounded-lg"
-					>
-						Request Beta Access
-					</Link>
-				</div>
-			</header>
+// Password Protection Component
+const PasswordProtection = ({
+	onPasswordCorrect,
+}: {
+	onPasswordCorrect: () => void;
+}) => {
+	const [password, setPassword] = useState("");
+	const [error, setError] = useState("");
+	const [isLoading, setIsLoading] = useState(false);
 
-			{/* Main Content */}
-			<main className="pt-24">
-				{/* Hero Section */}
-				<section className="py-16 bg-gradient-to-r from-pink-50 to-white">
-					<div className="container mx-auto px-6 text-center">
-						<h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-							Success Stories
+	const handleSubmit = (e: React.FormEvent) => {
+		e.preventDefault();
+		setIsLoading(true);
+		setError("");
+
+		const correctPassword = "12345678";
+
+		setTimeout(() => {
+			if (password === correctPassword) {
+				localStorage.setItem("ingrid_authenticated", "true");
+				onPasswordCorrect();
+			} else {
+				setError("Incorrect password. Please try again.");
+				setPassword("");
+			}
+			setIsLoading(false);
+		}, 500);
+	};
+
+	return (
+		<div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-pink-50/30 flex items-center justify-center px-6 relative overflow-hidden">
+			{/* Animated background elements */}
+			<div className="absolute inset-0 overflow-hidden pointer-events-none">
+				<div className="absolute top-10 right-10 w-96 h-96 bg-gradient-to-br from-pink-500/8 to-purple-500/8 rounded-full blur-3xl animate-pulse" />
+				<div className="absolute bottom-10 left-10 w-80 h-80 bg-gradient-to-br from-purple-500/6 to-pink-500/6 rounded-full blur-3xl animate-pulse delay-1000" />
+				<div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-br from-pink-400/4 to-purple-400/4 rounded-full blur-2xl animate-pulse delay-500" />
+			</div>
+			
+			<div className="max-w-md w-full relative z-10">
+				<div className="bg-white/80 backdrop-blur-2xl rounded-3xl shadow-2xl shadow-pink-500/10 p-8 border border-white/50 relative overflow-hidden group">
+					<div className="absolute inset-0 bg-gradient-to-r from-pink-500/10 via-purple-500/10 to-pink-500/10 rounded-3xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+					<div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-pink-500 to-transparent rounded-t-3xl animate-pulse" />
+					
+					<div className="text-center mb-8 relative z-10">
+						<div className="relative mb-6">
+							<div className="absolute -inset-6 bg-gradient-to-r from-pink-500/20 to-purple-500/20 rounded-full blur-2xl animate-pulse" />
+							<div className="relative bg-gradient-to-br from-pink-500 to-pink-600 p-4 rounded-2xl shadow-2xl mx-auto w-fit group-hover:scale-110 transition-transform duration-500">
+								<Image
+									src="/Logo.svg"
+									alt="Ingrid Logo"
+									width={40}
+									height={45}
+									className="filter brightness-0 invert"
+								/>
+							</div>
+						</div>
+						<h1 className="text-4xl font-bold text-gray-800 mb-3">
+							Ingrid
 						</h1>
-						<p className="text-xl text-gray-600 max-w-3xl mx-auto">
-							See how leading law firms are transforming their litigation
-							practice with Ingrid&apos;s procedural compliance platform.
+						<p className="text-gray-600 font-medium">
+							Enter password to access the platform
 						</p>
 					</div>
-				</section>
 
-				{/* Stats Section */}
-				<section className="py-16">
-					<div className="container mx-auto px-6">
-						<div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
-							<div>
-								<div className="text-4xl font-bold text-pink-600 mb-2">80%</div>
-								<div className="text-gray-600">
-									Reduction in procedural research time
-								</div>
-							</div>
-							<div>
-								<div className="text-4xl font-bold text-pink-600 mb-2">
-									99.9%
-								</div>
-								<div className="text-gray-600">
-									Accuracy rate for rule compliance
-								</div>
-							</div>
-							<div>
-								<div className="text-4xl font-bold text-pink-600 mb-2">0</div>
-								<div className="text-gray-600">
-									Missed deadlines since implementation
-								</div>
-							</div>
-							<div>
-								<div className="text-4xl font-bold text-pink-600 mb-2">15+</div>
-								<div className="text-gray-600">Law firms in private beta</div>
+					<form onSubmit={handleSubmit} className="space-y-6 relative z-10">
+						<div className="group relative">
+							<label
+								htmlFor="password"
+								className="block text-sm font-bold text-gray-800 mb-3 tracking-wide"
+							>
+								Password
+							</label>
+							<div className="relative">
+								<input
+									type="password"
+									id="password"
+									value={password}
+									onChange={(e) => setPassword(e.target.value)}
+									className="w-full px-5 py-4 border-0 rounded-2xl shadow-lg focus:outline-none focus:ring-4 focus:ring-pink-500/20 placeholder-gray-400 transition-all duration-300 group-hover:shadow-2xl bg-white/80 backdrop-blur-sm text-gray-800 font-medium disabled:opacity-50 border border-gray-200/50"
+									placeholder="Enter password"
+									required
+									disabled={isLoading}
+								/>
+								<div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-pink-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 							</div>
 						</div>
-					</div>
-				</section>
 
-				{/* Featured Testimonials */}
-				<section className="py-20 bg-gray-50">
-					<div className="container mx-auto px-6">
-						<div className="text-center mb-16">
-							<h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-								What Our Partners Are Saying
-							</h2>
-						</div>
+						{error && (
+							<div className="bg-gradient-to-r from-red-50 to-pink-50 backdrop-blur-sm border border-red-200/50 text-red-700 px-6 py-4 rounded-2xl text-sm shadow-lg relative overflow-hidden">
+								<div className="absolute inset-0 bg-gradient-to-r from-red-500/5 to-pink-500/5" />
+								<div className="relative flex items-center">
+									<div className="w-5 h-5 bg-red-500 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+										<svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+											<path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+										</svg>
+									</div>
+									{error}
+								</div>
+							</div>
+						)}
 
-						<div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-							{/* Large Featured Testimonial */}
-							<div className="bg-white rounded-2xl p-10 shadow-lg">
-								<div className="flex items-center mb-6">
-									<div className="flex text-pink-500 mr-4">
-										{[...Array(5)].map((_, i) => (
-											<svg
-												key={i}
-												className="w-6 h-6"
-												fill="currentColor"
-												viewBox="0 0 20 20"
-											>
-												<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+						<button
+							type="submit"
+							disabled={isLoading || !password.trim()}
+							className={`w-full relative overflow-hidden group ${
+								isLoading || !password.trim()
+									? 'bg-gradient-to-r from-pink-300/20 to-purple-300/20' 
+									: 'bg-gradient-to-r from-pink-500 via-pink-600 to-purple-600 hover:from-pink-600 hover:via-pink-700 hover:to-purple-700 active:scale-[0.98] shadow-2xl shadow-pink-500/25 hover:shadow-pink-500/40'
+							} disabled:cursor-not-allowed text-white font-bold py-5 px-8 rounded-2xl transition-all duration-500 ease-out focus:outline-none focus:ring-4 focus:ring-pink-500/30`}
+						>
+							<div className="absolute inset-0 bg-gradient-to-r from-white/20 via-transparent to-white/20 -skew-x-12 transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
+							<div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+							
+							<span className="relative z-10 flex items-center justify-center text-lg font-bold tracking-wide">
+								{isLoading ? (
+									<>
+										<div className="relative mr-3">
+											<svg className="animate-spin h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+												<circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+												<path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
 											</svg>
-										))}
-									</div>
-									<span className="text-sm text-gray-500 font-medium">
-										Featured Review
-									</span>
-								</div>
-								<blockquote className="text-xl text-gray-700 mb-8 leading-relaxed">
-									&ldquo;Ingrid has completely transformed our motion practice.
-									What used to take our associates 2-3 hours of rule research
-									now happens in under 10 seconds. The accuracy is phenomenal -
-									we haven&apos;t had a single compliance issue since
-									implementing the platform. It&apos;s given us back hours every
-									day to focus on substantive legal work.&rdquo;
-								</blockquote>
-								<div className="flex items-center">
-									<div className="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mr-6">
-										<span className="text-pink-600 font-bold text-xl">SM</span>
-									</div>
-									<div>
-										<h4 className="font-bold text-gray-900 text-lg">
-											Sarah Martinez
-										</h4>
-										<p className="text-gray-600">
-											Partner, Bay Area Litigation Firm
-										</p>
-										<p className="text-gray-500 text-sm">
-											Civil Litigation • 150+ Attorney Firm
-										</p>
-									</div>
-								</div>
-							</div>
+										</div>
+										<span className="bg-gradient-to-r from-white to-pink-100 bg-clip-text text-transparent">
+											Verifying...
+										</span>
+									</>
+								) : (
+									<>
+										<div className="relative mr-3 group-hover:scale-125 group-hover:rotate-12 transition-transform duration-300">
+											<svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+												<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+											</svg>
+										</div>
+										<span className="bg-gradient-to-r from-white to-pink-100 bg-clip-text text-transparent font-extrabold">
+											Access Platform
+										</span>
+									</>
+								)}
+							</span>
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	);
+};
 
-							{/* Stats Card */}
-							<div className="bg-pink-600 text-white rounded-2xl p-10">
-								<h3 className="text-2xl font-bold mb-8">
-									Impact at Sarah&apos;s Firm
-								</h3>
-								<div className="space-y-6">
-									<div className="flex justify-between items-center">
-										<span className="text-pink-100">
-											Time Saved per Motion:
-										</span>
-										<span className="text-2xl font-bold">2.5 hours</span>
-									</div>
-									<div className="flex justify-between items-center">
-										<span className="text-pink-100">Compliance Issues:</span>
-										<span className="text-2xl font-bold">Zero</span>
-									</div>
-									<div className="flex justify-between items-center">
-										<span className="text-pink-100">
-											Associates&apos; Satisfaction:
-										</span>
-										<span className="text-2xl font-bold">↑ 95%</span>
-									</div>
-									<div className="flex justify-between items-center">
-										<span className="text-pink-100">
-											Client Billing Recovery:
-										</span>
-										<span className="text-2xl font-bold">$15K/month</span>
+export default function Testimonials() {
+	const [isAuthenticated, setIsAuthenticated] = useState(false);
+	const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+	// Track mouse position for interactive effects
+	useEffect(() => {
+		const handleMouseMove = (e: MouseEvent) => {
+			setMousePosition({ x: e.clientX, y: e.clientY });
+		};
+
+		window.addEventListener('mousemove', handleMouseMove);
+		return () => window.removeEventListener('mousemove', handleMouseMove);
+	}, []);
+
+	useEffect(() => {
+		const checkAuth = () => {
+			const isAuth = localStorage.getItem("ingrid_authenticated");
+			if (isAuth === "true") {
+				setIsAuthenticated(true);
+			}
+		};
+		checkAuth();
+	}, []);
+
+	const testimonials = [
+		{
+			name: "Sarah Chen",
+			role: "Senior Associate, Morrison & Foerster",
+			quote: "Ingrid has transformed how we handle procedural compliance. What used to take hours of research now takes seconds. The accuracy is remarkable.",
+			rating: 5,
+			initials: "SC",
+			gradient: "from-pink-500 to-rose-500"
+		},
+		{
+			name: "Michael Rodriguez",
+			role: "Partner, Latham & Watkins",
+			quote: "The deadline calculation feature alone has saved us from potential malpractice issues. Ingrid is an essential tool for any litigation practice.",
+			rating: 5,
+			initials: "MR",
+			gradient: "from-purple-500 to-pink-500"
+		},
+		{
+			name: "Emily Thompson",
+			role: "Litigation Director, Wilson Sonsini",
+			quote: "Our junior associates are now as confident with procedural requirements as our senior partners. Ingrid levels the playing field.",
+			rating: 5,
+			initials: "ET",
+			gradient: "from-pink-600 to-purple-600"
+		},
+		{
+			name: "David Park",
+			role: "Managing Partner, Cooley LLP",
+			quote: "The ROI on Ingrid is immediate. We've reduced procedural errors by 95% and increased our team's efficiency dramatically.",
+			rating: 5,
+			initials: "DP",
+			gradient: "from-rose-500 to-pink-500"
+		},
+		{
+			name: "Jennifer Walsh",
+			role: "Associate, Skadden Arps",
+			quote: "Ingrid's document shells are perfectly formatted every time. It's like having a procedural expert on call 24/7.",
+			rating: 5,
+			initials: "JW",
+			gradient: "from-purple-600 to-pink-600"
+		},
+		{
+			name: "Robert Kim",
+			role: "Senior Counsel, Google",
+			quote: "The compliance checking feature catches issues we would have missed. Ingrid is now part of our standard workflow.",
+			rating: 5,
+			initials: "RK",
+			gradient: "from-pink-500 to-purple-500"
+		}
+	];
+
+	return (
+		<div className="overflow-x-hidden">
+			{!isAuthenticated && (
+				<PasswordProtection
+					onPasswordCorrect={() => setIsAuthenticated(true)}
+				/>
+			)}
+			{isAuthenticated && (
+				<>
+					<ParticleBackground />
+					
+					{/* Interactive cursor follower */}
+					<div 
+						className="fixed w-6 h-6 bg-gradient-to-r from-pink-500/30 to-purple-500/30 rounded-full blur-sm pointer-events-none z-50 transition-all duration-100 ease-out"
+						style={{
+							left: mousePosition.x - 12,
+							top: mousePosition.y - 12,
+						}}
+					/>
+					
+					{/* Header */}
+					<header className="fixed top-0 left-0 right-0 z-40 bg-white/90 backdrop-blur-3xl border-b border-white/20 shadow-2xl shadow-pink-500/5">
+						<div className="container mx-auto px-6 py-4 flex justify-between items-center">
+							<Link href="/" className="flex items-center space-x-3 group">
+								<div className="relative">
+									<div className="absolute -inset-3 bg-gradient-to-r from-pink-500/20 to-purple-600/20 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-all duration-500 animate-pulse" />
+									<div className="relative bg-gradient-to-br from-pink-500 to-pink-600 p-3 rounded-2xl shadow-2xl group-hover:shadow-pink-500/25 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
+										<Image
+											src="/Logo.svg"
+											alt="Ingrid Logo"
+											width={28}
+											height={32}
+											className="filter brightness-0 invert"
+										/>
 									</div>
 								</div>
-								<div className="mt-8 pt-8 border-t border-pink-400">
-									<p className="text-pink-100 text-sm">
-										&ldquo;Our associates can now focus on legal analysis
-										instead of hunting through court rules.&rdquo;
+								<div className="flex flex-col">
+									<span className="text-2xl font-bold text-gray-800 group-hover:text-pink-600 transition-all duration-300">
+										Ingrid
+									</span>
+									<span className="text-xs text-gray-500 font-medium tracking-wide">Your Filing Assistant</span>
+								</div>
+							</Link>
+							<nav className="hidden md:flex items-center space-x-8">
+								{['Home', 'How It Works', 'Testimonials', 'About Us', 'FAQ'].map((item, index) => (
+									<Link
+										key={item}
+										href={item === 'Home' ? '/' : item === 'About Us' ? '/about' : `/${item.toLowerCase().replace(/ /g, '-')}`}
+										className="relative text-gray-600 hover:text-pink-600 transition-all duration-300 font-medium group py-2 px-4 rounded-xl hover:bg-pink-50"
+									>
+										<span className="relative z-10">{item}</span>
+										<div className="absolute inset-0 bg-gradient-to-r from-pink-500/10 to-purple-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+									</Link>
+								))}
+							</nav>
+							<Link
+								href="/#beta"
+								className="relative bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white font-bold px-6 py-3 rounded-2xl shadow-2xl hover:shadow-pink-500/25 hover:scale-105 transition-all duration-300 group overflow-hidden"
+							>
+								<div className="absolute inset-0 bg-gradient-to-r from-white/20 via-transparent to-white/20 -skew-x-12 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
+								<span className="relative z-10">Request Beta Access</span>
+							</Link>
+						</div>
+					</header>
+
+					{/* Main Content */}
+					<main className="bg-gradient-to-br from-gray-50 via-white to-pink-50/30 min-h-screen">
+						{/* Animated background elements */}
+						<div className="absolute inset-0 overflow-hidden pointer-events-none">
+							<div className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-br from-pink-500/5 to-purple-500/5 rounded-full blur-3xl animate-pulse" />
+							<div className="absolute bottom-20 left-20 w-80 h-80 bg-gradient-to-br from-purple-500/2 to-pink-500/2 rounded-full blur-3xl animate-pulse delay-1000" />
+							<div className="absolute top-1/2 left-1/4 w-64 h-64 bg-gradient-to-br from-pink-400/3 to-purple-400/3 rounded-full blur-2xl animate-pulse delay-500" />
+						</div>
+						
+						{/* Hero Section */}
+						<section className="relative pt-24 pb-12 md:pt-32 md:pb-16 text-center overflow-hidden">
+							<div className="container mx-auto px-6 relative z-10">
+								<div className="max-w-5xl mx-auto">
+									<h1 className="text-5xl md:text-7xl font-extrabold text-gray-800 leading-tight mb-12 animate-fade-in">
+										Success Stories
+									</h1>
+									<p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto mb-12 leading-relaxed font-medium">
+										See what our beta partners are saying about Ingrid's impact on their practice.
 									</p>
 								</div>
 							</div>
-						</div>
-					</div>
-				</section>
+						</section>
 
-				{/* More Testimonials Grid */}
-				<section className="py-20">
-					<div className="container mx-auto px-6">
-						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-							<div className="bg-white rounded-2xl p-8 shadow-lg border">
-								<div className="flex items-center mb-4">
-									<div className="flex text-pink-500">
-										{[...Array(5)].map((_, i) => (
-											<svg
-												key={i}
-												className="w-5 h-5"
-												fill="currentColor"
-												viewBox="0 0 20 20"
-											>
-												<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-											</svg>
-										))}
-									</div>
+						{/* Testimonials Grid */}
+						<section className="py-12 relative">
+							<div className="container mx-auto px-6 relative z-10">
+								<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+									{testimonials.map((testimonial, index) => (
+										<div key={testimonial.name} className="group relative bg-white/70 backdrop-blur-2xl rounded-3xl p-8 border border-white/50 shadow-2xl shadow-pink-500/5 hover:shadow-pink-500/15 transition-all duration-500 hover:scale-105 hover:-translate-y-2 cursor-pointer overflow-hidden">
+											{/* Animated background */}
+											<div className="absolute inset-0 bg-gradient-to-br from-pink-500/3 via-purple-500/3 to-pink-500/3 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+											<div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+											
+											<div className="relative z-10">
+												{/* Star Rating */}
+												<div className="flex items-center mb-6">
+													{[...Array(testimonial.rating)].map((_, i) => (
+														<svg key={i} className="w-5 h-5 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20">
+															<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+														</svg>
+													))}
+												</div>
+												
+												<p className="text-gray-700 mb-8 leading-relaxed font-medium text-lg group-hover:text-gray-800 transition-colors duration-300">
+													"{testimonial.quote}"
+												</p>
+												<div className="flex items-center">
+													<div className="relative">
+														<div className="absolute -inset-2 bg-gradient-to-r from-pink-500/20 to-purple-500/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+														<div className={`relative w-14 h-14 bg-gradient-to-br ${testimonial.gradient} rounded-full flex items-center justify-center mr-4 shadow-2xl group-hover:scale-110 transition-transform duration-300`}>
+															<span className="text-white font-bold text-lg">{testimonial.initials}</span>
+														</div>
+													</div>
+													<div>
+														<h4 className="font-bold text-gray-900 group-hover:text-pink-700 transition-colors duration-300">{testimonial.name}</h4>
+														<p className="text-gray-500 text-sm">{testimonial.role}</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									))}
 								</div>
-								<p className="text-gray-600 mb-6">
-									&ldquo;The deadline calendaring feature alone has saved us
-									from multiple potential malpractice issues. Ingrid is a
-									game-changer for litigation teams.&rdquo;
-								</p>
-								<div className="flex items-center">
-									<div className="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center mr-4">
-										<span className="text-pink-600 font-bold text-lg">DJ</span>
-									</div>
-									<div>
-										<h4 className="font-bold text-gray-900">David Johnson</h4>
-										<p className="text-gray-600 text-sm">Managing Partner</p>
-										<p className="text-gray-500 text-xs">
-											Johnson & Associates
-										</p>
+							</div>
+						</section>
+
+						{/* CTA Section */}
+						<section className="py-12 text-center relative">
+							<div className="container mx-auto px-6 relative z-10">
+								<div className="max-w-4xl mx-auto">
+									<div className="bg-white/80 backdrop-blur-3xl rounded-3xl p-16 border border-white/50 shadow-2xl shadow-pink-500/10 relative overflow-hidden group">
+										<div className="absolute inset-0 bg-gradient-to-r from-pink-500/10 via-purple-500/10 to-pink-500/10 rounded-3xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+										<div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-pink-500 to-transparent rounded-t-3xl animate-pulse" />
+										
+										<div className="relative z-10">
+											<h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+												Join Our Success Stories
+											</h2>
+											<p className="text-gray-600 max-w-2xl mx-auto mb-10 text-xl leading-relaxed font-medium">
+												Become part of our private beta and experience the transformation firsthand.
+											</p>
+											<Link
+												href="/#beta"
+												className="group relative inline-flex items-center bg-gradient-to-r from-pink-500 via-pink-600 to-purple-600 hover:from-pink-600 hover:via-pink-700 hover:to-purple-700 text-white font-bold px-10 py-5 rounded-2xl text-xl shadow-2xl shadow-pink-500/25 hover:shadow-pink-500/40 hover:scale-105 transition-all duration-300 overflow-hidden"
+											>
+												<div className="absolute inset-0 bg-gradient-to-r from-white/20 via-transparent to-white/20 -skew-x-12 transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
+												<div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+												
+												<span className="relative z-10 flex items-center">
+													<svg className="w-6 h-6 mr-3 group-hover:scale-125 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+														<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+													</svg>
+													Request Beta Access
+												</span>
+											</Link>
+										</div>
 									</div>
 								</div>
 							</div>
+						</section>
+					</main>
 
-							<div className="bg-white rounded-2xl p-8 shadow-lg border">
-								<div className="flex items-center mb-4">
-									<div className="flex text-pink-500">
-										{[...Array(5)].map((_, i) => (
-											<svg
-												key={i}
-												className="w-5 h-5"
-												fill="currentColor"
-												viewBox="0 0 20 20"
-											>
-												<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-											</svg>
-										))}
+					{/* Footer */}
+					<footer className="bg-white/80 backdrop-blur-3xl border-t border-white/30 shadow-2xl shadow-pink-500/5">
+						<div className="container mx-auto px-6 py-12 text-center">
+							<div className="flex flex-col items-center space-y-6">
+								<div className="flex items-center space-x-4">
+									<div className="relative group">
+										<div className="absolute -inset-3 bg-gradient-to-r from-pink-500/20 to-purple-600/20 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-all duration-500 animate-pulse" />
+										<div className="relative bg-gradient-to-br from-pink-500 to-pink-600 p-3 rounded-2xl shadow-2xl group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+											<Image
+												src="/Logo.svg"
+												alt="Ingrid Logo"
+												width={28}
+												height={32}
+												className="filter brightness-0 invert"
+											/>
+										</div>
 									</div>
+									<span className="text-2xl font-bold text-gray-800">
+										Ingrid
+									</span>
 								</div>
-								<p className="text-gray-600 mb-6">
-									&ldquo;We&apos;ve reduced our procedural research time by 80%.
-									Our associates can now focus on substantive legal work instead
-									of hunting through court rules.&rdquo;
+								<p className="text-gray-600 font-medium text-lg">
+									&copy; 2025 Ingrid Technologies Inc. All rights reserved.
 								</p>
-								<div className="flex items-center">
-									<div className="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center mr-4">
-										<span className="text-pink-600 font-bold text-lg">AC</span>
-									</div>
-									<div>
-										<h4 className="font-bold text-gray-900">Amanda Chen</h4>
-										<p className="text-gray-600 text-sm">Senior Associate</p>
-										<p className="text-gray-500 text-xs">
-											Tech Litigation Group
-										</p>
-									</div>
-								</div>
-							</div>
-
-							<div className="bg-white rounded-2xl p-8 shadow-lg border">
-								<div className="flex items-center mb-4">
-									<div className="flex text-pink-500">
-										{[...Array(5)].map((_, i) => (
-											<svg
-												key={i}
-												className="w-5 h-5"
-												fill="currentColor"
-												viewBox="0 0 20 20"
-											>
-												<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-											</svg>
-										))}
-									</div>
-								</div>
-								<p className="text-gray-600 mb-6">
-									&ldquo;The document shells are perfectly formatted every time.
-									No more worrying about font sizes, margins, or page limits -
-									it&apos;s all handled automatically.&rdquo;
+								<p className="text-gray-500 max-w-md leading-relaxed">
+									Ingrid provides procedural information and workflow automation
+									tools. It does not provide legal advice.
 								</p>
-								<div className="flex items-center">
-									<div className="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center mr-4">
-										<span className="text-pink-600 font-bold text-lg">MR</span>
-									</div>
-									<div>
-										<h4 className="font-bold text-gray-900">
-											Michael Rodriguez
-										</h4>
-										<p className="text-gray-600 text-sm">Staff Attorney</p>
-										<p className="text-gray-500 text-xs">
-											Peninsula Legal Services
-										</p>
-									</div>
-								</div>
-							</div>
-
-							<div className="bg-white rounded-2xl p-8 shadow-lg border">
-								<div className="flex items-center mb-4">
-									<div className="flex text-pink-500">
-										{[...Array(5)].map((_, i) => (
-											<svg
-												key={i}
-												className="w-5 h-5"
-												fill="currentColor"
-												viewBox="0 0 20 20"
-											>
-												<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-											</svg>
-										))}
-									</div>
-								</div>
-								<p className="text-gray-600 mb-6">
-									&ldquo;As a solo practitioner, Ingrid gives me the confidence
-									that I&apos;m not missing anything. It&apos;s like having a
-									procedural expert on my team.&rdquo;
-								</p>
-								<div className="flex items-center">
-									<div className="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center mr-4">
-										<span className="text-pink-600 font-bold text-lg">LW</span>
-									</div>
-									<div>
-										<h4 className="font-bold text-gray-900">Lisa Wang</h4>
-										<p className="text-gray-600 text-sm">Solo Practitioner</p>
-										<p className="text-gray-500 text-xs">Wang Law Office</p>
-									</div>
-								</div>
-							</div>
-
-							<div className="bg-white rounded-2xl p-8 shadow-lg border">
-								<div className="flex items-center mb-4">
-									<div className="flex text-pink-500">
-										{[...Array(5)].map((_, i) => (
-											<svg
-												key={i}
-												className="w-5 h-5"
-												fill="currentColor"
-												viewBox="0 0 20 20"
-											>
-												<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-											</svg>
-										))}
-									</div>
-								</div>
-								<p className="text-gray-600 mb-6">
-									&ldquo;The ROI was immediate. We&apos;re billing more hours
-									for substantive work and our clients are happier with faster
-									turnaround times.&rdquo;
-								</p>
-								<div className="flex items-center">
-									<div className="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center mr-4">
-										<span className="text-pink-600 font-bold text-lg">RT</span>
-									</div>
-									<div>
-										<h4 className="font-bold text-gray-900">Robert Thompson</h4>
-										<p className="text-gray-600 text-sm">Partner</p>
-										<p className="text-gray-500 text-xs">
-											Thompson & Associates
-										</p>
-									</div>
-								</div>
-							</div>
-
-							<div className="bg-white rounded-2xl p-8 shadow-lg border">
-								<div className="flex items-center mb-4">
-									<div className="flex text-pink-500">
-										{[...Array(5)].map((_, i) => (
-											<svg
-												key={i}
-												className="w-5 h-5"
-												fill="currentColor"
-												viewBox="0 0 20 20"
-											>
-												<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-											</svg>
-										))}
-									</div>
-								</div>
-								<p className="text-gray-600 mb-6">
-									&ldquo;Training new associates is so much easier now. They can
-									be productive immediately instead of spending weeks learning
-									all the court rules.&rdquo;
-								</p>
-								<div className="flex items-center">
-									<div className="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center mr-4">
-										<span className="text-pink-600 font-bold text-lg">KP</span>
-									</div>
-									<div>
-										<h4 className="font-bold text-gray-900">Karen Patel</h4>
-										<p className="text-gray-600 text-sm">Training Partner</p>
-										<p className="text-gray-500 text-xs">Major Bay Area Firm</p>
-									</div>
-								</div>
 							</div>
 						</div>
-					</div>
-				</section>
-
-				{/* CTA Section */}
-				<section className="py-20 bg-pink-600 text-white">
-					<div className="container mx-auto px-6 text-center">
-						<h2 className="text-3xl md:text-4xl font-bold mb-6">
-							Join These Successful Firms
-						</h2>
-						<p className="text-xl mb-8 opacity-90">
-							See why leading litigation teams choose Ingrid for procedural
-							compliance.
-						</p>
-						<Link
-							href="/#beta"
-							className="bg-white text-pink-600 hover:bg-gray-100 font-bold px-8 py-4 rounded-lg text-lg inline-block"
-						>
-							Request Beta Access
-						</Link>
-					</div>
-				</section>
-			</main>
-
-			{/* Footer */}
-			<footer className="bg-gray-100 border-t border-gray-200">
-				<div className="container mx-auto px-6 py-8 text-center text-gray-500">
-					<p>&copy; 2025 Ingrid Technologies Inc. All rights reserved.</p>
-					<p className="text-sm mt-2">
-						Ingrid provides procedural information and workflow automation
-						tools. It does not provide legal advice.
-					</p>
-				</div>
-			</footer>
+					</footer>
+				</>
+			)}
 		</div>
 	);
 }

@@ -227,7 +227,7 @@ export default function Home() {
 								</div>
 							</Link>
 							<nav className="hidden md:flex items-center space-x-8">
-								{['Home', 'How It Works', 'Testimonials', 'About Us', 'FAQ'].map((item, index) => (
+																	{['Home', 'How It Works', 'Testimonials', 'About Us', 'FAQ'].map((item) => (
 									<Link
 										key={item}
 										href={item === 'Home' ? '/' : item === 'About Us' ? '/about' : `/${item.toLowerCase().replace(/ /g, '-')}`}
@@ -539,7 +539,7 @@ export default function Home() {
 											quote: "We've reduced our procedural research time by 80%. Our associates can now focus on substantive legal work instead of hunting through court rules.",
 											gradient: "from-pink-600 to-purple-600"
 										}
-									].map((testimonial, index) => (
+									].map((testimonial) => (
 										<div key={testimonial.name} className="group relative bg-white/70 backdrop-blur-2xl rounded-3xl p-8 border border-white/50 shadow-2xl shadow-pink-500/5 hover:shadow-pink-500/15 transition-all duration-500 hover:scale-105 hover:-translate-y-2 cursor-pointer overflow-hidden">
 											{/* Animated background */}
 											<div className="absolute inset-0 bg-gradient-to-br from-pink-500/3 via-purple-500/3 to-pink-500/3 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

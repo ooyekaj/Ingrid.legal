@@ -221,7 +221,7 @@ export default function HowItWorks() {
 								</div>
 							</Link>
 							<nav className="hidden md:flex items-center space-x-8">
-								{['Home', 'How It Works', 'Testimonials', 'About Us', 'FAQ'].map((item, index) => (
+								{['Home', 'How It Works', 'Testimonials', 'About Us', 'FAQ'].map((item) => (
 									<Link
 										key={item}
 										href={item === 'Home' ? '/' : item === 'About Us' ? '/about' : `/${item.toLowerCase().replace(/ /g, '-')}`}

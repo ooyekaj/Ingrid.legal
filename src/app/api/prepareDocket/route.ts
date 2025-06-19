@@ -4,7 +4,7 @@ export async function POST(request: NextRequest) {
 	try {
 		const { state, county, division, judge, department, document_type, court_type } =
 			await request.json();
-		const apiKey = "AIzaSyDqfzvfuUrRazJsyJobHNCnbM8ybQtHZXk";
+		const apiKey = process.env.GEMINI_API_KEY || "AIzaSyDqfzvfuUrRazJsyJobHNCnbM8ybQtHZXk";
 
 		// System prompt for legal docket preparation
 		const systemPrompt = `You are an expert legal assistant specializing in court procedures and legal document preparation. Your role is to provide accurate, jurisdiction-specific guidance for legal practitioners preparing court filings.

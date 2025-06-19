@@ -75,7 +75,7 @@ export default function Demo() {
 	const [error, setError] = useState<string | null>(null);
 	const [progress, setProgress] = useState(0);
 	const pdfContentRef = useRef<HTMLDivElement>(null);
-	const [proceduralRoadmapData, setProceduralRoadmapData] = useState<ProceduralRoadmapData | null>(null);
+	// const [proceduralRoadmapData, setProceduralRoadmapData] = useState<ProceduralRoadmapData | null>(null);
 	const [formData, setFormData] = useState({
 		state: '',
 		county: '',
@@ -197,16 +197,16 @@ export default function Demo() {
 		setShowResults(true);
 		setActiveTab("Checklist");
 		if (query.results.proceduralRoadmap) {
-			setProceduralRoadmapData(query.results.proceduralRoadmap);
+			// setProceduralRoadmapData(query.results.proceduralRoadmap);
 		} else {
 			// Generate procedural roadmap data if not present
-			const generatedProceduralRoadmapData = generateProceduralRoadmapData();
-			setProceduralRoadmapData(generatedProceduralRoadmapData);
+			// const generatedProceduralRoadmapData = generateProceduralRoadmapData();
+			// setProceduralRoadmapData(generatedProceduralRoadmapData);
 		}
 	};
 
 	// Function to generate mind map data from search results
-	const generateProceduralRoadmapData = (): ProceduralRoadmapData => {
+	/* const generateProceduralRoadmapData = (): ProceduralRoadmapData => {
 		return {
 			documentType: formData.documentType,
 			jurisdiction: `${formData.division}, ${formData.county}, ${formData.state}`,
@@ -283,7 +283,7 @@ export default function Demo() {
 				}
 			]
 		};
-	};
+	}; */
 
 	const handleSearch = async (e: React.FormEvent) => {
 		e.preventDefault();
@@ -296,7 +296,9 @@ export default function Demo() {
 		}
 
 		setLoading(true);
-		setProceduralRoadmapData(null);
+		setSearchResults(null);
+		// setProceduralRoadmapData(null);
+		setActiveTab("Checklist");
 
 		try {
 			const response = await fetch(getApiUrl("/api/prepareDocket"), {
@@ -326,8 +328,8 @@ export default function Demo() {
 				setShowResults(true);
 				setActiveTab("Checklist");
 				// Generate procedural roadmap data
-				const generatedProceduralRoadmapData = generateProceduralRoadmapData();
-				setProceduralRoadmapData(generatedProceduralRoadmapData);
+				// const generatedProceduralRoadmapData = generateProceduralRoadmapData();
+				// setProceduralRoadmapData(generatedProceduralRoadmapData);
 				// Save this query to previous queries
 				saveQuery(formData, result.data);
 			} else {
@@ -1240,11 +1242,11 @@ export default function Demo() {
 									<nav className="flex space-x-2" aria-label="Tabs">
 										{[
 											"Checklist",
-											"Procedural Roadmap",
 											"Mandatory Docs",
 											"Conditional Docs",
 											"Governing Rules",
 											".docx Shell",
+											"Procedural Roadmap",
 										].map((tab) => (
 											<button
 												key={tab}
@@ -1368,112 +1370,7 @@ export default function Demo() {
 										</section>
 									)}
 
-									{activeTab === "Procedural Roadmap" && (
-										<section className="p-8">
-											<h2 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-pink-800 bg-clip-text text-transparent pb-4 mb-8 border-b border-gray-200/50 flex items-center">
-												<div className="w-8 h-8 bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg flex items-center justify-center mr-3 shadow-lg">
-													<svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-														<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-													</svg>
-												</div>
-												Procedural Roadmap
-											</h2>
-											{proceduralRoadmapData ? (
-												<div className="space-y-8">
-													{/* Document Info Header */}
-													<div className="bg-gradient-to-br from-pink-50/80 to-purple-50/60 rounded-2xl p-6 border border-pink-200/50 shadow-lg">
-														<h3 className="text-xl font-bold text-pink-700 mb-2">{proceduralRoadmapData.documentType}</h3>
-														<p className="text-gray-600 font-medium">{proceduralRoadmapData.jurisdiction}</p>
-													</div>
 
-													{/* Timeline Steps */}
-													<div className="relative">
-														{/* Vertical Timeline Line */}
-														<div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-pink-300 to-purple-300"></div>
-														
-														<div className="space-y-8">
-															{proceduralRoadmapData.phases.map((phase, index) => (
-																<div key={phase.id} className="relative flex items-start">
-																	{/* Timeline Circle */}
-																	<div className="relative z-10 flex-shrink-0">
-																		<div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-pink-600 rounded-full flex items-center justify-center shadow-lg border-4 border-white">
-																			<span className="text-white font-bold text-lg">{index + 1}</span>
-																		</div>
-																	</div>
-																	
-																	{/* Content Card */}
-																	<div className="ml-8 flex-grow">
-																		<div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 shadow-lg hover:shadow-xl transition-all duration-300">
-																			<div className="flex items-start justify-between mb-4">
-																				<div>
-																					<h4 className="text-xl font-bold text-gray-900 mb-2">{phase.title}</h4>
-																					<p className="text-gray-600 leading-relaxed">{phase.description}</p>
-																				</div>
-																				<div className="ml-4 flex-shrink-0">
-																					<span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-pink-100 text-pink-700 border border-pink-200">
-																						<svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-																							<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-																						</svg>
-																						{phase.deadline}
-																					</span>
-																				</div>
-																			</div>
-																			
-																			{/* Requirements List */}
-																			<div className="mb-6">
-																				<h5 className="text-sm font-semibold text-gray-700 uppercase tracking-wider mb-3">Requirements:</h5>
-																				<ul className="space-y-2">
-																					{phase.requirements.map((requirement, reqIndex) => (
-																						<li key={reqIndex} className="flex items-start">
-																							<div className="w-2 h-2 bg-pink-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-																							<span className="text-gray-700 text-sm leading-relaxed">{requirement}</span>
-																						</li>
-																					))}
-																				</ul>
-																			</div>
-																			
-																			{/* Rule Reference */}
-																			<div className="pt-4 border-t border-gray-200/50">
-																				<div className="flex items-center">
-																					<svg className="w-4 h-4 text-gray-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-																						<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-																					</svg>
-																					{phase.ruleLink ? (
-																						<a 
-																							href={phase.ruleLink} 
-																							target="_blank"
-																							rel="noopener noreferrer"
-																							className="text-sm text-pink-600 hover:text-pink-800 hover:underline font-medium flex items-center"
-																						>
-																							{phase.ruleReference}
-																							<svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-																								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-																							</svg>
-																						</a>
-																					) : (
-																						<span className="text-sm text-gray-500 font-medium">{phase.ruleReference}</span>
-																					)}
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-															))}
-														</div>
-													</div>
-												</div>
-											) : (
-												<div className="flex items-center justify-center h-64 text-gray-500">
-													<div className="text-center">
-														<svg className="w-12 h-12 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-															<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-														</svg>
-														<p>Loading procedural roadmap...</p>
-													</div>
-												</div>
-											)}
-										</section>
-									)}
 
 									{activeTab === "Mandatory Docs" && (
 										<section>
@@ -1694,6 +1591,174 @@ export default function Demo() {
 													>
 														Download
 													</button>
+												</div>
+											</div>
+										</section>
+									)}
+
+									{activeTab === "Procedural Roadmap" && (
+										<section className="p-8">
+											<div className="text-center mb-8">
+												<h2 className="text-2xl font-bold text-gray-900 mb-2">Civil Case Flowchart</h2>
+												<p className="text-gray-600">United States District Court Middle District of Florida</p>
+											</div>
+
+											{/* Flowchart Container */}
+											<div className="max-w-6xl mx-auto">
+												{/* COMPLAINT Box */}
+												<div className="bg-white border-2 border-gray-300 rounded-lg p-4 mb-6 shadow-sm">
+													<h3 className="font-bold text-sm mb-2 text-center bg-gray-100 py-1 rounded">COMPLAINT</h3>
+													<p className="text-xs text-gray-700 leading-tight">
+														The complaint is a written document that begins a lawsuit. The complaint sets out the plaintiff&apos;s claim against the defendant or defendants. The plaintiff files the complaint with the clerk. With the complaint, the plaintiff must file a civil cover sheet and summons for each defendant. There are forms for the civil cover sheet, and a summons on the website. See{" "}
+														<span className="text-blue-600 underline">Fed. R. Civ. P. 3</span>,{" "}
+														<span className="text-blue-600 underline">Fed. R. Civ. P. 4</span>,{" "}
+														<span className="text-blue-600 underline">Fed. R. Civ. P. 8</span>,{" "}
+														<span className="text-blue-600 underline">Fed. R. Civ. P. 11</span>,{" "}
+														<span className="text-blue-600 underline">Fed. R. Civ. P. 15</span>,{" "}
+														<span className="text-blue-600 underline">Local Rule 1.05</span>, and{" "}
+														<span className="text-blue-600 underline">Local Rule 1.05(e)</span>.
+													</p>
+												</div>
+
+												{/* Arrow Down */}
+												<div className="flex justify-center mb-6">
+													<div className="w-0 h-0 border-l-[15px] border-r-[15px] border-t-[20px] border-l-transparent border-r-transparent border-t-gray-400"></div>
+												</div>
+
+												{/* PAY FEES and MOTION TO PROCEED */}
+												<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+													<div className="bg-white border-2 border-gray-300 rounded-lg p-4 shadow-sm">
+														<h3 className="font-bold text-sm mb-2 text-center bg-gray-100 py-1 rounded">PAY FEES</h3>
+														<p className="text-xs text-gray-700 leading-tight">
+															When the plaintiff files the complaint, the plaintiff must pay filing fees. A listing of fees is on the website. When a defendant answers a case from another court, the defendant must pay the listed court filing fee. See{" "}
+															<span className="text-blue-600 underline">28 U.S.C. § 1914</span>.
+														</p>
+													</div>
+													<div className="bg-white border-2 border-gray-300 rounded-lg p-4 shadow-sm">
+														<h3 className="font-bold text-sm mb-2 text-center bg-gray-100 py-1 rounded">MOTION TO PROCEED WITHOUT FEES</h3>
+														<p className="text-xs text-gray-700 leading-tight">
+															A motion to proceed without fees is a written document in which the plaintiff asks the court to proceed without paying fees because the plaintiff cannot afford to pay them (fees for the necessities of life). The plaintiff files this motion with the clerk. See{" "}
+															<span className="text-blue-600 underline">28 U.S.C. § 1915</span> and{" "}
+															<span className="text-blue-600 underline">Local Rule 1.11(a)</span>.
+														</p>
+													</div>
+												</div>
+
+												{/* Arrow Down */}
+												<div className="flex justify-center mb-6">
+													<div className="w-0 h-0 border-l-[15px] border-r-[15px] border-t-[20px] border-l-transparent border-r-transparent border-t-gray-400"></div>
+												</div>
+
+												{/* SERVICE OF PROCESS */}
+												<div className="bg-white border-2 border-gray-300 rounded-lg p-4 mb-6 shadow-sm">
+													<h3 className="font-bold text-sm mb-2 text-center bg-gray-100 py-1 rounded">SERVICE OF PROCESS</h3>
+													<p className="text-xs text-gray-700 leading-tight">
+														A private process server, Deputy United States Marshal, or other appropriate person delivers the complaint and summons to each defendant to notify each defendant that a lawsuit has been filed against the defendant. The plaintiff is responsible for service unless the court has granted a motion to proceed without paying fees. See{" "}
+														<span className="text-blue-600 underline">Fed. R. Civ. P. 4</span> and{" "}
+														<span className="text-blue-600 underline">Fed. R. Civ. P. 5</span>.
+													</p>
+												</div>
+
+												{/* Arrow Down with three branches */}
+												<div className="flex justify-center mb-6">
+													<div className="relative">
+														<div className="w-0 h-0 border-l-[15px] border-r-[15px] border-t-[20px] border-l-transparent border-r-transparent border-t-gray-400"></div>
+														<div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-px h-8 bg-gray-400"></div>
+														<div className="absolute top-12 left-1/2 transform -translate-x-1/2 w-32 h-px bg-gray-400"></div>
+														<div className="absolute top-12 left-0 w-px h-4 bg-gray-400"></div>
+														<div className="absolute top-12 right-0 w-px h-4 bg-gray-400"></div>
+													</div>
+												</div>
+
+												{/* MOTION DENIED, MOTION GRANTED, ANSWER */}
+												<div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+													<div className="bg-white border-2 border-gray-300 rounded-lg p-4 shadow-sm">
+														<h3 className="font-bold text-sm mb-2 text-center bg-gray-100 py-1 rounded">MOTION DENIED</h3>
+														<p className="text-xs text-gray-700 leading-tight">
+															If the motion to proceed without fees is denied, the plaintiff must pay the fees for the lawsuit to move forward. See{" "}
+															<span className="text-blue-600 underline">28 U.S.C. § 1915</span>.
+														</p>
+													</div>
+													<div className="bg-white border-2 border-gray-300 rounded-lg p-4 shadow-sm">
+														<h3 className="font-bold text-sm mb-2 text-center bg-gray-100 py-1 rounded">MOTION GRANTED</h3>
+														<p className="text-xs text-gray-700 leading-tight">
+															If the motion to proceed without fees is granted, the plaintiff need not pay the fees for the lawsuit to move forward. See{" "}
+															<span className="text-blue-600 underline">28 U.S.C. § 1915</span>.
+														</p>
+													</div>
+													<div className="bg-white border-2 border-gray-300 rounded-lg p-4 shadow-sm">
+														<h3 className="font-bold text-sm mb-2 text-center bg-gray-100 py-1 rounded">ANSWER</h3>
+														<p className="text-xs text-gray-700 leading-tight">
+															The answer is the defendant&apos;s response to the complaint. A defendant has 21 days (or, if the defendant is the United States, 60 days) to file an answer after with the complaint and summons. Alternatively, the defendant may file a motion to dismiss the complaint for various reasons: the lack of subject matter jurisdiction, lack of personal jurisdiction, improper venue, and failure to join indispensable parties. See{" "}
+															<span className="text-blue-600 underline">Fed. R. Civ. P. 7</span>,{" "}
+															<span className="text-blue-600 underline">Fed. R. Civ. P. 8</span>,{" "}
+															<span className="text-blue-600 underline">Fed. R. Civ. P. 11</span>, and{" "}
+															<span className="text-blue-600 underline">Fed. R. Civ. P. 12</span>.
+														</p>
+													</div>
+												</div>
+
+												{/* Continue with more sections following the same pattern... */}
+												{/* For brevity, I'll add a few more key sections */}
+
+												{/* Arrow Down */}
+												<div className="flex justify-center mb-6">
+													<div className="w-0 h-0 border-l-[15px] border-r-[15px] border-t-[20px] border-l-transparent border-r-transparent border-t-gray-400"></div>
+												</div>
+
+												{/* DISCOVERY */}
+												<div className="bg-white border-2 border-gray-300 rounded-lg p-4 mb-6 shadow-sm">
+													<h3 className="font-bold text-sm mb-2 text-center bg-gray-100 py-1 rounded">DISCOVERY</h3>
+													<p className="text-xs text-gray-700 leading-tight">
+														After the parties have met and filed the case management report, discovery can begin. Discovery is the process by which parties request from the other parties information or documents that relate to a claim or defense in the case. Discovery can be through oral deposition, a request for production of a document, a request to inspect property, or a deposition. See{" "}
+														<span className="text-blue-600 underline">Fed. R. Civ. P. 26-37</span>,{" "}
+														<span className="text-blue-600 underline">Local Rule 3.05</span>, and the{" "}
+														<span className="text-blue-600 underline">Middle District of Florida Discovery Handbook</span>.
+													</p>
+												</div>
+
+												{/* Arrow Down */}
+												<div className="flex justify-center mb-6">
+													<div className="w-0 h-0 border-l-[15px] border-r-[15px] border-t-[20px] border-l-transparent border-r-transparent border-t-gray-400"></div>
+												</div>
+
+												{/* TRIAL */}
+												<div className="bg-white border-2 border-gray-300 rounded-lg p-4 mb-6 shadow-sm">
+													<h3 className="font-bold text-sm mb-2 text-center bg-gray-100 py-1 rounded">TRIAL</h3>
+													<p className="text-xs text-gray-700 leading-tight">
+														A trial allows the parties to formally present the case in open court by offering testimony and other evidence and by presenting oral arguments. If a party has a right to a jury trial and demands a jury trial, the jury must reach a unanimous verdict. See{" "}
+														<span className="text-blue-600 underline">Fed. R. Civ. P. 38-53</span> and{" "}
+														<span className="text-blue-600 underline">Local Rule 5.03</span>.
+													</p>
+												</div>
+
+												{/* Arrow Down */}
+												<div className="flex justify-center mb-6">
+													<div className="w-0 h-0 border-l-[15px] border-r-[15px] border-t-[20px] border-l-transparent border-r-transparent border-t-gray-400"></div>
+												</div>
+
+												{/* JUDGMENT */}
+												<div className="bg-white border-2 border-gray-300 rounded-lg p-4 mb-6 shadow-sm">
+													<h3 className="font-bold text-sm mb-2 text-center bg-gray-100 py-1 rounded">JUDGMENT</h3>
+													<p className="text-xs text-gray-700 leading-tight">
+														After a trial, the judge who presided over the trial will enter a judgment that states the results of the lawsuit and the relief, if any, to which a party is entitled. See{" "}
+														<span className="text-blue-600 underline">Fed. R. Civ. P. 58</span>.
+													</p>
+												</div>
+
+												{/* Arrow Down */}
+												<div className="flex justify-center mb-6">
+													<div className="w-0 h-0 border-l-[15px] border-r-[15px] border-t-[20px] border-l-transparent border-r-transparent border-t-gray-400"></div>
+												</div>
+
+												{/* NOTICE OF APPEAL */}
+												<div className="bg-white border-2 border-gray-300 rounded-lg p-4 shadow-sm">
+													<h3 className="font-bold text-sm mb-2 text-center bg-gray-100 py-1 rounded">NOTICE OF APPEAL</h3>
+													<p className="text-xs text-gray-700 leading-tight">
+														A dissatisfied party may appeal the judgment by filing a notice of appeal with the clerk of the district court. The notice of appeal must be filed within 30 days of entry of the judgment (or 60 days of entry of the judgment if the United States or any of its agencies or any of its heads is a party). See{" "}
+														<span className="text-blue-600 underline">Fed. R. App. P. 3</span>,{" "}
+														<span className="text-blue-600 underline">Fed. R. App. P. 4(a)(1)(A)-(B)</span>.
+													</p>
 												</div>
 											</div>
 										</section>

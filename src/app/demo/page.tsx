@@ -27,29 +27,18 @@ interface ChecklistItem {
 	link: string;
 }
 
-interface NextStep {
-	id: string;
-	title: string;
-	description: string;
-	rule?: string;
-	link?: string;
-	nextSteps?: NextStep[];
-}
-
-interface Scenario {
-	id: string;
-	title: string;
-	description: string;
-	likelihood: 'High' | 'Medium' | 'Low';
-	nextSteps: NextStep[];
-}
-
-interface MindMapData {
-	centralTopic: {
+interface ProceduralRoadmapData {
+	documentType: string;
+	jurisdiction: string;
+	phases: {
+		id: string;
 		title: string;
-		details: string;
-	};
-	scenarios: Scenario[];
+		description: string;
+		deadline: string;
+		requirements: string[];
+		ruleReference: string;
+		ruleLink?: string;
+	}[];
 }
 
 interface SearchResults {
@@ -57,7 +46,7 @@ interface SearchResults {
 	conditional: Document[];
 	rules: Rule[];
 	checklist: ChecklistItem[];
-	mindMap?: MindMapData;
+	proceduralRoadmap?: ProceduralRoadmapData;
 }
 
 interface PreviousQuery {
@@ -86,7 +75,7 @@ export default function Demo() {
 	const [error, setError] = useState<string | null>(null);
 	const [progress, setProgress] = useState(0);
 	const pdfContentRef = useRef<HTMLDivElement>(null);
-	const [mindMapData, setMindMapData] = useState<MindMapData | null>(null);
+	const [proceduralRoadmapData, setProceduralRoadmapData] = useState<ProceduralRoadmapData | null>(null);
 	const [formData, setFormData] = useState({
 		state: '',
 		county: '',
@@ -207,84 +196,90 @@ export default function Demo() {
 		setSearchResults(query.results);
 		setShowResults(true);
 		setActiveTab("Checklist");
-		if (query.results.mindMap) {
-			setMindMapData(query.results.mindMap);
+		if (query.results.proceduralRoadmap) {
+			setProceduralRoadmapData(query.results.proceduralRoadmap);
+		} else {
+			// Generate procedural roadmap data if not present
+			const generatedProceduralRoadmapData = generateProceduralRoadmapData();
+			setProceduralRoadmapData(generatedProceduralRoadmapData);
 		}
 	};
 
 	// Function to generate mind map data from search results
-	const generateMindMapData = (): MindMapData => {
+	const generateProceduralRoadmapData = (): ProceduralRoadmapData => {
 		return {
-			centralTopic: {
-				title: `${formData.documentType} Filing`,
-				details: `Filing requirements and procedures for ${formData.documentType} in ${formData.division}, ${formData.county}, before ${formData.judge}, ${formData.department}`
-			},
-			scenarios: [
+			documentType: formData.documentType,
+			jurisdiction: `${formData.division}, ${formData.county}, ${formData.state}`,
+			phases: [
 				{
-					id: 'opposing-response',
-					title: 'Opposing Party\'s Potential Responses',
-					description: 'Common responses and objections the opposing party might raise to your filing.',
-					likelihood: 'High' as const,
-					nextSteps: [
-						{
-							id: 'opposition-filed',
-							title: 'Opposition Filed',
-							description: 'Opposing party files opposition to your motion within the deadline.',
-							rule: 'CCP § 1005(b) - 16 court days notice required',
-							link: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1005'
-						},
-						{
-							id: 'ex-parte-application',
-							title: 'Ex Parte Application for Extension',
-							description: 'Opposing party may seek ex parte relief for additional time.',
-							rule: 'CRC Rule 3.1202 - Ex parte application requirements',
-							link: 'https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1202'
-						}
-					]
+					id: 'preparation',
+					title: 'Document Preparation Phase',
+					description: 'Prepare and draft the required filing documents',
+					deadline: 'Before filing deadline',
+					requirements: [
+						'Draft motion/pleading according to court formatting requirements',
+						'Gather supporting evidence and exhibits',
+						'Prepare declaration of service',
+						'Review local court rules for specific requirements'
+					],
+					ruleReference: 'CCP § 1010 - Service requirements',
+					ruleLink: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1010'
 				},
 				{
-					id: 'court-actions',
-					title: 'Court/Judge Actions',
-					description: 'Potential actions the court may take regarding your filing.',
-					likelihood: 'Medium' as const,
-					nextSteps: [
-						{
-							id: 'hearing-scheduled',
-							title: 'Hearing Scheduled',
-							description: 'Court schedules hearing on your motion per local rules.',
-							rule: 'Local Rules - Motion hearing scheduling',
-							link: '#'
-						},
-						{
-							id: 'tentative-ruling',
-							title: 'Tentative Ruling Issued',
-							description: 'Court may issue tentative ruling before hearing date.',
-							rule: 'CRC Rule 3.1308 - Tentative rulings',
-							link: 'https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1308'
-						}
-					]
+					id: 'filing',
+					title: 'Initial Filing Phase',
+					description: 'File the document with the court and serve all parties',
+					deadline: 'Filing deadline per case schedule',
+					requirements: [
+						'File original document with court clerk',
+						'Pay required filing fees',
+						'Serve all parties per service requirements',
+						'File proof of service with the court'
+					],
+					ruleReference: 'CCP § 1005(b) - Notice requirements',
+					ruleLink: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1005'
 				},
 				{
-					id: 'follow-up-actions',
-					title: 'Your Follow-up Actions',
-					description: 'Required follow-up actions based on court proceedings.',
-					likelihood: 'High' as const,
-					nextSteps: [
-						{
-							id: 'reply-brief',
-							title: 'File Reply Brief',
-							description: 'File reply brief if opposition is filed, due 5 court days before hearing.',
-							rule: 'CCP § 1005(b) - Reply brief deadline',
-							link: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1005'
-						},
-						{
-							id: 'prepare-hearing',
-							title: 'Prepare for Hearing',
-							description: 'Prepare oral argument and review tentative ruling if issued.',
-							rule: 'CRC Rule 3.1308(a)(1) - Oral argument procedures',
-							link: 'https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1308'
-						}
-					]
+					id: 'response-period',
+					title: 'Response Period',
+					description: 'Allow time for opposing parties to respond',
+					deadline: '16 court days before hearing (if motion)',
+					requirements: [
+						'Monitor for opposing party responses',
+						'Review any opposition filed',
+						'Prepare reply brief if opposition is filed',
+						'Coordinate with opposing counsel if needed'
+					],
+					ruleReference: 'CCP § 1005(b) - Response deadlines',
+					ruleLink: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1005'
+				},
+				{
+					id: 'hearing-preparation',
+					title: 'Hearing Preparation Phase',
+					description: 'Prepare for court hearing and oral argument',
+					deadline: '5 court days before hearing',
+					requirements: [
+						'File reply brief if opposition was filed',
+						'Prepare oral argument outline',
+						'Review tentative ruling if issued',
+						'Coordinate with court clerk for hearing logistics'
+					],
+					ruleReference: 'CRC Rule 3.1308 - Tentative rulings and oral argument',
+					ruleLink: 'https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1308'
+				},
+				{
+					id: 'hearing-and-order',
+					title: 'Hearing and Order Phase',
+					description: 'Attend hearing and obtain court order',
+					deadline: 'Hearing date',
+					requirements: [
+						'Appear at scheduled hearing',
+						'Present oral argument if required',
+						'Obtain signed order from court',
+						'Serve order on all parties if required'
+					],
+					ruleReference: 'CRC Rule 3.1312 - Preparation and service of order',
+					ruleLink: 'https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1312'
 				}
 			]
 		};
@@ -301,7 +296,7 @@ export default function Demo() {
 		}
 
 		setLoading(true);
-		setMindMapData(null);
+		setProceduralRoadmapData(null);
 
 		try {
 			const response = await fetch(getApiUrl("/api/prepareDocket"), {
@@ -330,9 +325,9 @@ export default function Demo() {
 				setSearchResults(result.data);
 				setShowResults(true);
 				setActiveTab("Checklist");
-				// Generate mind map data
-				const generatedMindMapData = generateMindMapData();
-				setMindMapData(generatedMindMapData);
+				// Generate procedural roadmap data
+				const generatedProceduralRoadmapData = generateProceduralRoadmapData();
+				setProceduralRoadmapData(generatedProceduralRoadmapData);
 				// Save this query to previous queries
 				saveQuery(formData, result.data);
 			} else {
@@ -1245,7 +1240,7 @@ export default function Demo() {
 									<nav className="flex space-x-2" aria-label="Tabs">
 										{[
 											"Checklist",
-											"MindMap",
+											"Procedural Roadmap",
 											"Mandatory Docs",
 											"Conditional Docs",
 											"Governing Rules",
@@ -1373,104 +1368,110 @@ export default function Demo() {
 										</section>
 									)}
 
-									{activeTab === "MindMap" && (
-										<section>
-											<h2 className="text-xl font-bold text-gray-900 pb-3 mb-6 border-b border-gray-200">
-												Document Scenario Map
+									{activeTab === "Procedural Roadmap" && (
+										<section className="p-8">
+											<h2 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-pink-800 bg-clip-text text-transparent pb-4 mb-8 border-b border-gray-200/50 flex items-center">
+												<div className="w-8 h-8 bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg flex items-center justify-center mr-3 shadow-lg">
+													<svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+														<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+													</svg>
+												</div>
+												Procedural Roadmap
 											</h2>
-											<div className="space-y-4">
-												<div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-													<div className="flex items-center justify-between mb-4">
-														<div>
-															<h3 className="text-lg font-semibold text-gray-900">
-																Potential Document Scenarios
-															</h3>
-															<p className="text-sm text-gray-500 mt-1">
-																Interactive mind map showing possible document paths and scenarios
-															</p>
-														</div>
+											{proceduralRoadmapData ? (
+												<div className="space-y-8">
+													{/* Document Info Header */}
+													<div className="bg-gradient-to-br from-pink-50/80 to-purple-50/60 rounded-2xl p-6 border border-pink-200/50 shadow-lg">
+														<h3 className="text-xl font-bold text-pink-700 mb-2">{proceduralRoadmapData.documentType}</h3>
+														<p className="text-gray-600 font-medium">{proceduralRoadmapData.jurisdiction}</p>
 													</div>
-													<div className="min-h-[700px] border border-gray-100 rounded-lg p-8">
-														{mindMapData ? (
-															<div className="flex flex-col space-y-8">
-																{/* Central Topic */}
-																<div className="bg-pink-50 p-6 rounded-xl mx-auto max-w-2xl border border-pink-100">
-																	<h4 className="font-semibold text-lg text-pink-700">{mindMapData.centralTopic.title}</h4>
-																	<p className="text-sm text-gray-600 mt-2">{mindMapData.centralTopic.details}</p>
-																</div>
-																
-																{/* Flow Arrow */}
-																<div className="flex justify-center">
-																	<svg className="w-6 h-8 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-																		<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-																	</svg>
-																</div>
 
-																{/* Scenarios */}
-																<div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-																	{mindMapData.scenarios.map((scenario) => (
-																		<div key={scenario.id} className="flex flex-col">
-																			<div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm h-full">
-																				<div className="flex items-start justify-between mb-3">
-																					<h5 className="font-semibold text-gray-900 text-lg">{scenario.title}</h5>
-																					<span className={`text-xs px-2 py-1 rounded-full flex-shrink-0 ml-2 ${
-																						scenario.likelihood === 'High' ? 'bg-green-100 text-green-700' :
-																						scenario.likelihood === 'Medium' ? 'bg-yellow-100 text-yellow-700' :
-																						'bg-gray-100 text-gray-700'
-																					}`}>
-																						{scenario.likelihood}
+													{/* Timeline Steps */}
+													<div className="relative">
+														{/* Vertical Timeline Line */}
+														<div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-pink-300 to-purple-300"></div>
+														
+														<div className="space-y-8">
+															{proceduralRoadmapData.phases.map((phase, index) => (
+																<div key={phase.id} className="relative flex items-start">
+																	{/* Timeline Circle */}
+																	<div className="relative z-10 flex-shrink-0">
+																		<div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-pink-600 rounded-full flex items-center justify-center shadow-lg border-4 border-white">
+																			<span className="text-white font-bold text-lg">{index + 1}</span>
+																		</div>
+																	</div>
+																	
+																	{/* Content Card */}
+																	<div className="ml-8 flex-grow">
+																		<div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 shadow-lg hover:shadow-xl transition-all duration-300">
+																			<div className="flex items-start justify-between mb-4">
+																				<div>
+																					<h4 className="text-xl font-bold text-gray-900 mb-2">{phase.title}</h4>
+																					<p className="text-gray-600 leading-relaxed">{phase.description}</p>
+																				</div>
+																				<div className="ml-4 flex-shrink-0">
+																					<span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-pink-100 text-pink-700 border border-pink-200">
+																						<svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+																							<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+																						</svg>
+																						{phase.deadline}
 																					</span>
 																				</div>
-																				<p className="text-sm text-gray-600">{scenario.description}</p>
-																				
-																				{/* Next Steps */}
-																				{scenario.nextSteps && scenario.nextSteps.length > 0 && (
-																					<div className="mt-6 space-y-3">
-																						{/* Flow Arrow */}
-																						<div className="flex justify-center mb-4">
-																							<svg className="w-5 h-6 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-																								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+																			</div>
+																			
+																			{/* Requirements List */}
+																			<div className="mb-6">
+																				<h5 className="text-sm font-semibold text-gray-700 uppercase tracking-wider mb-3">Requirements:</h5>
+																				<ul className="space-y-2">
+																					{phase.requirements.map((requirement, reqIndex) => (
+																						<li key={reqIndex} className="flex items-start">
+																							<div className="w-2 h-2 bg-pink-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+																							<span className="text-gray-700 text-sm leading-relaxed">{requirement}</span>
+																						</li>
+																					))}
+																				</ul>
+																			</div>
+																			
+																			{/* Rule Reference */}
+																			<div className="pt-4 border-t border-gray-200/50">
+																				<div className="flex items-center">
+																					<svg className="w-4 h-4 text-gray-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+																						<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+																					</svg>
+																					{phase.ruleLink ? (
+																						<a 
+																							href={phase.ruleLink} 
+																							target="_blank"
+																							rel="noopener noreferrer"
+																							className="text-sm text-pink-600 hover:text-pink-800 hover:underline font-medium flex items-center"
+																						>
+																							{phase.ruleReference}
+																							<svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+																								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
 																							</svg>
-																						</div>
-																						<h6 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Next Steps</h6>
-																						{scenario.nextSteps.map((step) => (
-																							<div key={step.id} className="bg-gray-50 p-4 rounded-lg border border-gray-100">
-																								<div className="mb-2">
-																									<span className="font-medium text-sm">{step.title}</span>
-																								</div>
-																								<p className="text-xs text-gray-600 mb-2">{step.description}</p>
-																								{step.rule && (
-																									<div className="flex items-center mt-2 pt-2 border-t border-gray-200">
-																										<svg className="w-4 h-4 text-gray-400 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-																											<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-																										</svg>
-																										<a 
-																											href={step.link} 
-																											target="_blank"
-																											rel="noopener noreferrer"
-																											className="text-xs text-pink-600 hover:text-pink-800 hover:underline"
-																										>
-																											{step.rule}
-																										</a>
-																							</div>
-																								)}
-																							</div>
-																						))}
-																					</div>
-																				)}
+																						</a>
+																					) : (
+																						<span className="text-sm text-gray-500 font-medium">{phase.ruleReference}</span>
+																					)}
+																				</div>
 																			</div>
 																		</div>
-																	))}
+																	</div>
 																</div>
-															</div>
-														) : (
-															<div className="flex items-center justify-center h-full text-gray-500">
-																Loading mind map data...
-															</div>
-														)}
+															))}
+														</div>
 													</div>
 												</div>
-											</div>
+											) : (
+												<div className="flex items-center justify-center h-64 text-gray-500">
+													<div className="text-center">
+														<svg className="w-12 h-12 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+															<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+														</svg>
+														<p>Loading procedural roadmap...</p>
+													</div>
+												</div>
+											)}
 										</section>
 									)}
 
@@ -1759,3 +1760,4 @@ export default function Demo() {
 		</div>
 	);
 }
+

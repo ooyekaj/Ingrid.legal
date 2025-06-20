@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple CCP Graph Test</title>
+    <script src="https://unpkg.com/cytoscape@3.21.0/dist/cytoscape.min.js"></script>
+</head>
+<body>
+    <div id="cy" style="width: 100%; height: 600px; border: 1px solid #ccc;"></div>
+    
+    <script>
+        // Simple test data
+        const testData = {
+            nodes: [
+                { data: { id: '420', label: 'CCP 420', category: 'Pleadings' } },
+                { data: { id: '421', label: 'CCP 421', category: 'Pleadings' } },
+                { data: { id: '1005', label: 'CCP 1005', category: 'Service' } }
+            ],
+            edges: [
+                { data: { source: '420', target: '421', type: 'related' } },
+                { data: { source: '421', target: '1005', type: 'related' } }
+            ]
+        };
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Loading simple test...');
+            
+            const cy = cytoscape({
+                container: document.getElementById('cy'),
+                elements: testData,
+                style: [
+                    {
+                        selector: 'node',
+                        style: {
+                            'background-color': '#666',
+                            'label': 'data(label)',
+                            'text-valign': 'center',
+                            'text-halign': 'center',
+                            'color': 'white',
+                            'font-size': '12px'
+                        }
+                    },
+                    {
+                        selector: 'edge',
+                        style: {
+                            'width': 2,
+                            'line-color': '#ccc',
+                            'target-arrow-color': '#ccc',
+                            'target-arrow-shape': 'triangle'
+                        }
+                    }
+                ],
+                layout: {
+                    name: 'circle'
+                }
+            });
+            
+            console.log('Simple test loaded successfully!');
+        });
+    </script>
+</body>
+</html>

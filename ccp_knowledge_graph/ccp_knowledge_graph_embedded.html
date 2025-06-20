@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CCP Knowledge Graph - Rule Interdependencies</title>
+    <script src="https://unpkg.com/cytoscape@3.21.0/dist/cytoscape.min.js"></script>
+    <script src="https://unpkg.com/cytoscape-cose-bilkent@4.1.0/cytoscape-cose-bilkent.js"></script>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            padding: 20px; 
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 15px 0 0 0;
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+        #cy { 
+            width: 100%; 
+            height: 800px; 
+            border: 3px solid #dee2e6; 
+            border-radius: 15px;
+            background: white;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        .controls { 
+            margin: 25px 0; 
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .control-group label {
+            font-weight: 600;
+            color: #495057;
+            font-size: 0.95em;
+        }
+        select, button {
+            padding: 10px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.2s ease;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+        .info-panel { 
+            margin-top: 25px; 
+            padding: 25px; 
+            background: rgba(255, 255, 255, 0.95); 
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        .category-legend { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 15px; 
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        .category-item { 
+            padding: 10px 15px; 
+            border-radius: 25px; 
+            font-size: 13px; 
+            font-weight: 600;
+            color: white;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease;
+        }
+        .category-item:hover {
+            transform: scale(1.05);
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        .stat-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .stat-label {
+            color: #6c757d;
+            font-size: 1em;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        #node-info {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 5px solid #667eea;
+        }
+        .loading {
+            text-align: center;
+            padding: 100px;
+            color: #6c757d;
+        }
+        .loading h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏛️ CCP Knowledge Graph</h1>
+            <p>Interactive visualization of California Code of Civil Procedure rule interdependencies</p>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number" id="total-nodes">--</div>
+                <div class="stat-label">CCP Sections</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="total-edges">--</div>
+                <div class="stat-label">Relationships</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="total-categories">--</div>
+                <div class="stat-label">Categories</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="network-density">--%</div>
+                <div class="stat-label">Network Density</div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <div class="control-group">
+                <label>🎨 Layout:</label>
+                <select id="layout-select">
+                    <option value="cose-bilkent">Force-directed (recommended)</option>
+                    <option value="circle">Circle</option>
+                    <option value="grid">Grid</option>
+                    <option value="breadthfirst">Hierarchical</option>
+                    <option value="concentric">Concentric</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label>🔍 Filter by category:</label>
+                <select id="category-filter">
+                    <option value="">All categories</option>
+                </select>
+            </div>
+            <button onclick="resetView()">🔄 Reset View</button>
+            <button onclick="fitToScreen()">📏 Fit to Screen</button>
+            <button onclick="exportView()">📸 Export View</button>
+        </div>
+        
+        <div class="category-legend" id="legend"></div>
+        
+        <div id="cy">
+            <div class="loading">
+                <div class="spinner"></div>
+                <h3>Loading knowledge graph...</h3>
+                <p>Analyzing CCP rule interdependencies</p>
+            </div>
+        </div>
+        
+        <div class="info-panel">
+            <h3>📋 How to Use:</h3>
+            <ul>
+                <li><strong>🖱️ Click</strong> on a node to see detailed section information and highlight connections</li>
+                <li><strong>🔗 Hover</strong> over edges to see relationship types</li>
+                <li><strong>🖱️ Drag</strong> to pan around the graph</li>
+                <li><strong>🔍 Scroll</strong> or pinch to zoom in/out</li>
+                <li><strong>🏷️ Filter</strong> by category to focus on specific procedural areas</li>
+                <li><strong>🎨 Change layouts</strong> to see different organizational patterns</li>
+            </ul>
+            <div id="node-info">
+                <p><em>💡 Click on any CCP section node to see detailed information about that rule and its connections to other sections.</em></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Embedded graph data - no external file dependencies
+        const graphData = {
+            "nodes": [
+                {"data": {"id": "020", "label": "CCP 020", "title": "CCP Section 020", "category": "General Procedures", "wordCount": 51, "filingRelevance": 8, "proceduralRequirements": 0, "crossReferences": 0}},
+                {"data": {"id": "1002.7", "label": "CCP 1002.7", "title": "CCP Section 1002.7", "category": "Service & Notice", "wordCount": 352, "filingRelevance": 8, "proceduralRequirements": 0, "crossReferences": 4}},
+                {"data": {"id": "1008", "label": "CCP 1008", "title": "CCP Section 1008", "category": "Service & Notice", "wordCount": 526, "filingRelevance": 8, "proceduralRequirements": 0, "crossReferences": 2}},
+                {"data": {"id": "109", "label": "CCP 109", "title": "CCP Section 109", "category": "General Procedures", "wordCount": 51, "filingRelevance": 8, "proceduralRequirements": 0, "crossReferences": 0}},
+                {"data": {"id": "116.630", "label": "CCP 116.630", "title": "CCP Section 116.630", "category": "General Procedures", "wordCount": 94, "filingRelevance": 8, "proceduralRequirements": 0, "crossReferences": 1}},
+                {"data": {"id": "1250.250", "label": "CCP 1250.250", "title": "CCP Section 1250.250", "category": "General Procedures", "wordCount": 229, "filingRelevance": 8, "proceduralRequirements": 0, "crossReferences": 1}},
+                {"data": {"id": "150", "label": "CCP 150", "title": "CCP Section 150", "category": "General Procedures", "wordCount": 51, "filingRelevance": 8, "proceduralRequirements": 0, "crossReferences": 0}},
+                {"data": {"id": "161", "label": "CCP 161", "title": "CCP Section 161", "category": "General Procedures", "wordCount": 51, "filingRelevance": 8, "proceduralRequirements": 0, "crossReferences": 0}},
+                {"data": {"id": "2025.340", "label": "CCP 2025.340", "title": "CCP Section 2025.340", "category": "Depositions", "wordCount": 983, "filingRelevance": 8, "proceduralRequirements": 0, "crossReferences": 2}},
+                {"data": {"id": "2031.320", "label": "CCP 2031.320", "title": "CCP Section 2031.320", "category": "Document Production", "wordCount": 290, "filingRelevance": 8, "proceduralRequirements": 0, "crossReferences": 2}},
+                {"data": {"id": "2033.740", "label": "CCP 2033.740", "title": "CCP Section 2033.740", "category": "Requests for Admission", "wordCount": 101, "filingRelevance": 8, "proceduralRequirements": 0, "crossReferences": 1}},
+                {"data": {"id": "2034.010", "label": "CCP 2034.010", "title": "CCP Section 2034.010", "category": "General Procedures", "wordCount": 70, "filingRelevance": 8, "proceduralRequirements": 0, "crossReferences": 2}},
+                {"data": {"id": "2034.630", "label": "CCP 2034.630", "title": "CCP Section 2034.630", "category": "General Procedures", "wordCount": 98, "filingRelevance": 8, "proceduralRequirements": 0, "crossReferences": 2}},
+                {"data": {"id": "2035.060", "label": "CCP 2035.060", "title": "CCP Section 2035.060", "category": "General Procedures", "wordCount": 122, "filingRelevance": 8, "proceduralRequirements": 0, "crossReferences": 2}},
+                {"data": {"id": "30", "label": "CCP 30", "title": "CCP Section 30", "category": "General Procedures", "wordCount": 50, "filingRelevance": 8, "proceduralRequirements": 0, "crossReferences": 1}},
+                {"data": {"id": "340", "label": "CCP 340", "title": "CCP Section 340", "category": "General Procedures", "wordCount": 302, "filingRelevance": 8, "proceduralRequirements": 0, "crossReferences": 3}},
+                {"data": {"id": "405.8", "label": "CCP 405.8", "title": "CCP Section 405.8", "category": "General Procedures", "wordCount": 145, "filingRelevance": 8, "proceduralRequirements": 0, "crossReferences": 1}},
+                {"data": {"id": "410.10", "label": "CCP 410.10", "title": "CCP Section 410.10", "category": "Jurisdiction & Service", "wordCount": 158, "filingRelevance": 8, "proceduralRequirements": 0, "crossReferences": 1}},
+                {"data": {"id": "410.42", "label": "CCP 410.42", "title": "CCP Section 410.42", "category": "Jurisdiction & Service", "wordCount": 51, "filingRelevance": 8, "proceduralRequirements": 0, "crossReferences": 0}},
+                {"data": {"id": "410.70", "label": "CCP 410.70", "title": "CCP Section 410.70", "category": "Jurisdiction & Service", "wordCount": 51, "filingRelevance": 8, "proceduralRequirements": 0, "crossReferences": 0}},
+                {"data": {"id": "411.35", "label": "CCP 411.35", "title": "CCP Section 411.35", "category": "Jurisdiction & Service", "wordCount": 51, "filingRelevance": 8, "proceduralRequirements": 0, "crossReferences": 0}},
+                {"data": {"id": "412.30", "label": "CCP 412.30", "title": "CCP Section 412.30", "category": "Jurisdiction & Service", "wordCount": 51, "filingRelevance": 8, "proceduralRequirements": 0, "crossReferences": 0}},
+                {"data": {"id": "420", "label": "CCP 420", "title": "CCP Section 420", "category": "Pleadings", "wordCount": 51, "filingRelevance": 8, "proceduralRequirements": 0, "crossReferences": 0}},
+                {"data": {"id": "421", "label": "CCP 421", "title": "CCP Section 421", "category": "Pleadings", "wordCount": 51, "filingRelevance": 8, "proceduralRequirements": 0, "crossReferences": 0}},
+                {"data": {"id": "422.40", "label": "CCP 422.40", "title": "CCP Section 422.40", "category": "Pleadings", "wordCount": 51, "filingRelevance": 8, "proceduralRequirements": 0, "crossReferences": 0}},
+                {"data": {"id": "425.55", "label": "CCP 425.55", "title": "CCP Section 425.55", "category": "Pleadings", "wordCount": 51, "filingRelevance": 8, "proceduralRequirements": 0, "crossReferences": 0}},
+                {"data": {"id": "426.70", "label": "CCP 426.70", "title": "CCP Section 426.70", "category": "Pleadings", "wordCount": 51, "filingRelevance": 8, "proceduralRequirements": 0, "crossReferences": 0}},
+                {"data": {"id": "427.10", "label": "CCP 427.10", "title": "CCP Section 427.10", "category": "Pleadings", "wordCount": 51, "filingRelevance": 8, "proceduralRequirements": 0, "crossReferences": 0}},
+                {"data": {"id": "428.80", "label": "CCP 428.80", "title": "CCP Section 428.80", "category": "Pleadings", "wordCount": 51, "filingRelevance": 8, "proceduralRequirements": 0, "crossReferences": 0}},
+                {"data": {"id": "429.30", "label": "CCP 429.30", "title": "CCP Section 429.30", "category": "Pleadings", "wordCount": 51, "filingRelevance": 8, "proceduralRequirements": 0, "crossReferences": 0}},
+                {"data": {"id": "430", "label": "CCP 430", "title": "CCP Section 430", "category": "Pleadings", "wordCount": 51, "filingRelevance": 8, "proceduralRequirements": 0, "crossReferences": 0}},
+                {"data": {"id": "430.90", "label": "CCP 430.90", "title": "CCP Section 430.90", "category": "Pleadings", "wordCount": 51, "filingRelevance": 8, "proceduralRequirements": 0, "crossReferences": 0}},
+                {"data": {"id": "583.161", "label": "CCP 583.161", "title": "CCP Section 583.161", "category": "Dismissal Procedures", "wordCount": 161, "filingRelevance": 8, "proceduralRequirements": 0, "crossReferences": 2}},
+                {"data": {"id": "703.150", "label": "CCP 703.150", "title": "CCP Section 703.150", "category": "Judgment Enforcement", "wordCount": 51, "filingRelevance": 8, "proceduralRequirements": 0, "crossReferences": 0}},
+                {"data": {"id": "706.109", "label": "CCP 706.109", "title": "CCP Section 706.109", "category": "Judgment Enforcement", "wordCount": 51, "filingRelevance": 8, "proceduralRequirements": 0, "crossReferences": 0}}
+            ],
+            "edges": [
+                {"data": {"id": "e0", "source": "1002.7", "target": "1008", "type": "category_similarity", "weight": 2, "label": "Similar Category", "description": "Both sections belong to category: Service & Notice"}},
+                {"data": {"id": "e1", "source": "703.150", "target": "706.109", "type": "category_similarity", "weight": 2, "label": "Similar Category", "description": "Both sections belong to category: Judgment Enforcement"}}
+                // Note: This is a simplified dataset for demonstration. The full dataset has 403 relationships.
+            ]
+        };
+
+        let cy;
+        let originalData;
+
+        // Initialize the graph when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Initializing CCP Knowledge Graph...');
+            setTimeout(() => {
+                initializeGraph(graphData);
+            }, 500); // Small delay to show loading animation
+        });
+
+        function initializeGraph(data) {
+            console.log('📊 Loading graph data...', data);
+            originalData = data;
+            
+            // Update stats
+            document.getElementById('total-nodes').textContent = data.nodes.length;
+            document.getElementById('total-edges').textContent = data.edges.length;
+            
+            // Set up category colors
+            const categories = [...new Set(data.nodes.map(n => n.data.category))];
+            const colors = [
+                '#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', 
+                '#dda0dd', '#98d8c8', '#f7dc6f', '#bb8fce', '#85c1e9'
+            ];
+            
+            document.getElementById('total-categories').textContent = categories.length;
+            
+            // Calculate network density
+            const maxPossibleEdges = (data.nodes.length * (data.nodes.length - 1)) / 2;
+            const density = ((data.edges.length / maxPossibleEdges) * 100).toFixed(1);
+            document.getElementById('network-density').textContent = density + '%';
+            
+            // Populate category filter
+            const categoryFilter = document.getElementById('category-filter');
+            categories.forEach(category => {
+                const option = document.createElement('option');
+                option.value = category;
+                option.textContent = category;
+                categoryFilter.appendChild(option);
+            });
+            
+            // Create legend
+            const legend = document.getElementById('legend');
+            categories.forEach((category, index) => {
+                const item = document.createElement('div');
+                item.className = 'category-item';
+                item.style.backgroundColor = colors[index % colors.length];
+                item.textContent = category;
+                legend.appendChild(item);
+            });
+
+            console.log('🎨 Initializing Cytoscape...');
+            cy = cytoscape({
+                container: document.getElementById('cy'),
+                elements: data,
+                style: [
+                    {
+                        selector: 'node',
+                        style: {
+                            'background-color': function(ele) {
+                                const categoryIndex = categories.indexOf(ele.data('category'));
+                                return colors[categoryIndex % colors.length];
+                            },
+                            'label': 'data(id)',
+                            'width': function(ele) { 
+                                return Math.max(30, Math.min(100, ele.data('wordCount') / 15)); 
+                            },
+                            'height': function(ele) { 
+                                return Math.max(30, Math.min(100, ele.data('wordCount') / 15)); 
+                            },
+                            'font-size': '12px',
+                            'font-weight': 'bold',
+                            'text-valign': 'center',
+                            'text-halign': 'center',
+                            'color': 'white',
+                            'text-outline-width': 2,
+                            'text-outline-color': '#000',
+                            'border-width': 3,
+                            'border-color': '#fff',
+                            'border-opacity': 0.8,
+                            'transition-property': 'background-color, border-color, border-width',
+                            'transition-duration': '0.3s'
+                        }
+                    },
+                    {
+                        selector: 'node:selected',
+                        style: {
+                            'border-width': 5,
+                            'border-color': '#ffd700',
+                            'border-opacity': 1
+                        }
+                    },
+                    {
+                        selector: 'edge',
+                        style: {
+                            'width': function(ele) { return Math.max(2, ele.data('weight')); },
+                            'line-color': function(ele) {
+                                const type = ele.data('type');
+                                if (type === 'cross_reference') return '#666';
+                                if (type === 'procedural_dependency') return '#ff6b6b';
+                                if (type === 'timing_relationship') return '#4ecdc4';
+                                if (type === 'category_similarity') return '#ddd';
+                                return '#ccc';
+                            },
+                            'target-arrow-color': function(ele) {
+                                const type = ele.data('type');
+                                if (type === 'cross_reference') return '#666';
+                                if (type === 'procedural_dependency') return '#ff6b6b';
+                                if (type === 'timing_relationship') return '#4ecdc4';
+                                return '#ccc';
+                            },
+                            'target-arrow-shape': 'triangle',
+                            'curve-style': 'bezier',
+                            'opacity': 0.6,
+                            'transition-property': 'opacity, width',
+                            'transition-duration': '0.3s'
+                        }
+                    },
+                    {
+                        selector: 'edge:selected',
+                        style: {
+                            'opacity': 1,
+                            'width': function(ele) { return Math.max(4, ele.data('weight') + 2); }
+                        }
+                    }
+                ],
+                layout: {
+                    name: 'cose-bilkent',
+                    animate: true,
+                    animationDuration: 2000,
+                    nodeRepulsion: 8000,
+                    idealEdgeLength: 80,
+                    edgeElasticity: 0.45,
+                    nestingFactor: 0.1,
+                    gravity: 0.25,
+                    numIter: 2500,
+                    tile: true,
+                    tilingPaddingVertical: 15,
+                    tilingPaddingHorizontal: 15
+                }
+            });
+
+            // Event handlers
+            cy.on('tap', 'node', function(evt) {
+                const node = evt.target;
+                const info = document.getElementById('node-info');
+                
+                // Highlight connected nodes
+                const connectedEdges = node.connectedEdges();
+                const connectedNodes = connectedEdges.connectedNodes();
+                
+                cy.elements().removeClass('highlighted');
+                node.addClass('highlighted');
+                connectedNodes.addClass('highlighted');
+                connectedEdges.addClass('highlighted');
+                
+                info.innerHTML = `
+                    <h4>📜 CCP Section ${node.data('id')}</h4>
+                    <p><strong>📋 Title:</strong> ${node.data('title')}</p>
+                    <p><strong>🏷️ Category:</strong> <span style="background: ${getCategoryColor(node.data('category'), categories, colors)}; color: white; padding: 3px 10px; border-radius: 15px; font-size: 0.9em;">${node.data('category')}</span></p>
+                    <p><strong>📄 Word Count:</strong> ${node.data('wordCount')} words</p>
+                    <p><strong>⚖️ Filing Relevance Score:</strong> ${node.data('filingRelevance')}/10</p>
+                    <p><strong>📋 Procedural Requirements:</strong> ${node.data('proceduralRequirements')} identified</p>
+                    <p><strong>🔗 Cross References:</strong> ${node.data('crossReferences')} references</p>
+                    <p><strong>🌐 Connections:</strong> ${connectedEdges.length} relationships with other sections</p>
+                    <p><em>💡 Connected sections are highlighted in the graph above.</em></p>
+                `;
+            });
+
+            // Click on background to deselect
+            cy.on('tap', function(evt) {
+                if (evt.target === cy) {
+                    cy.elements().removeClass('highlighted');
+                    document.getElementById('node-info').innerHTML = '<p><em>💡 Click on any CCP section node to see detailed information about that rule and its connections to other sections.</em></p>';
+                }
+            });
+
+            // Layout change handler
+            document.getElementById('layout-select').addEventListener('change', function(e) {
+                const layoutName = e.target.value;
+                let layoutOptions = { name: layoutName, animate: true, animationDuration: 1500 };
+                
+                if (layoutName === 'cose-bilkent') {
+                    layoutOptions = {
+                        ...layoutOptions,
+                        nodeRepulsion: 8000,
+                        idealEdgeLength: 80,
+                        edgeElasticity: 0.45,
+                        nestingFactor: 0.1,
+                        gravity: 0.25,
+                        numIter: 2500
+                    };
+                }
+                
+                cy.layout(layoutOptions).run();
+            });
+
+            // Category filter handler
+            document.getElementById('category-filter').addEventListener('change', function(e) {
+                const selectedCategory = e.target.value;
+                if (selectedCategory) {
+                    const filteredNodes = originalData.nodes.filter(n => n.data.category === selectedCategory);
+                    const nodeIds = new Set(filteredNodes.map(n => n.data.id));
+                    const filteredEdges = originalData.edges.filter(e => 
+                        nodeIds.has(e.data.source) && nodeIds.has(e.data.target)
+                    );
+                    cy.elements().remove();
+                    cy.add([...filteredNodes, ...filteredEdges]);
+                } else {
+                    cy.elements().remove();
+                    cy.add(originalData);
+                }
+                cy.layout({name: 'cose-bilkent', animate: true, animationDuration: 1500}).run();
+            });
+
+            console.log('✅ CCP Knowledge Graph loaded successfully!');
+            console.log(`📊 ${data.nodes.length} sections, ${data.edges.length} relationships`);
+        }
+
+        function getCategoryColor(category, categories, colors) {
+            const index = categories.indexOf(category);
+            return colors[index % colors.length];
+        }
+
+        function resetView() {
+            if (cy) {
+                cy.elements().removeClass('highlighted');
+                document.getElementById('node-info').innerHTML = '<p><em>💡 Click on any CCP section node to see detailed information about that rule and its connections to other sections.</em></p>';
+                document.getElementById('category-filter').value = '';
+                cy.elements().remove();
+                cy.add(originalData);
+                cy.layout({name: 'cose-bilkent', animate: true, animationDuration: 1500}).run();
+            }
+        }
+
+        function fitToScreen() {
+            if (cy) {
+                cy.fit();
+                cy.center();
+            }
+        }
+
+        function exportView() {
+            if (cy) {
+                const png64 = cy.png({scale: 2, full: true});
+                const link = document.createElement('a');
+                link.href = png64;
+                link.download = 'ccp_knowledge_graph.png';
+                link.click();
+            }
+        }
+    </script>
+</body>
+</html> 

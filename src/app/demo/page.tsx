@@ -2,8 +2,156 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { getApiUrl } from "@/lib/config";
 import jsPDF from "jspdf";
+
+// Password Protection Component
+const PasswordProtection = ({
+	onPasswordCorrect,
+}: {
+	onPasswordCorrect: () => void;
+}) => {
+	const [password, setPassword] = useState("");
+	const [error, setError] = useState("");
+	const [isLoading, setIsLoading] = useState(false);
+
+	const handleSubmit = (e: React.FormEvent) => {
+		e.preventDefault();
+		setIsLoading(true);
+		setError("");
+
+		const correctPassword = "12345678";
+
+		setTimeout(() => {
+			if (password === correctPassword) {
+				localStorage.setItem("ingrid_authenticated", "true");
+				onPasswordCorrect();
+			} else {
+				setError("Incorrect password. Please try again.");
+				setPassword("");
+			}
+			setIsLoading(false);
+		}, 500);
+	};
+
+	return (
+		<div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-pink-50/30 flex items-center justify-center px-6 relative overflow-hidden">
+			{/* Animated background elements */}
+			<div className="absolute inset-0 overflow-hidden pointer-events-none">
+				<div className="absolute top-10 right-10 w-96 h-96 bg-gradient-to-br from-pink-500/8 to-purple-500/8 rounded-full blur-3xl animate-pulse" />
+				<div className="absolute bottom-10 left-10 w-80 h-80 bg-gradient-to-br from-purple-500/6 to-pink-500/6 rounded-full blur-3xl animate-pulse delay-1000" />
+				<div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-br from-pink-400/4 to-purple-400/4 rounded-full blur-2xl animate-pulse delay-500" />
+			</div>
+			
+			<div className="max-w-md w-full relative z-10">
+				<div className="bg-white/80 backdrop-blur-2xl rounded-3xl shadow-2xl shadow-pink-500/10 p-8 border border-white/50 relative overflow-hidden group">
+					<div className="absolute inset-0 bg-gradient-to-r from-pink-500/10 via-purple-500/10 to-pink-500/10 rounded-3xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+					<div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-pink-500 to-transparent rounded-t-3xl animate-pulse" />
+					
+					<div className="text-center mb-8 relative z-10">
+						<div className="relative mb-6">
+							<div className="absolute -inset-6 bg-gradient-to-r from-pink-500/20 to-purple-500/20 rounded-full blur-2xl animate-pulse" />
+							<div className="relative bg-gradient-to-br from-pink-500 to-pink-600 p-4 rounded-2xl shadow-2xl mx-auto w-fit group-hover:scale-110 transition-transform duration-500">
+								<Image
+									src="/Logo.svg"
+									alt="Ingrid Logo"
+									width={40}
+									height={45}
+									className="filter brightness-0 invert"
+								/>
+							</div>
+						</div>
+						<h1 className="text-4xl font-bold text-gray-800 mb-3">
+							Ingrid Demo
+						</h1>
+						<p className="text-gray-600 font-medium">
+							Enter password to access the demo platform
+						</p>
+					</div>
+
+					<form onSubmit={handleSubmit} className="space-y-6 relative z-10">
+						<div className="group relative">
+							<label
+								htmlFor="password"
+								className="block text-sm font-bold text-gray-800 mb-3 tracking-wide"
+							>
+								Password
+							</label>
+							<div className="relative">
+								<input
+									type="password"
+									id="password"
+									value={password}
+									onChange={(e) => setPassword(e.target.value)}
+									className="w-full px-5 py-4 border-0 rounded-2xl shadow-lg focus:outline-none focus:ring-4 focus:ring-pink-500/20 placeholder-gray-400 transition-all duration-300 group-hover:shadow-2xl bg-white/80 backdrop-blur-sm text-gray-800 font-medium disabled:opacity-50 border border-gray-200/50"
+									placeholder="Enter password"
+									required
+									disabled={isLoading}
+								/>
+								<div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-pink-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+							</div>
+						</div>
+
+						{error && (
+							<div className="bg-gradient-to-r from-red-50 to-pink-50 backdrop-blur-sm border border-red-200/50 text-red-700 px-6 py-4 rounded-2xl text-sm shadow-lg relative overflow-hidden">
+								<div className="absolute inset-0 bg-gradient-to-r from-red-500/5 to-pink-500/5" />
+								<div className="relative flex items-center">
+									<div className="w-5 h-5 bg-red-500 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+										<svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+											<path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+										</svg>
+									</div>
+									{error}
+								</div>
+							</div>
+						)}
+
+						<button
+							type="submit"
+							disabled={isLoading || !password.trim()}
+							className={`w-full relative overflow-hidden group ${
+								isLoading || !password.trim()
+									? 'bg-gradient-to-r from-pink-300/20 to-purple-300/20' 
+									: 'bg-gradient-to-r from-pink-500 via-pink-600 to-purple-600 hover:from-pink-600 hover:via-pink-700 hover:to-purple-700 active:scale-[0.98] shadow-2xl shadow-pink-500/25 hover:shadow-pink-500/40'
+							} disabled:cursor-not-allowed text-white font-bold py-5 px-8 rounded-2xl transition-all duration-500 ease-out focus:outline-none focus:ring-4 focus:ring-pink-500/30`}
+						>
+							<div className="absolute inset-0 bg-gradient-to-r from-white/20 via-transparent to-white/20 -skew-x-12 transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
+							<div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+							
+							<span className="relative z-10 flex items-center justify-center text-lg font-bold tracking-wide">
+								{isLoading ? (
+									<>
+										<div className="relative mr-3">
+											<svg className="animate-spin h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+												<circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+												<path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+											</svg>
+										</div>
+										<span className="bg-gradient-to-r from-white to-pink-100 bg-clip-text text-transparent">
+											Verifying...
+										</span>
+									</>
+								) : (
+									<>
+										<div className="relative mr-3 group-hover:scale-125 group-hover:rotate-12 transition-transform duration-300">
+											<svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+												<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+											</svg>
+										</div>
+										<span className="bg-gradient-to-r from-white to-pink-100 bg-clip-text text-transparent font-extrabold">
+											Access Demo
+										</span>
+									</>
+								)}
+							</span>
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	);
+};
 
 // Types (Judge interface removed as it's not used)
 
@@ -30,14 +178,34 @@ interface ChecklistItem {
 interface ProceduralRoadmapData {
 	documentType: string;
 	jurisdiction: string;
-	phases: {
+	judge: string;
+	department: string;
+	flowchartSteps: {
 		id: string;
 		title: string;
 		description: string;
-		deadline: string;
 		requirements: string[];
+		deadline: string;
 		ruleReference: string;
 		ruleLink?: string;
+		nextSteps: string[];
+		stepType: "single" | "branching" | "decision";
+		branchOptions?: {
+			condition: string;
+			nextStepId: string;
+			description: string;
+		}[];
+	}[];
+	keyDeadlines: {
+		event: string;
+		timing: string;
+		rule: string;
+		consequences: string;
+	}[];
+	judgeSpecificNotes: {
+		category: string;
+		note: string;
+		source: string;
 	}[];
 }
 
@@ -66,6 +234,7 @@ interface PreviousQuery {
 }
 
 export default function Demo() {
+	const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 	const [showResults, setShowResults] = useState<boolean>(false);
 	const [activeTab, setActiveTab] = useState<string>("Checklist");
 	const [searchResults, setSearchResults] = useState<SearchResults | null>(
@@ -87,9 +256,21 @@ export default function Demo() {
 	});
 	const [previousQueries, setPreviousQueries] = useState<PreviousQuery[]>([]);
 	const [showPreviousQueries, setShowPreviousQueries] = useState(false);
+	// Add state to track current report date
+	const [currentReportDate, setCurrentReportDate] = useState<Date | null>(null);
+
+	// Check authentication on component mount
+	useEffect(() => {
+		const authenticated = localStorage.getItem("ingrid_authenticated");
+		if (authenticated === "true") {
+			setIsAuthenticated(true);
+		}
+	}, []);
 
 	// Load previous queries from localStorage on component mount
 	useEffect(() => {
+		if (!isAuthenticated) return; // Only run if authenticated
+		
 		try {
 			const saved = localStorage.getItem('ingrid-previous-queries');
 			if (saved) {
@@ -107,19 +288,23 @@ export default function Demo() {
 		} catch (error) {
 			console.error('Error loading previous queries:', error);
 		}
-	}, []);
+	}, [isAuthenticated]);
 
 	// Save previous queries to localStorage whenever they change
 	useEffect(() => {
+		if (!isAuthenticated) return; // Only run if authenticated
+		
 		try {
 			localStorage.setItem('ingrid-previous-queries', JSON.stringify(previousQueries));
 		} catch (error) {
 			console.error('Error saving previous queries:', error);
 		}
-	}, [previousQueries]);
+	}, [previousQueries, isAuthenticated]);
 
 	// Add progress timer effect
 	useEffect(() => {
+		if (!isAuthenticated) return; // Only run if authenticated
+		
 		let progressInterval: NodeJS.Timeout;
 		
 		if (loading) {
@@ -146,9 +331,59 @@ export default function Demo() {
 		return () => {
 			clearInterval(progressInterval);
 		};
-	}, [loading]);
+	}, [loading, isAuthenticated]);
 
+	// Handle password correct
+	const handlePasswordCorrect = () => {
+		setIsAuthenticated(true);
+	};
 
+	// If not authenticated, show password protection
+	if (!isAuthenticated) {
+		return <PasswordProtection onPasswordCorrect={handlePasswordCorrect} />;
+	}
+
+	// Helper function to parse document items and separate title from requirements
+	const parseDocumentItem = (item: string) => {
+		// Look for patterns like "Document Name - Requirements" or "Document Name - Must include:"
+		const separatorMatch = item.match(/^([^-]+)\s*-\s*(.+)$/);
+		if (separatorMatch) {
+			return {
+				title: separatorMatch[1].trim(),
+				requirements: separatorMatch[2].trim()
+			};
+		}
+		// If no separator found, treat the whole thing as title
+		return {
+			title: item.trim(),
+			requirements: ""
+		};
+	};
+
+	// Helper function to convert requirements text to bullet points
+	const formatRequirements = (requirements: string) => {
+		if (!requirements) return [];
+		
+		// Split by periods followed by a space and capital letter or common starting words
+		// But avoid splitting within parenthetical citations
+		const bullets = requirements
+			.split(/\.\s+(?=[A-Z][a-z]|Must|Required|Format|Page|Generally|Each|Copies|Filing|Service|Proof)(?![^(]*\))/)
+			.map(bullet => bullet.trim())
+			.filter(bullet => bullet.length > 0)
+			.map(bullet => {
+				// Clean up the bullet point
+				bullet = bullet.replace(/\.$/, ''); // Remove trailing period only
+				return bullet.trim();
+			})
+			.filter(bullet => bullet.length > 15); // Increase minimum length to avoid short fragments
+
+		// If we couldn't split it meaningfully or got too many fragments, return the original as a single bullet
+		if (bullets.length === 1 || bullets.length > 4) {
+			return [requirements.trim()];
+		}
+		
+		return bullets;
+	};
 
 	// Function to save a query to previous queries
 	const saveQuery = (formData: {
@@ -162,12 +397,13 @@ export default function Demo() {
 	}, results: SearchResults) => {
 		const queryId = Date.now().toString();
 		const title = `${formData.documentType} - ${formData.judge}`;
+		const generationDate = new Date();
 		
 		const newQuery: PreviousQuery = {
 			id: queryId,
 			formData: { ...formData },
 			results,
-			timestamp: new Date(),
+			timestamp: generationDate,
 			title
 		};
 
@@ -188,6 +424,8 @@ export default function Demo() {
 
 		// Show the previous queries sidebar after first successful query
 		setShowPreviousQueries(true);
+		// Set current report date for new queries
+		setCurrentReportDate(generationDate);
 	};
 
 	// Function to load a previous query
@@ -195,14 +433,17 @@ export default function Demo() {
 		setFormData(query.formData);
 		setSearchResults(query.results);
 		setShowResults(true);
+		setShowPreviousQueries(false);
 		setActiveTab("Checklist");
-		if (query.results.proceduralRoadmap) {
-			// setProceduralRoadmapData(query.results.proceduralRoadmap);
-		} else {
-			// Generate procedural roadmap data if not present
-			// const generatedProceduralRoadmapData = generateProceduralRoadmapData();
-			// setProceduralRoadmapData(generatedProceduralRoadmapData);
-		}
+		// Store the original generation date for proper display
+		setCurrentReportDate(query.timestamp);
+	};
+
+	// Function to delete a previous query
+	const deletePreviousQuery = (queryId: string, e: React.MouseEvent) => {
+		e.stopPropagation(); // Prevent triggering the load query action
+		const updatedQueries = previousQueries.filter(query => query.id !== queryId);
+		setPreviousQueries(updatedQueries);
 	};
 
 	// Function to generate mind map data from search results
@@ -324,13 +565,15 @@ export default function Demo() {
 			}
 
 			if (result.success && result.data) {
+				const reportGenerationDate = new Date();
 				setSearchResults(result.data);
 				setShowResults(true);
 				setActiveTab("Checklist");
+				setCurrentReportDate(reportGenerationDate);
 				// Generate procedural roadmap data
 				// const generatedProceduralRoadmapData = generateProceduralRoadmapData();
 				// setProceduralRoadmapData(generatedProceduralRoadmapData);
-				// Save this query to previous queries
+				// Save this query to previous queries with the current timestamp
 				saveQuery(formData, result.data);
 			} else {
 				throw new Error("No data received from server");
@@ -347,6 +590,8 @@ export default function Demo() {
 		setShowResults(false);
 		setActiveTab("Checklist");
 		setError(null);
+		setCurrentReportDate(null);
+		setShowPreviousQueries(false);
 	};
 
 	const checklistByPhase = searchResults?.checklist.reduce<
@@ -792,28 +1037,28 @@ export default function Demo() {
 							<div className="relative">
 								<div className="absolute -inset-2 bg-gradient-to-r from-pink-500 to-purple-600 rounded-xl blur-lg opacity-20 group-hover:opacity-40 transition-all duration-500 animate-pulse" />
 								<div className="relative bg-gradient-to-br from-pink-500 to-pink-600 p-2 rounded-xl shadow-lg group-hover:shadow-pink-500/25 transition-all duration-300 group-hover:scale-105">
-									<svg
-										width="28"
-										height="28"
-										viewBox="0 0 24 24"
-										fill="none"
-										xmlns="http://www.w3.org/2000/svg"
+							<svg
+								width="28"
+								height="28"
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
 										className="text-white"
-									>
-										<path
-											d="M9 12.5L11.5 15L16 10"
+							>
+								<path
+									d="M9 12.5L11.5 15L16 10"
 											stroke="currentColor"
-											strokeWidth="2.5"
-											strokeLinecap="round"
-											strokeLinejoin="round"
-										/>
-									</svg>
+									strokeWidth="2.5"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+								/>
+							</svg>
 								</div>
 							</div>
 							<div className="flex flex-col">
 								<span className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent group-hover:from-pink-600 group-hover:to-pink-700 transition-all duration-300">
-									Ingrid
-								</span>
+								Ingrid
+							</span>
 								<span className="text-xs text-gray-500 font-medium tracking-wide">Legal Assistant</span>
 							</div>
 						</Link>
@@ -832,10 +1077,10 @@ export default function Demo() {
 												<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
 											</svg>
 										</div>
-										Search Parameters
-									</h2>
+									Search Parameters
+								</h2>
 
-									{error && (
+								{error && (
 										<div className="bg-gradient-to-r from-red-50 to-pink-50 backdrop-blur-sm border border-red-200/50 text-red-700 px-6 py-4 rounded-2xl text-sm mb-8 shadow-lg shadow-red-500/10 relative overflow-hidden">
 											<div className="absolute inset-0 bg-gradient-to-r from-red-500/5 to-pink-500/5" />
 											<div className="relative flex items-center">
@@ -844,65 +1089,65 @@ export default function Demo() {
 														<path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
 													</svg>
 												</div>
-												{error}
+										{error}
 											</div>
-										</div>
-									)}
+									</div>
+								)}
 
 									<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
 										{/* State */}
 										<div className="group relative">
 											<label htmlFor="state" className="block text-sm font-bold text-gray-800 mb-3 tracking-wide">
-												State
-											</label>
+										State
+									</label>
 											<div className="relative">
 												<input
 													type="text"
-													id="state"
+										id="state"
 													value={formData.state}
 													onChange={(e) => setFormData({...formData, state: e.target.value})}
 													placeholder="e.g., California"
 													className="w-full px-5 py-4 border-0 rounded-2xl shadow-lg focus:outline-none focus:ring-4 focus:ring-pink-500/20 placeholder-gray-400 transition-all duration-300 group-hover:shadow-xl bg-gradient-to-br from-white to-gray-50/50 backdrop-blur-sm text-gray-800 font-medium"
 												/>
 												<div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-pink-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-											</div>
+								</div>
 										</div>
 
 										{/* County */}
 										<div className="group relative">
 											<label htmlFor="county" className="block text-sm font-bold text-gray-800 mb-3 tracking-wide">
-												County
-											</label>
+										County
+									</label>
 											<div className="relative">
 												<input
 													type="text"
-													id="county"
+										id="county"
 													value={formData.county}
 													onChange={(e) => setFormData({...formData, county: e.target.value})}
 													placeholder="e.g., Los Angeles County"
 													className="w-full px-5 py-4 border-0 rounded-2xl shadow-lg focus:outline-none focus:ring-4 focus:ring-pink-500/20 placeholder-gray-400 transition-all duration-300 group-hover:shadow-xl bg-gradient-to-br from-white to-gray-50/50 backdrop-blur-sm text-gray-800 font-medium"
 												/>
 												<div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-pink-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-											</div>
+								</div>
 										</div>
 
 										{/* Division */}
 										<div className="group relative">
 											<label htmlFor="division" className="block text-sm font-bold text-gray-800 mb-3 tracking-wide">
-												Division
-											</label>
+										Division
+									</label>
 											<div className="relative">
 												<input
 													type="text"
-													id="division"
+										id="division"
 													value={formData.division}
 													onChange={(e) => setFormData({...formData, division: e.target.value})}
 													placeholder="e.g., Civil Division"
 													className="w-full px-5 py-4 border-0 rounded-2xl shadow-lg focus:outline-none focus:ring-4 focus:ring-pink-500/20 placeholder-gray-400 transition-all duration-300 group-hover:shadow-xl bg-gradient-to-br from-white to-gray-50/50 backdrop-blur-sm text-gray-800 font-medium"
 												/>
 												<div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-pink-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-											</div>
+								</div>
 										</div>
 
 										{/* Department */}
@@ -927,15 +1172,15 @@ export default function Demo() {
 											<div className="relative">
 												<input
 													type="text"
-													id="judge"
+										id="judge"
 													value={formData.judge}
 													onChange={(e) => setFormData({...formData, judge: e.target.value})}
 													placeholder="e.g., Hon. Jane Smith"
 													className="w-full px-5 py-4 border-0 rounded-2xl shadow-lg focus:outline-none focus:ring-4 focus:ring-pink-500/20 placeholder-gray-400 transition-all duration-300 group-hover:shadow-xl bg-gradient-to-br from-white to-gray-50/50 backdrop-blur-sm text-gray-800 font-medium"
 												/>
 												<div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-pink-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-											</div>
-										</div>
+								</div>
+								</div>
 
 										{/* Document Type */}
 										<div className="md:col-span-2 group relative">
@@ -950,7 +1195,7 @@ export default function Demo() {
 													className="w-full px-5 py-4 border-0 rounded-2xl shadow-lg focus:outline-none focus:ring-4 focus:ring-pink-500/20 placeholder-gray-400 transition-all duration-300 group-hover:shadow-xl bg-gradient-to-br from-white to-gray-50/50 backdrop-blur-sm text-gray-800 font-medium"
 												/>
 												<div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-pink-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-											</div>
+							</div>
 										</div>
 									</div>
 								</div>
@@ -990,11 +1235,6 @@ export default function Demo() {
 														<circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
 														<path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
 													</svg>
-													<div className="absolute inset-0 animate-ping">
-														<svg className="h-6 w-6 text-white opacity-20" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-															<circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-														</svg>
-													</div>
 												</div>
 												<span className="bg-gradient-to-r from-white to-pink-100 bg-clip-text text-transparent">
 													Generating Filing Requirements...
@@ -1006,7 +1246,6 @@ export default function Demo() {
 													<svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 														<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
 													</svg>
-													<div className="absolute -inset-1 bg-white/30 rounded-full blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 												</div>
 												<span className="bg-gradient-to-r from-white to-pink-100 bg-clip-text text-transparent font-extrabold">
 													Generate Filing Requirements
@@ -1017,6 +1256,8 @@ export default function Demo() {
 								</button>
 							</div>
 						</form>
+
+
 
 						{/* Footer */}
 						<div className="text-center text-xs text-gray-400 space-y-2 pt-4 border-t border-gray-200">
@@ -1029,7 +1270,112 @@ export default function Demo() {
 					</div>
 				</aside>
 
-				{/* Previous Queries Sidebar */}
+				{/* Previous Queries Sidebar - Shows on main screen when there are previous queries */}
+				{!showResults && previousQueries.length > 0 && (
+					<aside className="fixed top-0 right-0 h-full w-80 bg-white/95 backdrop-blur-2xl border-l border-white/20 shadow-2xl shadow-pink-500/5 overflow-y-auto z-40 transition-all duration-500 ease-in-out">
+						{/* Decorative gradient overlay */}
+						<div className="absolute inset-0 bg-gradient-to-bl from-pink-500/5 via-transparent to-purple-500/5 pointer-events-none" />
+						
+						<div className="relative z-10 p-6 space-y-6">
+							{/* Header */}
+							<div className="flex items-center justify-between">
+								<h3 className="text-lg font-bold bg-gradient-to-r from-gray-900 to-pink-800 bg-clip-text text-transparent">
+									Previous Reports
+								</h3>
+								<div className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
+									{previousQueries.length} saved
+								</div>
+							</div>
+							
+							<p className="text-sm text-gray-600 leading-relaxed">
+								Click any report below to instantly load it without regenerating.
+							</p>
+							
+							{/* Previous Queries List */}
+							<div className="space-y-3">
+								{previousQueries.map((query) => (
+									<div
+										key={query.id}
+										className="bg-white/60 backdrop-blur-sm rounded-xl p-4 border border-white/40 shadow-sm hover:shadow-md hover:bg-white/80 transition-all duration-200 group relative"
+									>
+										{/* Delete button - positioned in top right */}
+										<button
+											onClick={(e) => deletePreviousQuery(query.id, e)}
+											className="absolute top-2 right-2 p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all duration-200 opacity-0 group-hover:opacity-100 z-10"
+											title="Delete query"
+										>
+											<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+												<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+											</svg>
+										</button>
+
+										{/* Clickable content area */}
+										<div
+											onClick={() => loadPreviousQuery(query)}
+											className="cursor-pointer"
+										>
+											<div className="flex items-start justify-between mb-2 pr-8">
+												<h4 className="text-sm font-semibold text-gray-900 group-hover:text-pink-600 transition-colors duration-200 line-clamp-2">
+													{query.formData.documentType}
+												</h4>
+												<div className="text-xs text-blue-600 ml-2 flex-shrink-0 font-medium">
+													<svg className="w-3 h-3 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+														<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+													</svg>
+													{query.timestamp.toLocaleDateString()}
+												</div>
+											</div>
+											<div className="space-y-1.5 text-xs text-gray-600">
+												<div className="flex items-center">
+													<svg className="w-3 h-3 mr-1.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+														<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+													</svg>
+													<span className="truncate font-medium">{query.formData.judge}</span>
+												</div>
+												<div className="flex items-center">
+													<svg className="w-3 h-3 mr-1.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+														<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+														<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+													</svg>
+													<span className="truncate">{query.formData.county}, {query.formData.state}</span>
+												</div>
+												{query.formData.department && (
+													<div className="flex items-center">
+														<svg className="w-3 h-3 mr-1.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+															<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+														</svg>
+														<span className="truncate">{query.formData.department}</span>
+													</div>
+												)}
+												<div className="flex items-center text-green-600">
+													<svg className="w-3 h-3 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+														<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+													</svg>
+													<span className="text-xs font-medium">Click to load instantly</span>
+												</div>
+											</div>
+											<div className="mt-3 flex items-center justify-between">
+												<div className="flex space-x-2">
+													<span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-pink-100 text-pink-700 font-medium">
+														{query.results.documents.length} docs
+													</span>
+													<span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-700 font-medium">
+														{query.results.checklist.length} tasks
+													</span>
+												</div>
+												<svg className="w-4 h-4 text-gray-400 group-hover:text-pink-500 transition-colors duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+													<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+												</svg>
+											</div>
+										</div>
+									</div>
+								))}
+							</div>
+						</div>
+					</aside>
+				)}
+
+				{/* Previous Queries Sidebar - Shows when viewing reports */}
 				{showPreviousQueries && showResults && (
 					<aside className="fixed top-0 right-0 h-full w-80 bg-white/95 backdrop-blur-2xl border-l border-white/20 shadow-2xl shadow-pink-500/5 overflow-y-auto z-40 transition-all duration-500 ease-in-out">
 						{/* Decorative gradient overlay */}
@@ -1054,54 +1400,92 @@ export default function Demo() {
 							{/* Previous Queries List */}
 							<div className="space-y-3">
 								{previousQueries.length === 0 ? (
-									<p className="text-sm text-gray-500 text-center py-8">
-										No previous queries yet
-									</p>
+									<div className="text-center py-8">
+										<div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
+											<svg className="w-12 h-12 text-gray-400 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+												<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+											</svg>
+											<p className="text-sm text-gray-500 mb-2 font-medium">No previous reports yet</p>
+											<p className="text-xs text-gray-400 leading-relaxed">
+												Generate your first report and it will appear here for easy access without needing to regenerate.
+											</p>
+										</div>
+									</div>
 								) : (
 									previousQueries.map((query) => (
 										<div
 											key={query.id}
-											onClick={() => loadPreviousQuery(query)}
-											className="bg-white/60 backdrop-blur-sm rounded-xl p-4 border border-white/40 shadow-sm hover:shadow-md hover:bg-white/80 cursor-pointer transition-all duration-200 group"
+											className="bg-white/60 backdrop-blur-sm rounded-xl p-4 border border-white/40 shadow-sm hover:shadow-md hover:bg-white/80 transition-all duration-200 group relative"
 										>
-											<div className="flex items-start justify-between mb-2">
-												<h4 className="text-sm font-semibold text-gray-900 group-hover:text-pink-600 transition-colors duration-200 line-clamp-2">
-													{query.formData.documentType}
-												</h4>
-												<div className="text-xs text-gray-400 ml-2 flex-shrink-0">
-													{query.timestamp.toLocaleDateString()}
+											{/* Delete button - positioned in top right */}
+											<button
+												onClick={(e) => deletePreviousQuery(query.id, e)}
+												className="absolute top-2 right-2 p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all duration-200 opacity-0 group-hover:opacity-100 z-10"
+												title="Delete query"
+											>
+												<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+													<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+												</svg>
+											</button>
+
+											{/* Clickable content area */}
+											<div
+												onClick={() => loadPreviousQuery(query)}
+												className="cursor-pointer"
+											>
+												<div className="flex items-start justify-between mb-2 pr-8">
+													<h4 className="text-sm font-semibold text-gray-900 group-hover:text-pink-600 transition-colors duration-200 line-clamp-2">
+														{query.formData.documentType}
+													</h4>
+													<div className="text-xs text-blue-600 ml-2 flex-shrink-0 font-medium">
+														<svg className="w-3 h-3 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+															<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+														</svg>
+														{query.timestamp.toLocaleDateString()}
+													</div>
 												</div>
-											</div>
-											<div className="space-y-1 text-xs text-gray-600">
-												<div className="flex items-center">
-													<svg className="w-3 h-3 mr-1.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-														<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-													</svg>
-													<span className="truncate">{query.formData.judge}</span>
-												</div>
-												<div className="flex items-center">
-													<svg className="w-3 h-3 mr-1.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-														<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-														<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-													</svg>
-													<span className="truncate">{query.formData.county}</span>
-												</div>
-												{query.formData.department && (
+												<div className="space-y-1.5 text-xs text-gray-600">
 													<div className="flex items-center">
 														<svg className="w-3 h-3 mr-1.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-															<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+															<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
 														</svg>
-														<span className="truncate">{query.formData.department}</span>
+														<span className="truncate font-medium">{query.formData.judge}</span>
 													</div>
-												)}
-											</div>
-											<div className="mt-3 flex items-center justify-between">
-												<span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-pink-100 text-pink-700">
-													{query.results.documents.length} docs
-												</span>
-												<svg className="w-4 h-4 text-gray-400 group-hover:text-pink-500 transition-colors duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-													<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-												</svg>
+													<div className="flex items-center">
+														<svg className="w-3 h-3 mr-1.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+															<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+															<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+														</svg>
+														<span className="truncate">{query.formData.county}, {query.formData.state}</span>
+													</div>
+													{query.formData.department && (
+														<div className="flex items-center">
+															<svg className="w-3 h-3 mr-1.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+																<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+															</svg>
+															<span className="truncate">{query.formData.department}</span>
+														</div>
+													)}
+													<div className="flex items-center text-green-600">
+														<svg className="w-3 h-3 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+															<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+														</svg>
+														<span className="text-xs font-medium">Report ready - Click to load</span>
+													</div>
+												</div>
+												<div className="mt-3 flex items-center justify-between">
+													<div className="flex space-x-2">
+														<span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-pink-100 text-pink-700 font-medium">
+															{query.results.documents.length} docs
+														</span>
+														<span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-700 font-medium">
+															{query.results.checklist.length} tasks
+														</span>
+													</div>
+													<svg className="w-4 h-4 text-gray-400 group-hover:text-pink-500 transition-colors duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+														<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+													</svg>
+												</div>
 											</div>
 										</div>
 									))
@@ -1115,7 +1499,7 @@ export default function Demo() {
 				<main className={`ml-auto w-full max-w-none min-h-screen bg-gradient-to-br from-white via-gray-50/50 to-pink-50/20 transition-all duration-700 ease-in-out ${
 					showResults 
 						? showPreviousQueries ? 'pl-0 pr-80' : 'pl-0' 
-						: 'pl-[32rem]'
+						: previousQueries.length > 0 ? 'pl-[32rem] pr-80' : 'pl-[32rem]'
 				}`}>
 					{/* Decorative background elements */}
 					<div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -1133,9 +1517,19 @@ export default function Demo() {
 									
 									<div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
 										<div className="space-y-2">
-											<h1 className="text-4xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-pink-800 bg-clip-text text-transparent tracking-tight">
-												Filing Requirements Report
-											</h1>
+											<div className="flex items-center space-x-3">
+												<h1 className="text-4xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-pink-800 bg-clip-text text-transparent tracking-tight">
+													Filing Requirements Report
+												</h1>
+												{currentReportDate && currentReportDate.toDateString() !== new Date().toDateString() && (
+													<span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-blue-100 text-blue-700 font-medium border border-blue-200">
+														<svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+															<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+														</svg>
+														From History
+													</span>
+												)}
+											</div>
 											<p className="text-gray-600 text-lg font-medium">
 												For {formData.documentType} before Judge{" "}
 												<span className="text-pink-600 font-semibold">{formData.judge}</span>, {formData.department}
@@ -1152,64 +1546,44 @@ export default function Demo() {
 													<svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 														<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
 													</svg>
-													Generated {new Date().toLocaleDateString()}
+													Report generated on {currentReportDate ? currentReportDate.toLocaleDateString() : new Date().toLocaleDateString()}
 												</span>
-											</div>
+									</div>
 										</div>
 										<div className="flex flex-col sm:flex-row gap-3">
-											<button
-												onClick={handleDownloadPDF}
+										<button
+											onClick={handleDownloadPDF}
 												disabled={loading}
 												className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 disabled:from-pink-300 disabled:to-pink-400 disabled:cursor-not-allowed text-white font-bold py-3 px-6 rounded-xl flex items-center transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 disabled:hover:scale-100"
-											>
-												<svg
-													xmlns="http://www.w3.org/2000/svg"
+										>
+											<svg
+												xmlns="http://www.w3.org/2000/svg"
 													width="20"
 													height="20"
-													viewBox="0 0 24 24"
-													fill="none"
-													stroke="currentColor"
-													strokeWidth="2.5"
-													strokeLinecap="round"
-													strokeLinejoin="round"
-													className="mr-2"
-												>
-													<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-													<polyline points="7,10 12,15 17,10" />
-													<line x1="12" y1="15" x2="12" y2="3" />
-												</svg>
+												viewBox="0 0 24 24"
+												fill="none"
+												stroke="currentColor"
+												strokeWidth="2.5"
+												strokeLinecap="round"
+												strokeLinejoin="round"
+												className="mr-2"
+											>
+												<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+												<polyline points="7,10 12,15 17,10" />
+												<line x1="12" y1="15" x2="12" y2="3" />
+											</svg>
 												{loading ? "Generating PDF..." : "Download PDF"}
-											</button>
-											{previousQueries.length > 0 && (
-												<button
-													onClick={() => setShowPreviousQueries(!showPreviousQueries)}
-													className={`${
-														showPreviousQueries 
-															? 'bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white' 
-															: 'bg-white/80 backdrop-blur-sm hover:bg-white border border-gray-200 hover:border-gray-300 text-gray-700'
-													} font-bold py-3 px-6 rounded-xl flex items-center transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105`}
-												>
-													<svg
-														xmlns="http://www.w3.org/2000/svg"
-														width="20"
-														height="20"
-														viewBox="0 0 24 24"
-														fill="none"
-														stroke="currentColor"
-														strokeWidth="2.5"
-														strokeLinecap="round"
-														strokeLinejoin="round"
-														className="mr-2"
-													>
-														<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-														<polyline points="9,22 9,12 15,12 15,22" />
-													</svg>
-													{showPreviousQueries ? 'Hide History' : `History (${previousQueries.length})`}
-												</button>
-											)}
+										</button>
 											<button
-												onClick={handleNewSearch}
-												className="bg-white/80 backdrop-blur-sm hover:bg-white border border-gray-200 hover:border-gray-300 text-gray-700 font-bold py-3 px-6 rounded-xl flex items-center transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+												onClick={() => setShowPreviousQueries(!showPreviousQueries)}
+												disabled={previousQueries.length === 0}
+												className={`${
+													showPreviousQueries 
+														? 'bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white' 
+														: previousQueries.length > 0
+															? 'bg-white/80 backdrop-blur-sm hover:bg-white border border-gray-200 hover:border-gray-300 text-gray-700'
+															: 'bg-gray-200 text-gray-500 cursor-not-allowed border border-gray-200'
+												} font-bold py-3 px-6 rounded-xl flex items-center transition-all duration-300 shadow-lg hover:shadow-xl ${previousQueries.length > 0 ? 'hover:scale-105' : ''}`}
 											>
 												<svg
 													xmlns="http://www.w3.org/2000/svg"
@@ -1223,11 +1597,37 @@ export default function Demo() {
 													strokeLinejoin="round"
 													className="mr-2"
 												>
-													<path d="M19 12H5" />
-													<path d="m12 19-7-7 7-7" />
+													<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+													<polyline points="9,22 9,12 15,12 15,22" />
 												</svg>
-												New Search
+												{previousQueries.length === 0 
+													? 'No History' 
+													: showPreviousQueries 
+														? 'Hide History' 
+														: `History (${previousQueries.length})`
+												}
 											</button>
+										<button
+											onClick={handleNewSearch}
+												className="bg-white/80 backdrop-blur-sm hover:bg-white border border-gray-200 hover:border-gray-300 text-gray-700 font-bold py-3 px-6 rounded-xl flex items-center transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+										>
+											<svg
+												xmlns="http://www.w3.org/2000/svg"
+													width="20"
+													height="20"
+												viewBox="0 0 24 24"
+												fill="none"
+												stroke="currentColor"
+												strokeWidth="2.5"
+												strokeLinecap="round"
+												strokeLinejoin="round"
+												className="mr-2"
+											>
+												<path d="M19 12H5" />
+												<path d="m12 19-7-7 7-7" />
+											</svg>
+											New Search
+										</button>
 										</div>
 									</div>
 								</div>
@@ -1253,8 +1653,8 @@ export default function Demo() {
 												onClick={() => setActiveTab(tab)}
 												className={`relative flex-1 py-3 px-4 text-sm font-bold rounded-2xl transition-all duration-300 ${
 													activeTab === tab
-														? "bg-gradient-to-r from-pink-500 to-pink-600 text-white shadow-lg shadow-pink-500/25 scale-105"
-														: "text-gray-600 hover:text-gray-800 hover:bg-white/50 hover:shadow-md"
+															? "bg-gradient-to-r from-pink-500 to-pink-600 text-white shadow-lg shadow-pink-500/25 scale-105"
+															: "text-gray-600 hover:text-gray-800 hover:bg-white/50 hover:shadow-md"
 												}`}
 											>
 												<span className="relative z-10">{tab}</span>
@@ -1278,139 +1678,137 @@ export default function Demo() {
 												</div>
 												Filing Checklist
 											</h2>
-											<div className="space-y-10">
-												{Object.entries(checklistByPhase || {}).map(
-													([phase, items]) => (
-														<div key={phase} className="bg-gradient-to-br from-white/80 to-gray-50/50 rounded-2xl p-6 border border-white/60 shadow-lg">
-															<h3 className="text-xl font-bold text-pink-700 mb-6 flex items-center">
-																<div className="w-6 h-6 bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg flex items-center justify-center mr-3">
-																	<div className="w-2 h-2 bg-white rounded-full" />
-																</div>
-																{phase}
-															</h3>
-															<div className="overflow-hidden rounded-xl border border-gray-200/50 shadow-sm">
-																<table className="min-w-full bg-white/80 backdrop-blur-sm">
-																	<thead className="bg-gradient-to-r from-gray-50 to-pink-50/50">
-																		<tr>
-																			<th className="w-12 px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
-																				Done
-																			</th>
-																			<th className="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
-																				Task
-																			</th>
-																			<th className="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
-																				Notes
-																			</th>
-																			<th className="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
-																				Rule Reference
-																			</th>
-																		</tr>
-																	</thead>
-																	<tbody className="divide-y divide-gray-200/50">
-																		{items.map((item, index) => (
-																			<tr
-																				key={`${item.task}-${index}`}
-																				className="hover:bg-gradient-to-r hover:from-pink-50/50 hover:to-purple-50/50 transition-all duration-200"
-																			>
-																				<td className="px-6 py-5 whitespace-nowrap">
-																					<input
-																						type="checkbox"
-																						id={`${phase}-${index}`}
-																						className="h-5 w-5 rounded-lg border-gray-300 text-pink-600 focus:ring-pink-500 shadow-sm"
-																					/>
-																				</td>
-																				<td className="px-6 py-5">
-																					<div className="text-sm font-semibold text-gray-900">
-																						{item.task}
-																					</div>
-																				</td>
-																				<td className="px-6 py-5">
-																					<div className="text-sm text-gray-600 leading-relaxed">
-																						{item.notes}
-																					</div>
-																				</td>
-																				<td className="px-6 py-5">
-																					{item.link ? (
-																						<a
-																							href={item.link}
-																							target="_blank"
-																							rel="noopener noreferrer"
-																							className="text-sm text-pink-600 hover:text-pink-800 hover:underline flex items-center font-medium transition-colors duration-200"
-																						>
-																							{item.rule}
-																							<svg
-																								className="w-3 h-3 ml-2 flex-shrink-0"
-																								fill="none"
-																								stroke="currentColor"
-																								viewBox="0 0 24 24"
-																							>
-																								<path
-																									strokeLinecap="round"
-																									strokeLinejoin="round"
-																									strokeWidth={2}
-																									d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-																								/>
-																							</svg>
-																						</a>
-																					) : (
-																						<span className="text-sm text-gray-500 font-medium">
-																							{item.rule}
-																						</span>
-																					)}
-																				</td>
+											{checklistByPhase && Object.keys(checklistByPhase).length > 0 ? (
+												<div className="space-y-10">
+													{Object.entries(checklistByPhase).map(
+														([phase, items]) => (
+															<div key={phase} className="bg-gradient-to-br from-white/80 to-gray-50/50 rounded-2xl p-6 border border-white/60 shadow-lg">
+																<h3 className="text-xl font-bold text-pink-700 mb-6 flex items-center">
+																	<div className="w-6 h-6 bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg flex items-center justify-center mr-3">
+																		<div className="w-2 h-2 bg-white rounded-full" />
+																	</div>
+																	{phase}
+																</h3>
+																<div className="overflow-hidden rounded-xl border border-gray-200/50 shadow-sm">
+																	<table className="min-w-full bg-white/80 backdrop-blur-sm">
+																		<thead className="bg-gradient-to-r from-gray-50 to-pink-50/50">
+																			<tr>
+																				<th className="w-12 px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
+																					Done
+																				</th>
+																				<th className="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
+																					Task
+																				</th>
+																				<th className="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
+																					Notes
+																				</th>
+																				<th className="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
+																					Rule Reference
+																				</th>
 																			</tr>
-																		))}
-																	</tbody>
-																</table>
+																		</thead>
+																		<tbody className="divide-y divide-gray-200/50">
+																			{items.map((item, index) => (
+																				<tr
+																					key={`${item.task}-${index}`}
+																					className="hover:bg-gradient-to-r hover:from-pink-50/50 hover:to-purple-50/50 transition-all duration-200"
+																				>
+																					<td className="px-6 py-5 whitespace-nowrap">
+																						<input
+																							type="checkbox"
+																							id={`${phase}-${index}`}
+																							className="h-5 w-5 rounded-lg border-gray-300 text-pink-600 focus:ring-pink-500 shadow-sm"
+																						/>
+																					</td>
+																					<td className="px-6 py-5">
+																						<div className="text-sm font-semibold text-gray-900">
+																							{item.task}
+																						</div>
+																					</td>
+																					<td className="px-6 py-5">
+																						<div className="text-sm text-gray-600 leading-relaxed">
+																							{item.notes}
+																						</div>
+																					</td>
+																					<td className="px-6 py-5">
+																						{item.link ? (
+																							<a
+																								href={item.link}
+																								target="_blank"
+																								rel="noopener noreferrer"
+																								className="text-sm text-pink-600 hover:text-pink-800 hover:underline flex items-center font-medium transition-colors duration-200"
+																							>
+																								{item.rule}
+																								<svg
+																									className="w-3 h-3 ml-2 flex-shrink-0"
+																									fill="none"
+																									stroke="currentColor"
+																									viewBox="0 0 24 24"
+																								>
+																									<path
+																										strokeLinecap="round"
+																										strokeLinejoin="round"
+																										strokeWidth={2}
+																										d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+																									/>
+																								</svg>
+																							</a>
+																						) : (
+																							<span className="text-sm text-gray-500 font-medium">
+																								{item.rule}
+																							</span>
+																						)}
+																					</td>
+																				</tr>
+																			))}
+																		</tbody>
+																	</table>
+																</div>
 															</div>
-														</div>
-													)
-												)}
-											</div>
+														)
+													)}
+												</div>
+											) : (
+												<div className="text-center py-12">
+													<div className="text-gray-500 text-lg mb-4">No checklist data available</div>
+													<p className="text-gray-400">The checklist will appear here once you generate a report.</p>
+												</div>
+											)}
 										</section>
 									)}
 
-
-
 									{activeTab === "Mandatory Docs" && (
-										<section>
-											<h2 className="text-xl font-bold text-gray-900 pb-3 mb-6 border-b border-gray-200">
-												Mandatory Documents
-											</h2>
-											<div className="overflow-x-auto">
-												<table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-sm">
-													<thead className="bg-gray-50">
-														<tr>
-															<th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-																Document
-															</th>
-															<th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-																Rule Reference
-															</th>
-														</tr>
-													</thead>
-													<tbody className="divide-y divide-gray-200">
-														{searchResults.documents.map((doc) => (
-															<tr
-																key={doc.item}
-																className="hover:bg-gray-50"
-															>
-																<td className="px-4 py-4">
-																	<div className="text-sm font-medium text-gray-900">
-																		{doc.item}
-																	</div>
-																</td>
-																<td className="px-4 py-4">
+										<section className="p-8">
+											<div className="mb-6">
+												<h2 className="text-2xl font-bold text-gray-900 mb-2">
+													Document Type: {formData.documentType || 'Not specified'}
+												</h2>
+												<h3 className="text-xl font-semibold text-gray-700 pb-3 border-b border-gray-200">
+													Mandatory Documents
+												</h3>
+											</div>
+											{searchResults?.documents && searchResults.documents.length > 0 ? (
+												<div className="space-y-6">
+													{searchResults.documents.map((doc, docIndex) => {
+														const parsed = parseDocumentItem(doc.item);
+														return (
+															<div key={`${doc.item}-${docIndex}`} className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+																{/* Document Header */}
+																<div className="bg-gradient-to-r from-blue-50 to-indigo-50 px-6 py-4 border-b border-gray-200">
+																	<h4 className="text-lg font-bold text-gray-900 mb-2">
+																		📄 {parsed.title}
+																	</h4>
 																	{doc.link ? (
 																		<a
 																			href={doc.link}
 																			target="_blank"
 																			rel="noopener noreferrer"
-																			className="text-sm text-pink-600 hover:text-pink-800 hover:underline flex items-center"
+																			className="text-sm text-pink-600 hover:text-pink-800 hover:underline inline-flex items-center font-medium"
 																		>
+																			<span className="mr-2">📖</span>
 																			{doc.rule}
 																			<svg
-																				className="w-3 h-3 ml-1 flex-shrink-0"
+																				className="w-3 h-3 ml-2 flex-shrink-0"
 																				fill="none"
 																				stroke="currentColor"
 																				viewBox="0 0 24 24"
@@ -1424,58 +1822,74 @@ export default function Demo() {
 																			</svg>
 																		</a>
 																	) : (
-																		<span className="text-sm text-gray-500">
+																		<span className="text-sm text-gray-600 inline-flex items-center">
+																			<span className="mr-2">📖</span>
 																			{doc.rule}
 																		</span>
 																	)}
-																</td>
-															</tr>
-														))}
-													</tbody>
-												</table>
-											</div>
+																</div>
+																
+																{/* Document Requirements */}
+																{parsed.requirements && (
+																	<div className="px-6 py-4">
+																		<h5 className="text-sm font-semibold text-gray-700 mb-3 uppercase tracking-wide">
+																			Requirements & Details:
+																		</h5>
+																		<ul className="space-y-3">
+																			{formatRequirements(parsed.requirements).map((bullet, index) => (
+																				<li key={index} className="flex text-sm text-gray-600 leading-relaxed">
+																					<span className="text-blue-500 mr-3 flex-shrink-0 font-bold leading-relaxed">•</span>
+																					<span className="flex-1">{bullet}</span>
+																				</li>
+																			))}
+																		</ul>
+																	</div>
+																)}
+															</div>
+														);
+													})}
+												</div>
+											) : (
+												<div className="text-center py-12">
+													<div className="text-gray-500 text-lg mb-4">No mandatory documents available</div>
+													<p className="text-gray-400">Mandatory documents will appear here once you generate a report.</p>
+												</div>
+											)}
 										</section>
 									)}
 
 									{activeTab === "Conditional Docs" && (
-										<section>
-											<h2 className="text-xl font-bold text-gray-900 pb-3 mb-6 border-b border-gray-200">
-												Conditional Documents
-											</h2>
-											<div className="overflow-x-auto">
-												<table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-sm">
-													<thead className="bg-gray-50">
-														<tr>
-															<th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-																Document
-															</th>
-															<th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-																Rule Reference
-															</th>
-														</tr>
-													</thead>
-													<tbody className="divide-y divide-gray-200">
-														{searchResults.conditional.map((doc) => (
-															<tr
-																key={doc.item}
-																className="hover:bg-gray-50"
-															>
-																<td className="px-4 py-4">
-																	<div className="text-sm font-medium text-gray-900">
-																		{doc.item}
-																	</div>
-																</td>
-																<td className="px-4 py-4">
+										<section className="p-8">
+											<div className="mb-6">
+												<h2 className="text-2xl font-bold text-gray-900 mb-2">
+													Document Type: {formData.documentType || 'Not specified'}
+												</h2>
+												<h3 className="text-xl font-semibold text-gray-700 pb-3 border-b border-gray-200">
+													Conditional Documents
+												</h3>
+											</div>
+											{searchResults?.conditional && searchResults.conditional.length > 0 ? (
+												<div className="space-y-6">
+													{searchResults.conditional.map((doc, docIndex) => {
+														const parsed = parseDocumentItem(doc.item);
+														return (
+															<div key={`${doc.item}-${docIndex}`} className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+																{/* Document Header */}
+																<div className="bg-gradient-to-r from-amber-50 to-orange-50 px-6 py-4 border-b border-gray-200">
+																	<h4 className="text-lg font-bold text-gray-900 mb-2">
+																		📋 {parsed.title}
+																	</h4>
 																	{doc.link ? (
 																		<a
 																			href={doc.link}
 																			target="_blank"
-																			rel="noopener noreferrer"
-																			className="text-sm text-pink-600 hover:text-pink-800 hover:underline flex items-center"
+																				rel="noopener noreferrer"
+																		className="text-sm text-pink-600 hover:text-pink-800 hover:underline inline-flex items-center font-medium"
 																		>
+																			<span className="mr-2">📖</span>
 																			{doc.rule}
 																			<svg
-																				className="w-3 h-3 ml-1 flex-shrink-0"
+																				className="w-3 h-3 ml-2 flex-shrink-0"
 																				fill="none"
 																				stroke="currentColor"
 																				viewBox="0 0 24 24"
@@ -1489,108 +1903,163 @@ export default function Demo() {
 																			</svg>
 																		</a>
 																	) : (
-																		<span className="text-sm text-gray-500">
+																		<span className="text-sm text-gray-600 inline-flex items-center">
+																			<span className="mr-2">📖</span>
 																			{doc.rule}
 																		</span>
 																	)}
-																</td>
-															</tr>
-														))}
-													</tbody>
-												</table>
-											</div>
+																</div>
+																
+																{/* Document Requirements */}
+																{parsed.requirements && (
+																	<div className="px-6 py-4">
+																		<h5 className="text-sm font-semibold text-gray-700 mb-3 uppercase tracking-wide">
+																			Requirements & Details:
+																		</h5>
+																		<ul className="space-y-3">
+																			{formatRequirements(parsed.requirements).map((bullet, index) => (
+																				<li key={index} className="flex text-sm text-gray-600 leading-relaxed">
+																					<span className="text-amber-500 mr-3 flex-shrink-0 font-bold leading-relaxed">•</span>
+																					<span className="flex-1">{bullet}</span>
+																				</li>
+																			))}
+																		</ul>
+																	</div>
+																)}
+															</div>
+														);
+													})}
+												</div>
+											) : (
+												<div className="text-center py-12">
+													<div className="text-gray-500 text-lg mb-4">No conditional documents available</div>
+													<p className="text-gray-400">Conditional documents will appear here once you generate a report.</p>
+												</div>
+											)}
 										</section>
 									)}
 
 									{activeTab === "Governing Rules" && (
-										<section>
-											<h2 className="text-xl font-bold text-gray-900 pb-3 mb-6 border-b border-gray-200">
+										<section className="p-8">
+											<h2 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-pink-800 bg-clip-text text-transparent pb-4 mb-8 border-b border-gray-200/50 flex items-center">
+												<div className="w-8 h-8 bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg flex items-center justify-center mr-3 shadow-lg">
+													<svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+														<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+													</svg>
+												</div>
 												Governing Rules
 											</h2>
-											<div className="space-y-4">
-												{searchResults.rules.map((rule, index) => (
-													<div
-														key={`${rule.name}-${index}`}
-														className="p-5 bg-gray-100 rounded-xl border border-gray-200/80"
-													>
-														<p className="font-semibold text-gray-800">
-															{rule.name}
-														</p>
-														<p className="text-sm text-gray-600 mt-1">
-															{rule.text}
-														</p>
-														{rule.link ? (
-															<a
-																href={rule.link}
-																target="_blank"
-																rel="noopener noreferrer"
-																className="text-sm text-pink-600 hover:text-pink-800 hover:underline mt-3 inline-flex items-center font-medium"
-															>
-																Source Link
-																<svg
-																	className="w-3 h-3 ml-1 flex-shrink-0"
-																	fill="none"
-																	stroke="currentColor"
-																	viewBox="0 0 24 24"
+											{searchResults?.rules && searchResults.rules.length > 0 ? (
+												<div className="space-y-6">
+													{searchResults.rules.map((rule, ruleIndex) => (
+														<div
+															key={`${rule.name}-${ruleIndex}`}
+															className="bg-gradient-to-br from-white/80 to-gray-50/50 rounded-2xl p-6 border border-white/60 shadow-lg"
+														>
+															<h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
+																<div className="w-6 h-6 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mr-3">
+																	<div className="w-2 h-2 bg-white rounded-full" />
+																</div>
+																{rule.name}
+															</h3>
+															<p className="text-sm text-gray-600 leading-relaxed mb-4">
+																{rule.text}
+															</p>
+															{rule.link ? (
+																<a
+																	href={rule.link}
+																	target="_blank"
+																	rel="noopener noreferrer"
+																	className="text-sm text-pink-600 hover:text-pink-800 hover:underline inline-flex items-center font-medium transition-colors duration-200"
 																>
-																	<path
-																		strokeLinecap="round"
-																		strokeLinejoin="round"
-																		strokeWidth={2}
-																		d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-																	/>
-																</svg>
-															</a>
-														) : (
-															<span className="text-sm text-gray-500 mt-3 inline-block font-medium">
-																Source Link
-															</span>
-														)}
-													</div>
-												))}
-											</div>
+																	<span className="mr-2">🔗</span>
+																	View Source
+																	<svg
+																		className="w-3 h-3 ml-2 flex-shrink-0"
+																		fill="none"
+																		stroke="currentColor"
+																		viewBox="0 0 24 24"
+																	>
+																		<path
+																			strokeLinecap="round"
+																			strokeLinejoin="round"
+																			strokeWidth={2}
+																			d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+																		/>
+																	</svg>
+																</a>
+															) : (
+																<span className="text-sm text-gray-500 inline-flex items-center">
+																	<span className="mr-2">🔗</span>
+																	Source Link
+																</span>
+															)}
+														</div>
+													))}
+												</div>
+											) : (
+												<div className="text-center py-12">
+													<div className="text-gray-500 text-lg mb-4">No governing rules available</div>
+													<p className="text-gray-400">Governing rules will appear here once you generate a report.</p>
+												</div>
+											)}
 										</section>
 									)}
 
 									{activeTab === ".docx Shell" && (
-										<section>
-											<h2 className="text-xl font-bold text-gray-900 pb-3 mb-6 border-b border-gray-200">
-												.docx Shell Downloads
-											</h2>
-											<div className="space-y-4">
-												<div className="bg-white p-4 rounded-xl border border-gray-200/80 shadow-sm flex justify-between items-center">
-													<div>
-														<p className="font-semibold">
-															Notice of Motion and Motion Shell
-														</p>
-														<p className="text-sm text-gray-500 mt-1">
-															A pre-formatted .docx shell for the notice of
-															motion.
-														</p>
-													</div>
-													<button
-														disabled
-														className="bg-gray-200 text-gray-500 font-semibold py-2 px-4 rounded-lg text-sm cursor-not-allowed"
-													>
-														Download
-													</button>
+										<section className="p-8">
+											<h2 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-pink-800 bg-clip-text text-transparent pb-4 mb-8 border-b border-gray-200/50 flex items-center">
+												<div className="w-8 h-8 bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg flex items-center justify-center mr-3 shadow-lg">
+													<svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+														<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+													</svg>
 												</div>
-												<div className="bg-white p-4 rounded-xl border border-gray-200/80 shadow-sm flex justify-between items-center">
-													<div>
-														<p className="font-semibold">
-															Separate Statement Shell
-														</p>
-														<p className="text-sm text-gray-500 mt-1">
-															A pre-formatted .docx shell with the required
-															two-column format.
-														</p>
+												Document Templates
+											</h2>
+											<div className="space-y-6">
+												<div className="bg-gradient-to-br from-white/80 to-gray-50/50 rounded-2xl p-6 border border-white/60 shadow-lg">
+													<div className="flex justify-between items-start">
+														<div className="flex-1">
+															<h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
+																<span className="mr-3 text-2xl">📄</span>
+																Notice of Motion and Motion Shell
+															</h3>
+															<p className="text-sm text-gray-600 mb-4 leading-relaxed">
+																A pre-formatted .docx template for the notice of motion with proper formatting, headers, and required sections.
+															</p>
+															<div className="text-xs text-gray-500 bg-gray-100 px-3 py-1 rounded-full inline-block">
+																Coming Soon
+															</div>
+														</div>
+														<button
+															disabled
+															className="bg-gray-200 text-gray-500 font-semibold py-3 px-6 rounded-xl text-sm cursor-not-allowed transition-all duration-200 ml-4"
+														>
+															Download
+														</button>
 													</div>
-													<button
-														disabled
-														className="bg-gray-200 text-gray-500 font-semibold py-2 px-4 rounded-lg text-sm cursor-not-allowed"
-													>
-														Download
-													</button>
+												</div>
+												<div className="bg-gradient-to-br from-white/80 to-gray-50/50 rounded-2xl p-6 border border-white/60 shadow-lg">
+													<div className="flex justify-between items-start">
+														<div className="flex-1">
+															<h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
+																<span className="mr-3 text-2xl">📋</span>
+																Separate Statement Shell
+															</h3>
+															<p className="text-sm text-gray-600 mb-4 leading-relaxed">
+																A pre-formatted .docx template with the required two-column format for separate statements with proper numbering and formatting.
+															</p>
+															<div className="text-xs text-gray-500 bg-gray-100 px-3 py-1 rounded-full inline-block">
+																Coming Soon
+															</div>
+														</div>
+														<button
+															disabled
+															className="bg-gray-200 text-gray-500 font-semibold py-3 px-6 rounded-xl text-sm cursor-not-allowed transition-all duration-200 ml-4"
+														>
+															Download
+														</button>
+													</div>
 												</div>
 											</div>
 										</section>
@@ -1598,223 +2067,523 @@ export default function Demo() {
 
 									{activeTab === "Procedural Roadmap" && (
 										<section className="p-8">
-											<div className="text-center mb-8">
-												<h2 className="text-2xl font-bold text-gray-900 mb-2">Civil Case Flowchart</h2>
-												<p className="text-gray-600">United States District Court Middle District of Florida</p>
-											</div>
+											<h2 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-pink-800 bg-clip-text text-transparent pb-4 mb-8 border-b border-gray-200/50 flex items-center">
+												<div className="w-8 h-8 bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg flex items-center justify-center mr-3 shadow-lg">
+													<svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+														<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+													</svg>
+								</div>
+												Procedural Roadmap
+											</h2>
+											{searchResults?.proceduralRoadmap ? (
+												(() => {
+													const roadmap = searchResults.proceduralRoadmap;
+													
+													// Function to determine party responsibility and color scheme
+													const getPartyInfo = (title: string, description: string) => {
+														const titleLower = title.toLowerCase();
+														const descLower = description.toLowerCase();
+														
+														// Court/Judge actions
+														if (titleLower.includes('court') || titleLower.includes('judge') || titleLower.includes('ruling') || 
+															titleLower.includes('hearing') || titleLower.includes('judgment') || titleLower.includes('order') ||
+															descLower.includes('court') || descLower.includes('judge') || descLower.includes('ruling')) {
+															return {
+																party: 'Court/Judge',
+																bgColor: 'bg-white',
+																borderColor: 'border-purple-400',
+																textColor: 'text-purple-900',
+																headerBg: 'bg-purple-100',
+																icon: '⚖️'
+															};
+														}
+														
+														// Opposition/Defendant actions
+														if (titleLower.includes('opposition') || titleLower.includes('response') || titleLower.includes('answer') ||
+															titleLower.includes('objection') || descLower.includes('opposing party') || descLower.includes('defendant') ||
+															descLower.includes('opposition')) {
+															return {
+																party: 'Opposing Party',
+																bgColor: 'bg-white',
+																borderColor: 'border-red-400',
+																textColor: 'text-red-900',
+																headerBg: 'bg-red-100',
+																icon: '🛡️'
+															};
+														}
+														
+														// Your actions (Moving party/Plaintiff)
+														if (titleLower.includes('initiate') || titleLower.includes('prepare') || titleLower.includes('file') ||
+															titleLower.includes('serve') || titleLower.includes('motion') || titleLower.includes('reply') ||
+															descLower.includes('moving party') || descLower.includes('plaintiff')) {
+															return {
+																party: 'You (Moving Party)',
+																bgColor: 'bg-white',
+																borderColor: 'border-blue-400',
+																textColor: 'text-blue-900',
+																headerBg: 'bg-blue-100',
+																icon: '📋'
+															};
+														}
+														
+														// Neutral/System actions
+														return {
+															party: 'System/Process',
+															bgColor: 'bg-white',
+															borderColor: 'border-gray-400',
+															textColor: 'text-gray-900',
+															headerBg: 'bg-gray-100',
+															icon: '⚙️'
+														};
+													};
 
-											{/* Flowchart Container */}
-											<div className="max-w-6xl mx-auto">
-												{/* COMPLAINT Box */}
-												<div className="bg-white border-2 border-gray-300 rounded-lg p-4 mb-6 shadow-sm">
-													<h3 className="font-bold text-sm mb-2 text-center bg-gray-100 py-1 rounded">COMPLAINT</h3>
-													<p className="text-xs text-gray-700 leading-tight">
-														The complaint is a written document that begins a lawsuit. The complaint sets out the plaintiff&apos;s claim against the defendant or defendants. The plaintiff files the complaint with the clerk. With the complaint, the plaintiff must file a civil cover sheet and summons for each defendant. There are forms for the civil cover sheet, and a summons on the website. See{" "}
-														<span className="text-blue-600 underline">Fed. R. Civ. P. 3</span>,{" "}
-														<span className="text-blue-600 underline">Fed. R. Civ. P. 4</span>,{" "}
-														<span className="text-blue-600 underline">Fed. R. Civ. P. 8</span>,{" "}
-														<span className="text-blue-600 underline">Fed. R. Civ. P. 11</span>,{" "}
-														<span className="text-blue-600 underline">Fed. R. Civ. P. 15</span>,{" "}
-														<span className="text-blue-600 underline">Local Rule 1.05</span>, and{" "}
-														<span className="text-blue-600 underline">Local Rule 1.05(e)</span>.
-													</p>
+													// Remove stage simulation - show as overview only
+													
+													return (
+														<div className="space-y-8">
+															{/* Header Info */}
+															<div className="bg-gradient-to-br from-pink-50/80 to-purple-50/60 rounded-2xl p-6 border border-pink-200/50 shadow-lg">
+																<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+																	<div>
+																		<h3 className="text-xl font-bold text-pink-700 mb-1">{roadmap.documentType}</h3>
+																		<p className="text-gray-600 font-medium">{roadmap.jurisdiction}</p>
+							</div>
+																	<div className="text-right">
+																		<p className="text-lg font-semibold text-gray-700">{roadmap.judge}</p>
+																		<p className="text-gray-600">{roadmap.department}</p>
+																	</div>
+																</div>
+															</div>
+
+															{/* Complex Flowchart Layout */}
+															<div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-lg">
+																<h3 className="text-2xl font-bold text-center text-gray-900 mb-2">Civil Case Procedural Flowchart</h3>
+																<p className="text-center text-gray-600 mb-8">{roadmap.jurisdiction}</p>
+
+																{/* Flowchart Container */}
+																<div className="relative">
+																	{/* Step 1: Initial Filing */}
+																	<div className="flex justify-center mb-8">
+																		{(() => {
+																			const step = roadmap.flowchartSteps[0];
+																			const partyInfo = getPartyInfo(step?.title || '', step?.description || '');
+																			
+																			return (
+																				<div className={`relative ${partyInfo.bgColor} border-2 ${partyInfo.borderColor} rounded-lg p-4 w-80`}>
+																					<h3 className={`font-bold text-sm mb-2 text-center ${partyInfo.headerBg} py-1 rounded uppercase`}>
+																						{step?.title || 'INITIAL FILING'}
+																					</h3>
+																					<p className="text-xs text-gray-700 leading-tight">
+																						{step?.description || 'Begin the legal process by filing the initial motion or complaint with the court.'}
+																					</p>
+																					<div className="text-xs text-blue-600 mt-2">
+																						{step?.ruleReference || 'Filing Rules Apply'}
+																					</div>
+																				</div>
+																			);
+																		})()}
+																	</div>
+
+																	{/* Step 2: Branching - Fee Payment */}
+																	<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+																		<div className={`${getPartyInfo('PAY FEES', '').bgColor} border-2 border-gray-300 rounded-lg p-4 shadow-sm`}>
+																			<h3 className="font-bold text-sm mb-2 text-center bg-blue-100 py-1 rounded">PAY FILING FEES</h3>
+																			<p className="text-xs text-gray-700 leading-tight">
+																				Pay the required filing fees to the court clerk. Filing fees vary by document type and jurisdiction.
+																			</p>
+																			<div className="text-xs text-blue-600 mt-2">Fee Schedule Rules</div>
+																		</div>
+																		<div className={`${getPartyInfo('MOTION TO PROCEED', '').bgColor} border-2 border-gray-300 rounded-lg p-4 shadow-sm`}>
+																			<h3 className="font-bold text-sm mb-2 text-center bg-blue-100 py-1 rounded">MOTION TO PROCEED WITHOUT FEES</h3>
+																			<p className="text-xs text-gray-700 leading-tight">
+																				Alternative: File a motion to proceed in forma pauperis if unable to afford filing fees.
+																			</p>
+																			<div className="text-xs text-blue-600 mt-2">In Forma Pauperis Rules</div>
+																		</div>
+																	</div>
+
+																{/* Step 3: Service of Process */}
+																	<div className="flex justify-center mb-8">
+																		<div className={`${getPartyInfo('SERVICE', '').bgColor} border-2 border-gray-300 rounded-lg p-4 w-80 shadow-sm`}>
+																			<h3 className="font-bold text-sm mb-2 text-center bg-blue-100 py-1 rounded">SERVICE OF PROCESS</h3>
+																			<p className="text-xs text-gray-700 leading-tight">
+																				Serve all documents on opposing parties according to proper service rules and deadlines.
+																			</p>
+																			<div className="text-xs text-blue-600 mt-2">Service Rules</div>
+																		</div>
+																	</div>
+
+																	{/* Three-way branching */}
+																	<div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+																		<div className={`${getPartyInfo('MOTION DENIED', '').bgColor} border-2 border-red-300 rounded-lg p-4 shadow-sm`}>
+																			<h3 className="font-bold text-sm mb-2 text-center bg-red-100 py-1 rounded">MOTION DENIED</h3>
+																			<p className="text-xs text-gray-700 leading-tight">
+																				If the motion to proceed without fees is denied, you must pay the filing fees to continue.
+																			</p>
+																		</div>
+																		<div className={`${getPartyInfo('OPPOSITION', 'opposing party').bgColor} border-2 border-red-300 rounded-lg p-4 shadow-sm`}>
+																			<h3 className="font-bold text-sm mb-2 text-center bg-red-100 py-1 rounded">OPPOSITION FILED</h3>
+																			<p className="text-xs text-gray-700 leading-tight">
+																				Opposing party files opposition papers challenging your motion within required timeframe.
+																			</p>
+																		</div>
+																		<div className={`${getPartyInfo('NO OPPOSITION', '').bgColor} border-2 border-gray-300 rounded-lg p-4 shadow-sm`}>
+																			<h3 className="font-bold text-sm mb-2 text-center bg-gray-100 py-1 rounded">NO OPPOSITION</h3>
+																			<p className="text-xs text-gray-700 leading-tight">
+																				No opposition is filed by the deadline. Motion may be granted as unopposed.
+																			</p>
+																		</div>
+																	</div>
+
+																	{/* Discovery Phase (Parallel Process) */}
+																	<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+																		<div className={`${getPartyInfo('DISCOVERY', '').bgColor} border-2 border-gray-300 rounded-lg p-4 shadow-sm`}>
+																			<h3 className="font-bold text-sm mb-2 text-center bg-gray-100 py-1 rounded">DISCOVERY PROCESS</h3>
+																			<p className="text-xs text-gray-700 leading-tight">
+																				Exchange of information, documents, and evidence between parties through various discovery methods.
+																			</p>
+																			<div className="text-xs text-blue-600 mt-2">Discovery Rules</div>
+																		</div>
+																		<div className={`${getPartyInfo('MOTIONS', '').bgColor} border-2 border-gray-300 rounded-lg p-4 shadow-sm`}>
+																			<h3 className="font-bold text-sm mb-2 text-center bg-gray-100 py-1 rounded">CASE MANAGEMENT</h3>
+																			<p className="text-xs text-gray-700 leading-tight">
+																				Court may issue case management orders, scheduling orders, and handle various motions during this phase.
+																			</p>
+																			<div className="text-xs text-blue-600 mt-2">Case Management Rules</div>
+																		</div>
+																	</div>
+
+																	{/* Hearing Phase */}
+																	<div className="flex justify-center mb-8">
+																		<div className={`${getPartyInfo('HEARING', 'court').bgColor} border-2 border-purple-300 rounded-lg p-4 w-80 shadow-sm`}>
+																			<h3 className="font-bold text-sm mb-2 text-center bg-purple-100 py-1 rounded">HEARING ON MOTION</h3>
+																			<p className="text-xs text-gray-700 leading-tight">
+																				Court conducts hearing where both parties present oral arguments. Judge may ask questions and review evidence.
+																			</p>
+																			<div className="text-xs text-blue-600 mt-2">Hearing Procedures</div>
+																		</div>
+																	</div>
+
+																																	{/* Final Decision Branching */}
+																<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+																	<div className={`${getPartyInfo('MOTION GRANTED', 'court').bgColor} border-2 border-purple-300 rounded-lg p-4 shadow-sm`}>
+																		<h3 className="font-bold text-sm mb-2 text-center bg-green-100 py-1 rounded">MOTION GRANTED</h3>
+																		<p className="text-xs text-gray-700 leading-tight">
+																			Court grants the motion. Judgment may be entered in your favor. Case may conclude or proceed to limited issues.
+																		</p>
+																		<div className="text-xs text-green-600 mt-2">Favorable Outcome</div>
+																	</div>
+																	<div className={`${getPartyInfo('MOTION DENIED', 'court').bgColor} border-2 border-purple-300 rounded-lg p-4 shadow-sm`}>
+																		<h3 className="font-bold text-sm mb-2 text-center bg-orange-100 py-1 rounded">MOTION DENIED</h3>
+																		<p className="text-xs text-gray-700 leading-tight">
+																			Court denies the motion. Case proceeds to trial or further proceedings. Consider appeal options.
+																		</p>
+																		<div className="text-xs text-orange-600 mt-2">Proceed to Trial</div>
+																	</div>
+																</div>
+
+																	{/* Final Outcomes */}
+																	<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+																		<div className={`${getPartyInfo('JUDGMENT', 'court').bgColor} border-2 border-purple-300 rounded-lg p-4 shadow-sm`}>
+																			<h3 className="font-bold text-sm mb-2 text-center bg-purple-100 py-1 rounded">JUDGMENT ENTERED</h3>
+																			<p className="text-xs text-gray-700 leading-tight">
+																				Court enters final judgment. Case concludes unless appealed.
+																			</p>
+																		</div>
+																		<div className={`${getPartyInfo('TRIAL', 'court').bgColor} border-2 border-purple-300 rounded-lg p-4 shadow-sm`}>
+																			<h3 className="font-bold text-sm mb-2 text-center bg-purple-100 py-1 rounded">PROCEED TO TRIAL</h3>
+																			<p className="text-xs text-gray-700 leading-tight">
+																				Case proceeds to full trial with jury or bench trial.
+																			</p>
+																		</div>
+																		<div className={`${getPartyInfo('APPEAL', '').bgColor} border-2 border-gray-300 rounded-lg p-4 shadow-sm`}>
+																			<h3 className="font-bold text-sm mb-2 text-center bg-gray-100 py-1 rounded">NOTICE OF APPEAL</h3>
+																			<p className="text-xs text-gray-700 leading-tight">
+																				Option to appeal unfavorable decisions within required timeframe.
+																			</p>
+																		</div>
+																	</div>
+																</div>
+															</div>
+
+															{/* Key Deadlines */}
+															{roadmap.keyDeadlines && roadmap.keyDeadlines.length > 0 && (
+																<div className="bg-gradient-to-br from-red-50 to-orange-50 border-2 border-red-200 rounded-2xl p-6 shadow-lg">
+																	<h3 className="text-xl font-bold text-red-800 mb-6 flex items-center">
+																		<span className="mr-3 text-2xl">⚠️</span>
+																		Critical Deadlines
+																	</h3>
+																	<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+																		{roadmap.keyDeadlines.map((deadline, index) => (
+																			<div key={index} className="bg-white rounded-xl p-4 border-2 border-red-200 shadow-md hover:shadow-lg transition-shadow duration-300">
+																				<div className="flex items-start space-x-3">
+																					<div className="bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm flex-shrink-0 mt-1">
+																						{index + 1}
+																					</div>
+																					<div className="flex-1">
+																						<div className="font-bold text-red-800 text-sm mb-1">{deadline.event}</div>
+																						<div className="text-sm text-red-600 mb-2 font-medium">{deadline.timing}</div>
+																						<div className="text-xs text-gray-600 mb-2 italic">{deadline.consequences}</div>
+																						<div className="text-xs text-blue-600 font-medium">{deadline.rule}</div>
+																					</div>
+																				</div>
+																			</div>
+																		))}
+																	</div>
+																</div>
+															)}
+
+															{/* Judge-Specific Notes */}
+															{roadmap.judgeSpecificNotes && roadmap.judgeSpecificNotes.length > 0 && (
+																<div className="bg-gradient-to-br from-purple-50 to-indigo-50 border-2 border-purple-200 rounded-2xl p-6 shadow-lg">
+																	<h3 className="text-xl font-bold text-purple-800 mb-6 flex items-center">
+																		<span className="mr-3 text-2xl">👨‍⚖️</span>
+																		Judge-Specific Guidance
+																	</h3>
+																	<div className="space-y-4">
+																		{roadmap.judgeSpecificNotes.map((note, index) => (
+																			<div key={index} className="bg-white rounded-xl p-5 border-2 border-purple-200 shadow-md hover:shadow-lg transition-shadow duration-300">
+																				<div className="flex items-start space-x-4">
+																					<div className="bg-purple-500 text-white rounded-lg w-10 h-10 flex items-center justify-center font-bold flex-shrink-0">
+																						<span className="text-lg">⚖️</span>
+																					</div>
+																					<div className="flex-1">
+																						<div className="font-bold text-purple-800 text-base mb-2">{note.category}</div>
+																						<div className="text-sm text-purple-700 leading-relaxed mb-3">{note.note}</div>
+																						<div className="text-xs text-gray-500 font-medium">
+																							<span className="mr-1">📋</span>
+																							Source: {note.source}
+																						</div>
+																					</div>
+																				</div>
+																			</div>
+																		))}
+																	</div>
+																</div>
+															)}
+														</div>
+													);
+												})()
+											) : (
+												<div className="text-center py-12">
+													<div className="text-gray-500 text-lg mb-4">No procedural roadmap available</div>
+													<p className="text-gray-400">The procedural roadmap will appear here once you generate a report.</p>
 												</div>
-
-												{/* Arrow Down */}
-												<div className="flex justify-center mb-6">
-													<div className="w-0 h-0 border-l-[15px] border-r-[15px] border-t-[20px] border-l-transparent border-r-transparent border-t-gray-400"></div>
-												</div>
-
-												{/* PAY FEES and MOTION TO PROCEED */}
-												<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-													<div className="bg-white border-2 border-gray-300 rounded-lg p-4 shadow-sm">
-														<h3 className="font-bold text-sm mb-2 text-center bg-gray-100 py-1 rounded">PAY FEES</h3>
-														<p className="text-xs text-gray-700 leading-tight">
-															When the plaintiff files the complaint, the plaintiff must pay filing fees. A listing of fees is on the website. When a defendant answers a case from another court, the defendant must pay the listed court filing fee. See{" "}
-															<span className="text-blue-600 underline">28 U.S.C. § 1914</span>.
-														</p>
-													</div>
-													<div className="bg-white border-2 border-gray-300 rounded-lg p-4 shadow-sm">
-														<h3 className="font-bold text-sm mb-2 text-center bg-gray-100 py-1 rounded">MOTION TO PROCEED WITHOUT FEES</h3>
-														<p className="text-xs text-gray-700 leading-tight">
-															A motion to proceed without fees is a written document in which the plaintiff asks the court to proceed without paying fees because the plaintiff cannot afford to pay them (fees for the necessities of life). The plaintiff files this motion with the clerk. See{" "}
-															<span className="text-blue-600 underline">28 U.S.C. § 1915</span> and{" "}
-															<span className="text-blue-600 underline">Local Rule 1.11(a)</span>.
-														</p>
-													</div>
-												</div>
-
-												{/* Arrow Down */}
-												<div className="flex justify-center mb-6">
-													<div className="w-0 h-0 border-l-[15px] border-r-[15px] border-t-[20px] border-l-transparent border-r-transparent border-t-gray-400"></div>
-												</div>
-
-												{/* SERVICE OF PROCESS */}
-												<div className="bg-white border-2 border-gray-300 rounded-lg p-4 mb-6 shadow-sm">
-													<h3 className="font-bold text-sm mb-2 text-center bg-gray-100 py-1 rounded">SERVICE OF PROCESS</h3>
-													<p className="text-xs text-gray-700 leading-tight">
-														A private process server, Deputy United States Marshal, or other appropriate person delivers the complaint and summons to each defendant to notify each defendant that a lawsuit has been filed against the defendant. The plaintiff is responsible for service unless the court has granted a motion to proceed without paying fees. See{" "}
-														<span className="text-blue-600 underline">Fed. R. Civ. P. 4</span> and{" "}
-														<span className="text-blue-600 underline">Fed. R. Civ. P. 5</span>.
-													</p>
-												</div>
-
-												{/* Arrow Down with three branches */}
-												<div className="flex justify-center mb-6">
-													<div className="relative">
-														<div className="w-0 h-0 border-l-[15px] border-r-[15px] border-t-[20px] border-l-transparent border-r-transparent border-t-gray-400"></div>
-														<div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-px h-8 bg-gray-400"></div>
-														<div className="absolute top-12 left-1/2 transform -translate-x-1/2 w-32 h-px bg-gray-400"></div>
-														<div className="absolute top-12 left-0 w-px h-4 bg-gray-400"></div>
-														<div className="absolute top-12 right-0 w-px h-4 bg-gray-400"></div>
-													</div>
-												</div>
-
-												{/* MOTION DENIED, MOTION GRANTED, ANSWER */}
-												<div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-													<div className="bg-white border-2 border-gray-300 rounded-lg p-4 shadow-sm">
-														<h3 className="font-bold text-sm mb-2 text-center bg-gray-100 py-1 rounded">MOTION DENIED</h3>
-														<p className="text-xs text-gray-700 leading-tight">
-															If the motion to proceed without fees is denied, the plaintiff must pay the fees for the lawsuit to move forward. See{" "}
-															<span className="text-blue-600 underline">28 U.S.C. § 1915</span>.
-														</p>
-													</div>
-													<div className="bg-white border-2 border-gray-300 rounded-lg p-4 shadow-sm">
-														<h3 className="font-bold text-sm mb-2 text-center bg-gray-100 py-1 rounded">MOTION GRANTED</h3>
-														<p className="text-xs text-gray-700 leading-tight">
-															If the motion to proceed without fees is granted, the plaintiff need not pay the fees for the lawsuit to move forward. See{" "}
-															<span className="text-blue-600 underline">28 U.S.C. § 1915</span>.
-														</p>
-													</div>
-													<div className="bg-white border-2 border-gray-300 rounded-lg p-4 shadow-sm">
-														<h3 className="font-bold text-sm mb-2 text-center bg-gray-100 py-1 rounded">ANSWER</h3>
-														<p className="text-xs text-gray-700 leading-tight">
-															The answer is the defendant&apos;s response to the complaint. A defendant has 21 days (or, if the defendant is the United States, 60 days) to file an answer after with the complaint and summons. Alternatively, the defendant may file a motion to dismiss the complaint for various reasons: the lack of subject matter jurisdiction, lack of personal jurisdiction, improper venue, and failure to join indispensable parties. See{" "}
-															<span className="text-blue-600 underline">Fed. R. Civ. P. 7</span>,{" "}
-															<span className="text-blue-600 underline">Fed. R. Civ. P. 8</span>,{" "}
-															<span className="text-blue-600 underline">Fed. R. Civ. P. 11</span>, and{" "}
-															<span className="text-blue-600 underline">Fed. R. Civ. P. 12</span>.
-														</p>
-													</div>
-												</div>
-
-												{/* Continue with more sections following the same pattern... */}
-												{/* For brevity, I'll add a few more key sections */}
-
-												{/* Arrow Down */}
-												<div className="flex justify-center mb-6">
-													<div className="w-0 h-0 border-l-[15px] border-r-[15px] border-t-[20px] border-l-transparent border-r-transparent border-t-gray-400"></div>
-												</div>
-
-												{/* DISCOVERY */}
-												<div className="bg-white border-2 border-gray-300 rounded-lg p-4 mb-6 shadow-sm">
-													<h3 className="font-bold text-sm mb-2 text-center bg-gray-100 py-1 rounded">DISCOVERY</h3>
-													<p className="text-xs text-gray-700 leading-tight">
-														After the parties have met and filed the case management report, discovery can begin. Discovery is the process by which parties request from the other parties information or documents that relate to a claim or defense in the case. Discovery can be through oral deposition, a request for production of a document, a request to inspect property, or a deposition. See{" "}
-														<span className="text-blue-600 underline">Fed. R. Civ. P. 26-37</span>,{" "}
-														<span className="text-blue-600 underline">Local Rule 3.05</span>, and the{" "}
-														<span className="text-blue-600 underline">Middle District of Florida Discovery Handbook</span>.
-													</p>
-												</div>
-
-												{/* Arrow Down */}
-												<div className="flex justify-center mb-6">
-													<div className="w-0 h-0 border-l-[15px] border-r-[15px] border-t-[20px] border-l-transparent border-r-transparent border-t-gray-400"></div>
-												</div>
-
-												{/* TRIAL */}
-												<div className="bg-white border-2 border-gray-300 rounded-lg p-4 mb-6 shadow-sm">
-													<h3 className="font-bold text-sm mb-2 text-center bg-gray-100 py-1 rounded">TRIAL</h3>
-													<p className="text-xs text-gray-700 leading-tight">
-														A trial allows the parties to formally present the case in open court by offering testimony and other evidence and by presenting oral arguments. If a party has a right to a jury trial and demands a jury trial, the jury must reach a unanimous verdict. See{" "}
-														<span className="text-blue-600 underline">Fed. R. Civ. P. 38-53</span> and{" "}
-														<span className="text-blue-600 underline">Local Rule 5.03</span>.
-													</p>
-												</div>
-
-												{/* Arrow Down */}
-												<div className="flex justify-center mb-6">
-													<div className="w-0 h-0 border-l-[15px] border-r-[15px] border-t-[20px] border-l-transparent border-r-transparent border-t-gray-400"></div>
-												</div>
-
-												{/* JUDGMENT */}
-												<div className="bg-white border-2 border-gray-300 rounded-lg p-4 mb-6 shadow-sm">
-													<h3 className="font-bold text-sm mb-2 text-center bg-gray-100 py-1 rounded">JUDGMENT</h3>
-													<p className="text-xs text-gray-700 leading-tight">
-														After a trial, the judge who presided over the trial will enter a judgment that states the results of the lawsuit and the relief, if any, to which a party is entitled. See{" "}
-														<span className="text-blue-600 underline">Fed. R. Civ. P. 58</span>.
-													</p>
-												</div>
-
-												{/* Arrow Down */}
-												<div className="flex justify-center mb-6">
-													<div className="w-0 h-0 border-l-[15px] border-r-[15px] border-t-[20px] border-l-transparent border-r-transparent border-t-gray-400"></div>
-												</div>
-
-												{/* NOTICE OF APPEAL */}
-												<div className="bg-white border-2 border-gray-300 rounded-lg p-4 shadow-sm">
-													<h3 className="font-bold text-sm mb-2 text-center bg-gray-100 py-1 rounded">NOTICE OF APPEAL</h3>
-													<p className="text-xs text-gray-700 leading-tight">
-														A dissatisfied party may appeal the judgment by filing a notice of appeal with the clerk of the district court. The notice of appeal must be filed within 30 days of entry of the judgment (or 60 days of entry of the judgment if the United States or any of its agencies or any of its heads is a party). See{" "}
-														<span className="text-blue-600 underline">Fed. R. App. P. 3</span>,{" "}
-														<span className="text-blue-600 underline">Fed. R. App. P. 4(a)(1)(A)-(B)</span>.
-													</p>
-												</div>
-											</div>
+											)}
 										</section>
 									)}
 								</div>
 							</div>
 						) : (
-							<div className="flex flex-col items-center justify-center h-[calc(100vh-6rem)] text-center px-8">
-								<div className="bg-white/60 backdrop-blur-xl rounded-3xl p-12 border border-white/50 shadow-xl shadow-pink-500/5 max-w-2xl">
-									<div className="relative mb-8">
-										<div className="absolute -inset-4 bg-gradient-to-r from-pink-500/20 to-purple-500/20 rounded-full blur-2xl" />
-										<div className="relative bg-gradient-to-br from-pink-500 to-pink-600 p-4 rounded-2xl shadow-lg">
-											<svg
-												width="48"
-												height="48"
-												viewBox="0 0 24 24"
-												fill="none"
-												xmlns="http://www.w3.org/2000/svg"
-												className="text-white"
-											>
-												<path
-													d="M12.75 3.844A1.5 1.5 0 0011.25 2.5H6A1.5 1.5 0 004.5 4v16A1.5 1.5 0 006 21.5h12a1.5 1.5 0 001.5-1.5v-7.694a1.5 1.5 0 00-.75-1.306l-4.5-2.813z"
-													stroke="currentColor"
-													strokeWidth="1.5"
-												/>
-												<path
-													d="M12.75 3.844l4.5 2.812V11l-4.5-3.188"
-													stroke="currentColor"
-													strokeWidth="1.5"
-												/>
-												<path
-													d="M9.5 14h5"
-													stroke="currentColor"
-													strokeWidth="1.5"
-													strokeLinecap="round"
-												/>
-												<path
-													d="M9.5 17h5"
-													stroke="currentColor"
-													strokeWidth="1.5"
-													strokeLinecap="round"
-												/>
-											</svg>
+							<div className="space-y-8">
+								{/* Main Report Message */}
+								<div className="flex flex-col items-center justify-center h-[calc(50vh-3rem)] text-center px-8">
+									<div className="bg-white/60 backdrop-blur-xl rounded-3xl p-12 border border-white/50 shadow-xl shadow-pink-500/5 max-w-2xl">
+										<div className="relative mb-8">
+											<div className="absolute -inset-4 bg-gradient-to-r from-pink-500/20 to-purple-500/20 rounded-full blur-2xl" />
+											<div className="relative bg-gradient-to-br from-pink-500 to-pink-600 p-4 rounded-2xl shadow-lg">
+												<svg
+													width="48"
+													height="48"
+													viewBox="0 0 24 24"
+													fill="none"
+													xmlns="http://www.w3.org/2000/svg"
+													className="text-white"
+												>
+													<path
+														d="M12.75 3.844A1.5 1.5 0 0011.25 2.5H6A1.5 1.5 0 004.5 4v16A1.5 1.5 0 006 21.5h12a1.5 1.5 0 001.5-1.5v-7.694a1.5 1.5 0 00-.75-1.306l-4.5-2.813z"
+														stroke="currentColor"
+														strokeWidth="1.5"
+													/>
+													<path
+														d="M12.75 3.844l4.5 2.812V11l-4.5-3.188"
+														stroke="currentColor"
+														strokeWidth="1.5"
+													/>
+													<path
+														d="M9.5 14h5"
+														stroke="currentColor"
+														strokeWidth="1.5"
+														strokeLinecap="round"
+													/>
+													<path
+														d="M9.5 17h5"
+														stroke="currentColor"
+														strokeWidth="1.5"
+														strokeLinecap="round"
+													/>
+												</svg>
+											</div>
+										</div>
+
+										<h2 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-pink-800 bg-clip-text text-transparent mb-4">
+											Your Filing Requirements Report Will Appear Here
+										</h2>
+										<p className="text-gray-600 text-lg leading-relaxed mb-4">
+											Complete the search parameters to generate your comprehensive filing requirements report, procedural checklist, and mind map visualization.
+										</p>
+										<div className="bg-blue-50 border border-blue-200 rounded-xl p-4 text-sm">
+											<div className="flex items-center mb-2">
+												<svg className="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+													<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+												</svg>
+												<span className="font-semibold text-blue-800">Report Features</span>
+											</div>
+											<p className="text-blue-700">
+												Once generated, your report will include 6 interactive tabs: <strong>Checklist</strong>, <strong>Mandatory Docs</strong>, <strong>Conditional Docs</strong>, <strong>Governing Rules</strong>, <strong>.docx Shell</strong>, and <strong>Procedural Roadmap</strong>.
+											</p>
+										</div>
+										
+										<div className="mt-8 flex items-center justify-center space-x-2 text-sm text-gray-500">
+											<div className="w-2 h-2 bg-pink-500 rounded-full animate-pulse" />
+											<span>Ready to generate your legal filing guide</span>
 										</div>
 									</div>
+								</div>
 
-									<h2 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-pink-800 bg-clip-text text-transparent mb-4">
-										Your Filing Requirements Report Will Appear Here
-									</h2>
-									<p className="text-gray-600 text-lg leading-relaxed">
-										Complete the search parameters to generate your comprehensive filing requirements report, procedural checklist, and mind map visualization.
-									</p>
-									
-									<div className="mt-8 flex items-center justify-center space-x-2 text-sm text-gray-500">
-										<div className="w-2 h-2 bg-pink-500 rounded-full animate-pulse" />
-										<span>Ready to generate your legal filing guide</span>
+								{/* Demo Tab Interface */}
+								<div className="px-8">
+									<div className="bg-white/60 backdrop-blur-xl rounded-3xl p-8 border border-white/50 shadow-xl shadow-pink-500/5 max-w-4xl mx-auto">
+										<h3 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-pink-800 bg-clip-text text-transparent mb-6 text-center">
+											Report Preview - Tab Interface
+										</h3>
+										<p className="text-gray-600 text-center mb-8">
+											This is how your report will be organized once generated. Each tab will contain relevant information for your filing requirements.
+										</p>
+
+										{/* Demo Tabs */}
+										<div className="bg-white/60 backdrop-blur-xl rounded-3xl p-2 border border-white/50 shadow-xl shadow-pink-500/5 mb-6">
+											<nav className="flex space-x-2" aria-label="Tabs">
+												{[
+													"Checklist",
+													"Mandatory Docs", 
+													"Conditional Docs",
+													"Governing Rules",
+													".docx Shell",
+													"Procedural Roadmap",
+												].map((tab) => (
+													<button
+														key={tab}
+														onClick={() => setActiveTab(tab)}
+														className={`relative flex-1 py-3 px-4 text-sm font-bold rounded-2xl transition-all duration-300 ${
+															activeTab === tab
+																? "bg-gradient-to-r from-pink-500 to-pink-600 text-white shadow-lg shadow-pink-500/25 scale-105"
+																: "text-gray-600 hover:text-gray-800 hover:bg-white/50 hover:shadow-md"
+														}`}
+													>
+														<span className="relative z-10">{tab}</span>
+														{activeTab === tab && (
+															<div className="absolute inset-0 bg-gradient-to-r from-white/20 to-white/10 rounded-2xl" />
+														)}
+													</button>
+												))}
+											</nav>
+										</div>
+
+										{/* Demo Tab Content */}
+										<div className="bg-white/60 backdrop-blur-xl rounded-3xl border border-white/50 shadow-xl shadow-pink-500/5 overflow-hidden">
+											{activeTab === "Checklist" && (
+												<section className="p-8">
+													<h2 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-pink-800 bg-clip-text text-transparent pb-4 mb-8 border-b border-gray-200/50 flex items-center">
+														<div className="w-8 h-8 bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg flex items-center justify-center mr-3 shadow-lg">
+															<svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+																<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+															</svg>
+														</div>
+														Filing Checklist
+													</h2>
+													<div className="text-center py-12">
+														<div className="text-gray-500 text-lg mb-4">Your step-by-step filing checklist will appear here</div>
+														<p className="text-gray-400">Generate a report to see your personalized checklist with tasks, deadlines, and requirements.</p>
+													</div>
+												</section>
+											)}
+
+											{activeTab === "Mandatory Docs" && (
+												<section className="p-8">
+													<h2 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-pink-800 bg-clip-text text-transparent pb-4 mb-8 border-b border-gray-200/50 flex items-center">
+														<div className="w-8 h-8 bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg flex items-center justify-center mr-3 shadow-lg">
+															<svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+																<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+															</svg>
+														</div>
+														Mandatory Documents
+													</h2>
+													<div className="text-center py-12">
+														<div className="text-gray-500 text-lg mb-4">Required documents for your filing will appear here</div>
+														<p className="text-gray-400">Generate a report to see all mandatory documents with formatting requirements and rules.</p>
+													</div>
+												</section>
+											)}
+
+											{activeTab === "Conditional Docs" && (
+												<section className="p-8">
+													<h2 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-pink-800 bg-clip-text text-transparent pb-4 mb-8 border-b border-gray-200/50 flex items-center">
+														<div className="w-8 h-8 bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg flex items-center justify-center mr-3 shadow-lg">
+															<svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+																<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+															</svg>
+														</div>
+														Conditional Documents
+													</h2>
+													<div className="text-center py-12">
+														<div className="text-gray-500 text-lg mb-4">Conditional documents based on your case will appear here</div>
+														<p className="text-gray-400">Generate a report to see documents that may be required depending on your specific circumstances.</p>
+													</div>
+												</section>
+											)}
+
+											{activeTab === "Governing Rules" && (
+												<section className="p-8">
+													<h2 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-pink-800 bg-clip-text text-transparent pb-4 mb-8 border-b border-gray-200/50 flex items-center">
+														<div className="w-8 h-8 bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg flex items-center justify-center mr-3 shadow-lg">
+															<svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+																<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+															</svg>
+														</div>
+														Governing Rules
+													</h2>
+													<div className="text-center py-12">
+														<div className="text-gray-500 text-lg mb-4">Applicable court rules and statutes will appear here</div>
+														<p className="text-gray-400">Generate a report to see the specific rules governing your document type and jurisdiction.</p>
+													</div>
+												</section>
+											)}
+
+											{activeTab === ".docx Shell" && (
+												<section className="p-8">
+													<h2 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-pink-800 bg-clip-text text-transparent pb-4 mb-8 border-b border-gray-200/50 flex items-center">
+														<div className="w-8 h-8 bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg flex items-center justify-center mr-3 shadow-lg">
+															<svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+																<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+															</svg>
+														</div>
+														Document Templates
+													</h2>
+													<div className="text-center py-12">
+														<div className="text-gray-500 text-lg mb-4">Downloadable document templates will appear here</div>
+														<p className="text-gray-400">Generate a report to access pre-formatted .docx templates for your specific documents.</p>
+													</div>
+												</section>
+											)}
+
+											{activeTab === "Procedural Roadmap" && (
+												<section className="p-8">
+													<h2 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-pink-800 bg-clip-text text-transparent pb-4 mb-8 border-b border-gray-200/50 flex items-center">
+														<div className="w-8 h-8 bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg flex items-center justify-center mr-3 shadow-lg">
+															<svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+																<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+															</svg>
+														</div>
+														Procedural Roadmap
+													</h2>
+													<div className="text-center py-12">
+														<div className="text-gray-500 text-lg mb-4">Your customized procedural flowchart will appear here</div>
+														<p className="text-gray-400">Generate a report to see a visual roadmap of your case procedure with deadlines and decision points.</p>
+													</div>
+												</section>
+											)}
+										</div>
 									</div>
 								</div>
 							</div>

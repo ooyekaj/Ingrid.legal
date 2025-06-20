@@ -1,10 +1,15 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ParticleBackground } from "@/components/ParticleBackground";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// Register GSAP plugins
+gsap.registerPlugin(ScrollTrigger);
 
 // Password Protection Component
 const PasswordProtection = ({
@@ -161,6 +166,25 @@ const PasswordProtection = ({
 export default function Home() {
 	const [isAuthenticated, setIsAuthenticated] = useState(false);
 	const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+	
+	// Refs for Hero Section animations
+	const heroRef = useRef<HTMLElement>(null);
+	const titleRef = useRef<HTMLHeadingElement>(null);
+	const subtitleRef = useRef<HTMLSpanElement>(null);
+	const descriptionRef = useRef<HTMLParagraphElement>(null);
+	const buttonsRef = useRef<HTMLDivElement>(null);
+	const backgroundElementsRef = useRef<HTMLDivElement[]>([]);
+	
+	// Section refs for scroll animations
+	const featuresRef = useRef<HTMLElement>(null);
+	const howItWorksRef = useRef<HTMLElement>(null);
+	const testimonialsRef = useRef<HTMLElement>(null);
+	const faqRef = useRef<HTMLElement>(null);
+	const betaRef = useRef<HTMLElement>(null);
+	
+	// Scroll progress state
+	const [scrollProgress, setScrollProgress] = useState(0);
+	const [showBackToTop, setShowBackToTop] = useState(false);
 
 	// Track mouse position for interactive effects
 	useEffect(() => {
@@ -183,8 +207,234 @@ export default function Home() {
 		checkAuth();
 	}, []);
 
+	// Refined Hero Section animations
+	useEffect(() => {
+		if (!isAuthenticated || !heroRef.current) return;
+
+		// Set initial states with more subtle positioning
+		gsap.set([titleRef.current, subtitleRef.current, descriptionRef.current, buttonsRef.current], {
+			opacity: 0,
+			y: 30
+		});
+
+		// Create a refined timeline
+		const tl = gsap.timeline({ 
+			delay: 0.5,
+			ease: "power2.out"
+		});
+
+		// Elegant entrance sequence
+		tl.to(titleRef.current, {
+			opacity: 1,
+			y: 0,
+			duration: 1.2,
+			ease: "expo.out"
+		})
+		.to(subtitleRef.current, {
+			opacity: 1,
+			y: 0,
+			duration: 1,
+			ease: "expo.out"
+		}, "-=0.8")
+		.to(descriptionRef.current, {
+			opacity: 1,
+			y: 0,
+			duration: 1,
+			ease: "expo.out"
+		}, "-=0.6")
+		.to(buttonsRef.current, {
+			opacity: 1,
+			y: 0,
+			duration: 0.8,
+			ease: "expo.out"
+		}, "-=0.4");
+
+		// Subtle breathing animation for the subtitle
+		gsap.to(subtitleRef.current, {
+			scale: 1.02,
+			duration: 4,
+			ease: "sine.inOut",
+			yoyo: true,
+			repeat: -1
+		});
+
+		// Gentle background element animations
+		backgroundElementsRef.current.forEach((element, index) => {
+			if (element) {
+				gsap.set(element, { scale: 0.8, opacity: 0 });
+				gsap.to(element, {
+					scale: 1,
+					opacity: 1,
+					duration: 2.5,
+					delay: index * 0.3,
+					ease: "expo.out"
+				});
+
+				// Continuous gentle movement
+				gsap.to(element, {
+					rotation: 360,
+					duration: 30 + (index * 5),
+					ease: "none",
+					repeat: -1
+				});
+			}
+		});
+
+		// Scroll-triggered animations
+		ScrollTrigger.create({
+			trigger: heroRef.current,
+			start: "top center",
+			end: "bottom center",
+			scrub: 1,
+			onUpdate: (self) => {
+				const progress = self.progress;
+				gsap.to(backgroundElementsRef.current, {
+					y: progress * 100,
+					opacity: 1 - progress * 0.3,
+					duration: 0.3
+				});
+			}
+		});
+
+		// Subtle mouse interaction
+		const handleMouseMove = (e: MouseEvent) => {
+			const { clientX, clientY } = e;
+			const { innerWidth, innerHeight } = window;
+			
+			const xMove = (clientX / innerWidth - 0.5) * 0.5;
+			const yMove = (clientY / innerHeight - 0.5) * 0.5;
+			
+			gsap.to(titleRef.current, {
+				rotationX: yMove * 2,
+				rotationY: xMove * 2,
+				duration: 0.8,
+				ease: "power2.out",
+				transformPerspective: 1000
+			});
+		};
+
+		window.addEventListener('mousemove', handleMouseMove);
+
+		return () => {
+			window.removeEventListener('mousemove', handleMouseMove);
+			ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+			tl.kill();
+		};
+	}, [isAuthenticated]);
+
+	// Enhanced scroll animations for all sections
+	useEffect(() => {
+		if (!isAuthenticated) return;
+
+		const sections = [
+			{ ref: featuresRef, trigger: 'features' },
+			{ ref: howItWorksRef, trigger: 'how-it-works' },
+			{ ref: testimonialsRef, trigger: 'testimonials' },
+			{ ref: faqRef, trigger: 'faq' },
+			{ ref: betaRef, trigger: 'beta' }
+		];
+
+		sections.forEach(({ ref, trigger }) => {
+			if (!ref.current) return;
+
+			// Fade in section
+			gsap.set(ref.current, { opacity: 0, y: 50 });
+			
+			ScrollTrigger.create({
+				trigger: ref.current,
+				start: "top 80%",
+				end: "bottom 20%",
+				onEnter: () => {
+					gsap.to(ref.current, {
+						opacity: 1,
+						y: 0,
+						duration: 1,
+						ease: "power2.out"
+					});
+				}
+			});
+
+			// Animate cards within sections
+			const cards = ref.current.querySelectorAll('.animate-card');
+			if (cards.length > 0) {
+				gsap.set(cards, { opacity: 0, y: 30, scale: 0.95 });
+				
+				ScrollTrigger.create({
+					trigger: ref.current,
+					start: "top 70%",
+					onEnter: () => {
+						gsap.to(cards, {
+							opacity: 1,
+							y: 0,
+							scale: 1,
+							duration: 0.8,
+							stagger: 0.15,
+							ease: "back.out(1.7)"
+						});
+					}
+				});
+			}
+		});
+
+		return () => {
+			ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+		};
+	}, [isAuthenticated]);
+
+	// Scroll progress tracking
+	useEffect(() => {
+		if (!isAuthenticated) return;
+
+		const handleScroll = () => {
+			const scrolled = window.scrollY;
+			const maxHeight = document.documentElement.scrollHeight - window.innerHeight;
+			const progress = (scrolled / maxHeight) * 100;
+			setScrollProgress(Math.min(progress, 100));
+			setShowBackToTop(scrolled > 500);
+		};
+
+		window.addEventListener('scroll', handleScroll);
+		return () => window.removeEventListener('scroll', handleScroll);
+	}, [isAuthenticated]);
+
 	return (
 		<div className="overflow-x-hidden">
+			{/* Custom CSS animations for enhanced effects */}
+			<style jsx global>{`
+				@keyframes gradient-x {
+					0%, 100% {
+						background-position: 0% 50%;
+					}
+					50% {
+						background-position: 100% 50%;
+					}
+				}
+				@keyframes float {
+					0%, 100% {
+						transform: translateY(0px);
+					}
+					50% {
+						transform: translateY(-10px);
+					}
+				}
+				@keyframes glow {
+					0%, 100% {
+						filter: brightness(1) drop-shadow(0 0 20px rgba(236, 72, 153, 0.3));
+					}
+					50% {
+						filter: brightness(1.1) drop-shadow(0 0 30px rgba(236, 72, 153, 0.5));
+					}
+				}
+				.animate-gradient-x {
+					animation: gradient-x 3s ease infinite;
+				}
+				.animate-float {
+					animation: float 6s ease-in-out infinite;
+				}
+				.animate-glow {
+					animation: glow 2s ease-in-out infinite;
+				}
+			`}</style>
 			{!isAuthenticated && (
 				<PasswordProtection
 					onPasswordCorrect={() => setIsAuthenticated(true)}
@@ -203,85 +453,138 @@ export default function Home() {
 						}}
 					/>
 					
-					{/* Header */}
-					<header className="fixed top-0 left-0 right-0 z-40 bg-white/90 backdrop-blur-3xl border-b border-white/20 shadow-2xl shadow-pink-500/5">
-						<div className="container mx-auto px-6 py-4 flex justify-between items-center">
-							<Link href="/" className="flex items-center space-x-3 group">
+					{/* Enhanced Immersive Header */}
+					<header className="fixed top-0 left-0 right-0 z-50 bg-white/85 backdrop-blur-3xl border-b border-white/30 shadow-2xl shadow-pink-500/10 transition-all duration-500">
+						{/* Animated background gradient */}
+						<div className="absolute inset-0 bg-gradient-to-r from-pink-500/5 via-purple-500/3 to-pink-500/5 opacity-50" />
+						<div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer" />
+						
+						{/* Scroll Progress Bar */}
+						<div className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-pink-500 via-pink-600 to-purple-600 transition-all duration-300 ease-out shadow-lg shadow-pink-500/50" style={{ width: `${scrollProgress}%` }} />
+						
+						{/* Decorative top border */}
+						<div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-pink-500/50 to-transparent" />
+						
+						<div className="container mx-auto px-6 py-5 flex justify-between items-center relative z-10">
+							<Link href="/" className="flex items-center space-x-4 group">
 								<div className="relative">
-									<div className="absolute -inset-3 bg-gradient-to-r from-pink-500/20 to-purple-600/20 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-all duration-500 animate-pulse" />
-									<div className="relative bg-gradient-to-br from-pink-500 to-pink-600 p-3 rounded-2xl shadow-2xl group-hover:shadow-pink-500/25 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
+									<div className="absolute -inset-4 bg-gradient-to-r from-pink-500/30 to-purple-600/30 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 animate-pulse" />
+									<div className="absolute -inset-2 bg-gradient-to-r from-pink-500/20 to-purple-600/20 rounded-2xl blur-md opacity-0 group-hover:opacity-100 transition-all duration-500" />
+									<div className="relative bg-gradient-to-br from-pink-500 via-pink-600 to-purple-600 p-4 rounded-3xl shadow-2xl group-hover:shadow-pink-500/40 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 border border-white/20">
 										<Image
 											src="/Logo.svg"
 											alt="Ingrid Logo"
-											width={28}
-											height={32}
-											className="filter brightness-0 invert"
+											width={32}
+											height={36}
+											className="filter brightness-0 invert group-hover:scale-110 transition-transform duration-300"
 										/>
 									</div>
 								</div>
 								<div className="flex flex-col">
-									<span className="text-2xl font-bold text-gray-800 group-hover:text-pink-600 transition-all duration-300">
+									<span className="text-2xl font-bold bg-gradient-to-r from-gray-800 to-gray-700 bg-clip-text text-transparent group-hover:from-pink-600 group-hover:to-purple-600 transition-all duration-500">
 										Ingrid
 									</span>
-									<span className="text-xs text-gray-500 font-medium tracking-wide">Your Filing Assistant</span>
+									<span className="text-xs text-gray-500 font-medium tracking-wide group-hover:text-pink-500 transition-colors duration-300">Your Filing Assistant</span>
 								</div>
 							</Link>
-							<nav className="hidden md:flex items-center space-x-8">
-																	{['Home', 'How It Works', 'Testimonials', 'About Us', 'FAQ'].map((item) => (
+							<nav className="hidden md:flex items-center space-x-10">
+								{['Home', 'How It Works', 'Testimonials', 'About Us', 'FAQ'].map((item) => (
 									<Link
 										key={item}
 										href={item === 'Home' ? '/' : item === 'About Us' ? '/about' : `/${item.toLowerCase().replace(/ /g, '-')}`}
-										className="relative text-gray-600 hover:text-pink-600 transition-all duration-300 font-medium group py-2 px-4 rounded-xl hover:bg-pink-50"
+										className="relative text-gray-600 hover:text-pink-600 transition-all duration-400 font-semibold group py-3 px-5 rounded-xl hover:bg-pink-50/70 hover:shadow-lg hover:shadow-pink-500/10"
 									>
 										<span className="relative z-10">{item}</span>
-										<div className="absolute inset-0 bg-gradient-to-r from-pink-500/10 to-purple-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+										<span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-pink-500 to-purple-600 group-hover:w-4/5 transition-all duration-400 rounded-full" />
+										<div className="absolute inset-0 bg-gradient-to-r from-pink-500/15 to-purple-500/15 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-400 blur-sm" />
 									</Link>
 								))}
 							</nav>
 							<Link
 								href="/#beta"
-								className="relative bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white font-bold px-6 py-3 rounded-2xl shadow-2xl hover:shadow-pink-500/25 hover:scale-105 transition-all duration-300 group overflow-hidden"
+								className="relative bg-gradient-to-r from-pink-500 via-pink-600 to-purple-600 hover:from-pink-600 hover:via-purple-600 hover:to-pink-600 text-white font-bold px-8 py-4 rounded-2xl shadow-2xl hover:shadow-pink-500/40 hover:scale-105 transition-all duration-500 group overflow-hidden border border-white/30"
 							>
-								<div className="absolute inset-0 bg-gradient-to-r from-white/20 via-transparent to-white/20 -skew-x-12 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
+								<div className="absolute inset-0 bg-gradient-to-r from-white/20 via-white/30 to-white/20 -skew-x-12 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
+								<div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 								<span className="relative z-10">Request Beta Access</span>
 							</Link>
 						</div>
 					</header>
 
 					{/* Main Content */}
-					<main className="bg-gradient-to-br from-slate-50 via-white to-rose-50/40 min-h-screen">
-						{/* Animated background elements */}
+					<main className="bg-gradient-to-br from-slate-50 via-white to-rose-50/40 min-h-screen relative overflow-hidden">
+						{/* Enhanced background elements with better performance */}
 						<div className="absolute inset-0 overflow-hidden pointer-events-none">
-							<div className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-br from-rose-400/8 to-pink-400/6 rounded-full blur-3xl animate-pulse" />
-							<div className="absolute bottom-20 left-20 w-80 h-80 bg-gradient-to-br from-violet-400/6 to-rose-400/8 rounded-full blur-3xl animate-pulse delay-1000" />
-							<div className="absolute top-1/2 left-1/4 w-64 h-64 bg-gradient-to-br from-pink-300/4 to-violet-300/4 rounded-full blur-2xl animate-pulse delay-500" />
-							<div className="absolute top-1/3 right-1/3 w-48 h-48 bg-gradient-to-br from-rose-300/3 to-pink-300/3 rounded-full blur-2xl animate-pulse delay-700" />
+							<div className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-br from-rose-400/6 to-pink-400/4 rounded-full blur-3xl animate-gentle-pulse" />
+							<div className="absolute bottom-20 left-20 w-80 h-80 bg-gradient-to-br from-violet-400/4 to-rose-400/6 rounded-full blur-3xl animate-gentle-pulse" style={{ animationDelay: '2s' }} />
+							<div className="absolute top-1/2 left-1/4 w-64 h-64 bg-gradient-to-br from-pink-300/3 to-violet-300/3 rounded-full blur-2xl animate-gentle-pulse" style={{ animationDelay: '1s' }} />
+							<div className="absolute top-1/3 right-1/3 w-48 h-48 bg-gradient-to-br from-rose-300/2 to-pink-300/2 rounded-full blur-2xl animate-gentle-pulse" style={{ animationDelay: '3s' }} />
 						</div>
 						
 						{/* Hero Section */}
-						<section className="relative pt-24 pb-12 md:pt-32 md:pb-16 text-center overflow-hidden">
+						<section 
+							ref={heroRef}
+							className="relative pt-24 pb-12 md:pt-32 md:pb-16 text-center overflow-hidden"
+						>
+							{/* Elegant floating orbs */}
+							<div className="absolute inset-0 overflow-hidden pointer-events-none">
+								<div 
+									ref={el => {
+										if (el) backgroundElementsRef.current[0] = el;
+									}}
+									className="absolute top-10 right-10 w-72 h-72 bg-gradient-to-br from-pink-400/8 to-purple-400/6 rounded-full blur-3xl" 
+								/>
+								<div 
+									ref={el => {
+										if (el) backgroundElementsRef.current[1] = el;
+									}}
+									className="absolute bottom-20 left-10 w-96 h-96 bg-gradient-to-br from-purple-400/6 to-pink-400/8 rounded-full blur-3xl" 
+								/>
+								<div 
+									ref={el => {
+										if (el) backgroundElementsRef.current[2] = el;
+									}}
+									className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-br from-rose-300/4 to-pink-300/4 rounded-full blur-2xl" 
+								/>
+							</div>
+							
 							<div className="container mx-auto px-6 relative z-10">
 								<div className="max-w-5xl mx-auto">
-									<h1 className="text-5xl md:text-7xl font-extrabold text-gray-800 leading-tight mb-8 animate-fade-in">
+									<h1 
+										ref={titleRef}
+										className="text-5xl md:text-7xl font-extrabold text-gray-800 leading-tight mb-8 transform will-change-transform"
+									>
 										Never Miss a Rule.
-										<span className="block bg-gradient-to-r from-pink-600 via-pink-700 to-purple-700 bg-clip-text text-transparent">
+										<span 
+											ref={subtitleRef}
+											className="block bg-gradient-to-r from-pink-600 via-pink-700 to-purple-700 bg-clip-text text-transparent will-change-transform"
+										>
 											Ever.
 										</span>
 									</h1>
-									<p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto mb-12 leading-relaxed font-medium">
-										Ingrid is the <span className="font-bold text-pink-600">first integrated platform</span> to combine a
+									<p 
+										ref={descriptionRef}
+										className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto mb-12 leading-relaxed font-medium transform will-change-transform"
+									>
+										Ingrid is the <span className="font-bold text-pink-600 relative inline-block">
+											<span className="absolute -inset-1 bg-gradient-to-r from-pink-100/60 to-purple-100/40 rounded-lg skew-y-1"></span>
+											<span className="relative">first integrated platform</span>
+										</span> to combine a
 										deterministic rules engine with an end-to-end filing workflow.
 										We transform the chaos of court rules into actionable,
 										guaranteed-accurate checklists and document shells in seconds.
 									</p>
-									<div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+									<div 
+										ref={buttonsRef}
+										className="flex flex-col sm:flex-row gap-6 justify-center items-center transform will-change-transform"
+									>
 										<Link
 											href="/#beta"
-											className="group relative bg-gradient-to-r from-pink-500 via-pink-600 to-purple-600 hover:from-pink-600 hover:via-pink-700 hover:to-purple-700 text-white font-bold px-10 py-5 rounded-2xl text-xl shadow-2xl shadow-pink-500/25 hover:shadow-pink-500/40 hover:scale-105 transition-all duration-300 overflow-hidden"
+											className="group relative bg-gradient-to-r from-pink-500 via-pink-600 to-purple-600 hover:from-pink-600 hover:via-pink-700 hover:to-purple-700 text-white font-bold px-10 py-5 rounded-2xl text-xl shadow-2xl shadow-pink-500/25 hover:shadow-pink-500/40 hover:scale-[1.02] transition-all duration-500 overflow-hidden"
 										>
 											<div className="absolute inset-0 bg-gradient-to-r from-white/20 via-transparent to-white/20 -skew-x-12 transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
 											<span className="relative z-10 flex items-center">
-												<svg className="w-6 h-6 mr-3 group-hover:scale-125 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+												<svg className="w-6 h-6 mr-3 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 													<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
 												</svg>
 												Join the Private Beta
@@ -289,7 +592,7 @@ export default function Home() {
 										</Link>
 										<Link
 											href="/demo"
-											className="group relative bg-white/90 backdrop-blur-xl border-2 border-purple-300/60 text-purple-700 hover:text-purple-800 font-bold px-10 py-5 rounded-2xl text-xl hover:bg-white hover:border-purple-400 hover:scale-105 transition-all duration-300 overflow-hidden shadow-lg shadow-purple-500/20 hover:shadow-purple-500/30"
+											className="group relative bg-white/90 backdrop-blur-xl border-2 border-purple-300/60 text-purple-700 hover:text-purple-800 font-bold px-10 py-5 rounded-2xl text-xl hover:bg-white hover:border-purple-400 hover:scale-[1.02] transition-all duration-500 overflow-hidden shadow-lg shadow-purple-500/20 hover:shadow-purple-500/30"
 										>
 											<div className="absolute inset-0 bg-gradient-to-r from-purple-500/8 to-pink-500/8 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 											<span className="relative z-10 flex items-center">
@@ -306,12 +609,16 @@ export default function Home() {
 
 						{/* Features Section */}
 						<section
+							ref={featuresRef}
 							id="features"
 							className="py-12 relative bg-gradient-to-br from-pink-50/30 to-purple-50/20"
 						>
 							<div className="container mx-auto px-6 relative z-10">
 								<div className="bg-white/50 backdrop-blur-xl rounded-3xl p-12 border border-white/70 shadow-2xl shadow-pink-500/10">
 									<div className="text-center mb-16">
+										<div className="inline-flex items-center bg-gradient-to-r from-pink-100 to-purple-100 rounded-full px-6 py-2 mb-8">
+											<span className="text-pink-700 font-semibold text-sm tracking-wide uppercase">Features</span>
+										</div>
 										<h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-10 leading-tight">
 											The End-to-End Filing Workflow Platform
 										</h2>
@@ -362,7 +669,7 @@ export default function Home() {
 									].map((feature, index) => (
 										<div 
 											key={feature.title}
-											className="group relative bg-white/70 backdrop-blur-2xl rounded-3xl p-8 border border-white/50 shadow-2xl shadow-pink-500/5 hover:shadow-pink-500/15 transition-all duration-500 hover:scale-105 hover:-translate-y-2 cursor-pointer overflow-hidden"
+											className="animate-card group relative bg-white/70 backdrop-blur-2xl rounded-3xl p-8 border border-white/50 shadow-2xl shadow-pink-500/5 hover:shadow-pink-500/15 transition-all duration-500 hover:scale-105 hover:-translate-y-2 cursor-pointer overflow-hidden"
 											style={{ animationDelay: `${index * 100}ms` }}
 										>
 											{/* Animated background gradient */}
@@ -404,12 +711,16 @@ export default function Home() {
 
 						{/* How It Works Section */}
 						<section
+							ref={howItWorksRef}
 							id="how-it-works"
 							className="py-12 relative bg-gradient-to-br from-purple-50/20 to-pink-50/30"
 						>
 							<div className="container mx-auto px-6 relative z-10">
 								<div className="bg-white/60 backdrop-blur-xl rounded-3xl p-12 border border-purple-200/50 shadow-2xl shadow-purple-500/10">
 									<div className="text-center mb-16">
+										<div className="inline-flex items-center bg-gradient-to-r from-purple-100 to-pink-100 rounded-full px-6 py-2 mb-8">
+											<span className="text-purple-700 font-semibold text-sm tracking-wide uppercase">Process</span>
+										</div>
 										<h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-10 leading-tight">
 											How Ingrid Works
 										</h2>
@@ -425,25 +736,25 @@ export default function Home() {
 											number: "1",
 											title: "Input Case Details",
 											description: "Simply enter your case type, jurisdiction, and key dates. Ingrid's AI instantly identifies all applicable rules and procedures.",
-											icon: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z",
+											icon: "M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z",
 											gradient: "from-pink-500 to-rose-500"
 										},
 										{
 											number: "2",
 											title: "Get Your Roadmap",
 											description: "Receive a comprehensive procedural timeline with automated deadline calculations and compliance checklists.",
-											icon: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z",
+											icon: "M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01",
 											gradient: "from-purple-500 to-pink-500"
 										},
 										{
 											number: "3",
 											title: "Execute & File",
 											description: "Use pre-formatted document shells and automated compliance checks to file with confidence.",
-											icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z",
+											icon: "M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12",
 											gradient: "from-pink-600 to-purple-600"
 										}
 									].map((step, index) => (
-										<div key={step.number} className="text-center group relative">
+										<div key={step.number} className="animate-card text-center group relative">
 											{/* Connecting line for desktop */}
 											{index < 2 && (
 												<div className="hidden md:block absolute top-12 left-full w-12 h-0.5 bg-gradient-to-r from-pink-500/30 to-purple-500/30 z-0" />
@@ -501,12 +812,16 @@ export default function Home() {
 
 						{/* Testimonials Section */}
 						<section
+							ref={testimonialsRef}
 							id="testimonials"
 							className="py-12 relative bg-gradient-to-br from-pink-50/40 to-rose-50/30"
 						>
 							<div className="container mx-auto px-6 relative z-10">
 								<div className="bg-white/50 backdrop-blur-xl rounded-3xl p-12 border border-pink-200/50 shadow-2xl shadow-pink-500/15">
 									<div className="text-center mb-16">
+										<div className="inline-flex items-center bg-gradient-to-r from-rose-100 to-pink-100 rounded-full px-6 py-2 mb-8">
+											<span className="text-rose-700 font-semibold text-sm tracking-wide uppercase">Testimonials</span>
+										</div>
 										<h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-10 leading-tight">
 											Trusted by Leading Law Firms
 										</h2>
@@ -540,7 +855,7 @@ export default function Home() {
 											gradient: "from-pink-600 to-purple-600"
 										}
 									].map((testimonial) => (
-										<div key={testimonial.name} className="group relative bg-white/70 backdrop-blur-2xl rounded-3xl p-8 border border-white/50 shadow-2xl shadow-pink-500/5 hover:shadow-pink-500/15 transition-all duration-500 hover:scale-105 hover:-translate-y-2 cursor-pointer overflow-hidden">
+										<div key={testimonial.name} className="animate-card group relative bg-white/70 backdrop-blur-2xl rounded-3xl p-8 border border-white/50 shadow-2xl shadow-pink-500/5 hover:shadow-pink-500/15 transition-all duration-500 hover:scale-105 hover:-translate-y-2 cursor-pointer overflow-hidden">
 											{/* Animated background */}
 											<div className="absolute inset-0 bg-gradient-to-br from-pink-500/3 via-purple-500/3 to-pink-500/3 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 											<div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
@@ -595,12 +910,16 @@ export default function Home() {
 
 						{/* FAQ Section */}
 						<section
+							ref={faqRef}
 							id="faq"
 							className="py-12 relative bg-gradient-to-br from-purple-50/30 to-indigo-50/20"
 						>
 							<div className="container mx-auto px-6 relative z-10">
 								<div className="bg-white/60 backdrop-blur-xl rounded-3xl p-16 border border-purple-200/60 shadow-2xl shadow-purple-500/12">
 									<div className="text-center mb-20">
+										<div className="inline-flex items-center bg-gradient-to-r from-indigo-100 to-purple-100 rounded-full px-6 py-2 mb-8">
+											<span className="text-indigo-700 font-semibold text-sm tracking-wide uppercase">FAQ</span>
+										</div>
 										<h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-10 leading-tight">
 											Frequently Asked Questions
 										</h2>
@@ -630,7 +949,7 @@ export default function Home() {
 												answer: "Ingrid offers flexible pricing based on firm size and usage. Our beta partners receive special pricing during the trial period. Full pricing will be announced at our general availability launch."
 											}
 										].map((faq, index) => (
-											<div key={index} className="group relative bg-white/70 backdrop-blur-2xl rounded-3xl p-8 border border-white/50 shadow-2xl shadow-pink-500/5 hover:shadow-pink-500/15 transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 cursor-pointer overflow-hidden">
+											<div key={index} className="animate-card group relative bg-white/70 backdrop-blur-2xl rounded-3xl p-8 border border-white/50 shadow-2xl shadow-pink-500/5 hover:shadow-pink-500/15 transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 cursor-pointer overflow-hidden">
 												{/* Animated background */}
 												<div className="absolute inset-0 bg-gradient-to-br from-pink-500/3 via-purple-500/3 to-pink-500/3 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 												<div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
@@ -668,6 +987,7 @@ export default function Home() {
 
 						{/* Beta Section */}
 						<section
+							ref={betaRef}
 							id="beta"
 							className="py-12 text-center relative"
 						>
@@ -678,21 +998,24 @@ export default function Home() {
 							</div>
 							
 							<div className="container mx-auto px-6 relative z-10">
-								<div className="max-w-5xl mx-auto">
-									<div className="bg-white/80 backdrop-blur-3xl rounded-3xl p-16 border border-white/50 shadow-2xl shadow-pink-500/10 relative overflow-hidden group">
-										{/* Animated border gradient */}
-										<div className="absolute inset-0 bg-gradient-to-r from-pink-500/10 via-purple-500/10 to-pink-500/10 rounded-3xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
-										
-										{/* Decorative top gradient */}
-										<div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-pink-500 to-transparent rounded-t-3xl animate-pulse" />
-										
-										<div className="relative z-10">
-											<h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-10 leading-tight">
-												Interested?
-											</h2>
-											<h1 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-pink-600 via-pink-700 to-purple-700 bg-clip-text text-transparent mb-8 leading-tight">
-												Become an Ingrid Design Partner
-											</h1>
+																	<div className="max-w-5xl mx-auto">
+										<div className="bg-white/80 backdrop-blur-3xl rounded-3xl p-16 border border-white/50 shadow-2xl shadow-pink-500/10 relative overflow-hidden group">
+											{/* Animated border gradient */}
+											<div className="absolute inset-0 bg-gradient-to-r from-pink-500/10 via-purple-500/10 to-pink-500/10 rounded-3xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+											
+											{/* Decorative top gradient */}
+											<div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-pink-500 to-transparent rounded-t-3xl animate-elegant-glow" />
+											
+											<div className="relative z-10">
+												<div className="inline-flex items-center bg-gradient-to-r from-pink-100 to-purple-100 rounded-full px-6 py-2 mb-8">
+													<span className="text-pink-700 font-semibold text-sm tracking-wide uppercase">Join Beta</span>
+												</div>
+												<h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-10 leading-tight">
+													Interested?
+												</h2>
+												<h1 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-pink-600 via-pink-700 to-purple-700 bg-clip-text text-transparent mb-8 leading-tight">
+													Become an Ingrid Design Partner
+												</h1>
 											<p className="text-gray-600 max-w-3xl mx-auto mb-12 text-xl leading-relaxed font-medium">
 												We are launching a private beta for select litigation firms in
 												the Bay Area. Join us to shape the future of procedural
@@ -755,6 +1078,20 @@ export default function Home() {
 							</div>
 						</div>
 					</footer>
+
+					{/* Back to Top Button */}
+					{showBackToTop && (
+						<button
+							onClick={() => {
+								window.scrollTo({ top: 0, behavior: 'smooth' });
+							}}
+							className="fixed bottom-8 right-8 z-50 group bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white p-4 rounded-full shadow-2xl shadow-pink-500/25 hover:shadow-pink-500/40 hover:scale-110 transition-all duration-300 animate-subtle-bounce"
+						>
+							<svg className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+							</svg>
+						</button>
+					)}
 				</>
 			)}
 		</div>

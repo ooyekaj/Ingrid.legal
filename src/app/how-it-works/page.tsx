@@ -197,46 +197,56 @@ export default function HowItWorks() {
 						}}
 					/>
 					
-					{/* Header */}
-					<header className="fixed top-0 left-0 right-0 z-40 bg-white/90 backdrop-blur-3xl border-b border-white/20 shadow-2xl shadow-pink-500/5">
-						<div className="container mx-auto px-6 py-4 flex justify-between items-center">
-							<Link href="/" className="flex items-center space-x-3 group">
+					{/* Enhanced Immersive Header */}
+					<header className="fixed top-0 left-0 right-0 z-50 bg-white/85 backdrop-blur-3xl border-b border-white/30 shadow-2xl shadow-pink-500/10 transition-all duration-500">
+						{/* Animated background gradient */}
+						<div className="absolute inset-0 bg-gradient-to-r from-pink-500/5 via-purple-500/3 to-pink-500/5 opacity-50" />
+						<div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer" />
+						
+						{/* Decorative top border */}
+						<div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-pink-500/50 to-transparent" />
+						
+						<div className="container mx-auto px-6 py-5 flex justify-between items-center relative z-10">
+							<Link href="/" className="flex items-center space-x-4 group">
 								<div className="relative">
-									<div className="absolute -inset-3 bg-gradient-to-r from-pink-500/20 to-purple-600/20 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-all duration-500 animate-pulse" />
-									<div className="relative bg-gradient-to-br from-pink-500 to-pink-600 p-3 rounded-2xl shadow-2xl group-hover:shadow-pink-500/25 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
+									<div className="absolute -inset-4 bg-gradient-to-r from-pink-500/30 to-purple-600/30 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 animate-pulse" />
+									<div className="absolute -inset-2 bg-gradient-to-r from-pink-500/20 to-purple-600/20 rounded-2xl blur-md opacity-0 group-hover:opacity-100 transition-all duration-500" />
+									<div className="relative bg-gradient-to-br from-pink-500 via-pink-600 to-purple-600 p-4 rounded-3xl shadow-2xl group-hover:shadow-pink-500/40 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 border border-white/20">
 										<Image
 											src="/Logo.svg"
 											alt="Ingrid Logo"
-											width={28}
-											height={32}
-											className="filter brightness-0 invert"
+											width={32}
+											height={36}
+											className="filter brightness-0 invert group-hover:scale-110 transition-transform duration-300"
 										/>
 									</div>
 								</div>
 								<div className="flex flex-col">
-									<span className="text-2xl font-bold text-gray-800 group-hover:text-pink-600 transition-all duration-300">
+									<span className="text-2xl font-bold bg-gradient-to-r from-gray-800 to-gray-700 bg-clip-text text-transparent group-hover:from-pink-600 group-hover:to-purple-600 transition-all duration-500">
 										Ingrid
 									</span>
-									<span className="text-xs text-gray-500 font-medium tracking-wide">Your Filing Assistant</span>
+									<span className="text-xs text-gray-500 font-medium tracking-wide group-hover:text-pink-500 transition-colors duration-300">Your Filing Assistant</span>
 								</div>
 							</Link>
-							<nav className="hidden md:flex items-center space-x-8">
+							<nav className="hidden md:flex items-center space-x-10">
 								{['Home', 'How It Works', 'Testimonials', 'About Us', 'FAQ'].map((item) => (
 									<Link
 										key={item}
 										href={item === 'Home' ? '/' : item === 'About Us' ? '/about' : `/${item.toLowerCase().replace(/ /g, '-')}`}
-										className="relative text-gray-600 hover:text-pink-600 transition-all duration-300 font-medium group py-2 px-4 rounded-xl hover:bg-pink-50"
+										className="relative text-gray-600 hover:text-pink-600 transition-all duration-400 font-semibold group py-3 px-5 rounded-xl hover:bg-pink-50/70 hover:shadow-lg hover:shadow-pink-500/10"
 									>
 										<span className="relative z-10">{item}</span>
-										<div className="absolute inset-0 bg-gradient-to-r from-pink-500/10 to-purple-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+										<span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-pink-500 to-purple-600 group-hover:w-4/5 transition-all duration-400 rounded-full" />
+										<div className="absolute inset-0 bg-gradient-to-r from-pink-500/15 to-purple-500/15 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-400 blur-sm" />
 									</Link>
 								))}
 							</nav>
 							<Link
 								href="/#beta"
-								className="relative bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white font-bold px-6 py-3 rounded-2xl shadow-2xl hover:shadow-pink-500/25 hover:scale-105 transition-all duration-300 group overflow-hidden"
+								className="relative bg-gradient-to-r from-pink-500 via-pink-600 to-purple-600 hover:from-pink-600 hover:via-purple-600 hover:to-pink-600 text-white font-bold px-8 py-4 rounded-2xl shadow-2xl hover:shadow-pink-500/40 hover:scale-105 transition-all duration-500 group overflow-hidden border border-white/30"
 							>
-								<div className="absolute inset-0 bg-gradient-to-r from-white/20 via-transparent to-white/20 -skew-x-12 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
+								<div className="absolute inset-0 bg-gradient-to-r from-white/20 via-white/30 to-white/20 -skew-x-12 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
+								<div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 								<span className="relative z-10">Request Beta Access</span>
 							</Link>
 						</div>
@@ -308,7 +318,11 @@ export default function HowItWorks() {
 									<div className="order-1 lg:order-2">
 										<div className="bg-gradient-to-br from-pink-500/10 to-purple-500/10 rounded-3xl p-8 border border-pink-200/50 shadow-xl">
 											<div className="text-center">
-												<div className="text-6xl mb-4">📝</div>
+												<div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-rose-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-xl">
+													<svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+														<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+													</svg>
+												</div>
 												<h4 className="text-xl font-bold text-gray-800 mb-2">Smart Input Form</h4>
 												<p className="text-gray-600">AI-powered form that adapts to your case type</p>
 											</div>
@@ -320,7 +334,11 @@ export default function HowItWorks() {
 									<div>
 										<div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-3xl p-8 border border-purple-200/50 shadow-xl">
 											<div className="text-center">
-												<div className="text-6xl mb-4">🗺️</div>
+												<div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-xl">
+													<svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+														<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+													</svg>
+												</div>
 												<h4 className="text-xl font-bold text-gray-800 mb-2">Procedural Roadmap</h4>
 												<p className="text-gray-600">Visual timeline of your case journey</p>
 											</div>
@@ -404,7 +422,11 @@ export default function HowItWorks() {
 									<div className="order-1 lg:order-2">
 										<div className="bg-gradient-to-br from-pink-500/10 to-purple-500/10 rounded-3xl p-8 border border-pink-200/50 shadow-xl">
 											<div className="text-center">
-												<div className="text-6xl mb-4">⚡</div>
+												<div className="w-16 h-16 bg-gradient-to-br from-pink-600 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-xl">
+													<svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+														<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+													</svg>
+												</div>
 												<h4 className="text-xl font-bold text-gray-800 mb-2">Lightning Fast Filing</h4>
 												<p className="text-gray-600">Complete accuracy in under 10 seconds</p>
 											</div>

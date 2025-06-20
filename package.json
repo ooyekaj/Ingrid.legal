@@ -9,8 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "animejs": "^4.0.2",
     "docx": "^9.5.0",
     "file-saver": "^2.0.5",
+    "framer-motion": "^12.18.1",
+    "geist": "^1.4.2",
+    "gsap": "^3.13.0",
     "html2canvas": "^1.4.1",
     "jspdf": "^3.0.1",
     "next": "15.3.3",
@@ -20,6 +24,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@types/animejs": "^3.1.13",
     "@types/file-saver": "^2.0.7",
     "@types/node": "^20",
     "@types/react": "^19",

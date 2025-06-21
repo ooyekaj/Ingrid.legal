@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingrid | Procedural Rules Search Engine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- PDF Generation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" xintegrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f7f8fa 0%, #e9eaf3 100%);
+        }
+        .tab-button {
+            padding: 10px 16px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .tab-button.active {
+            color: #DB2777;
+            border-bottom-color: #DB2777;
+            font-weight: 600;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Centered Start State */
+        #main-container.centered-start {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            width: 100vw;
+            background: transparent;
+        }
+        #search-panel.centered {
+            max-width: 700px;
+            width: 100%;
+            margin: 0 auto;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+            background: white;
+            border-radius: 1.25rem;
+            padding: 48px 32px;
+            border: 1.5px solid #ececf0;
+            transition: box-shadow 0.5s, border 0.5s;
+        }
+        /* Dynamic Layout Transitions */
+        #main-container {
+            transition: grid-template-columns 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55), display 0.7s;
+        }
+        .shifted {
+            display: grid !important;
+            grid-template-columns: 1.2fr 0.04fr 2fr;
+        }
+        .not-shifted {
+            display: grid !important;
+            grid-template-columns: 1fr;
+        }
+        #search-panel, #results-panel {
+            transition: all 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+        #search-panel.shrunk {
+            max-width: 420px;
+            margin-right: 0;
+            opacity: 0.97;
+            background: white;
+            box-shadow: 0 4px 24px 0 rgba(31, 38, 135, 0.09);
+            padding: 32px 20px;
+            border-radius: 1.25rem;
+            border: 1.5px solid #ececf0;
+            position: relative;
+            left: 0;
+            transform: translateX(-30px) scale(0.97);
+        }
+        #search-panel {
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-top: 48px;
+            padding-bottom: 48px;
+            z-index: 2;
+        }
+        #results-panel {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateX(40px);
+            height: 100vh;
+            min-height: 100vh;
+            max-height: 100vh;
+            overflow-y: auto;
+            position: relative;
+            top: 0;
+            padding-left: 48px;
+            padding-right: 48px;
+            background: white;
+            border-radius: 1.25rem 0 0 1.25rem;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+            border: 1.5px solid #ececf0;
+        }
+        #results-panel.visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateX(0);
+        }
+        /* Soft Divider */
+        .soft-divider {
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(to bottom, #ececf0 0%, #f7f8fa 100%);
+            opacity: 0.7;
+            z-index: 1;
+        }
+        @media (max-width: 1200px) {
+            .shifted {
+                grid-template-columns: 1fr 0.04fr 1.3fr;
+            }
+            #results-panel {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+        }
+        @media (max-width: 900px) {
+            #main-container.shifted, #main-container.not-shifted, #main-container.centered-start {
+                display: flex !important;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+            }
+            #results-panel {
+                margin-top: 24px;
+                transform: none !important;
+                height: auto;
+                min-height: 0;
+                max-height: none;
+                position: static;
+                padding-left: 0;
+                padding-right: 0;
+                border-radius: 1.25rem;
+            }
+            .search-panel-outer {
+                height: auto !important;
+                min-height: 0 !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                width: 100% !important;
+                background: transparent !important;
+            }
+            #search-panel.shrunk, #search-panel, #search-panel.centered {
+                max-width: 100%;
+                padding-top: 24px;
+                padding-bottom: 24px;
+                left: 0;
+                transform: none;
+                min-height: 0;
+                height: auto;
+                margin-top: 0;
+                margin-bottom: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+            .soft-divider {
+                display: none;
+            }
+        }
+        @media (min-width: 901px) {
+            .search-panel-outer {
+                height: 100vh;
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: transparent;
+            }
+            #search-panel.shrunk, #search-panel, #search-panel.centered {
+                height: auto;
+                min-height: 0;
+                margin-top: 0;
+                margin-bottom: 0;
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div id="main-container" class="centered-start">
+        <!-- Search Panel -->
+        <div class="search-panel-outer flex items-center justify-center h-screen md:h-screen w-full bg-transparent">
+            <div id="search-panel" class="centered">
+                <div class="w-full max-w-xl mx-auto">
+                    <div class="flex justify-center items-center mb-4">
+                        <svg width="45" height="50" viewBox="0 0 45 50" fill="none" xmlns="http://www.w3.org/2000/svg" class="mr-3 h-10 w-auto">
+                            <rect x="0" y="5" width="35" height="45" rx="3" fill="#EC4899" opacity="0.6"/>
+                            <rect x="8" y="0" width="35" height="45" rx="3" fill="#DB2777" opacity="1"/>
+                            <path d="M 20 25 L 25 30 L 35 20" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <h1 class="text-3xl font-bold text-gray-900">Ingrid</h1>
+                    </div>
+                    <p class="text-center text-gray-600 mb-6">Procedural Compliance Engine</p>
+
+                    <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg border border-gray-200">
+                        <form id="search-form" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="state" class="block text-sm font-medium text-gray-700 mb-1">State</label>
+                                    <select id="state" name="state" class="w-full mt-1 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm rounded-md shadow-sm">
+                                        <option>California</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="county" class="block text-sm font-medium text-gray-700 mb-1">County</label>
+                                    <select id="county" name="county" class="w-full mt-1 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm rounded-md shadow-sm">
+                                        <option>Santa Clara</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="division" class="block text-sm font-medium text-gray-700 mb-1">Division</label>
+                                <select id="division" name="division" class="w-full mt-1 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm rounded-md shadow-sm">
+                                    <option>Complex Civil Litigation</option>
+                                    <option>Civil Division</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                               <label for="judge" class="block text-sm font-medium text-gray-700 mb-1">Judge</label>
+                               <select id="judge" name="judge" class="w-full mt-1 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm rounded-md shadow-sm">
+                                   <!-- JS will populate this -->
+                               </select>
+                            </div>
+
+                            <div>
+                                <label for="document-type" class="block text-sm font-medium text-gray-700 mb-1">Document Type</label>
+                                <select id="document-type" name="document-type" class="w-full mt-1 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm rounded-md shadow-sm">
+                                     <option>Motion for Summary Judgment</option>
+                                     <option>Motion to Dismiss (Demurrer)</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <button type="submit" id="generate-report-btn" class="w-full mt-1 bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">
+                                    Generate Report
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Soft Divider -->
+        <div class="soft-divider" style="display:none;"></div>
+        <!-- Results Panel -->
+        <div id="results-panel" class="bg-white p-4 md:p-8 overflow-y-auto transition-all duration-700 h-screen min-h-screen max-h-screen" style="display:none;">
+            <div id="results-container" class="hidden">
+                 <div class="flex justify-between items-center pb-4 border-b border-gray-200">
+                     <div>
+                        <h2 class="text-xl font-bold text-gray-800">Filing Requirements Report</h2>
+                        <p id="results-header" class="text-sm text-gray-500"></p>
+                    </div>
+                     <div class="flex items-center space-x-2">
+                        <button id="download-pdf-btn" class="no-print bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-3 rounded-lg flex items-center transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            PDF
+                        </button>
+                         <button id="new-search-btn" class="no-print bg-pink-600 hover:bg-pink-700 text-white font-semibold py-2 px-3 rounded-lg flex items-center transition">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+                             New Search
+                         </button>
+                    </div>
+                 </div>
+                 <div class="border-b border-gray-200 no-print mt-4">
+                     <nav id="tabs" class="flex space-x-2 px-6" aria-label="Tabs">
+                         <button class="tab-button active" data-target="checklist">Checklist</button>
+                         <button class="tab-button" data-target="documents">Mandatory Docs</button>
+                         <button class="tab-button" data-target="conditional">Conditional Docs</button>
+                         <button class="tab-button" data-target="rules" id="governing-rules-tab-btn">Governing Rules</button>
+                         <button class="tab-button" data-target="docx-shell" id="docx-shell-tab-btn">.docx Shell</button>
+                     </nav>
+                 </div>
+                 <div class="py-6">
+                     <div id="tab-content-container">
+                         <div id="checklist" class="tab-content active"></div>
+                         <div id="documents" class="tab-content"></div>
+                         <div id="conditional" class="tab-content"></div>
+                         <div id="rules" class="tab-content"></div>
+                         <div id="docx-shell" class="tab-content flex flex-col items-center justify-center">
+                             <h3 class="text-lg font-semibold text-gray-900 mb-4">Download .docx Shell</h3>
+                             <p class="text-gray-600 mb-4 text-center max-w-xl">Download a perfectly formatted, editable Word template for a Motion for Summary Judgment. This shell includes all standard headings and placeholders for your arguments, facts, and supporting evidence.</p>
+                             <button id="download-docx-shell-btn" class="bg-pink-600 hover:bg-pink-700 text-white font-semibold py-2 px-6 rounded-lg flex items-center transition mb-2">
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                 Download .docx Shell
+                             </button>
+                             <span class="text-xs text-gray-400">For use in Santa Clara County, Dept. 7 (Judge Adams)</span>
+                         </div>
+                     </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- Mock Database ---
+        const JUDGES = [
+            { name: "Charles F. Adams", division: "Complex Civil Litigation" }, { name: "Carol Overton", division: "Complex Civil Litigation" },
+            { name: "Panteha E. Saban", division: "Civil Division" }, { name: "Lori E. Pegg", division: "Civil Division" },
+            { name: "JoAnne McCracken", division: "Civil Division" }, { name: "Julia Alloggiamento", division: "Civil Division" }
+        ];
+        const MOCK_DB = {
+            "Motion for Summary Judgment": {
+                "Charles F. Adams": {
+                    documents: [
+                        { item: "Notice of Motion and Motion", rule: "[CCP § 437c(a), CRC Rule 3.1350(b)]", link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=437c" },
+                        { item: "Memorandum of Points and Authorities", rule: "Limit: 20 pages [CRC Rule 3.1113(d)]", link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1113" },
+                        { item: "Separate Statement of Undisputed Material Facts", rule: "<b>MANDATORY</b> [CCP § 437c(b)(1), CRC Rule 3.1350(d)]", link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1350" },
+                        { item: "Supporting Declarations", rule: "[CRC Rule 3.1350(c), Evidence Code §§ 1400-1402]", link: "https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=EVID" },
+                        { item: "Supporting Evidence", rule: "Attach as labeled exhibits [CRC Rule 3.1350(c), Evidence Code § 452]", link: "https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=EVID" },
+                        { item: "Proposed Order", rule: "Editable Word format required [Local Rule 6.H, CRC Rule 3.1312]", link: "https://www.scscourt.org/system/files/rules/civil.pdf" },
+                        { item: "Proof of Service", rule: "[CCP § 1013, CRC Rule 2.251]", link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1013" }
+                    ],
+                    conditional: [
+                        { item: "Request for Judicial Notice (RJN)", rule: "If relying on public records. [Evidence Code §§ 451, 452; CRC Rule 3.1113(l)]", link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1113" },
+                        { item: "Proposed Judgment", rule: "If MSJ is dispositive of the entire case. [Best Practice, CRC Rule 3.1312]", link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1312" },
+                        { item: "Evidentiary Objections", rule: "May be raised in reply or separate written objections. [CRC Rule 3.1352, CCP § 437c(q)]", link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1352" },
+                        { item: "Exhibit Index or Binder Tabs", rule: "For voluminous exhibits for the courtesy copy. [Best Practice, Local Judicial Preferences]", link: "#" },
+                        { item: "Highlighted Exhibits", rule: "Consider highlighting relevant excerpts for clarity. [Judicial Preference, CRC Rule 3.1110(f)]", link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1110" },
+                        { item: "Tentative Rulings & Procedures to Contest", rule: "Review Judge Adams's process and deadlines to contest. [Local Rule 3.D, Dept. 7 Standing Orders]", link: "https://www.scscourt.org/divisions/civil/judges.shtml" },
+                    ],
+                    rules: [
+                        { name: "Governing Statute", text: "CCP § 437c is the comprehensive law for MSJs, setting the 75-day notice period and mandating the Separate Statement.", link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=437c" },
+                        { name: "Formatting and Structure", text: "CRC Rule 3.1350 dictates the specific two-column format for the Separate Statement and sets the 20-page limit for the legal brief.", link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1350" },
+                        { name: "Local Court Procedures", text: "Santa Clara Local Rules (e.g., 5.F for courtesy copies, 6.H for editable orders) add a layer of mandatory operational requirements.", link: "https://www.scscourt.org/system/files/rules/civil.pdf" },
+                        { name: "Judge-Specific Practices", text: "Always check Judge Adams's courtroom page or contact the Dept. 7 Clerk to verify any standing orders or specific preferences not covered by local rules.", link: "https://www.scscourt.org/divisions/civil/judges.shtml" }
+                    ],
+                    checklist: [
+                        { phase: "Pre-Filing", task: "Reserve Hearing Date (CRS)", notes: "Must be at least 75 calendar days out, plus time for service (+2 for e-service, +5 for mail).", rule: "[Local Protocol]", link: "#" },
+                        { phase: "Pre-Filing", task: "Review Judge Adams's Standing Orders", notes: "Check the court's website under his department directory.", rule: "[Judge Directory]", link: "https://www.scscourt.org/divisions/civil/judges.shtml" },
+                        { phase: "Prepare & Assemble Documents", task: "Draft Notice of Motion & Motion", notes: "Clearly state the relief sought.", rule: "[CCP § 437c(a)]", link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=437c" },
+                        { phase: "Prepare & Assemble Documents", task: "Draft Memo of Points & Authorities (20-page limit)", notes: "Cite evidence, case law, and statutes.", rule: "[CRC Rule 3.1113(d)]", link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1113" },
+                        { phase: "Prepare & Assemble Documents", task: "Prepare Separate Statement", notes: "<b>MANDATORY</b> Must be in the required two-column format.", rule: "[CCP § 437c(b)(1)]", link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=437c" },
+                        { phase: "Formatting Requirements", task: "Use 28-line Pleading Paper & 12-pt Font", notes: "", rule: "[CRC Rules 2.104, 2.108]", link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=two&linkid=rule2_104" },
+                        { phase: "Formatting Requirements", task: "Bookmark PDF Headings & Exhibits", notes: "", rule: "[Local E-Filing Protocol]", link: "#" },
+                        { phase: "File and Serve", task: "File via Approved EFSP & Serve Parties", notes: "Adjust for mail/e-service timelines.", rule: "[CRC Rule 2.250, CCP § 437c(a)]", link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=two&linkid=rule2_250" },
+                        { phase: "File and Serve", task: "Deliver Courtesy Copy to Dept. 7", notes: "Must be delivered by 5:00 PM on the same day as e-filing.", rule: "[Local Rule 5.F]", link: "https://www.scscourt.org/system/files/rules/civil.pdf" },
+                        { phase: "File and Serve", task: "Email Editable Proposed Order to Dept. 7", notes: "Use the correct department email.", rule: "[Local Rule 6.H]", link: "https://www.scscourt.org/system/files/rules/civil.pdf" },
+                        { phase: "Post-Filing Deadlines", task: "Calendar Opposition & Reply Dates", notes: "Opposition is 14 calendar days before hearing; Reply is 5 calendar days before.", rule: "[CCP § 437c(b)]", link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=437c" },
+                    ]
+                }
+            }
+        };
+
+        // --- DOM Element References ---
+        const divisionSelect = document.getElementById('division');
+        const judgeSelect = document.getElementById('judge');
+        const resultsHeader = document.getElementById('results-header');
+        const checklistContainer = document.getElementById('checklist');
+        const documentsContainer = document.getElementById('documents');
+        const conditionalContainer = document.getElementById('conditional');
+        const rulesContainer = document.getElementById('rules');
+        const tabs = document.getElementById('tabs');
+        const downloadPdfBtn = document.getElementById('download-pdf-btn');
+
+        // --- Core Functions ---
+        function updateJudgeDropdown() {
+            const selectedDivision = divisionSelect.value;
+            const currentJudgeValue = judgeSelect.value;
+            judgeSelect.innerHTML = '';
+            const filteredJudges = JUDGES.filter(j => j.division === selectedDivision);
+            filteredJudges.forEach(judge => {
+                const option = document.createElement('option');
+                option.value = judge.name;
+                option.textContent = judge.name;
+                judgeSelect.appendChild(option);
+            });
+            if (filteredJudges.some(j => j.name === currentJudgeValue)) {
+                judgeSelect.value = currentJudgeValue;
+            }
+        }
+
+        function performSearch() {
+            const docType = document.getElementById('document-type').value;
+            const judge = judgeSelect.value;
+            const county = document.getElementById('county').value;
+            const division = divisionSelect.value;
+
+            const data = MOCK_DB[docType]?.[judge];
+
+            if (data) {
+                resultsHeader.textContent = `${docType} before Judge ${judge} in ${county}, ${division}`;
+                populateDocuments(data.documents);
+                populateConditional(data.conditional);
+                populateRules(data.rules);
+                populateChecklist(data.checklist);
+                document.getElementById('results-container').classList.remove('hidden');
+                tabs.querySelector('.tab-button').click();
+            } else {
+                document.getElementById('results-container').classList.remove('hidden');
+                resultsHeader.textContent = `No verified data for your selection.`;
+                checklistContainer.innerHTML = `<p class="text-gray-500">Our database is constantly expanding. Please check back soon.</p>`;
+                documentsContainer.innerHTML = '';
+                conditionalContainer.innerHTML = '';
+                rulesContainer.innerHTML = '';
+                tabs.querySelector('.tab-button').click();
+            }
+        }
+        
+        function populateDocuments(docs) {
+            // Explanations for each doc item
+            const explanations = {
+                "Notice of Motion and Motion": "States the relief sought (summary judgment or, in the alternative, summary adjudication), and includes hearing details.",
+                "Memorandum of Points and Authorities": "Legal argument citing statutes, case law, and evidence. Limit: 20 pages.",
+                "Separate Statement of Undisputed Material Facts": "Critical document listing each material fact with citations to evidence. Must be formatted in the two-column layout.",
+                "Supporting Declarations": "Sworn statements authenticating each piece of supporting evidence.",
+                "Supporting Evidence": "Attach all referenced evidence as labeled exhibits to declarations.",
+                "Proposed Order": "Clearly specifies the rulings requested. Also required in editable Word format.",
+                "Proof of Service": "Declaration confirming service on all parties."
+            };
+            let html = '<h3 class="text-lg font-semibold text-gray-900 mb-4">A. Required Motion Components</h3><ul class="list-decimal list-inside space-y-3">';
+            docs.forEach(doc => {
+                let mainItem = doc.item.split('(')[0].trim();
+                let subItem = doc.item.includes('(') ? '(' + doc.item.split('(')[1] : '';
+                let explanation = explanations[mainItem] || '';
+                html += `<li class="text-gray-800 ml-4">
+                    <span class="font-medium">${mainItem}</span> <span class="text-gray-500 text-sm">${subItem}</span>
+                    ${explanation ? `<div class=\"text-gray-500 text-sm\">${explanation}</div>` : ''}
+                    <div class="text-xs text-pink-600 font-sans hover:underline mt-1">
+                        <a href="${doc.link || '#'}" target="_blank">${doc.rule || ''}</a>
+                    </div>
+                </li>`;
+            });
+            html += '</ul>';
+            documentsContainer.innerHTML = html;
+        }
+        
+        function populateConditional(docs) {
+            const conditionalExplanations = {
+                "Request for Judicial Notice (RJN)": "If relying on public records, court documents, statutes, or legislative materials, file a separate RJN.",
+                "Proposed Judgment": "If the MSJ is dispositive of the entire case, consider lodging a Proposed Judgment in addition to the Proposed Order.",
+                "Evidentiary Objections": "May be raised in reply or via separate written objections if you anticipate opposing evidence.",
+                "Exhibit Index or Binder Tabs": "If exhibits are voluminous, prepare a separate index and/or use tabbed and bindered sets for the judge's courtesy copy.",
+                "Highlighted Exhibits": "Consider highlighting relevant excerpts in exhibits (e.g., deposition testimony) for clarity.",
+                "Tentative Rulings & Procedures to Contest": "Review Judge Adams's tentative ruling process (if available). Be aware of deadlines and the procedure to contest.",
+                "Standing Orders": "Check Judge Adams's courtroom webpage or contact Dept. 7 Clerk to verify any additional courtroom-specific practices."
+            };
+            const conditionalRuleTexts = {
+                "Request for Judicial Notice (RJN)": "Evidence Code §§ 451, 452: These statutes allow the court to take judicial notice of public records, court documents, statutes, and legislative materials. CRC Rule 3.1113(l): Requires a separate RJN if relying on such materials.",
+                "Proposed Judgment": "Best Practice: If the MSJ is dispositive of the entire case, consider lodging a Proposed Judgment. CRC Rule 3.1312: Governs the submission of proposed judgments and orders.",
+                "Evidentiary Objections": "CRC Rule 3.1352: Governs the format and timing of written evidentiary objections.||CCP § 437c(q): Allows objections to be raised in reply or by separate written submission.",
+                "Exhibit Index or Binder Tabs": "Best Practice: For voluminous exhibits, prepare a separate index and/or use tabbed and bindered sets for the judge's courtesy copy. Local Judicial Preferences may apply.",
+                "Highlighted Exhibits": "Judicial Preference: Consider highlighting relevant excerpts in exhibits for clarity. CRC Rule 3.1110(f): Permits highlighting of deposition testimony and other evidence for the court's convenience.",
+                "Tentative Rulings & Procedures to Contest": "Local Rule 3.D: Outlines the process for tentative rulings and contesting them.||Dept. 7 Standing Orders: Review Judge Adams's process and deadlines to contest.",
+                "Standing Orders": "Judge Directory: https://www.scscourt.org/divisions/civil/judges.shtml — Check Judge Adams's courtroom webpage or contact Dept. 7 Clerk for additional practices."
+            };
+            let html = '<h3 class="text-lg font-semibold text-gray-900 mb-4">B. Conditional/If Applicable Filing Requirements</h3><ul class="list-decimal list-inside space-y-3">';
+            docs.forEach(doc => {
+                let explanation = conditionalExplanations[doc.item] || '';
+                let ruleText = conditionalRuleTexts[doc.item] || '';
+                let ruleLines;
+                if (ruleText.includes('||')) {
+                    ruleLines = ruleText.split('||').map(line => line.trim());
+                } else {
+                    let firstPeriodIdx = ruleText.indexOf('.') !== -1 ? ruleText.indexOf('.') + 1 : ruleText.length;
+                    let firstLine = ruleText.slice(0, firstPeriodIdx).trim();
+                    let secondLine = ruleText.slice(firstPeriodIdx).trim();
+                    ruleLines = [firstLine];
+                    if (secondLine) ruleLines.push(secondLine);
+                }
+                html += `<li class="text-gray-800 ml-4">
+                    <span class="font-medium">${doc.item}</span>
+                    ${explanation ? `<div class=\"text-gray-500 text-sm\">${explanation}</div>` : ''}
+                    <div class="text-xs text-pink-600 font-sans hover:underline mt-1">
+                        ${ruleLines.map(line => `<div>${line}</div>`).join('')}
+                    </div>
+                </li>`;
+            });
+            html += '</ul>';
+            conditionalContainer.innerHTML = html;
+        }
+
+        function populateRules(rules) {
+            let rulesHtml = '<h3 class="text-lg font-semibold text-gray-900 mb-4">Governing Legal Authority</h3><div class="space-y-4">';
+            rules.forEach(rule => {
+                rulesHtml += `
+                    <div class="p-4 bg-gray-100 rounded-lg border border-gray-200">
+                        <p class="font-semibold text-gray-800">${rule.name}</p>
+                        <p class="text-sm text-gray-600 mt-1">${rule.text}</p>
+                        <a href="${rule.link}" target="_blank" class="text-sm text-pink-600 hover:underline mt-2 inline-block">Source Link &rarr;</a>
+                    </div>
+                `;
+            });
+            rulesHtml += '</div>';
+
+            // Insert Judge's Orders section for Charles F. Adams
+            const judge = judgeSelect.value;
+            if (judge === "Charles F. Adams") {
+                rulesHtml += `
+                <div class="mt-8 p-6 bg-white rounded-2xl shadow border border-pink-100">
+                    <h3 class="text-lg font-bold text-pink-700 mb-2">Judge's Orders & Courtroom Practices (Dept. 7)</h3>
+                    <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                        <li><b>Complex Civil Litigation Guidelines:</b> Motions for summary judgment must be detailed, well-supported, and comply with the <a href="https://www.santaclara.courts.ca.gov" target="_blank" class="text-pink-600 underline">Complex Civil Litigation Guidelines</a>.</li>
+                        <li><b>Tentative Rulings:</b> Posted online after 2:00 p.m. the court day before the hearing. Notify the court by 4:00 p.m. if you intend to contest; otherwise, the tentative ruling becomes final. <a href="https://www.santaclara.courts.ca.gov" target="_blank" class="text-pink-600 underline">Tentative Rulings Info</a></li>
+                        <li><b>Law and Motion Calendar:</b> Motions are generally heard Thursdays at 1:30 p.m. in Dept. 7, unless specially set. Check the <a href="https://www.santaclara.courts.ca.gov" target="_blank" class="text-pink-600 underline">Civil Calendar</a> for updates.</li>
+                    </ul>
+                    <div class="mt-4">
+                        <b>Best Practices:</b>
+                        <ul class="list-disc pl-6 space-y-1 text-gray-700">
+                            <li><b>Early Filing:</b> File as early as possible to allow time for review and response.</li>
+                            <li><b>Detailed Presentation:</b> Use tabs, tables of contents, headings, and indices for clarity.</li>
+                            <li><b>Compliance:</b> Strictly follow Local Rules 56-1 through 56-4, including separate statements of undisputed facts and responses.</li>
+                            <li><b>Meet and Confer:</b> Engage in thorough meet-and-confer efforts before filing, especially for discovery motions.</li>
+                            <li><b>Timely Notification:</b> Notify the court by 4:00 p.m. if contesting a tentative ruling.</li>
+                        </ul>
+                    </div>
+                </div>
+                `;
+            }
+            rulesContainer.innerHTML = rulesHtml;
+        }
+
+        function populateChecklist(checklist) {
+            let html = '<div class="space-y-6">';
+            let phases = {};
+            checklist.forEach(item => {
+                if (!phases[item.phase]) { phases[item.phase] = []; }
+                phases[item.phase].push(item);
+            });
+            for (const phase in phases) {
+                html += `<div class="phase-group"><h4 class="text-md font-bold text-pink-700 mb-4 border-b border-pink-200 pb-2">${phase}</h4><div class="space-y-4">`;
+                phases[phase].forEach(item => {
+                    const uniqueId = item.task.replace(/\s+/g, '') + Math.random();
+                    let taskHtml = '';
+                    if (item.task === "Review Judge Adams's Standing Orders") {
+                        taskHtml = `<button type="button" class="text-pink-700 underline hover:text-pink-900 font-medium focus:outline-none" onclick="document.getElementById('governing-rules-tab-btn').click(); document.getElementById('rules').scrollIntoView({behavior: 'smooth'});">Judge Adams's Standing Orders</button>`;
+                    } else {
+                        taskHtml = `<span class="font-medium">${item.task}</span>`;
+                    }
+                    html += `
+                        <div class="flex items-start">
+                            <input id="${uniqueId}" type="checkbox" class="h-5 w-5 rounded border-gray-300 text-pink-600 focus:ring-pink-500 mt-0.5 flex-shrink-0">
+                            <label for="${uniqueId}" class="ml-3 text-sm text-gray-800 w-full">
+                                ${taskHtml}
+                                <span class="block text-gray-500">${item.notes}</span>
+                                <div class="text-xs text-pink-600 font-sans hover:underline mt-1">
+                                    <a href="${item.link || '#'}" target="_blank">${item.rule || ''}</a>
+                                </div>
+                            </label>
+                        </div>
+                    `;
+                });
+                html += '</div></div>';
+            }
+            html += '</div>';
+            checklistContainer.innerHTML = html;
+        }
+
+        document.getElementById('division').addEventListener('change', updateJudgeDropdown);
+        document.getElementById('search-form').addEventListener('submit', (e) => { e.preventDefault(); performSearch(); });
+        
+        tabs.addEventListener('click', function(event) {
+            if(event.target.classList.contains('tab-button')) {
+                document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+                event.target.classList.add('active');
+                document.getElementById(event.target.dataset.target).classList.add('active');
+                enforceDocxShellVisibility();
+            }
+        });
+
+        downloadPdfBtn.addEventListener('click', function() {
+            const elementToPrint = document.createElement('div');
+            elementToPrint.style.padding = '2rem';
+            elementToPrint.style.width = '8.5in';
+            
+            const title = document.createElement('h1');
+            title.className = "text-2xl font-bold text-gray-900 mb-1";
+            title.textContent = "Ingrid Filing Report";
+            elementToPrint.appendChild(title);
+            
+            const header = document.getElementById('results-header').cloneNode(true);
+            header.className = "text-base text-gray-600 mb-6";
+            elementToPrint.appendChild(header);
+
+            const separator = '<div style="height: 1px; background-color: #e5e7eb; margin: 24px 0;"></div>';
+
+            elementToPrint.innerHTML += separator;
+            elementToPrint.appendChild(document.getElementById('documents').cloneNode(true));
+            elementToPrint.innerHTML += separator;
+            elementToPrint.appendChild(document.getElementById('conditional').cloneNode(true));
+            elementToPrint.innerHTML += '<div style="page-break-before: always;"></div>';
+            elementToPrint.appendChild(document.getElementById('rules').cloneNode(true));
+            elementToPrint.innerHTML += '<div style="page-break-before: always;"></div>';
+            elementToPrint.appendChild(document.getElementById('checklist').cloneNode(true));
+
+            elementToPrint.style.position = 'absolute';
+            elementToPrint.style.left = '-9999px';
+            document.body.appendChild(elementToPrint);
+
+            const opt = {
+                margin: [0.7, 0.5, 0.7, 0.5],
+                filename: `Ingrid_MSJ_Report_Adams.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+
+            html2pdf().from(elementToPrint).set(opt).save().then(() => {
+                document.body.removeChild(elementToPrint);
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('division').value = 'Complex Civil Litigation';
+            document.getElementById('document-type').value = 'Motion for Summary Judgment';
+            updateJudgeDropdown();
+            document.getElementById('judge').value = 'Charles F. Adams';
+            performSearch();
+        });
+
+        // --- UI Dynamic/Reactive Logic ---
+        const mainContainer = document.getElementById('main-container');
+        const searchPanel = document.getElementById('search-panel');
+        const resultsPanel = document.getElementById('results-panel');
+        const newSearchBtn = document.getElementById('new-search-btn');
+        const searchForm = document.getElementById('search-form');
+        const softDivider = document.querySelector('.soft-divider');
+
+        function showResultsPanel() {
+            mainContainer.classList.remove('centered-start');
+            mainContainer.classList.remove('not-shifted');
+            mainContainer.classList.add('shifted');
+            searchPanel.classList.remove('centered');
+            searchPanel.classList.add('shrunk');
+            resultsPanel.classList.add('visible');
+            resultsPanel.style.display = '';
+            softDivider.style.display = '';
+        }
+        function hideResultsPanel() {
+            mainContainer.classList.remove('shifted');
+            mainContainer.classList.add('centered-start');
+            searchPanel.classList.remove('shrunk');
+            searchPanel.classList.add('centered');
+            resultsPanel.classList.remove('visible');
+            setTimeout(() => { resultsPanel.style.display = 'none'; softDivider.style.display = 'none'; }, 500);
+        }
+
+        searchForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            performSearch();
+            showResultsPanel();
+        });
+        if (newSearchBtn) {
+            newSearchBtn.addEventListener('click', function() {
+                hideResultsPanel();
+            });
+        }
+
+        // Add this after your tab switching logic
+        function enforceDocxShellVisibility() {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                if (tab.id === 'docx-shell') {
+                    // Show the docx shell section
+                    tab.style.display = tab.classList.contains('active') ? 'flex' : 'none';
+                } else {
+                    // Hide any accidental docx shell section in other tabs
+                    if (tab.querySelector('h3') && tab.querySelector('h3').textContent.includes('Download .docx Shell')) {
+                        tab.querySelector('h3').style.display = 'none';
+                        let p = tab.querySelector('p');
+                        if (p && p.textContent.includes('Download a perfectly formatted')) p.style.display = 'none';
+                        let btn = tab.querySelector('#download-docx-shell-btn');
+                        if (btn) btn.style.display = 'none';
+                        let span = tab.querySelector('span.text-xs');
+                        if (span && span.textContent.includes('For use in Santa Clara County')) span.style.display = 'none';
+                    }
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', enforceDocxShellVisibility);
+
+        // Add a single requirements matrix table, styled to match the app, and only show it when the parameters are met
+        function showRequirementsMatrixIfNeeded() {
+            const state = document.getElementById('state')?.value;
+            const county = document.getElementById('county')?.value;
+            const division = document.getElementById('division')?.value;
+            const judge = document.getElementById('judge')?.value;
+            const matrixId = 'requirements-matrix-container';
+            let matrixDiv = document.getElementById(matrixId);
+            if (matrixDiv) matrixDiv.remove();
+
+            if (
+                state === 'California' &&
+                county === 'Santa Clara' &&
+                division === 'Complex Civil Litigation' &&
+                judge === 'Charles F. Adams'
+            ) {
+                const requirementsMatrixHTML = `
+                    <div id="requirements-matrix-container" class="my-8 w-full max-w-2xl mx-auto">
+                        <table class="w-full text-sm text-left rounded-2xl overflow-hidden shadow border border-gray-200 bg-white" style="color:#18181b;">
+                            <thead>
+                                <tr class="bg-gray-100">
+                                    <th class="px-4 py-3 font-semibold text-gray-800">Requirement</th>
+                                    <th class="px-4 py-3 font-semibold text-gray-800">Always Required</th>
+                                    <th class="px-4 py-3 font-semibold text-gray-800">Conditional/Situational</th>
+                                    <th class="px-4 py-3 font-semibold text-gray-800">Truly Optional?</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td class="px-4 py-2">Notice of Motion & Motion</td><td class="text-center">✔️</td><td></td><td></td></tr>
+                                <tr><td class="px-4 py-2">Memorandum of Points & Authorities</td><td class="text-center">✔️</td><td></td><td></td></tr>
+                                <tr><td class="px-4 py-2">Separate Statement</td><td class="text-center">✔️</td><td></td><td></td></tr>
+                                <tr><td class="px-4 py-2">Supporting Declarations/Evidence</td><td class="text-center">✔️</td><td></td><td></td></tr>
+                                <tr><td class="px-4 py-2">Proposed Order</td><td class="text-center">✔️</td><td></td><td></td></tr>
+                                <tr><td class="px-4 py-2">Proof of Service</td><td class="text-center">✔️</td><td></td><td></td></tr>
+                                <tr><td class="px-4 py-2">Meet and Confer</td><td class="text-center">✔️</td><td></td><td></td></tr>
+                                <tr><td class="px-4 py-2">Hearing Reservation</td><td class="text-center">✔️</td><td></td><td></td></tr>
+                                <tr><td class="px-4 py-2">Courtesy Copy</td><td class="text-center">✔️</td><td></td><td></td></tr>
+                                <tr><td class="px-4 py-2">Request for Judicial Notice</td><td></td><td class="text-center">✔️</td><td class="text-center">If used</td></tr>
+                                <tr><td class="px-4 py-2">Motion to Seal</td><td></td><td class="text-center">✔️</td><td class="text-center">If used</td></tr>
+                                <tr><td class="px-4 py-2">Evidentiary Objections</td><td></td><td class="text-center">✔️</td><td class="text-center">If used</td></tr>
+                                <tr><td class="px-4 py-2">Request for Continuance</td><td></td><td class="text-center">✔️</td><td class="text-center">If needed</td></tr>
+                                <tr><td class="px-4 py-2">Proposed Judgment</td><td></td><td class="text-center">✔️</td><td class="text-center">If MSJ ends case</td></tr>
+                            </tbody>
+                        </table>
+                    </div>`;
+                const resultsPanel = document.getElementById('results-panel');
+                if (resultsPanel) {
+                    const matrixDiv = document.createElement('div');
+                    matrixDiv.innerHTML = requirementsMatrixHTML;
+                    resultsPanel.parentNode.insertBefore(matrixDiv, resultsPanel.nextSibling);
+                    resultsPanel.parentNode.insertBefore(resultsPanel, matrixDiv.nextSibling);
+                }
+            }
+        }
+
+        // Call on page load and whenever a selection changes
+        ['state','county','division','judge'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.addEventListener('change', showRequirementsMatrixIfNeeded);
+        });
+        document.addEventListener('DOMContentLoaded', showRequirementsMatrixIfNeeded);
+    </script>
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingrid | Interactive CM-010 Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        .form-container {
+            max-width: 8.5in; /* Standard letter width */
+            margin: 2rem auto;
+            background: white;
+            padding: 1in;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 1px solid #e5e7eb;
+        }
+        .form-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .form-header .form-group {
+            border: 1px solid #d1d5db;
+            padding: 0.5rem;
+            min-height: 100px;
+        }
+        .form-group label {
+            font-size: 0.7rem;
+            color: #4b5563;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .form-group textarea, .form-group input, .form-group select {
+            width: 100%;
+            border: none;
+            padding: 0.25rem 0;
+            font-size: 0.9rem;
+            background-color: transparent;
+        }
+        .form-group textarea:focus, .form-group input:focus, .form-group select:focus {
+            outline: none;
+            box-shadow: none;
+        }
+        .form-group textarea {
+             resize: none;
+        }
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+        .checkbox-label input {
+            width: auto;
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <div class="flex justify-between items-start mb-4">
+            <h1 class="text-xl font-bold text-gray-800">Civil Case Cover Sheet (CM-010)</h1>
+             <button id="generate-pdf-btn" class="bg-pink-600 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
+                Save & Generate PDF
+            </button>
+        </div>
+       
+        <form id="cm010-form">
+            <!-- Header Section -->
+            <div class="form-header">
+                <div class="form-group">
+                    <label for="attorney_details">Attorney or Party Without Attorney (Name, State Bar number, and address):</label>
+                    <textarea id="attorney_details" name="attorney_details" rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>For Court Use Only</label>
+                </div>
+            </div>
+
+            <div class="form-header">
+                 <div class="form-group">
+                    <label for="attorney_for">Attorney For (Name):</label>
+                    <input type="text" id="attorney_for" name="attorney_representing">
+                </div>
+                <div class="form-group">
+                    <label for="county">Superior Court of California, County Of</label>
+                    <input type="text" id="county" name="county">
+                </div>
+            </div>
+            
+            <div class="form-header">
+                <div class="form-group">
+                    <label for="court_street">Street Address:</label>
+                    <input type="text" id="court_street" name="court_street">
+                     <label for="court_city_zip" class="mt-2">City and Zip Code:</label>
+                    <input type="text" id="court_city_zip" name="court_city_zip">
+                </div>
+                 <div class="form-group">
+                    <label for="court_branch">Branch Name:</label>
+                    <input type="text" id="court_branch" name="court_branch">
+                </div>
+            </div>
+
+            <div class="form-header">
+                <div class="form-group">
+                    <label for="case_name">Case Name:</label>
+                    <input type="text" id="case_name" name="case_name">
+                </div>
+                <div class="form-group">
+                    <label for="judge">Judge:</label>
+                    <input type="text" id="judge" name="judge">
+                     <label for="department" class="mt-2">Dept:</label>
+                    <input type="text" id="department" name="department">
+                </div>
+            </div>
+
+            <!-- Item 1: Case Type -->
+            <div class="mt-4 border-t pt-4">
+                <p class="text-sm font-semibold mb-2">1. Check one box below for the case type that best describes this case:</p>
+                <div class="form-group p-4 border rounded-md">
+                   <label for="case_type" class="block mb-2">This is a Provisionally Complex Civil Litigation case.</label>
+                   <select id="case_type" name="case_type" class="border border-gray-300 rounded-md p-2">
+                       <option value="construction_defect">Construction defect (10)</option>
+                       <option value="mass_tort">Mass tort (40)</option>
+                       <option value="securities">Securities litigation (28)</option>
+                       <option value="environmental">Environmental/Toxic tort (30)</option>
+                   </select>
+                </div>
+            </div>
+
+            <!-- Items 2-6 -->
+             <div class="mt-4 border-t pt-4 space-y-3">
+                 <label class="checkbox-label">
+                    <input type="checkbox" id="is_complex" name="is_complex">
+                    2. This case IS complex under rule 3.400 of the California Rules of Court.
+                </label>
+                 <div class="pl-6 text-sm">
+                     <p class="font-semibold">Factors requiring exceptional judicial management:</p>
+                     <label class="checkbox-label mt-1"><input type="checkbox" name="complex_factors" value="parties">a. Large number of separately represented parties</label>
+                     <label class="checkbox-label mt-1"><input type="checkbox" name="complex_factors" value="coordination">b. Coordination with related actions</label>
+                 </div>
+
+                 <div class="pt-2">
+                     <p class="text-sm font-semibold">3. Remedies sought (check all that apply):</p>
+                     <label class="checkbox-label mt-1"><input type="checkbox" id="wants_monetary" name="wants_monetary">a. monetary</label>
+                     <label class="checkbox-label mt-1"><input type="checkbox" id="wants_nonmonetary" name="wants_nonmonetary">b. nonmonetary; declaratory or injunctive relief</label>
+                 </div>
+                 
+                 <div class="form-group pt-2">
+                    <label for="causes_of_action" class="text-sm font-semibold">4. Number of causes of action (specify):</label>
+                    <input type="text" id="causes_of_action" name="causes_of_action" class="border-b border-gray-300">
+                </div>
+
+                 <label class="checkbox-label pt-2">
+                    <input type="checkbox" name="is_class_action">
+                    5. This case is a class action suit.
+                </label>
+                 
+                  <p class="text-sm pt-2">6. If there are any known related cases, file and serve a notice of related case. (You may use form CM-015.)</p>
+             </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Simulate Data from Ingrid's Backend ---
+            const ingridCourtData = {
+                "county": "Santa Clara",
+                "court_street": "191 North First Street",
+                "court_city_zip": "San Jose, CA 95113",
+                "court_branch": "Downtown Superior Court",
+                "judge": "Hon. Charles F. Adams",
+                "department": "7"
+            };
+
+            const userCaseData = {
+                "attorney_details": "Jane Doe (SBN 123456)\n123 Main Street\nAnytown, CA 90210\nTel: (555) 123-4567\nEmail: jane.doe@lawfirm.com",
+                "attorney_representing": "Plaintiff JOHN SMITH",
+                "is_complex": true,
+                "wants_monetary": true,
+                "wants_nonmonetary": true
+            };
+            
+            // --- Pre-populate the HTML Form ---
+            function prePopulateForm() {
+                // Text and Textarea fields
+                document.getElementById('attorney_details').value = userCaseData.attorney_details;
+                document.getElementById('attorney_for').value = userCaseData.attorney_representing;
+                document.getElementById('county').value = ingridCourtData.county;
+                document.getElementById('court_street').value = ingridCourtData.court_street;
+                document.getElementById('court_city_zip').value = ingridCourtData.court_city_zip;
+                document.getElementById('court_branch').value = ingridCourtData.court_branch;
+                document.getElementById('judge').value = ingridCourtData.judge;
+                document.getElementById('department').value = ingridCourtData.department;
+                
+                // Checkboxes
+                document.getElementById('is_complex').checked = userCaseData.is_complex;
+                document.getElementById('wants_monetary').checked = userCaseData.wants_monetary;
+                document.getElementById('wants_nonmonetary').checked = userCaseData.wants_nonmonetary;
+            }
+
+            prePopulateForm();
+
+            // --- Handle Form Submission ---
+            document.getElementById('generate-pdf-btn').addEventListener('click', function() {
+                const form = document.getElementById('cm010-form');
+                const formData = new FormData(form);
+                const dataForBackend = {};
+
+                // Convert FormData to a simple JSON object
+                for (let [key, value] of formData.entries()) {
+                     // Handle checkboxes which might have multiple values
+                    if (document.querySelector(`[name="${key}"]`).type === 'checkbox') {
+                         if (!dataForBackend[key]) {
+                            dataForBackend[key] = [];
+                        }
+                        dataForBackend[key].push(value);
+                    } else {
+                        dataForBackend[key] = value;
+                    }
+                }
+                
+                // For single checkboxes, we just want a boolean
+                dataForBackend['is_complex'] = document.getElementById('is_complex').checked;
+                dataForBackend['wants_monetary'] = document.getElementById('wants_monetary').checked;
+                dataForBackend['wants_nonmonetary'] = document.getElementById('wants_nonmonetary').checked;
+                dataForBackend['is_class_action'] = form.elements['is_class_action'].checked;
+
+
+                console.log("Data to send to Python backend for PDF generation:");
+                console.log(JSON.stringify(dataForBackend, null, 2));
+
+                alert("Data has been prepared for PDF generation. Check the browser console to see the JSON data that would be sent to the backend.");
+
+                // In a real application, you would send this JSON to your server:
+                /*
+                fetch('/generate-cm010', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(dataForBackend)
+                })
+                .then(response => response.blob())
+                .then(blob => {
+                    // Create a link to download the generated PDF
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.style.display = 'none';
+                    a.href = url;
+                    a.download = 'cm010_completed.pdf';
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                })
+                .catch(error => console.error('Error:', error));
+                */
+            });
+        });
+    </script>
+
+</body>
+</html>

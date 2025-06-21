@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Flowchart: Motion for Summary Judgment Post-Filing</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    
+    :root {
+        --primary-color: #ec4899;
+        --primary-light: #f472b6;
+        --primary-dark: #db2777;
+        --moving-color: #e11d48;
+        --moving-bg: #ffe4e6;
+        --opposing-color: #f97316;
+        --opposing-bg: #fff7ed;
+        --court-color: #10b981;
+        --court-bg: #d1fae5;
+        --outcome-color: #8b5cf6;
+        --outcome-bg: #ede9fe;
+        --bg-color: #f9fafb;
+        --card-bg: #ffffff;
+        --text-primary: #111827;
+        --text-secondary: #6b7280;
+        --border-color: #e5e7eb;
+        --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: var(--bg-color);
+        color: var(--text-primary);
+        min-height: 100vh;
+        line-height: 1.6;
+    }
+
+    .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+
+    /* Header Section */
+    .header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+        color: var(--text-secondary);
+        font-size: 1.125rem;
+        font-weight: 400;
+    }
+
+    /* Pink accent line under header */
+    .header::after {
+        content: '';
+        display: block;
+        width: 80px;
+        height: 4px;
+        background: var(--primary-color);
+        margin: 1.5rem auto 0;
+        border-radius: 2px;
+    }
+
+    /* Key Section */
+    .key {
+        display: flex;
+        gap: 2rem;
+        margin-bottom: 3rem;
+        padding: 1.5rem 2rem;
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 0.75rem;
+        box-shadow: var(--shadow);
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .key-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        font-weight: 500;
+    }
+
+    .key-color {
+        width: 1rem;
+        height: 1rem;
+        border-radius: 0.25rem;
+    }
+
+    #key-moving { background-color: var(--moving-color); }
+    #key-opposing { background-color: var(--opposing-color); }
+    #key-court { background-color: var(--court-color); }
+    #key-outcome { background-color: var(--outcome-color); }
+
+    /* Flowchart Container */
+    .flowchart-container {
+        position: relative;
+        width: 100%;
+        max-width: 1200px;
+        height: 1400px;
+        margin: 0 auto;
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 1rem;
+        padding: 3rem;
+        box-shadow: var(--shadow-md);
+    }
+
+    /* Nodes */
+    .node {
+        position: absolute;
+        width: 200px;
+        padding: 1rem;
+        text-align: center;
+        border-width: 2px;
+        border-style: solid;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-size: 0.875rem;
+        font-weight: 500;
+        z-index: 2;
+        background: var(--card-bg);
+        box-shadow: var(--shadow);
+    }
+
+    .node:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    /* Node color schemes */
+    .party-moving { 
+        background: var(--moving-bg);
+        border-color: var(--moving-color);
+        color: var(--moving-color);
+    }
+
+    .party-opposing { 
+        background: var(--opposing-bg);
+        border-color: var(--opposing-color);
+        color: var(--opposing-color);
+    }
+
+    .party-court { 
+        background: var(--court-bg);
+        border-color: var(--court-color);
+        color: var(--court-color);
+    }
+
+    .party-outcome { 
+        background: var(--outcome-bg);
+        border-color: var(--outcome-color);
+        color: var(--outcome-color);
+    }
+
+    /* Modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+        background: var(--card-bg);
+        margin: 5% auto;
+        padding: 2rem;
+        border-radius: 0.75rem;
+        width: 90%;
+        max-width: 600px;
+        box-shadow: var(--shadow-lg);
+        position: relative;
+    }
+
+    .modal-content h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: var(--primary-dark);
+    }
+
+    .modal-content p, .modal-content li {
+        line-height: 1.7;
+        color: var(--text-secondary);
+        margin-bottom: 0.75rem;
+    }
+
+    .modal-content ul {
+        padding-left: 1.5rem;
+        margin: 1rem 0;
+    }
+
+    .modal-content li {
+        margin-bottom: 0.5rem;
+    }
+
+    .close-btn {
+        position: absolute;
+        right: 1.5rem;
+        top: 1.5rem;
+        color: var(--text-secondary);
+        font-size: 1.5rem;
+        font-weight: 400;
+        cursor: pointer;
+        transition: color 0.2s;
+        width: 2rem;
+        height: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.25rem;
+    }
+
+    .close-btn:hover {
+        color: var(--text-primary);
+        background: var(--bg-color);
+    }
+
+    .rule-ref {
+        font-style: italic;
+        font-weight: 400;
+        color: var(--text-secondary);
+        margin-top: 1.5rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border-color);
+        font-size: 0.875rem;
+    }
+
+    /* SVG Styles */
+    #flowchart-svg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    /* Node Positioning */
+    #filing { top: 40px; left: 490px; }
+    #response { top: 200px; left: 490px; }
+    #opposition-filed { top: 360px; left: 240px; }
+    #no-opposition { top: 360px; left: 740px; }
+    #reply { top: 520px; left: 240px; }
+    #reply-filed { top: 680px; left: 90px; }
+    #no-reply { top: 680px; left: 390px; }
+    #hearing { top: 840px; left: 490px; }
+    #ruling { top: 1000px; left: 490px; }
+    #granted { top: 1200px; left: 190px; }
+    #denied { top: 1200px; left: 490px; }
+    #partial { top: 1200px; left: 790px; }
+
+    /* Responsive Design */
+    @media (max-width: 1280px) {
+        .flowchart-container {
+            transform: scale(0.85);
+            transform-origin: top center;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .flowchart-container {
+            transform: scale(0.6);
+            height: 900px;
+        }
+        h1 {
+            font-size: 2rem;
+        }
+        .key {
+            gap: 1rem;
+            padding: 1rem;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Motion for Summary Judgment</h1>
+        <p class="subtitle">Interactive Post-Filing Process Flowchart</p>
+    </div>
+
+    <div class="key">
+        <div class="key-item">
+            <div class="key-color" id="key-moving"></div>
+            <span>Moving Party</span>
+        </div>
+        <div class="key-item">
+            <div class="key-color" id="key-opposing"></div>
+            <span>Opposing Party</span>
+        </div>
+        <div class="key-item">
+            <div class="key-color" id="key-court"></div>
+            <span>Court Action</span>
+        </div>
+        <div class="key-item">
+            <div class="key-color" id="key-outcome"></div>
+            <span>Final Outcome</span>
+        </div>
+    </div>
+
+    <div class="flowchart-container">
+        <svg id="flowchart-svg"></svg>
+        <div id="filing" class="node party-moving" onclick="showModal('modal-filing')">Filing of Motion for Summary Judgment</div>
+        <div id="response" class="node party-opposing" onclick="showModal('modal-response')">Opposing Party's Response</div>
+        <div id="opposition-filed" class="node party-opposing" onclick="showModal('modal-opposition-filed')">Opposition Filed</div>
+        <div id="no-opposition" class="node party-opposing" onclick="showModal('modal-no-opposition')">No Opposition Filed</div>
+        <div id="reply" class="node party-moving" onclick="showModal('modal-reply')">Moving Party's Reply</div>
+        <div id="reply-filed" class="node party-moving" onclick="showModal('modal-reply-filed')">Reply Brief Filed</div>
+        <div id="no-reply" class="node party-moving" onclick="showModal('modal-no-reply')">No Reply Filed</div>
+        <div id="hearing" class="node party-court" onclick="showModal('modal-hearing')">Hearing on Motion</div>
+        <div id="ruling" class="node party-court" onclick="showModal('modal-ruling')">Court's Ruling</div>
+        <div id="granted" class="node party-outcome" onclick="showModal('modal-granted')">Motion Granted</div>
+        <div id="denied" class="node party-outcome" onclick="showModal('modal-denied')">Motion Denied</div>
+        <div id="partial" class="node party-outcome" onclick="showModal('modal-partial')">Granted in Part / Denied in Part</div>
+    </div>
+</div>
+
+<!-- Modals -->
+<div id="modal-filing" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('modal-filing')">&times;</span>
+        <h3>Filing of Motion</h3>
+        <p>The process begins after the moving party completes the final review and files the motion with the court.</p>
+        <ul>
+            <li>The motion and all supporting documents are filed with the Santa Clara County Superior Court through its electronic filing system (EFS)</li>
+            <li>All parties must be served with copies of the filed documents</li>
+            <li>A Proof of Service must also be filed with the court to show that all parties were properly served</li>
+        </ul>
+        <span class="rule-ref">Governing Rule: Santa Clara County Superior Court Local Rules, Rule 2.</span>
+    </div>
+</div>
+
+<div id="modal-response" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('modal-response')">&times;</span>
+        <h3>Opposing Party's Response</h3>
+        <p>After being served, the opposing party has a specific time frame to respond to the motion. The moving party must monitor the case for this response.</p>
+        <ul>
+            <li>The opposing party may file an opposition to the motion, arguing why summary judgment should not be granted</li>
+            <li>If they oppose, they must file a responsive separate statement that either admits the facts are undisputed, disputes the facts, or disputes them based on an evidentiary objection</li>
+        </ul>
+        <span class="rule-ref">Governing Rule: Cal. Code Civ. Proc. § 437c(b)(3).</span>
+    </div>
+</div>
+
+<div id="modal-opposition-filed" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('modal-opposition-filed')">&times;</span>
+        <h3>Opposition Filed</h3>
+        <p>The opposing party formally contests the motion. Their filing will include:</p>
+        <ul>
+            <li>A Memorandum of Points and Authorities in opposition</li>
+            <li>A responsive Separate Statement addressing the moving party's statement of undisputed facts</li>
+            <li>Evidence (declarations, deposition excerpts, etc.) that supports their argument that there are disputed facts</li>
+        </ul>
+        <span class="rule-ref">Governing Rule: Cal. Code Civ. Proc. § 437c(b)(3).</span>
+    </div>
+</div>
+
+<div id="modal-no-opposition" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('modal-no-opposition')">&times;</span>
+        <h3>No Opposition Filed</h3>
+        <p>The opposing party does not file an opposition. While this may strengthen the moving party's position, it does not guarantee victory. The moving party must still demonstrate that they are entitled to judgment as a matter of law based on the undisputed facts presented. The moving party should still prepare for the hearing.</p>
+        <span class="rule-ref">Governing Rule: Cal. Code Civ. Proc. § 437c.</span>
+    </div>
+</div>
+
+<div id="modal-reply" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('modal-reply')">&times;</span>
+        <h3>Moving Party's Reply</h3>
+        <p>If the opposing party files an opposition, the moving party has the right to file a reply brief.</p>
+        <ul>
+            <li>The purpose of the reply is to address arguments raised in the opposition brief</li>
+            <li>New evidence is generally not permitted in a reply brief</li>
+        </ul>
+        <span class="rule-ref">Governing Rule: Cal. Code Civ. Proc. § 437c.</span>
+    </div>
+</div>
+
+<div id="modal-reply-filed" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('modal-reply-filed')">&times;</span>
+        <h3>Reply Brief Filed</h3>
+        <p>The moving party files a reply brief to counter the arguments made in the opposition. This is the final written document submitted to the court before the hearing. After filing, the next step is to prepare for oral argument at the hearing.</p>
+        <span class="rule-ref">Governing Rule: Cal. Code Civ. Proc. § 437c.</span>
+    </div>
+</div>
+
+<div id="modal-no-reply" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('modal-no-reply')">&times;</span>
+        <h3>No Reply Filed</h3>
+        <p>The moving party chooses not to file a reply brief. The court will make its decision based on the initial motion papers and the opposition papers. The moving party still must prepare for the scheduled hearing and oral arguments.</p>
+        <span class="rule-ref">Governing Rule: Cal. Code Civ. Proc. § 437c.</span>
+    </div>
+</div>
+
+<div id="modal-hearing" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('modal-hearing')">&times;</span>
+        <h3>Hearing on Motion for Summary Judgment</h3>
+        <p>The court holds a hearing where both sides can present oral arguments.</p>
+        <ul>
+            <li>The hearing must be scheduled at least 30 days before the date of trial, unless the court orders otherwise</li>
+            <li>Notice of the motion must be served at least 75 days before the hearing if served by mail within California</li>
+            <li>Parties should be prepared to address any case management issues at the hearing</li>
+        </ul>
+        <span class="rule-ref">Governing Rule: Cal. Code Civ. Proc. § 437c(a).</span>
+    </div>
+</div>
+
+<div id="modal-ruling" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('modal-ruling')">&times;</span>
+        <h3>Court's Ruling</h3>
+        <p>After the hearing, the judge will review the written submissions and oral arguments, then issue a ruling. The ruling determines whether there is a "triable issue as to any material fact." The court's decision leads to one of three primary outcomes.</p>
+        <span class="rule-ref">Primary Basis for Ruling: Cal. Code Civ. Proc. § 437c.</span>
+    </div>
+</div>
+
+<div id="modal-granted" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('modal-granted')">&times;</span>
+        <h3>Outcome: Motion Granted</h3>
+        <p>The court finds that there are no triable issues of material fact, and the moving party is entitled to judgment as a matter of law. This is a final decision on the claims at issue.</p>
+        <p><strong>Next Step:</strong> Judgment is entered in favor of the moving party, and the case (or the portion addressed by the motion) is concluded, pending any potential appeal.</p>
+        <span class="rule-ref">Governing Rule: Cal. Code Civ. Proc. § 437c.</span>
+    </div>
+</div>
+
+<div id="modal-denied" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('modal-denied')">&times;</span>
+        <h3>Outcome: Motion Denied</h3>
+        <p>The court finds that there is at least one triable issue of material fact, or that the moving party is not entitled to judgment as a matter of law. The judge will identify the facts that are in dispute.</p>
+        <p><strong>Next Step:</strong> The case proceeds to trial on all claims as if the motion had not been filed.</p>
+        <span class="rule-ref">Governing Rule: Cal. Code Civ. Proc. § 437c.</span>
+    </div>
+</div>
+
+<div id="modal-partial" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('modal-partial')">&times;</span>
+        <h3>Outcome: Motion Granted in Part / Denied in Part</h3>
+        <p>This is also known as summary adjudication. The court grants the motion for some claims or issues but denies it for others. This narrows the scope of the trial.</p>
+        <p><strong>Next Step:</strong> The case proceeds to trial, but only on the specific claims, causes of action, or issues that were not resolved by the motion.</p>
+        <span class="rule-ref">Governing Rule: Cal. Code Civ. Proc. § 437c.</span>
+    </div>
+</div>
+
+<script>
+    function showModal(modalId) {
+        document.getElementById(modalId).style.display = "block";
+    }
+
+    function closeModal(modalId) {
+        document.getElementById(modalId).style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        const modals = document.getElementsByClassName('modal');
+        for (let i = 0; i < modals.length; i++) {
+            if (event.target == modals[i]) {
+                modals[i].style.display = "none";
+            }
+        }
+    }
+
+    // Simplified SVG Arrow Drawing
+    document.addEventListener('DOMContentLoaded', () => {
+        const svg = document.getElementById('flowchart-svg');
+        
+        // Create defs
+        const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+        
+        // Create arrowhead marker
+        const marker = document.createElementNS('http://www.w3.org/2000/svg', 'marker');
+        marker.setAttribute('id', 'arrowhead');
+        marker.setAttribute('viewBox', '0 -5 10 10');
+        marker.setAttribute('refX', 8);
+        marker.setAttribute('refY', 0);
+        marker.setAttribute('markerWidth', 6);
+        marker.setAttribute('markerHeight', 6);
+        marker.setAttribute('orient', 'auto');
+        
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('d', 'M0,-5L10,0L0,5');
+        path.setAttribute('fill', '#ec4899');
+        marker.appendChild(path);
+        defs.appendChild(marker);
+        
+        svg.appendChild(defs);
+
+        const connections = [
+            // Main path
+            { from: 'filing', to: 'response' },
+            
+            // Response splits
+            { from: 'response', to: 'opposition-filed', type: 'split-left' },
+            { from: 'response', to: 'no-opposition', type: 'split-right' },
+            
+            // Opposition path
+            { from: 'opposition-filed', to: 'reply' },
+            { from: 'reply', to: 'reply-filed', type: 'split-left' },
+            { from: 'reply', to: 'no-reply', type: 'split-right' },
+            
+            // Converging paths to hearing
+            { from: 'reply-filed', to: 'hearing', type: 'merge-left' },
+            { from: 'no-reply', to: 'hearing', type: 'merge-center' },
+            { from: 'no-opposition', to: 'hearing', type: 'merge-right' },
+            
+            // Final path
+            { from: 'hearing', to: 'ruling' },
+            
+            // Ruling outcomes
+            { from: 'ruling', to: 'granted', type: 'split-left' },
+            { from: 'ruling', to: 'denied', type: 'split-center' },
+            { from: 'ruling', to: 'partial', type: 'split-right' }
+        ];
+
+        function getNodeCenter(id) {
+            const el = document.getElementById(id);
+            return {
+                x: el.offsetLeft + el.offsetWidth / 2,
+                y: el.offsetTop + el.offsetHeight / 2,
+                top: el.offsetTop,
+                bottom: el.offsetTop + el.offsetHeight,
+                left: el.offsetLeft,
+                right: el.offsetLeft + el.offsetWidth
+            };
+        }
+
+        connections.forEach(conn => {
+            const from = getNodeCenter(conn.from);
+            const to = getNodeCenter(conn.to);
+            const line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            
+            let d = "";
+            
+            switch(conn.type) {
+                case 'split-left':
+                    // Right angle path going left
+                    const leftMidY = from.bottom + 30;
+                    d = `M ${from.x} ${from.bottom}
+                         L ${from.x} ${leftMidY}
+                         L ${to.x} ${leftMidY}
+                         L ${to.x} ${to.top}`;
+                    break;
+                    
+                case 'split-right':
+                    // Right angle path going right
+                    const rightMidY = from.bottom + 30;
+                    d = `M ${from.x} ${from.bottom}
+                         L ${from.x} ${rightMidY}
+                         L ${to.x} ${rightMidY}
+                         L ${to.x} ${to.top}`;
+                    break;
+                    
+                case 'merge-left':
+                    // Right angle merge from left
+                    const leftMergeY = to.top - 30;
+                    d = `M ${from.x} ${from.bottom}
+                         L ${from.x} ${leftMergeY}
+                         L ${to.x} ${leftMergeY}
+                         L ${to.x} ${to.top}`;
+                    break;
+                    
+                case 'merge-center':
+                    // Right angle merge from center
+                    const centerMergeY = to.top - 30;
+                    d = `M ${from.x} ${from.bottom}
+                         L ${from.x} ${centerMergeY}
+                         L ${to.x} ${centerMergeY}
+                         L ${to.x} ${to.top}`;
+                    break;
+                    
+                case 'merge-right':
+                    // Right angle merge from right
+                    const rightMergeY = to.top - 30;
+                    d = `M ${from.x} ${from.bottom}
+                         L ${from.x} ${rightMergeY}
+                         L ${to.x} ${rightMergeY}
+                         L ${to.x} ${to.top}`;
+                    break;
+                    
+                case 'split-center':
+                    // Straight line down
+                    d = `M ${from.x} ${from.bottom}
+                         L ${to.x} ${to.top}`;
+                    break;
+                    
+                default:
+                    // Default straight line
+                    d = `M ${from.x} ${from.bottom}
+                         L ${to.x} ${to.top}`;
+            }
+
+            line.setAttribute('d', d);
+            line.setAttribute('fill', 'none');
+            line.setAttribute('stroke', '#e5e7eb');
+            line.setAttribute('stroke-width', '2');
+            line.setAttribute('marker-end', 'url(#arrowhead)');
+            
+            svg.appendChild(line);
+        });
+    });
+</script>
+
+</body>
+</html>

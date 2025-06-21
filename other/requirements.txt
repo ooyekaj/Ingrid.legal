@@ -1,0 +1,21 @@
+# PDF Processing Libraries
+pypdf==4.0.1
+PyMuPDF==1.23.26  # fitz library for PDFParse.py
+
+# Web Scraping and HTTP Libraries
+requests==2.31.0
+beautifulsoup4==4.12.2
+
+# Document Generation Libraries
+python-docx==1.1.0
+
+# JSON and Date Processing (built-in with Python, listed for completeness)
+# json - built-in
+# datetime - built-in
+# re - built-in
+# os - built-in
+# urllib - built-in
+# time - built-in
+
+# Optional: Development and Testing
+pytest==7.4.4 

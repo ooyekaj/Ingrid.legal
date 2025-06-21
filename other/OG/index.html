@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <link rel="icon" type="image/png" href="/icon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingrid | Your Filing Assistant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FFFFFF;
+            color: #1F2937; /* A dark gray for body text */
+        }
+        .hero-gradient {
+            background: radial-gradient(ellipse at 50% 30%, rgba(236, 72, 153, 0.1), transparent 70%);
+        }
+        .feature-card {
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB; /* Light gray border */
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            background: #F9FAFB; /* Slightly off-white on hover */
+            border: 1px solid #D1D5DB;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+        }
+        .cta-button {
+            transition: all 0.3s ease;
+        }
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+        /* Scroll reveal animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in-section {
+            animation: fadeIn 1s ease-out forwards;
+            opacity: 0;
+        }
+        /* Corrected Logo slider animation */
+        @keyframes slide {
+            from { transform: translateX(0); }
+            to { transform: translateX(-100%); }
+        }
+        .logo-track {
+            display: inline-flex;
+            animation: slide 20s linear infinite;
+            white-space: nowrap; /* Prevent wrapping */
+        }
+        .logo-item {
+            flex-shrink: 0;
+            width: 180px; /* Give items a fixed width for consistent spacing */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 2rem;
+        }
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        
+        .wheel-container {
+            transform-style: preserve-3d;
+        }
+        
+        .step-card {
+            backface-visibility: hidden;
+            transform-origin: center center;
+        }
+        
+        .nav-btn.active {
+            background-color: #DB2777;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-80 backdrop-blur-md border-b border-gray-200">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center">
+                <svg width="45" height="50" viewBox="0 0 45 50" fill="none" xmlns="http://www.w3.org/2000/svg" class="mr-3">
+                    <rect x="0" y="5" width="35" height="45" rx="3" fill="#EC4899" opacity="0.6"/>
+                    <rect x="8" y="0" width="35" height="45" rx="3" fill="#DB2777" opacity="1"/>
+                    <path d="M 20 25 L 25 30 L 35 20" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="text-3xl font-bold text-gray-900 tracking-wider">Ingrid</span>
+            </a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#features" class="text-gray-600 hover:text-pink-600 transition">Features</a>
+                <a href="#how-it-works" class="text-gray-600 hover:text-pink-600 transition">How It Works</a>
+                <a href="#why-ingrid" class="text-gray-600 hover:text-pink-600 transition">Why Ingrid?</a>
+                <a href="about.html" class="text-gray-600 hover:text-pink-600 transition">About Us</a>
+            </nav>
+            <a href="#beta" class="cta-button bg-pink-600 hover:bg-pink-500 text-white font-semibold px-5 py-2 rounded-lg">Request Beta Access</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-24">
+        <!-- Sections from hero to CTA remain the same -->
+        <section class="relative hero-gradient py-20 md:py-32 text-center overflow-hidden">
+            <div class="absolute inset-0 -z-10" id="canvas-container"></div>
+            <div class="container mx-auto px-6 relative">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-4">
+                    Never Miss a Rule. Ever.
+                </h1>
+                <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+                    Ingrid is the <b>first integrated platform</b> to combine a deterministic rules engine with an end-to-end filing workflow. We transform the chaos of court rules into actionable, guaranteed-accurate checklists and document shells in seconds.
+                </p>
+                <a href="#beta" class="cta-button bg-pink-600 hover:bg-pink-500 text-white font-bold px-8 py-4 rounded-lg text-lg">
+                    Join the Private Beta
+                </a>
+            </div>
+        </section>
+
+        <!-- Features Section - Enhanced Interactive Timeline Version -->
+        <section id="features" class="py-24 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 reveal-on-scroll">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">The End-to-End Filing Workflow Platform</h2>
+                    <p class="text-gray-600 mt-2 max-w-2xl mx-auto">From procedural roadmaps to deadline calendaring, Ingrid automates the administrative burdens of litigation.</p>
+                </div>
+
+                <div class="relative wrap overflow-hidden p-10 h-full">
+                    <!-- The vertical line -->
+                    <div class="border-2-2 absolute border-opacity-20 border-pink-700 h-full border" style="left: 50%; transform: translateX(-50%);"></div>
+
+                    <!-- Timeline Item 1 (Left) -->
+                    <div class="timeline-item mb-8 flex justify-between flex-row-reverse items-center w-full">
+                        <div class="order-1 w-5/12"></div>
+                        <div class="timeline-icon z-20 flex items-center order-1 bg-pink-600 shadow-xl w-12 h-12 rounded-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                        </div>
+                        <div class="timeline-card order-1 bg-white rounded-2xl shadow-xl w-5/12 px-6 py-4">
+                            <h3 class="font-bold text-gray-900 text-xl">Procedural Roadmap</h3>
+                            <p class="text-sm leading-snug tracking-wide text-gray-600">Instantly generate a timeline of potential procedural milestones for your case type, allowing you to anticipate every step.</p>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 2 (Right) -->
+                    <div class="timeline-item mb-8 flex justify-between items-center w-full">
+                        <div class="order-1 w-5/12"></div>
+                        <div class="timeline-icon z-20 flex items-center order-1 bg-pink-600 shadow-xl w-12 h-12 rounded-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+                        </div>
+                        <div class="timeline-card order-1 bg-white rounded-2xl shadow-xl w-5/12 px-6 py-4">
+                            <h3 class="font-bold text-gray-900 text-xl">Smart Shell Generation</h3>
+                            <p class="text-sm leading-snug tracking-wide text-gray-600">Enter a case number once. Get a full packet of pre-formatted, compliant document shells populated instantly.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Timeline Item 3 (Left) -->
+                    <div class="timeline-item mb-8 flex justify-between flex-row-reverse items-center w-full">
+                        <div class="order-1 w-5/12"></div>
+                        <div class="timeline-icon z-20 flex items-center order-1 bg-pink-600 shadow-xl w-12 h-12 rounded-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 8h10M7 12h5M7 16h3"/></svg>
+                        </div>
+                        <div class="timeline-card order-1 bg-white rounded-2xl shadow-xl w-5/12 px-6 py-4">
+                            <h3 class="font-bold text-gray-900 text-xl">Exhibit & Declaration Builder</h3>
+                            <p class="text-sm leading-snug tracking-wide text-gray-600">Upload your exhibits, and Ingrid automatically labels them, creates a perfect exhibit list, and generates a boilerplate declaration.</p>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 4 (Right) -->
+                    <div class="timeline-item mb-8 flex justify-between items-center w-full">
+                        <div class="order-1 w-5/12"></div>
+                        <div class="timeline-icon z-20 flex items-center order-1 bg-pink-600 shadow-xl w-12 h-12 rounded-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+                        </div>
+                        <div class="timeline-card order-1 bg-white rounded-2xl shadow-xl w-5/12 px-6 py-4">
+                            <h3 class="font-bold text-gray-900 text-xl">Compliance Pre-Flight Check</h3>
+                            <p class="text-sm leading-snug tracking-wide text-gray-600">Before you file, run your final documents through our engine to verify compliance with page limits, font size, and other objective formatting rules.</p>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 5 (Left) -->
+                    <div class="timeline-item mb-8 flex justify-between flex-row-reverse items-center w-full">
+                        <div class="order-1 w-5/12"></div>
+                        <div class="timeline-icon z-20 flex items-center order-1 bg-pink-600 shadow-xl w-12 h-12 rounded-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="m9 16 2 2 4-4"/></svg>
+                        </div>
+                        <div class="timeline-card order-1 bg-white rounded-2xl shadow-xl w-5/12 px-6 py-4">
+                            <h3 class="font-bold text-gray-900 text-xl">Automated Deadline Calendaring</h3>
+                            <p class="text-sm leading-snug tracking-wide text-gray-600">When a document is filed, Ingrid automatically calculates and populates all subsequent deadlines into your firm's calendar.</p>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 6 (Right) -->
+                    <div class="timeline-item mb-8 flex justify-between items-center w-full">
+                        <div class="order-1 w-5/12"></div>
+                        <div class="timeline-icon z-20 flex items-center order-1 bg-pink-600 shadow-xl w-12 h-12 rounded-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+                        </div>
+                        <div class="order-1 bg-white rounded-2xl shadow-xl w-5/12 px-6 py-4">
+                            <h3 class="font-bold text-gray-900 text-xl">Human-Verified Accuracy</h3>
+                            <p class="text-sm leading-snug tracking-wide text-gray-600">Our core asset is a proprietary database of court rules, meticulously verified and updated by our expert team. We guarantee accuracy.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <style>
+            .timeline-card {
+                transition: all 0.4s ease-out;
+            }
+            .timeline-card:hover {
+                transform: scale(1.05); /* Increased zoom effect */
+                box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            }
+            .timeline-item {
+                opacity: 0;
+            }
+            .timeline-item.is-visible {
+                opacity: 1;
+            }
+            /* Cards on the LEFT slide in from the LEFT */
+            .timeline-item.flex-row-reverse .timeline-card {
+                transform: translateX(-150%);
+                transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            }
+            /* Cards on the RIGHT slide in from the RIGHT */
+            .timeline-item:not(.flex-row-reverse) .timeline-card {
+                transform: translateX(150%);
+                transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            }
+            
+            .timeline-item.is-visible .timeline-card {
+                transform: translateX(0);
+            }
+            
+            .timeline-item .timeline-icon {
+                transform: scale(0);
+                transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); /* Bouncy pop-in effect */
+            }
+            .timeline-item.is-visible .timeline-icon {
+                transform: scale(1);
+                transition-delay: 0.3s; /* Delay icon pop-in until card is nearly in place */
+            }
+        </style>
+
+        <script>
+            // Intersection Observer for Timeline Animation
+            const timelineObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            document.querySelectorAll('.timeline-item').forEach(item => {
+                timelineObserver.observe(item);
+            });
+        </script>
+
+
+        <section id="how-it-works" class="py-16 reveal-on-scroll">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 reveal-child">Certainty in Three Simple Steps</h2>
+                    <p class="text-gray-600 mt-2 max-w-2xl mx-auto reveal-child">Our deterministic engine queries a human-verified database to give you the right answer, every time.</p>
+                </div>
+                
+                <div class="relative perspective-1000 h-[240px] max-w-md mx-auto mb-10">
+                    <div class="wheel-container absolute w-full h-full">
+                        <div class="wheel absolute w-full h-full transition-transform duration-1000 ease-in-out" style="transform-style: preserve-3d;">
+                            <!-- Step 1 -->
+                            <div class="step-card absolute w-full h-full bg-white rounded-2xl shadow-xl pt-1 pb-3 px-5 transition-all duration-300 hover:scale-105 flex flex-col items-center justify-start text-center" style="transform: rotateY(0deg) translateZ(120px);">
+                                <div class="bg-gray-100 border border-gray-200 h-16 w-16 rounded-full flex items-center justify-center mx-auto mb-3 text-pink-600 text-3xl font-bold">1</div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Define Your Filing</h3>
+                                <p class="text-sm text-gray-600 max-w-[250px]">Input your state, jurisdiction, court, judge, and filing type into our search engine.</p>
+                            </div>
+                            
+                            <!-- Step 2 -->
+                            <div class="step-card absolute w-full h-full bg-white rounded-2xl shadow-xl pt-1 pb-3 px-5 transition-all duration-300 hover:scale-105 flex flex-col items-center justify-start text-center" style="transform: rotateY(120deg) translateZ(120px);">
+                                <div class="bg-gray-100 border border-gray-200 h-16 w-16 rounded-full flex items-center justify-center mx-auto mb-3 text-pink-600 text-3xl font-bold">2</div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Get Instant Output</h3>
+                                <p class="text-sm text-gray-600 max-w-[250px]">Receive a complete procedural packet: an actionable checklist, a full list of rules, and pre-formatted document shells.</p>
+                            </div>
+                            
+                            <!-- Step 3 -->
+                            <div class="step-card absolute w-full h-full bg-white rounded-2xl shadow-xl pt-1 pb-3 px-5 transition-all duration-300 hover:scale-105 flex flex-col items-center justify-start text-center" style="transform: rotateY(240deg) translateZ(120px);">
+                                <div class="bg-gray-100 border border-gray-200 h-16 w-16 rounded-full flex items-center justify-center mx-auto mb-3 text-pink-600 text-3xl font-bold">3</div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Draft and File with Confidence</h3>
+                                <p class="text-sm text-gray-600 max-w-[250px]">Use our compliant shells and checklists to prepare your filing, knowing every procedural detail is correct.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Navigation Controls BELOW the cards -->
+                <div class="flex justify-center mt-2">
+                    <button class="nav-btn bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-500 transition-colors text-lg mx-1" data-step="1">Step 1</button>
+                    <button class="nav-btn bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-500 transition-colors text-lg mx-1" data-step="2">Step 2</button>
+                    <button class="nav-btn bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-500 transition-colors text-lg mx-1" data-step="3">Step 3</button>
+                </div>
+            </div>
+        </section>
+
+        <style>
+            .perspective-1000 {
+                perspective: 1000px;
+            }
+            
+            .wheel-container {
+                transform-style: preserve-3d;
+            }
+            
+            .step-card {
+                backface-visibility: hidden;
+                transform-origin: center center;
+            }
+            
+            .nav-btn.active {
+                background-color: #DB2777;
+            }
+        </style>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const wheel = document.querySelector('.wheel');
+                const navButtons = document.querySelectorAll('.nav-btn');
+                let currentStep = 1;
+                let isAnimating = false;
+
+                // Function to rotate the wheel
+                function rotateToStep(step) {
+                    if (isAnimating) return;
+                    isAnimating = true;
+                    
+                    // Calculate rotation based on step number
+                    const rotation = (step - 1) * -120;
+                    
+                    // Update active button
+                    navButtons.forEach(btn => {
+                        btn.classList.remove('active');
+                        if (parseInt(btn.dataset.step) === step) {
+                            btn.classList.add('active');
+                        }
+                    });
+
+                    // Animate rotation
+                    wheel.style.transform = `rotateY(${rotation}deg)`;
+                    currentStep = step;
+                    
+                    // Reset animation flag after transition
+                    setTimeout(() => {
+                        isAnimating = false;
+                    }, 1000);
+                }
+
+                // Add click handlers to navigation buttons
+                navButtons.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const step = parseInt(btn.dataset.step);
+                        rotateToStep(step);
+                    });
+                });
+
+                // Initialize with first step
+                rotateToStep(1);
+
+                // Add touch/swipe support
+                let touchStartX = 0;
+                let touchEndX = 0;
+                
+                wheel.addEventListener('touchstart', e => {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, false);
+                
+                wheel.addEventListener('touchend', e => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleSwipe();
+                }, false);
+                
+                function handleSwipe() {
+                    const swipeThreshold = 50;
+                    const diff = touchEndX - touchStartX;
+                    
+                    if (Math.abs(diff) > swipeThreshold) {
+                        if (diff > 0) {
+                            // Swipe right - go to previous step
+                            const newStep = currentStep > 1 ? currentStep - 1 : 3;
+                            rotateToStep(newStep);
+                        } else {
+                            // Swipe left - go to next step
+                            const newStep = currentStep < 3 ? currentStep + 1 : 1;
+                            rotateToStep(newStep);
+                        }
+                    }
+                }
+            });
+        </script>
+
+        <section id="why-ingrid" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6 md:flex items-center justify-between">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4"><u>We Are Not Another LLM</u></h2>
+                    <p class="text-gray-600 text-lg mb-6">Generative AI is powerful for drafting arguments, but it's probabilistic and cannot be trusted with procedural compliance. A single hallucinated deadline is malpractice.</p>
+                    <p class="text-gray-600 text-lg">Ingrid is different. Our core technology revolves around a <b>deterministic rules engine</b> built on a proprietary, human-verified database. We don't guess. We verify. Our value isn't a plausible-sounding answer; it's guaranteed accuracy.</p>
+                </div>
+                <div class="md:w-1/2 lg:w-2/5">
+                    <div class="feature-card rounded-2xl p-8">
+                        <h4 class="text-lg font-bold text-gray-900">Ingrid</h4>
+                        <p class="text-sm text-pink-600 mb-4">The Procedural Engine</p>
+                        <ul class="space-y-3 text-gray-700">
+                           <li class="flex items-start"><svg class="w-5 h-5 mr-2 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Solves "How do I file this correctly?"</li>
+                           <li class="flex items-start"><svg class="w-5 h-5 mr-2 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Built on a human-verified database.</li>
+                           <li class="flex items-start"><svg class="w-5 h-5 mr-2 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Provides deterministic, provably correct answers.</li>
+                        </ul>
+                        <div class="h-px bg-gray-200 my-6"></div>
+                        <h4 class="text-lg font-bold text-gray-900">Other AI Legal Research Tools</h4>
+                        <p class="text-sm text-gray-500 mb-4">The Substantive Engine</p>
+                         <ul class="space-y-3 text-gray-700">
+                           <li class="flex items-start"><svg class="w-5 h-5 mr-2 text-red-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>Solves "What should this document say?"</li>
+                           <li class="flex items-start"><svg class="w-5 h-5 mr-2 text-red-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>Based on a probabilistic LLM.</li>
+                           <li class="flex items-start"><svg class="w-5 h-5 mr-2 text-red-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>Generates plausible-sounding text.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="beta" class="py-20 text-center">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Interested?</h2>
+                <h1 class="text-2xl md:text-4xl font-bold text-gray-800 mb-4">Become an Ingrid Design Partner</h1>
+                <p class="text-gray-600 max-w-2xl mx-auto mb-8">
+                    We are launching a private beta for select litigation firms in the Bay Area. Join us to shape the future of procedural compliance and give your team an unfair advantage.
+                </p>
+                 <a href="mailto:support@ingrid.legal" class="cta-button bg-pink-600 hover:bg-pink-500 text-white font-bold px-8 py-4 rounded-lg text-lg">
+                    Request Beta Access
+                </a>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Corrected Logo Cloud Section -->
+    <div class="bg-white py-12">
+        <div class="container mx-auto px-6">
+            <p class="text-center text-gray-500 font-semibold mb-8">Our team's experience comes from the world's most innovative companies</p>
+            <div class="relative h-16 w-full overflow-hidden" style="mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);">
+                <div class="flex absolute left-0">
+                    <div class="logo-track">
+                        <!-- First Set of Logos -->
+                        <div class="logo-item"><img src="intuit.jpg" alt="Intuit" class="h-12 object-contain" style="filter: grayscale(100%) opacity(0.7);"></div>
+                        <div class="logo-item"><img src="cisco.jpg" alt="Cisco" class="h-12 object-contain" style="filter: grayscale(100%) opacity(0.7);"></div>
+                        <div class="logo-item"><img src="amazon.jpg" alt="Amazon" class="h-8 object-contain" style="filter: grayscale(100%) opacity(0.7);"></div>
+                        <div class="logo-item"><img src="google.jpg" alt="Google" class="h-8 object-contain" style="filter: grayscale(100%) opacity(0.7);"></div>
+                        <div class="logo-item"><img src="scale.jpg" alt="Scale AI" class="h-12 object-contain" style="filter: grayscale(100%) opacity(0.7);"></div>
+                    </div>
+                    <div class="logo-track" aria-hidden="true">
+                         <!-- Second Set of Logos (for seamless loop) -->
+                        <div class="logo-item"><img src="intuit.jpg" alt="Intuit" class="h-12 object-contain" style="filter: grayscale(100%) opacity(0.7);"></div>
+                        <div class="logo-item"><img src="cisco.jpg" alt="Cisco" class="h-12 object-contain" style="filter: grayscale(100%) opacity(0.7);"></div>
+                        <div class="logo-item"><img src="amazon.jpg" alt="Amazon" class="h-8 object-contain" style="filter: grayscale(100%) opacity(0.7);"></div>
+                        <div class="logo-item"><img src="google.jpg" alt="Google" class="h-8 object-contain" style="filter: grayscale(100%) opacity(0.7);"></div>
+                        <div class="logo-item"><img src="scale.jpg" alt="Scale AI" class="h-12 object-contain" style="filter: grayscale(100%) opacity(0.7);"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-100 border-t border-gray-200">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-500">
+            <p>&copy; 2025 Ingrid Technologies Inc. All rights reserved.</p>
+            <p class="text-sm mt-2">Ingrid provides procedural information and workflow automation tools. It does not provide legal advice.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Hero background animation
+        const canvas = document.createElement('canvas');
+        const container = document.getElementById('canvas-container');
+        if (container) {
+            container.appendChild(canvas);
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            
+            function resizeCanvas() {
+                canvas.width = container.offsetWidth;
+                canvas.height = container.offsetHeight;
+            }
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 2 + 1;
+                    this.speedX = Math.random() * 1 - 0.5;
+                    this.speedY = Math.random() * 1 - 0.5;
+                }
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    if (this.size > 0.2) this.size -= 0.01;
+                }
+                draw() {
+                    ctx.fillStyle = 'rgba(236, 72, 153, 0.4)'; // Pink particles
+                    ctx.strokeStyle = 'rgba(236, 72, 153, 0.4)'; // Pink particles
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.closePath();
+                    ctx.fill();
+                }
+            }
+
+            function handleParticles() {
+                for (let i = 0; i < particles.length; i++) {
+                    particles[i].update();
+                    particles[i].draw();
+                    if (particles[i].size <= 0.3) {
+                        particles.splice(i, 1);
+                        i--;
+                    }
+                }
+            }
+
+            function animate() {
+                if(!ctx) return;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                handleParticles();
+                requestAnimationFrame(animate);
+            }
+
+            window.addEventListener('resize', resizeCanvas);
+            
+            document.addEventListener('DOMContentLoaded', () => {
+                resizeCanvas();
+                setInterval(() => {
+                    if(particles.length < 100) {
+                        for(let i=0; i < 10; i++){
+                             particles.push(new Particle());
+                        }
+                    }
+                }, 500);
+                animate();
+            });
+        }
+
+
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-section');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in-section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+
+</body>
+</html>

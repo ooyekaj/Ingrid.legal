@@ -1,0 +1,282 @@
+class CriticalSections {
+  static getCriticalSections() {
+    /**
+     * Returns the list of critical sections that answer the 6 filing questions:
+     * WHEN, HOW, WHERE, WHAT, WHO, FORMAT for document filing procedures
+     */
+    return [
+      // CRITICAL SUMMARY JUDGMENT FILING REQUIREMENTS (WHAT must be included)
+      {
+        ruleNumber: '437c',
+        title: 'CCP Section 437c - Summary Judgment Motion Requirements (WHAT: Notice, Separate Statement, Points & Authorities, Evidence)',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=437c',
+        source: 'critical_filing_question_WHAT'
+      },
+      
+      // WHEN - Critical Filing Deadlines and Timing Rules
+      {
+        ruleNumber: '1005',
+        title: 'CCP Section 1005 - Motion Filing Deadlines (WHEN: 16 court days notice, 9 days opposition, 5 days reply)',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1005',
+        source: 'critical_filing_question_WHEN'
+      },
+      {
+        ruleNumber: '1013',
+        title: 'CCP Section 1013 - Service Time Extensions (WHEN: +5 days CA, +10 out-of-state, +2 court days fax)',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1013',
+        source: 'critical_filing_question_WHEN'
+      },
+      {
+        ruleNumber: '12',
+        title: 'CCP Section 12 - Time Computation Rules (WHEN: How to calculate filing deadlines)',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=12',
+        source: 'critical_filing_question_WHEN'
+      },
+      {
+        ruleNumber: '430.30',
+        title: 'CCP Section 430.30 - Demurrer Filing Deadline (WHEN: 30 days after service)',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=430.30',
+        source: 'critical_filing_question_WHEN'
+      },
+      {
+        ruleNumber: '2024.020',
+        title: 'CCP Section 2024.020 - Discovery Cutoff (WHEN: 30 days before trial)',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2024.020',
+        source: 'critical_filing_question_WHEN'
+      },
+      {
+        ruleNumber: '2030.300',
+        title: 'CCP Section 2030.300 - Motion to Compel Interrogatories (WHEN: 45-day deadline)',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2030.300',
+        source: 'critical_filing_question_WHEN'
+      },
+      {
+        ruleNumber: '2031.310',
+        title: 'CCP Section 2031.310 - Motion to Compel Documents (WHEN: 45-day deadline)',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2031.310',
+        source: 'critical_filing_question_WHEN'
+      },
+      {
+        ruleNumber: '2025.480',
+        title: 'CCP Section 2025.480 - Motion to Compel Deposition (WHEN: 60-day deadline)',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2025.480',
+        source: 'critical_filing_question_WHEN'
+      },
+      
+      // HOW - Critical Filing Procedures and Methods
+      {
+        ruleNumber: '1010',
+        title: 'CCP Section 1010 - Service Methods (HOW: Mail, personal, electronic service procedures)',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1010',
+        source: 'critical_filing_question_HOW'
+      },
+      {
+        ruleNumber: '1010.6',
+        title: 'CCP Section 1010.6 - Electronic Filing Procedures (HOW: Electronic service requirements)',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1010.6',
+        source: 'critical_filing_question_HOW'
+      },
+      {
+        ruleNumber: '430.10',
+        title: 'CCP Section 430.10 - Demurrer Grounds (HOW: Proper grounds for demurrer)',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=430.10',
+        source: 'critical_filing_question_HOW'
+      },
+      {
+        ruleNumber: '430.20',
+        title: 'CCP Section 430.20 - Demurrer Procedure (HOW: Filing procedure for demurrer)',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=430.20',
+        source: 'critical_filing_question_HOW'
+      },
+      {
+        ruleNumber: '430.41',
+        title: 'CCP Section 430.41 - Meet and Confer for Demurrer (HOW: Required meet and confer procedure)',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=430.41',
+        source: 'critical_filing_question_HOW'
+      },
+      {
+        ruleNumber: '435',
+        title: 'CCP Section 435 - Motion to Strike Procedure (HOW: Filing motion to strike)',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=435',
+        source: 'critical_filing_question_HOW'
+      },
+      {
+        ruleNumber: '472',
+        title: 'CCP Section 472 - Amendment Procedure (HOW: How to amend pleadings)',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=472',
+        source: 'critical_filing_question_HOW'
+      },
+      {
+        ruleNumber: '1003',
+        title: 'CCP Section 1003 - Ex Parte Application Procedure (HOW: Emergency filing procedures)',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1003',
+        source: 'critical_filing_question_HOW'
+      },
+      {
+        ruleNumber: '473',
+        title: 'CCP Section 473 - Relief from Default (HOW: Procedure to fix filing errors)',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=473',
+        source: 'critical_filing_question_HOW'
+      },
+      
+      // WHERE - Venue and Jurisdiction for Filing
+      {
+        ruleNumber: '392',
+        title: 'CCP Section 392 - Proper Venue (WHERE: County requirements for filing)',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=392',
+        source: 'critical_filing_question_WHERE'
+      },
+      {
+        ruleNumber: '410.10',
+        title: 'CCP Section 410.10 - Jurisdiction (WHERE: Proper court for filing)',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=410.10',
+        source: 'critical_filing_question_WHERE'
+      },
+      {
+        ruleNumber: '411.10',
+        title: 'CCP Section 411.10 - Commencing Actions (WHERE: Proper court for initial filing)',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=411.10',
+        source: 'critical_filing_question_WHERE'
+      },
+      
+      // WHAT - Required Document Contents and Components
+      {
+        ruleNumber: '425.10',
+        title: 'CCP Section 425.10 - Complaint Contents (WHAT: Required complaint elements)',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=425.10',
+        source: 'critical_filing_question_WHAT'
+      },
+      {
+        ruleNumber: '425.11',
+        title: 'CCP Section 425.11 - Complaint Caption (WHAT: Caption format requirements)',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=425.11',
+        source: 'critical_filing_question_WHAT'
+      },
+      {
+        ruleNumber: '425.12',
+        title: 'CCP Section 425.12 - Verification Requirements (WHAT: When verification required)',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=425.12',
+        source: 'critical_filing_question_WHAT'
+      },
+      {
+        ruleNumber: '431.30',
+        title: 'CCP Section 431.30 - Answer Contents (WHAT: Required answer elements)',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=431.30',
+        source: 'critical_filing_question_WHAT'
+      },
+      {
+        ruleNumber: '426.10',
+        title: 'CCP Section 426.10 - Cross-Complaint Requirements (WHAT: Required cross-complaint elements)',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=426.10',
+        source: 'critical_filing_question_WHAT'
+      },
+      {
+        ruleNumber: '1014',
+        title: 'CCP Section 1014 - Proof of Service (WHAT: Required proof of service contents)',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1014',
+        source: 'critical_filing_question_WHAT'
+      },
+      {
+        ruleNumber: '2025.010',
+        title: 'CCP Section 2025.010 - Deposition Notice (WHAT: Required deposition notice contents)',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2025.010',
+        source: 'critical_filing_question_WHAT'
+      },
+      {
+        ruleNumber: '2030.010',
+        title: 'CCP Section 2030.010 - Interrogatory Requirements (WHAT: Required interrogatory format)',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2030.010',
+        source: 'critical_filing_question_WHAT'
+      },
+      {
+        ruleNumber: '2031.010',
+        title: 'CCP Section 2031.010 - Document Request Requirements (WHAT: Required document request format)',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2031.010',
+        source: 'critical_filing_question_WHAT'
+      },
+      {
+        ruleNumber: '664',
+        title: 'CCP Section 664 - Judgment Filing Requirements (WHAT: Required judgment contents)',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=664',
+        source: 'critical_filing_question_WHAT'
+      },
+      
+      // WHO - Capacity and Authority to File
+      {
+        ruleNumber: '367',
+        title: 'CCP Section 367 - Capacity to Sue (WHO: Who has authority to file)',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=367',
+        source: 'critical_filing_question_WHO'
+      },
+      {
+        ruleNumber: '372',
+        title: 'CCP Section 372 - Minor/Incapacitated Persons (WHO: Authority for minors/incapacitated)',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=372',
+        source: 'critical_filing_question_WHO'
+      },
+      
+      // FORMAT - Document Formatting Requirements
+      {
+        ruleNumber: '128.7',
+        title: 'CCP Section 128.7 - Document Format Standards (FORMAT: Required document formatting)',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=128.7',
+        source: 'critical_filing_question_FORMAT'
+      },
+      
+      // CRITICAL WRIT AND SPECIAL PROCEDURE FILING REQUIREMENTS
+      {
+        ruleNumber: '1086',
+        title: 'CCP Section 1086 - Writ of Mandate Filing (WHAT/HOW: Required petition contents and procedure)',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1086',
+        source: 'critical_filing_question_WHAT_HOW'
+      },
+      {
+        ruleNumber: '1094.5',
+        title: 'CCP Section 1094.5 - Administrative Mandate Filing (WHAT/HOW: Required administrative petition contents)',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1094.5',
+        source: 'critical_filing_question_WHAT_HOW'
+      },
+      {
+        ruleNumber: '527',
+        title: 'CCP Section 527 - TRO Filing Requirements (WHAT/HOW: Emergency relief filing requirements)',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=527',
+        source: 'critical_filing_question_WHAT_HOW'
+      }
+    ];
+  }
+
+  static getAdditionalCriticalSubsections() {
+    return [
+      // Summary Judgment Rules
+      {
+        ruleNumber: '437c',
+        title: 'CCP Section 437c - Summary Judgment Motions',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=437c',
+        source: 'manual_critical_addition'
+      },
+      {
+        ruleNumber: '438',
+        title: 'CCP Section 438 - Summary Judgment Procedure',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=438',
+        source: 'manual_critical_addition'
+      },
+      
+      // Service and Filing Rules (CCP 1000-1020)
+      {
+        ruleNumber: '1005',
+        title: 'CCP Section 1005 - Motion Deadlines and Notice Requirements (16 court days notice, 9 days for opposition, 5 days for reply)',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1005',
+        source: 'manual_critical_addition'
+      },
+      {
+        ruleNumber: '1010',
+        title: 'CCP Section 1010 - Service Methods and Requirements',
+        url: 'https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1010',
+        source: 'manual_critical_addition'
+      },
+      // ... (continuing with all the other sections from the original getCriticalSections method)
+    ];
+  }
+}
+
+module.exports = CriticalSections; 

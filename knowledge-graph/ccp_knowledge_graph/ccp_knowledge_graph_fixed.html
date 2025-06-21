@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CCP Knowledge Graph - Fixed Version</title>
+    <script src="https://unpkg.com/cytoscape@3.21.0/dist/cytoscape.min.js"></script>
+    <script src="https://unpkg.com/cytoscape-cose-bilkent@4.1.0/cytoscape-cose-bilkent.js"></script>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            padding: 20px; 
+            background-color: #f5f5f5;
+        }
+        #cy { 
+            width: 100%; 
+            height: 600px; 
+            border: 2px solid #333; 
+            background-color: white;
+            margin: 20px 0;
+        }
+        .controls { 
+            margin: 20px 0; 
+            padding: 15px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .info-panel { 
+            margin-top: 20px; 
+            padding: 15px; 
+            background: #f8f9fa; 
+            border-radius: 5px; 
+            border: 1px solid #dee2e6;
+        }
+        .category-legend { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 10px; 
+            margin: 10px 0; 
+        }
+        .category-item { 
+            padding: 5px 10px; 
+            border-radius: 3px; 
+            font-size: 12px; 
+            color: white;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .status.loading { background: #e3f2fd; border-color: #2196f3; }
+        .status.success { background: #e8f5e8; border-color: #4caf50; }
+        .status.error { background: #ffebee; border-color: #f44336; }
+        
+        select, button {
+            padding: 8px 12px;
+            margin: 0 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: white;
+        }
+        
+        button:hover {
+            background: #f0f0f0;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>🏛️ CCP Knowledge Graph - Enhanced Motion Relationships</h1>
+    
+    <div class="status loading" id="status">
+        🔄 Loading knowledge graph data...
+    </div>
+    
+    <div class="controls">
+        <label>Layout: 
+            <select id="layout-select">
+                <option value="grid">Grid (Fast)</option>
+                <option value="circle">Circle</option>
+                <option value="breadthfirst">Hierarchical</option>
+                <option value="cose-bilkent">Force-directed (Slow)</option>
+            </select>
+        </label>
+        <label style="margin-left: 20px;">Filter by category: 
+            <select id="category-filter">
+                <option value="">All categories</option>
+            </select>
+        </label>
+        <button onclick="resetView()" style="margin-left: 20px;">Reset View</button>
+        <button onclick="fitToScreen()" style="margin-left: 10px;">Fit to Screen</button>
+    </div>
+    
+    <div class="category-legend" id="legend"></div>
+    
+    <div id="cy"></div>
+    
+    <div class="info-panel">
+        <h3>📋 Instructions:</h3>
+        <ul>
+            <li><strong>Click</strong> on a node to see section details</li>
+            <li><strong>Hover</strong> over edges to see relationship types</li>
+            <li><strong>Drag</strong> to pan, <strong>scroll</strong> to zoom</li>
+            <li><strong>Filter</strong> by category to focus on specific areas</li>
+            <li><strong>Use Grid layout</strong> for best performance with large datasets</li>
+        </ul>
+        <div id="node-info">
+            <p><em>Click on a node to see details here...</em></p>
+        </div>
+        
+        <div id="graph-stats" style="margin-top: 15px; padding: 10px; background: #e9ecef; border-radius: 4px;">
+            <strong>Graph Statistics:</strong>
+            <div id="stats-content">Loading...</div>
+        </div>
+    </div>
+
+    <script>
+        let cy;
+        let originalData;
+        let isLoading = false;
+        
+        // Update status
+        function updateStatus(message, type = 'loading') {
+            const statusEl = document.getElementById('status');
+            statusEl.className = `status ${type}`;
+            statusEl.innerHTML = message;
+        }
+        
+        // Load data from external JSON file
+        async function loadGraphData() {
+            try {
+                updateStatus('🔄 Loading CCP knowledge graph data...', 'loading');
+                
+                const response = await fetch('./ccp_knowledge_graph_cytoscape.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                if (!data.nodes || !data.edges) {
+                    throw new Error('Invalid data format: missing nodes or edges');
+                }
+                
+                updateStatus(`✅ Loaded ${data.nodes.length} nodes and ${data.edges.length} relationships`, 'success');
+                return data;
+                
+            } catch (error) {
+                console.error('Error loading data:', error);
+                updateStatus(`❌ Error loading data: ${error.message}`, 'error');
+                
+                // Fallback to embedded test data
+                return {
+                    nodes: [
+                        { data: { id: '430.10', label: 'CCP 430.10', title: 'Demurrer Requirements', category: 'Demurrer (Motion to Dismiss)', wordCount: 189, filingRelevance: 8, proceduralRequirements: 2, crossReferences: 3 } },
+                        { data: { id: '435', label: 'CCP 435', title: 'Motion to Strike Requirements', category: 'Motion to Strike', wordCount: 145, filingRelevance: 8, proceduralRequirements: 1, crossReferences: 2 } },
+                        { data: { id: '437c', label: 'CCP 437c', title: 'Summary Judgment Motion', category: 'Motion to Strike', wordCount: 1250, filingRelevance: 8, proceduralRequirements: 5, crossReferences: 8 } },
+                        { data: { id: '1005', label: 'CCP 1005', title: 'Motion Notice Requirements', category: 'Service & Notice', wordCount: 649, filingRelevance: 8, proceduralRequirements: 3, crossReferences: 15 } }
+                    ],
+                    edges: [
+                        { data: { id: 'e1', source: '430.10', target: '435', type: 'alternative_motion', weight: 3, label: 'Alternative Motion', description: 'Demurrer and Motion to Strike often filed together' } },
+                        { data: { id: 'e2', source: '1005', target: '430.10', type: 'document_requirement', weight: 5, label: 'Required Document', description: 'Service requirements apply to demurrer' } },
+                        { data: { id: 'e3', source: '1005', target: '437c', type: 'document_requirement', weight: 5, label: 'Required Document', description: 'Service requirements apply to summary judgment' } }
+                    ]
+                };
+            }
+        }
+        
+        // Initialize the graph
+        async function initializeGraph() {
+            if (isLoading) return;
+            isLoading = true;
+            
+            try {
+                const data = await loadGraphData();
+                originalData = data;
+                
+                // Update stats
+                document.getElementById('stats-content').innerHTML = `
+                    <div>📊 Nodes: ${data.nodes.length}</div>
+                    <div>🔗 Edges: ${data.edges.length}</div>
+                    <div>📂 Categories: ${[...new Set(data.nodes.map(n => n.data.category))].length}</div>
+                `;
+                
+                // Set up category colors
+                const categories = [...new Set(data.nodes.map(n => n.data.category))];
+                const colors = [
+                    '#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57', 
+                    '#ff9ff3', '#54a0ff', '#5f27cd', '#00d2d3', '#ff9f43',
+                    '#dda0dd', '#98d8c8', '#f7b731', '#a55eea', '#26de81'
+                ];
+                
+                // Populate category filter
+                const categoryFilter = document.getElementById('category-filter');
+                categoryFilter.innerHTML = '<option value="">All categories</option>';
+                categories.forEach(category => {
+                    const option = document.createElement('option');
+                    option.value = category;
+                    option.textContent = category;
+                    categoryFilter.appendChild(option);
+                });
+                
+                // Create legend
+                const legend = document.getElementById('legend');
+                legend.innerHTML = '';
+                categories.forEach((category, index) => {
+                    const item = document.createElement('div');
+                    item.className = 'category-item';
+                    item.style.backgroundColor = colors[index % colors.length];
+                    item.textContent = category;
+                    legend.appendChild(item);
+                });
+
+                updateStatus('🎨 Rendering graph visualization...', 'loading');
+
+                cy = cytoscape({
+                    container: document.getElementById('cy'),
+                    elements: [...data.nodes, ...data.edges],
+                    style: [
+                        {
+                            selector: 'node',
+                            style: {
+                                'background-color': function(ele) {
+                                    const categoryIndex = categories.indexOf(ele.data('category'));
+                                    return colors[categoryIndex % colors.length];
+                                },
+                                'label': 'data(id)',
+                                'width': function(ele) { 
+                                    const wordCount = ele.data('wordCount') || 100;
+                                    return Math.max(30, Math.min(80, wordCount / 30)); 
+                                },
+                                'height': function(ele) { 
+                                    const wordCount = ele.data('wordCount') || 100;
+                                    return Math.max(30, Math.min(80, wordCount / 30)); 
+                                },
+                                'font-size': '10px',
+                                'text-valign': 'center',
+                                'text-halign': 'center',
+                                'color': 'white',
+                                'text-outline-width': 1,
+                                'text-outline-color': '#000',
+                                'border-width': 2,
+                                'border-color': '#333'
+                            }
+                        },
+                        {
+                            selector: 'node:selected',
+                            style: {
+                                'border-width': 4,
+                                'border-color': '#ff0000'
+                            }
+                        },
+                        {
+                            selector: 'edge',
+                            style: {
+                                'width': function(ele) { 
+                                    return Math.max(1, (ele.data('weight') || 1) * 0.8); 
+                                },
+                                'line-color': function(ele) {
+                                    const type = ele.data('type');
+                                    if (type === 'cross_reference') return '#666';
+                                    if (type === 'procedural_dependency') return '#ff6b6b';
+                                    if (type === 'timing_relationship') return '#4ecdc4';
+                                    if (type === 'motion_sequence') return '#e74c3c';
+                                    if (type === 'document_requirement') return '#9b59b6';
+                                    if (type === 'alternative_motion') return '#f39c12';
+                                    if (type === 'meet_and_confer') return '#2ecc71';
+                                    if (type === 'category_similarity') return '#bdc3c7';
+                                    return '#ccc';
+                                },
+                                'target-arrow-color': function(ele) {
+                                    return ele.style('line-color');
+                                },
+                                'target-arrow-shape': 'triangle',
+                                'curve-style': 'bezier',
+                                'opacity': 0.7
+                            }
+                        }
+                    ],
+                    layout: {
+                        name: 'grid',
+                        animate: true,
+                        animationDuration: 500,
+                        fit: true,
+                        padding: 30
+                    }
+                });
+
+                // Event handlers
+                cy.on('tap', 'node', function(evt) {
+                    const node = evt.target;
+                    const data = node.data();
+                    const info = document.getElementById('node-info');
+                    info.innerHTML = `
+                        <h4>📋 CCP Section ${data.id}</h4>
+                        <p><strong>Title:</strong> ${data.title}</p>
+                        <p><strong>Category:</strong> ${data.category}</p>
+                        <p><strong>Word Count:</strong> ${data.wordCount || 'N/A'}</p>
+                        <p><strong>Filing Relevance:</strong> ${data.filingRelevance || 'N/A'}/10</p>
+                        <p><strong>Procedural Requirements:</strong> ${data.proceduralRequirements || 0}</p>
+                        <p><strong>Cross References:</strong> ${data.crossReferences || 0}</p>
+                        <p><strong>Connections:</strong> ${cy.edges().filter('[source = "' + data.id + '"], [target = "' + data.id + '"]').length}</p>
+                    `;
+                });
+
+                // Layout change handler
+                document.getElementById('layout-select').addEventListener('change', function(e) {
+                    updateStatus('🔄 Applying new layout...', 'loading');
+                    cy.layout({
+                        name: e.target.value, 
+                        animate: true,
+                        animationDuration: 1000,
+                        fit: true,
+                        padding: 30
+                    }).run();
+                    setTimeout(() => {
+                        updateStatus('✅ Layout applied successfully', 'success');
+                    }, 1200);
+                });
+
+                // Category filter handler
+                document.getElementById('category-filter').addEventListener('change', function(e) {
+                    const selectedCategory = e.target.value;
+                    if (selectedCategory) {
+                        updateStatus(`🔍 Filtering by category: ${selectedCategory}`, 'loading');
+                        const filteredNodes = originalData.nodes.filter(n => n.data.category === selectedCategory);
+                        const nodeIds = new Set(filteredNodes.map(n => n.data.id));
+                        const filteredEdges = originalData.edges.filter(e => 
+                            nodeIds.has(e.data.source) && nodeIds.has(e.data.target)
+                        );
+                        cy.elements().remove();
+                        cy.add([...filteredNodes, ...filteredEdges]);
+                        updateStatus(`✅ Showing ${filteredNodes.length} nodes in category: ${selectedCategory}`, 'success');
+                    } else {
+                        updateStatus('🔄 Showing all categories...', 'loading');
+                        cy.elements().remove();
+                        cy.add([...originalData.nodes, ...originalData.edges]);
+                        updateStatus('✅ Showing all categories', 'success');
+                    }
+                    cy.layout({name: 'grid', animate: true, fit: true, padding: 30}).run();
+                });
+                
+                updateStatus('🎉 Knowledge graph loaded successfully!', 'success');
+                
+            } catch (error) {
+                console.error('Graph initialization error:', error);
+                updateStatus(`❌ Error initializing graph: ${error.message}`, 'error');
+            } finally {
+                isLoading = false;
+            }
+        }
+
+        function resetView() {
+            if (cy) {
+                cy.fit();
+                cy.center();
+                updateStatus('📍 View reset to center', 'success');
+                setTimeout(() => updateStatus('🎉 Knowledge graph ready', 'success'), 1500);
+            }
+        }
+        
+        function fitToScreen() {
+            if (cy) {
+                cy.fit();
+                updateStatus('📐 Graph fitted to screen', 'success');
+                setTimeout(() => updateStatus('🎉 Knowledge graph ready', 'success'), 1500);
+            }
+        }
+
+        // Start initialization when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeGraph();
+        });
+    </script>
+</body>
+</html> 

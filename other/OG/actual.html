@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive MSJ Timeline & Flowchart</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+
+        /* --- Timeline Styles (Kept Spread Out) --- */
+        .timeline-container {
+            position: relative;
+            padding-left: 180px;
+        }
+        .timeline-grid {
+            position: absolute;
+            top: 50px;
+            left: 180px;
+            right: 20px;
+            bottom: 0;
+            display: grid;
+            grid-template-columns: repeat(20, 1fr); /* For 200 days */
+            gap: 0;
+            border-left: 1px solid #e2e8f0;
+        }
+        .timeline-grid-line { border-right: 1px solid #e2e8f0; }
+        .day-markers {
+            position: absolute;
+            top: 20px;
+            left: 180px;
+            right: 20px;
+            height: 30px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #64748b;
+        }
+        .day-marker { position: absolute; transform: translateX(-50%); }
+        .phase-group { position: relative; padding-top: 32px; padding-bottom: 32px; }
+        .phase-label {
+            position: absolute;
+            left: -180px;
+            width: 160px;
+            text-align: right;
+            padding-right: 20px;
+            top: 32px;
+        }
+        .timeline-bar {
+            position: absolute;
+            height: 28px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            font-size: 12px;
+            font-weight: 500;
+            color: white;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .timeline-bar:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .phase-a { background-color: #4f46e5; }
+        .phase-b { background-color: #f59e0b; }
+        .phase-c { background-color: #ef4444; }
+
+        /* --- Flowchart Styles (Spread Out) --- */
+        .flowchart-section { padding: 40px; }
+        .flowchart {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+            overflow-x: auto;
+            width: 100%;
+        }
+        /* Flex container for the main flow and the outcomes */
+        .flowchart-inner-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 100px; /* Provides space between Court Order and outcomes for arrows */
+            min-width: 1400px;
+            padding-left: 20px; /* <-- ADD THIS LINE */
+        }
+        .flowchart-inner {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 80px; /* Match arrow width exactly */
+        }
+        .node {
+            position: relative;
+            width: 180px;
+            padding: 24px 20px;
+            border-radius: 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            flex-shrink: 0; /* Prevent nodes from shrinking */
+        }
+        .node:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); }
+        .node-icon { font-size: 36px; margin-bottom: 12px; display: block; }
+        .node-title { font-size: 16px; font-weight: 600; margin-bottom: 4px; color: #2c3e50; }
+        .node-subtitle { font-size: 13px; color: #6c757d; }
+        .node-plaintiff { background-color: #d1fae5; border-color: #6ee7b7; }
+        .node-defendant { background-color: #dbeafe; border-color: #93c5fd; }
+        .node-court { background-color: #e9d5ff; border-color: #c084fc; }
+        .node-decision { background-color: #e0e7ff; border: 3px solid #a78bfa; box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.1); }
+
+        /* Container for the vertical outcome nodes */
+        .outcome-column {
+            display: flex;
+            flex-direction: column;
+            gap: 40px; /* Equal spacing between outcome nodes */
+            flex-shrink: 0;
+        }
+        .outcome-node {
+            width: 180px;
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+        .outcome-node:hover { transform: scale(1.05); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); }
+
+        /* Removed absolute positioning, these just define colors now */
+        .outcome-granted { background-color: #fee2e2; border: 2px solid #fca5a5; }
+        .outcome-denied { background-color: #dbeafe; border: 2px solid #93c5fd; }
+        .outcome-partial { background-color: #d1fae5; border: 2px solid #6ee7b7; }
+
+        .arrow { position: absolute; height: 2px; background-color: #4b5563; transform-origin: left center; }
+        .arrow::after {
+            content: ''; position: absolute; right: -8px; top: 50%; transform: translateY(-50%);
+            width: 0; height: 0; border-left: 8px solid #4b5563;
+            border-top: 5px solid transparent; border-bottom: 5px solid transparent;
+        }
+        .arrow-horizontal { width: 80px; top: 50%; transform: translateY(-50%); }
+        .arrow-left { right: 100%; }
+        .arrow-right { left: 100%; }
+
+        /* SVG container for arrows */
+        #outcome-arrows {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .legend {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 32px; margin-top: 40px;
+            padding-top: 32px; border-top: 1px solid #e5e7eb;
+        }
+        .legend-item { display: flex; align-items: center; gap: 8px; font-size: 14px; color: #6b7280; }
+        .legend-color { width: 20px; height: 20px; border-radius: 4px; border: 2px solid; }
+
+        /* --- Unified Modal Styles --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.6); display: flex; align-items: center; justify-content: center;
+            z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.3s ease; backdrop-filter: blur(4px);
+        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal-content {
+            background: white; border-radius: 16px; padding: 32px; max-width: 600px; width: 90%;
+            max-height: 80vh; overflow-y: auto; transform: scale(0.95); transition: transform 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .modal-overlay.active .modal-content { transform: scale(1); }
+        .modal-header { display: flex; align-items: center; margin-bottom: 20px; }
+        .modal-icon { font-size: 40px; margin-right: 16px; }
+        .modal-title { font-size: 24px; font-weight: 600; color: #2c3e50; }
+        .modal-close {
+            position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; border: none;
+            background: #f3f4f6; border-radius: 50%; cursor: pointer; display: flex;
+            align-items: center; justify-content: center; transition: all 0.2s;
+        }
+        .modal-close:hover { background: #e5e7eb; }
+        .info-section { margin-bottom: 24px; }
+        .info-section h3 { font-size: 16px; font-weight: 600; color: #4b5563; margin-bottom: 8px; }
+        .info-section p { color: #6b7280; line-height: 1.6; }
+        .info-section ul { list-style-type: disc; margin-left: 20px; color: #6b7280; }
+        .info-section ul li { margin-bottom: 4px; }
+        .deadline-box {
+            background: #fef3c7; border: 1px solid #fcd34d; border-radius: 8px;
+            padding: 12px 16px; margin-top: 16px; display: flex; align-items: center; gap: 8px;
+        }
+        .deadline-box strong { color: #d97706; }
+    </style>
+</head>
+<body class="p-4 sm:p-6 md:p-8">
+
+    <div class="max-w-7xl mx-auto bg-white rounded-2xl shadow-lg p-6 sm:p-8">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8">
+            <div>
+                <h1 class="text-2xl sm:text-3xl font-bold text-gray-800">MSJ Timeline</h1>
+                <p class="mt-1 text-gray-500">An interactive guide to key filings and deadlines.</p>
+            </div>
+            <span class="mt-4 sm:mt-0 inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-700">Not Legal Advice</span>
+        </div>
+        <p class="text-sm text-gray-600 max-w-4xl mb-8">This timeline illustrates the general procedure for an MSJ in many jurisdictions. Deadlines can vary significantly. Always consult the relevant rules of civil procedure. Click any bar for details.</p>
+        <div class="relative overflow-x-auto pb-8">
+            <div class="timeline-container min-w-[1400px]">
+                <div class="day-markers"></div>
+                <div class="timeline-grid"></div>
+                <div class="phase-group" style="padding-top: 60px;">
+                    <div class="phase-label">
+                        <div class="flex items-center justify-end">
+                            <h3 class="font-semibold text-gray-700">Phase A: Filing</h3><span class="w-3 h-3 rounded-full bg-indigo-600 ml-2"></span>
+                        </div>
+                        <p class="text-xs text-gray-500">Movant Prepares & Files</p>
+                    </div>
+                    <div class="relative h-16">
+                        <div class="timeline-bar phase-a" style="left: calc(0/200 * 100%); width: calc(20/200 * 100%);" onclick="showTimelineModal('Prepare MSJ', '📋', 'This is the initial drafting phase. The moving party prepares a comprehensive package including:<br><br><ul><li>- <b>Notice of Motion & Motion</b></li><li>- <b>Memorandum of Points & Authorities</b></li><li>- <b>Separate Statement of Undisputed Facts</b></li><li>- <b>Supporting Evidence (Declarations, etc.)</b></li></ul>')">Prepare Motion</div>
+                    </div>
+                    <div class="relative h-16">
+                         <div class="timeline-bar phase-a" style="left: calc(20/200 * 100%); width: calc(10/200 * 100%);" onclick="showTimelineModal('File & Serve MSJ', '📬', 'The motion must be filed with the court and formally served on the opposing party.<br><br><b>Key Deadline (CA):</b> At least <b>75 calendar days</b> before the hearing. This is extended if served by mail.')">File & Serve</div>
+                    </div>
+                </div>
+                <div class="phase-group">
+                    <div class="phase-label">
+                         <div class="flex items-center justify-end">
+                             <h3 class="font-semibold text-gray-700">Phase B: Response</h3><span class="w-3 h-3 rounded-full bg-amber-500 ml-2"></span>
+                        </div>
+                        <p class="text-xs text-gray-500">Opposition & Reply</p>
+                    </div>
+                    <div class="relative h-16"><div class="timeline-bar phase-b" style="left: calc(75/200 * 100%); width: calc(15/200 * 100%);" onclick="showTimelineModal('Discovery Cutoff', '🔍', 'Discovery must typically be completed <b>30 days</b> before the MSJ hearing. No new evidence gathered after this date can usually be used to support or oppose the motion.')">Discovery Cutoff</div></div>
+                    <div class="relative h-16"><div class="timeline-bar phase-b" style="left: calc(91/200 * 100%); width: calc(10/200 * 100%);" onclick="showTimelineModal('File Opposition', '📄', 'The opposing party files their response to show there are triable issues of material fact.<br><br><b>Key Deadline (CA):</b> Due <b>14 calendar days</b> before the hearing.')">File Opposition</div></div>
+                    <div class="relative h-16"><div class="timeline-bar phase-a" style="left: calc(100/200 * 100%); width: calc(8/200 * 100%);" onclick="showTimelineModal('File Reply', '📑', 'The original moving party gets one last chance to respond in writing to the opposition. No new arguments are allowed.<br><br><b>Key Deadline (CA):</b> Due <b>5 calendar days</b> before the hearing.')">File Reply</div></div>
+                </div>
+                <div class="phase-group">
+                    <div class="phase-label">
+                         <div class="flex items-center justify-end">
+                            <h3 class="font-semibold text-gray-700">Phase C: Decision</h3><span class="w-3 h-3 rounded-full bg-red-600 ml-2"></span>
+                        </div>
+                        <p class="text-xs text-gray-500">Court Action</p>
+                    </div>
+                    <div class="relative h-16"><div class="timeline-bar phase-c" style="left: calc(105/200 * 100%); width: calc(10/200 * 100%);" onclick="showTimelineModal('MSJ Hearing', '👥', 'Parties present oral arguments. Many courts issue a tentative ruling beforehand. The hearing date (Day ~105 here) is the anchor from which deadlines are calculated.')">Hearing</div></div>
+                    <div class="relative h-16"><div class="timeline-bar phase-c" style="left: calc(115/200 * 100%); width: calc(40/200 * 100%);" onclick="showTimelineModal('Ruling & Order', '⚖️', 'The court issues a formal ruling. The outcomes can be: Granted, Denied, or Partial.')">Court Ruling & Order</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto bg-white rounded-2xl shadow-lg mt-8">
+        <div class="flowchart-section">
+            <div class="text-center mb-12">
+                <h1 class="text-2xl sm:text-3xl font-bold text-gray-800">MSJ Procedural Flowchart</h1>
+                <p class="mt-1 text-gray-500">Click any step for a detailed explanation.</p>
+            </div>
+            <div class="flowchart">
+                <div class="flowchart-inner-wrapper">
+                  <svg id="outcome-arrows"></svg>
+                  <div class="flowchart-inner" style="z-index:2;">
+                    <div class="node node-defendant" data-node="msj-filed"><span class="node-icon">📋</span><div class="node-title">MSJ Filed</div><div class="node-subtitle">Moving Party</div><div class="arrow arrow-horizontal arrow-right"></div></div>
+                    <div class="node node-plaintiff" data-node="opposition"><span class="node-icon">📄</span><div class="node-title">Opposition Filed</div><div class="node-subtitle">14 days pre-hearing</div><div class="arrow arrow-horizontal arrow-left"></div><div class="arrow arrow-horizontal arrow-right"></div></div>
+                    <div class="node node-defendant" data-node="reply"><span class="node-icon">📑</span><div class="node-title">Reply Brief</div><div class="node-subtitle">5 days pre-hearing</div><div class="arrow arrow-horizontal arrow-left"></div><div class="arrow arrow-horizontal arrow-right"></div></div>
+                    <div class="node node-court" data-node="hearing"><span class="node-icon">👥</span><div class="node-title">Hearing</div><div class="node-subtitle">Day 105+</div><div class="arrow arrow-horizontal arrow-left"></div><div class="arrow arrow-horizontal arrow-right"></div></div>
+                    <div class="node node-court" data-node="court-order" id="court-order-node"><span class="node-icon">⚖️</span><div class="node-title">Court Order</div><div class="node-subtitle" style="color: #7c3aed; font-weight: 600;">3 Possible Outcomes</div></div>
+                  </div>
+                  <div class="outcome-column" style="z-index:2;">
+                    <div class="outcome-node outcome-granted" data-node="judgment"><span class="node-icon">🏆</span><div class="node-title">MSJ Granted</div><div class="node-subtitle" style="color: #dc2626;">Case Dismissed</div></div>
+                    <div class="outcome-node outcome-denied" data-node="trial"><span class="node-icon">📘</span><div class="node-title">MSJ Denied</div><div class="node-subtitle" style="color: #2563eb;">Case Proceeds</div></div>
+                    <div class="outcome-node outcome-partial" data-node="partial"><span class="node-icon">✏️</span><div class="node-title">Partial MSJ</div><div class="node-subtitle" style="color: #059669;">Trial Narrowed</div></div>
+                  </div>
+                </div>
+            </div>
+            <div class="legend">
+                <div class="legend-item"><div class="legend-color" style="background-color: #dbeafe; border-color: #93c5fd;"></div><span>Moving Party</span></div>
+                <div class="legend-item"><div class="legend-color" style="background-color: #d1fae5; border-color: #6ee7b7;"></div><span>Opposing Party</span></div>
+                <div class="legend-item"><div class="legend-color" style="background-color: #e9d5ff; border-color: #c084fc;"></div><span>Court</span></div>
+                <div class="legend-item"><div class="legend-color" style="background-color: #fee2e2; border-color: #fca5a5;"></div><span>Case Ends</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+            <div id="modal-body-content"></div>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('modal');
+        const modalBody = document.getElementById('modal-body-content');
+
+        // --- Data for Flowchart Modals ---
+        const nodeData = {
+            'msj-filed':{title:'Motion for Summary Judgment Filed',icon:'📋',sections:[{title:'Overview',content:'The moving party (usually defendant) files a motion arguing there are no genuine disputes of material fact and they are entitled to judgment as a matter of law.'},{title:'Required Documents',list:['Notice of Motion','Memorandum of Points & Authorities (P&A)','Separate Statement of Undisputed Facts (SSUF)','Supporting declarations and evidence','Proposed order']},{title:'Critical Deadline',content:'Must be filed at least 75 days before hearing (+ days for mail/non-personal service)',isDeadline:true}]},
+            'opposition':{title:'Opposition to MSJ',icon:'📄',sections:[{title:'Overview',content:'The opposing party responds, arguing that material facts are disputed.'},{title:'Required Documents',list:['Opposition P&A','Response to SSUF','Additional Statement of Disputed Facts (if needed)','Supporting declarations & evidence','Objections to evidence']},{title:'Critical Deadline',content:'Must be filed and served 14 days before the hearing.',isDeadline:true},{title:'Key Strategy',content:'The main goal is to identify and present evidence of genuine disputes of material fact. Even one disputed material fact defeats summary judgment.'}]},
+            'reply':{title:'Reply Brief',icon:'📑',sections:[{title:'Overview',content:'The moving party\'s final brief responding to arguments from the opposition.'},{title:'Requirements',list:['Reply P&A (10 page limit)','Response to additional facts (if any)','Objections to opposition evidence']},{title:'Critical Deadline',content:'Must be filed 5 days before the hearing.',isDeadline:true},{title:'Limitations',content:'Cannot raise new arguments or submit new evidence not reasonably related to points made in the opposition.'}]},
+            'hearing':{title:'MSJ Hearing',icon:'👥',sections:[{title:'Overview',content:'The court hears oral arguments from both parties. Many courts issue tentative rulings the day before.'},{title:'Hearing Process',list:['Check for tentative ruling','Party contesting tentative must notify court & other parties','Oral arguments focus on key disputed issues','Court may take matter under submission or rule from the bench']}]},
+            'court-order':{title:'Court Issues Order',icon:'⚖️',sections:[{title:'Decision Point',content:'The court decides if any genuine issues of material fact exist. This determines the case trajectory.'},{title:'Three Possible Outcomes',list:['<b>MSJ Granted:</b> No factual disputes, judgment for moving party.','<b>MSJ Denied:</b> Factual disputes exist, case proceeds to trial.','<b>Partial MSJ:</b> Some claims/issues resolved, others proceed.']}]},
+            'judgment':{title:'Judgment Entered',icon:'🏆',sections:[{title:'MSJ Granted',content:'The court finds no genuine issues of material fact and enters judgment for the moving party. The case is over at the trial court level.'},{title:'Next Steps',list:['Prepare and submit proposed judgment','File notice of entry of judgment','File costs memorandum']},{title:'Appeal Rights',content:'Losing party has a limited time (e.g., 60 days from notice of entry of judgment in CA) to file a notice of appeal.',isDeadline:true}]},
+            'trial':{title:'Case Proceeds to Trial',icon:'📘',sections:[{title:'MSJ Denied',content:'The court found genuine issues of material fact requiring a trial. The case continues through the normal litigation process.'},{title:'Immediate Next Steps',list:['Final status conference','Expert witness disclosures','Pre-trial motions (in limine)','Jury instructions & verdict forms','Trial preparation']}]},
+            'partial':{title:'Partial Summary Judgment',icon:'✏️',sections:[{title:'Mixed Outcome',content:'The Court granted the motion on some claims/causes of action but not others. This narrows the issues for trial.'},{title:'Benefits',content:'Streamlines the trial, reduces complexity, can eliminate certain types of damages (like punitive), and may facilitate settlement by clarifying the remaining key issues.'}]}
+        };
+
+        // --- Modal Functions ---
+        function showFlowchartModal(nodeId) {
+            const data = nodeData[nodeId];
+            if (!data) return;
+            let modalHTML = `<div class="modal-header"><span class="modal-icon">${data.icon}</span><h2 class="modal-title">${data.title}</h2></div>`;
+            data.sections.forEach(section => {
+                modalHTML += '<div class="info-section">';
+                if (section.isDeadline) {
+                    modalHTML += `<div class="deadline-box"><span>⏰</span><div><strong>${section.title}:</strong> ${section.content}</div></div>`;
+                } else {
+                    modalHTML += `<h3>${section.title}</h3>`;
+                    if (section.list) {
+                        modalHTML += '<ul>';
+                        section.list.forEach(item => { modalHTML += `<li>${item}</li>`; });
+                        modalHTML += '</ul>';
+                    } else {
+                        modalHTML += `<p>${section.content}</p>`;
+                    }
+                }
+                modalHTML += '</div>';
+            });
+            modalBody.innerHTML = modalHTML;
+            modal.classList.add('active');
+        }
+
+        function showTimelineModal(title, icon, content) {
+            let modalHTML = `<div class="modal-header"><span class="modal-icon">${icon}</span><h2 class="modal-title">${title}</h2></div><div class="info-section"><p>${content}</p></div>`;
+            modalBody.innerHTML = modalHTML;
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+        }
+
+        // --- Event Listeners ---
+        document.querySelectorAll('[data-node]').forEach(node => {
+            node.addEventListener('click', (e) => {
+                e.stopPropagation();
+                showFlowchartModal(node.dataset.node);
+            });
+        });
+        modal.addEventListener('click', (e) => { if (e.target.id === 'modal') closeModal(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+        // --- Dynamic Timeline Grid/Marker Generation ---
+        document.addEventListener('DOMContentLoaded', function() {
+            const gridContainer = document.querySelector('.timeline-grid');
+            const markersContainer = document.querySelector('.day-markers');
+            const totalDays = 200;
+            for (let i = 0; i < 20; i++) {
+                const line = document.createElement('div');
+                line.classList.add('timeline-grid-line');
+                gridContainer.appendChild(line);
+            }
+            for (let i = 0; i <= 5; i++) {
+                const day = i * 40;
+                const marker = document.createElement('div');
+                marker.classList.add('day-marker');
+                marker.textContent = `Day ${day}`;
+                marker.style.left = `${(day / totalDays) * 100}%`;
+                markersContainer.appendChild(marker);
+            }
+             const hearingMarker = document.createElement('div');
+             hearingMarker.classList.add('day-marker', 'font-semibold', 'text-indigo-600');
+             hearingMarker.innerHTML = `Hearing <br> Day 105`;
+             hearingMarker.style.left = `${(105 / totalDays) * 100}%`;
+             hearingMarker.style.top = '-10px';
+             markersContainer.appendChild(hearingMarker);
+        });
+
+        // --- Draw outcome arrows dynamically ---
+        function drawOutcomeArrows() {
+            const wrapper = document.querySelector('.flowchart-inner-wrapper');
+            const courtOrder = document.getElementById('court-order-node');
+            const outcomeNodes = document.querySelectorAll('.outcome-column .outcome-node');
+            const svg = document.getElementById('outcome-arrows');
+            if (!courtOrder || outcomeNodes.length === 0 || !svg || !wrapper) return;
+
+            // Define arrowhead marker
+            svg.innerHTML = `
+                <defs>
+                    <marker id="arrowhead-dotted" markerWidth="8" markerHeight="8" refX="7" refY="3.5" orient="auto" fill="#9ca3af">
+                        <polygon points="0 0, 8 3.5, 0 0" />
+                    </marker>
+                </defs>
+            `;
+
+            const wrapperRect = wrapper.getBoundingClientRect();
+            const courtRect = courtOrder.getBoundingClientRect();
+
+            outcomeNodes.forEach(node => {
+                const nodeRect = node.getBoundingClientRect();
+                
+                // Start: center right of the "Court Order" node
+                const startX = courtRect.right - wrapperRect.left + 20;
+                const startY = courtRect.top + courtRect.height / 2 - wrapperRect.top;
+                
+                // End: center left of the outcome node
+                const endX = nodeRect.left - wrapperRect.left - 10;
+                const endY = nodeRect.top + nodeRect.height / 2 - wrapperRect.top;
+                
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                path.setAttribute('d', `M ${startX} ${startY} L ${endX} ${endY}`);
+                path.setAttribute('stroke', '#9ca3af');
+                path.setAttribute('stroke-width', '2');
+                path.setAttribute('fill', 'none');
+                path.setAttribute('stroke-dasharray', '3, 5'); // Creates a dotted line effect
+                path.setAttribute('marker-end', 'url(#arrowhead-dotted)'); // Attach arrowhead
+                
+                svg.appendChild(path);
+            });
+        }
+        
+        // Use a small timeout to ensure layout is complete before drawing arrows
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(drawOutcomeArrows, 100); 
+            window.addEventListener('resize', () => setTimeout(drawOutcomeArrows, 100));
+        });
+
+    </script>
+</body>
+</html>

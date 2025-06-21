@@ -1,0 +1,4138 @@
+{
+  "nodes": [
+    {
+      "data": {
+        "id": "1003",
+        "label": "CCP 1003",
+        "title": "CCP Section 1003",
+        "category": "Service & Notice",
+        "wordCount": 53,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1
+      }
+    },
+    {
+      "data": {
+        "id": "1005",
+        "label": "CCP 1005",
+        "title": "CCP Section 1005",
+        "category": "Service & Notice",
+        "wordCount": 649,
+        "filingRelevance": 8,
+        "proceduralRequirements": 3,
+        "crossReferences": 15
+      }
+    },
+    {
+      "data": {
+        "id": "1010.6",
+        "label": "CCP 1010.6",
+        "title": "CCP Section 1010.6",
+        "category": "Service & Notice",
+        "wordCount": 3342,
+        "filingRelevance": 8,
+        "proceduralRequirements": 7,
+        "crossReferences": 11
+      }
+    },
+    {
+      "data": {
+        "id": "1010",
+        "label": "CCP 1010",
+        "title": "CCP Section 1010",
+        "category": "Service & Notice",
+        "wordCount": 164,
+        "filingRelevance": 8,
+        "proceduralRequirements": 1,
+        "crossReferences": 1
+      }
+    },
+    {
+      "data": {
+        "id": "1011",
+        "label": "CCP 1011",
+        "title": "CCP Section 1011",
+        "category": "Service & Notice",
+        "wordCount": 538,
+        "filingRelevance": 8,
+        "proceduralRequirements": 1,
+        "crossReferences": 2
+      }
+    },
+    {
+      "data": {
+        "id": "1012",
+        "label": "CCP 1012",
+        "title": "CCP Section 1012",
+        "category": "Service & Notice",
+        "wordCount": 89,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1
+      }
+    },
+    {
+      "data": {
+        "id": "1013",
+        "label": "CCP 1013",
+        "title": "CCP Section 1013",
+        "category": "Service & Notice",
+        "wordCount": 1080,
+        "filingRelevance": 8,
+        "proceduralRequirements": 5,
+        "crossReferences": 4
+      }
+    },
+    {
+      "data": {
+        "id": "1014",
+        "label": "CCP 1014",
+        "title": "CCP Section 1014",
+        "category": "Service & Notice",
+        "wordCount": 125,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 3
+      }
+    },
+    {
+      "data": {
+        "id": "1086",
+        "label": "CCP 1086",
+        "title": "CCP Section 1086",
+        "category": "Mandates",
+        "wordCount": 60,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1
+      }
+    },
+    {
+      "data": {
+        "id": "1094.5",
+        "label": "CCP 1094.5",
+        "title": "CCP Section 1094.5",
+        "category": "Mandates",
+        "wordCount": 1675,
+        "filingRelevance": 8,
+        "proceduralRequirements": 3,
+        "crossReferences": 13
+      }
+    },
+    {
+      "data": {
+        "id": "1094.6",
+        "label": "CCP 1094.6",
+        "title": "CCP Section 1094.6",
+        "category": "Mandates",
+        "wordCount": 719,
+        "filingRelevance": 8,
+        "proceduralRequirements": 1,
+        "crossReferences": 4
+      }
+    },
+    {
+      "data": {
+        "id": "128.7",
+        "label": "CCP 128.7",
+        "title": "CCP Section 128.7",
+        "category": "General Procedures",
+        "wordCount": 959,
+        "filingRelevance": 8,
+        "proceduralRequirements": 4,
+        "crossReferences": 2
+      }
+    },
+    {
+      "data": {
+        "id": "12",
+        "label": "CCP 12",
+        "title": "CCP Section 12",
+        "category": "General Procedures",
+        "wordCount": 114,
+        "filingRelevance": 8,
+        "proceduralRequirements": 1,
+        "crossReferences": 2
+      }
+    },
+    {
+      "data": {
+        "id": "2024.020",
+        "label": "CCP 2024.020",
+        "title": "CCP Section 2024.020",
+        "category": "Discovery Sanctions",
+        "wordCount": 113,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 2
+      }
+    },
+    {
+      "data": {
+        "id": "2025.010",
+        "label": "CCP 2025.010",
+        "title": "CCP Section 2025.010",
+        "category": "Depositions",
+        "wordCount": 102,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 3
+      }
+    },
+    {
+      "data": {
+        "id": "2025.480",
+        "label": "CCP 2025.480",
+        "title": "CCP Section 2025.480",
+        "category": "Depositions",
+        "wordCount": 837,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 3
+      }
+    },
+    {
+      "data": {
+        "id": "2030.010",
+        "label": "CCP 2030.010",
+        "title": "CCP Section 2030.010",
+        "category": "Interrogatories",
+        "wordCount": 151,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 3
+      }
+    },
+    {
+      "data": {
+        "id": "2030.300",
+        "label": "CCP 2030.300",
+        "title": "CCP Section 2030.300",
+        "category": "Interrogatories",
+        "wordCount": 361,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 4
+      }
+    },
+    {
+      "data": {
+        "id": "2031.010",
+        "label": "CCP 2031.010",
+        "title": "CCP Section 2031.010",
+        "category": "Document Production",
+        "wordCount": 314,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 3
+      }
+    },
+    {
+      "data": {
+        "id": "2031.310",
+        "label": "CCP 2031.310",
+        "title": "CCP Section 2031.310",
+        "category": "Document Production",
+        "wordCount": 771,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 3
+      }
+    },
+    {
+      "data": {
+        "id": "367",
+        "label": "CCP 367",
+        "title": "CCP Section 367",
+        "category": "General Procedures",
+        "wordCount": 49,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1
+      }
+    },
+    {
+      "data": {
+        "id": "372",
+        "label": "CCP 372",
+        "title": "CCP Section 372",
+        "category": "General Procedures",
+        "wordCount": 1205,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 9
+      }
+    },
+    {
+      "data": {
+        "id": "392",
+        "label": "CCP 392",
+        "title": "CCP Section 392",
+        "category": "Venue & Jurisdiction",
+        "wordCount": 235,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 2
+      }
+    },
+    {
+      "data": {
+        "id": "410.10",
+        "label": "CCP 410.10",
+        "title": "CCP Section 410.10",
+        "category": "Jurisdiction & Service",
+        "wordCount": 47,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1
+      }
+    },
+    {
+      "data": {
+        "id": "410.42",
+        "label": "CCP 410.42",
+        "title": "CCP Section 410.42",
+        "category": "Jurisdiction & Service",
+        "wordCount": 204,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 4
+      }
+    },
+    {
+      "data": {
+        "id": "410.70",
+        "label": "CCP 410.70",
+        "title": "CCP Section 410.70",
+        "category": "Jurisdiction & Service",
+        "wordCount": 70,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1
+      }
+    },
+    {
+      "data": {
+        "id": "411.10",
+        "label": "CCP 411.10",
+        "title": "CCP Section 411.10",
+        "category": "Jurisdiction & Service",
+        "wordCount": 35,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1
+      }
+    },
+    {
+      "data": {
+        "id": "411.35",
+        "label": "CCP 411.35",
+        "title": "CCP Section 411.35",
+        "category": "Jurisdiction & Service",
+        "wordCount": 1016,
+        "filingRelevance": 8,
+        "proceduralRequirements": 2,
+        "crossReferences": 8
+      }
+    },
+    {
+      "data": {
+        "id": "412.30",
+        "label": "CCP 412.30",
+        "title": "CCP Section 412.30",
+        "category": "Jurisdiction & Service",
+        "wordCount": 197,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 2
+      }
+    },
+    {
+      "data": {
+        "id": "413.40",
+        "label": "CCP 413.40",
+        "title": "CCP Section 413.40",
+        "category": "Jurisdiction & Service",
+        "wordCount": 67,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 2
+      }
+    },
+    {
+      "data": {
+        "id": "414.10",
+        "label": "CCP 414.10",
+        "title": "CCP Section 414.10",
+        "category": "Jurisdiction & Service",
+        "wordCount": 46,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1
+      }
+    },
+    {
+      "data": {
+        "id": "415.95",
+        "label": "CCP 415.95",
+        "title": "CCP Section 415.95",
+        "category": "Jurisdiction & Service",
+        "wordCount": 150,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1
+      }
+    },
+    {
+      "data": {
+        "id": "416.90",
+        "label": "CCP 416.90",
+        "title": "CCP Section 416.90",
+        "category": "Jurisdiction & Service",
+        "wordCount": 63,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1
+      }
+    },
+    {
+      "data": {
+        "id": "417.40",
+        "label": "CCP 417.40",
+        "title": "CCP Section 417.40",
+        "category": "Jurisdiction & Service",
+        "wordCount": 81,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 3
+      }
+    },
+    {
+      "data": {
+        "id": "418.11",
+        "label": "CCP 418.11",
+        "title": "CCP Section 418.11",
+        "category": "General Procedures",
+        "wordCount": 76,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 2
+      }
+    },
+    {
+      "data": {
+        "id": "425.10",
+        "label": "CCP 425.10",
+        "title": "CCP Section 425.10",
+        "category": "Complaint Requirements",
+        "wordCount": 149,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 3
+      }
+    },
+    {
+      "data": {
+        "id": "425.11",
+        "label": "CCP 425.11",
+        "title": "CCP Section 425.11",
+        "category": "Complaint Requirements",
+        "wordCount": 284,
+        "filingRelevance": 8,
+        "proceduralRequirements": 4,
+        "crossReferences": 3
+      }
+    },
+    {
+      "data": {
+        "id": "425.12",
+        "label": "CCP 425.12",
+        "title": "CCP Section 425.12",
+        "category": "Complaint Requirements",
+        "wordCount": 163,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1
+      }
+    },
+    {
+      "data": {
+        "id": "425.13",
+        "label": "CCP 425.13",
+        "title": "CCP Section 425.13",
+        "category": "Complaint Requirements",
+        "wordCount": 295,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 5
+      }
+    },
+    {
+      "data": {
+        "id": "426.10",
+        "label": "CCP 426.10",
+        "title": "CCP Section 426.10",
+        "category": "Cross-Complaint Requirements",
+        "wordCount": 82,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1
+      }
+    },
+    {
+      "data": {
+        "id": "426.30",
+        "label": "CCP 426.30",
+        "title": "CCP Section 426.30",
+        "category": "Cross-Complaint Requirements",
+        "wordCount": 154,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1
+      }
+    },
+    {
+      "data": {
+        "id": "426.50",
+        "label": "CCP 426.50",
+        "title": "CCP Section 426.50",
+        "category": "Cross-Complaint Requirements",
+        "wordCount": 138,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1
+      }
+    },
+    {
+      "data": {
+        "id": "430.10",
+        "label": "CCP 430.10",
+        "title": "CCP Section 430.10",
+        "category": "Demurrer (Motion to Dismiss)",
+        "wordCount": 189,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 3
+      }
+    },
+    {
+      "data": {
+        "id": "430.20",
+        "label": "CCP 430.20",
+        "title": "CCP Section 430.20",
+        "category": "Demurrer (Motion to Dismiss)",
+        "wordCount": 101,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 2
+      }
+    },
+    {
+      "data": {
+        "id": "430.30",
+        "label": "CCP 430.30",
+        "title": "CCP Section 430.30",
+        "category": "Demurrer (Motion to Dismiss)",
+        "wordCount": 114,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1
+      }
+    },
+    {
+      "data": {
+        "id": "430.40",
+        "label": "CCP 430.40",
+        "title": "CCP Section 430.40",
+        "category": "Demurrer (Motion to Dismiss)",
+        "wordCount": 78,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1
+      }
+    },
+    {
+      "data": {
+        "id": "430.41",
+        "label": "CCP 430.41",
+        "title": "CCP Section 430.41",
+        "category": "Demurrer (Motion to Dismiss)",
+        "wordCount": 848,
+        "filingRelevance": 8,
+        "proceduralRequirements": 1,
+        "crossReferences": 3
+      }
+    },
+    {
+      "data": {
+        "id": "431.30",
+        "label": "CCP 431.30",
+        "title": "CCP Section 431.30",
+        "category": "Answer Requirements",
+        "wordCount": 397,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 2
+      }
+    },
+    {
+      "data": {
+        "id": "431.40",
+        "label": "CCP 431.40",
+        "title": "CCP Section 431.40",
+        "category": "Answer Requirements",
+        "wordCount": 159,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1
+      }
+    },
+    {
+      "data": {
+        "id": "435",
+        "label": "CCP 435",
+        "title": "CCP Section 435",
+        "category": "Motion to Strike",
+        "wordCount": 245,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 3
+      }
+    },
+    {
+      "data": {
+        "id": "436",
+        "label": "CCP 436",
+        "title": "CCP Section 436",
+        "category": "Motion to Strike",
+        "wordCount": 93,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 2
+      }
+    },
+    {
+      "data": {
+        "id": "437",
+        "label": "CCP 437",
+        "title": "CCP Section 437",
+        "category": "Motion to Strike",
+        "wordCount": 108,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 2
+      }
+    },
+    {
+      "data": {
+        "id": "438",
+        "label": "CCP 438",
+        "title": "CCP Section 438",
+        "category": "Pleadings",
+        "wordCount": 1153,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 5
+      }
+    },
+    {
+      "data": {
+        "id": "472",
+        "label": "CCP 472",
+        "title": "CCP Section 472",
+        "category": "Pleading Amendments",
+        "wordCount": 84,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1
+      }
+    },
+    {
+      "data": {
+        "id": "473",
+        "label": "CCP 473",
+        "title": "CCP Section 473",
+        "category": "Pleadings",
+        "wordCount": 823,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 2
+      }
+    },
+    {
+      "data": {
+        "id": "664.5",
+        "label": "CCP 664.5",
+        "title": "CCP Section 664.5",
+        "category": "Judgment Entry",
+        "wordCount": 304,
+        "filingRelevance": 8,
+        "proceduralRequirements": 3,
+        "crossReferences": 1
+      }
+    },
+    {
+      "data": {
+        "id": "664.6",
+        "label": "CCP 664.6",
+        "title": "CCP Section 664.6",
+        "category": "Judgment Entry",
+        "wordCount": 676,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 3
+      }
+    },
+    {
+      "data": {
+        "id": "664",
+        "label": "CCP 664",
+        "title": "CCP Section 664",
+        "category": "Judgment Entry",
+        "wordCount": 126,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1
+      }
+    },
+    {
+      "data": {
+        "id": "667",
+        "label": "CCP 667",
+        "title": "CCP Section 667",
+        "category": "Judgment Entry",
+        "wordCount": 117,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1
+      }
+    },
+    {
+      "data": {
+        "id": "670",
+        "label": "CCP 670",
+        "title": "CCP Section 670",
+        "category": "Judgment Entry",
+        "wordCount": 267,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1
+      }
+    },
+    {
+      "data": {
+        "id": "437c",
+        "label": "CCP 437c",
+        "title": "CCP Section 437c - Summary Judgment Motion Requirements (WHAT: Notice, Separate Statement, Points & Authorities, Evidence)",
+        "category": "Summary Judgment Motion",
+        "wordCount": 3199,
+        "filingRelevance": 8,
+        "proceduralRequirements": 5,
+        "crossReferences": 6
+      }
+    },
+    {
+      "data": {
+        "id": "527",
+        "label": "CCP 527",
+        "title": "CCP Section 527 - TRO Filing Requirements (WHAT/HOW: Emergency relief filing requirements)",
+        "category": "Filing & Service",
+        "wordCount": 942,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 2
+      }
+    }
+  ],
+  "edges": [
+    {
+      "data": {
+        "id": "e0",
+        "source": "1003",
+        "target": "1005",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Service & Notice"
+      }
+    },
+    {
+      "data": {
+        "id": "e1",
+        "source": "1003",
+        "target": "1010.6",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Service & Notice"
+      }
+    },
+    {
+      "data": {
+        "id": "e2",
+        "source": "1003",
+        "target": "1010",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Service & Notice"
+      }
+    },
+    {
+      "data": {
+        "id": "e3",
+        "source": "1003",
+        "target": "1011",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Service & Notice"
+      }
+    },
+    {
+      "data": {
+        "id": "e4",
+        "source": "1003",
+        "target": "1012",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Service & Notice"
+      }
+    },
+    {
+      "data": {
+        "id": "e5",
+        "source": "1003",
+        "target": "1013",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Service & Notice"
+      }
+    },
+    {
+      "data": {
+        "id": "e6",
+        "source": "1003",
+        "target": "1014",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Service & Notice"
+      }
+    },
+    {
+      "data": {
+        "id": "e7",
+        "source": "1005",
+        "target": "1013",
+        "type": "cross_reference",
+        "weight": 3,
+        "label": "References",
+        "description": "Section 1005 references Section 1013"
+      }
+    },
+    {
+      "data": {
+        "id": "e8",
+        "source": "1005",
+        "target": "1010.6",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Service & Notice"
+      }
+    },
+    {
+      "data": {
+        "id": "e9",
+        "source": "1005",
+        "target": "1010",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Service & Notice"
+      }
+    },
+    {
+      "data": {
+        "id": "e10",
+        "source": "1005",
+        "target": "1011",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Service & Notice"
+      }
+    },
+    {
+      "data": {
+        "id": "e11",
+        "source": "1005",
+        "target": "1012",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Service & Notice"
+      }
+    },
+    {
+      "data": {
+        "id": "e12",
+        "source": "1005",
+        "target": "1013",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Service & Notice"
+      }
+    },
+    {
+      "data": {
+        "id": "e13",
+        "source": "1005",
+        "target": "1014",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Service & Notice"
+      }
+    },
+    {
+      "data": {
+        "id": "e14",
+        "source": "1010.6",
+        "target": "1010",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Service & Notice"
+      }
+    },
+    {
+      "data": {
+        "id": "e15",
+        "source": "1010.6",
+        "target": "1011",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Service & Notice"
+      }
+    },
+    {
+      "data": {
+        "id": "e16",
+        "source": "1010.6",
+        "target": "1012",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Service & Notice"
+      }
+    },
+    {
+      "data": {
+        "id": "e17",
+        "source": "1010.6",
+        "target": "1013",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Service & Notice"
+      }
+    },
+    {
+      "data": {
+        "id": "e18",
+        "source": "1010.6",
+        "target": "1014",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Service & Notice"
+      }
+    },
+    {
+      "data": {
+        "id": "e19",
+        "source": "1010",
+        "target": "1011",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Service & Notice"
+      }
+    },
+    {
+      "data": {
+        "id": "e20",
+        "source": "1010",
+        "target": "1012",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Service & Notice"
+      }
+    },
+    {
+      "data": {
+        "id": "e21",
+        "source": "1010",
+        "target": "1013",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Service & Notice"
+      }
+    },
+    {
+      "data": {
+        "id": "e22",
+        "source": "1010",
+        "target": "1014",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Service & Notice"
+      }
+    },
+    {
+      "data": {
+        "id": "e23",
+        "source": "1011",
+        "target": "1010.6",
+        "type": "cross_reference",
+        "weight": 3,
+        "label": "References",
+        "description": "Section 1011 references Section 1010.6"
+      }
+    },
+    {
+      "data": {
+        "id": "e24",
+        "source": "1011",
+        "target": "1012",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Service & Notice"
+      }
+    },
+    {
+      "data": {
+        "id": "e25",
+        "source": "1011",
+        "target": "1013",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Service & Notice"
+      }
+    },
+    {
+      "data": {
+        "id": "e26",
+        "source": "1011",
+        "target": "1014",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Service & Notice"
+      }
+    },
+    {
+      "data": {
+        "id": "e27",
+        "source": "1012",
+        "target": "1013",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Service & Notice"
+      }
+    },
+    {
+      "data": {
+        "id": "e28",
+        "source": "1012",
+        "target": "1014",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Service & Notice"
+      }
+    },
+    {
+      "data": {
+        "id": "e29",
+        "source": "1013",
+        "target": "1010.6",
+        "type": "cross_reference",
+        "weight": 3,
+        "label": "References",
+        "description": "Section 1013 references Section 1010.6"
+      }
+    },
+    {
+      "data": {
+        "id": "e30",
+        "source": "1013",
+        "target": "1010",
+        "type": "procedural_dependency",
+        "weight": 5,
+        "label": "Depends On",
+        "description": "Procedural dependency: \"be permitted pursuant to Section 1010...\""
+      }
+    },
+    {
+      "data": {
+        "id": "e31",
+        "source": "1013",
+        "target": "1014",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Service & Notice"
+      }
+    },
+    {
+      "data": {
+        "id": "e32",
+        "source": "1086",
+        "target": "1094.5",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Mandates"
+      }
+    },
+    {
+      "data": {
+        "id": "e33",
+        "source": "1086",
+        "target": "1094.6",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Mandates"
+      }
+    },
+    {
+      "data": {
+        "id": "e34",
+        "source": "1094.5",
+        "target": "1010",
+        "type": "cross_reference",
+        "weight": 3,
+        "label": "References",
+        "description": "Section 1094.5 references Section 1010"
+      }
+    },
+    {
+      "data": {
+        "id": "e35",
+        "source": "1094.5",
+        "target": "1094.6",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Mandates"
+      }
+    },
+    {
+      "data": {
+        "id": "e36",
+        "source": "1094.6",
+        "target": "1094.5",
+        "type": "cross_reference",
+        "weight": 3,
+        "label": "References",
+        "description": "Section 1094.6 references Section 1094.5"
+      }
+    },
+    {
+      "data": {
+        "id": "e37",
+        "source": "1094.6",
+        "target": "1013",
+        "type": "cross_reference",
+        "weight": 3,
+        "label": "References",
+        "description": "Section 1094.6 references Section 1013"
+      }
+    },
+    {
+      "data": {
+        "id": "e38",
+        "source": "128.7",
+        "target": "1010",
+        "type": "cross_reference",
+        "weight": 3,
+        "label": "References",
+        "description": "Section 128.7 references Section 1010"
+      }
+    },
+    {
+      "data": {
+        "id": "e39",
+        "source": "128.7",
+        "target": "1010",
+        "type": "procedural_dependency",
+        "weight": 5,
+        "label": "Depends On",
+        "description": "Procedural dependency: \"as provided in Section 1010, but\nshall not be filed with or presented to the court unless, within 21...\""
+      }
+    },
+    {
+      "data": {
+        "id": "e40",
+        "source": "128.7",
+        "target": "12",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures"
+      }
+    },
+    {
+      "data": {
+        "id": "e41",
+        "source": "128.7",
+        "target": "367",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures"
+      }
+    },
+    {
+      "data": {
+        "id": "e42",
+        "source": "128.7",
+        "target": "372",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures"
+      }
+    },
+    {
+      "data": {
+        "id": "e43",
+        "source": "128.7",
+        "target": "418.11",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures"
+      }
+    },
+    {
+      "data": {
+        "id": "e44",
+        "source": "12",
+        "target": "367",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures"
+      }
+    },
+    {
+      "data": {
+        "id": "e45",
+        "source": "12",
+        "target": "372",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures"
+      }
+    },
+    {
+      "data": {
+        "id": "e46",
+        "source": "12",
+        "target": "418.11",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures"
+      }
+    },
+    {
+      "data": {
+        "id": "e47",
+        "source": "2025.010",
+        "target": "2025.480",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Depositions"
+      }
+    },
+    {
+      "data": {
+        "id": "e48",
+        "source": "2030.010",
+        "target": "2030.300",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Interrogatories"
+      }
+    },
+    {
+      "data": {
+        "id": "e49",
+        "source": "2031.010",
+        "target": "2031.310",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Document Production"
+      }
+    },
+    {
+      "data": {
+        "id": "e50",
+        "source": "367",
+        "target": "372",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures"
+      }
+    },
+    {
+      "data": {
+        "id": "e51",
+        "source": "367",
+        "target": "418.11",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures"
+      }
+    },
+    {
+      "data": {
+        "id": "e52",
+        "source": "372",
+        "target": "418.11",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures"
+      }
+    },
+    {
+      "data": {
+        "id": "e53",
+        "source": "410.10",
+        "target": "410.42",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e54",
+        "source": "410.10",
+        "target": "410.70",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e55",
+        "source": "410.10",
+        "target": "411.10",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e56",
+        "source": "410.10",
+        "target": "411.35",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e57",
+        "source": "410.10",
+        "target": "412.30",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e58",
+        "source": "410.10",
+        "target": "413.40",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e59",
+        "source": "410.10",
+        "target": "414.10",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e60",
+        "source": "410.10",
+        "target": "415.95",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e61",
+        "source": "410.10",
+        "target": "416.90",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e62",
+        "source": "410.10",
+        "target": "417.40",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e63",
+        "source": "410.42",
+        "target": "410.70",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e64",
+        "source": "410.42",
+        "target": "411.10",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e65",
+        "source": "410.42",
+        "target": "411.35",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e66",
+        "source": "410.42",
+        "target": "412.30",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e67",
+        "source": "410.42",
+        "target": "413.40",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e68",
+        "source": "410.42",
+        "target": "414.10",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e69",
+        "source": "410.42",
+        "target": "415.95",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e70",
+        "source": "410.42",
+        "target": "416.90",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e71",
+        "source": "410.42",
+        "target": "417.40",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e72",
+        "source": "410.70",
+        "target": "411.10",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e73",
+        "source": "410.70",
+        "target": "411.35",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e74",
+        "source": "410.70",
+        "target": "412.30",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e75",
+        "source": "410.70",
+        "target": "413.40",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e76",
+        "source": "410.70",
+        "target": "414.10",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e77",
+        "source": "410.70",
+        "target": "415.95",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e78",
+        "source": "410.70",
+        "target": "416.90",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e79",
+        "source": "410.70",
+        "target": "417.40",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e80",
+        "source": "411.10",
+        "target": "411.35",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e81",
+        "source": "411.10",
+        "target": "412.30",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e82",
+        "source": "411.10",
+        "target": "413.40",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e83",
+        "source": "411.10",
+        "target": "414.10",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e84",
+        "source": "411.10",
+        "target": "415.95",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e85",
+        "source": "411.10",
+        "target": "416.90",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e86",
+        "source": "411.10",
+        "target": "417.40",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e87",
+        "source": "411.35",
+        "target": "430.10",
+        "type": "cross_reference",
+        "weight": 3,
+        "label": "References",
+        "description": "Section 411.35 references Section 430.10"
+      }
+    },
+    {
+      "data": {
+        "id": "e88",
+        "source": "411.35",
+        "target": "412.30",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e89",
+        "source": "411.35",
+        "target": "413.40",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e90",
+        "source": "411.35",
+        "target": "414.10",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e91",
+        "source": "411.35",
+        "target": "415.95",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e92",
+        "source": "411.35",
+        "target": "416.90",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e93",
+        "source": "411.35",
+        "target": "417.40",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e94",
+        "source": "412.30",
+        "target": "413.40",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e95",
+        "source": "412.30",
+        "target": "414.10",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e96",
+        "source": "412.30",
+        "target": "415.95",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e97",
+        "source": "412.30",
+        "target": "416.90",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e98",
+        "source": "412.30",
+        "target": "417.40",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e99",
+        "source": "413.40",
+        "target": "414.10",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e100",
+        "source": "413.40",
+        "target": "415.95",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e101",
+        "source": "413.40",
+        "target": "416.90",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e102",
+        "source": "413.40",
+        "target": "417.40",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e103",
+        "source": "414.10",
+        "target": "415.95",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e104",
+        "source": "414.10",
+        "target": "416.90",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e105",
+        "source": "414.10",
+        "target": "417.40",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e106",
+        "source": "415.95",
+        "target": "416.90",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e107",
+        "source": "415.95",
+        "target": "417.40",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e108",
+        "source": "416.90",
+        "target": "417.40",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service"
+      }
+    },
+    {
+      "data": {
+        "id": "e109",
+        "source": "425.10",
+        "target": "425.11",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Complaint Requirements"
+      }
+    },
+    {
+      "data": {
+        "id": "e110",
+        "source": "425.10",
+        "target": "425.12",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Complaint Requirements"
+      }
+    },
+    {
+      "data": {
+        "id": "e111",
+        "source": "425.10",
+        "target": "425.13",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Complaint Requirements"
+      }
+    },
+    {
+      "data": {
+        "id": "e112",
+        "source": "425.11",
+        "target": "1010",
+        "type": "cross_reference",
+        "weight": 3,
+        "label": "References",
+        "description": "Section 425.11 references Section 1010"
+      }
+    },
+    {
+      "data": {
+        "id": "e113",
+        "source": "425.11",
+        "target": "425.12",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Complaint Requirements"
+      }
+    },
+    {
+      "data": {
+        "id": "e114",
+        "source": "425.11",
+        "target": "425.13",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Complaint Requirements"
+      }
+    },
+    {
+      "data": {
+        "id": "e115",
+        "source": "425.12",
+        "target": "425.13",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Complaint Requirements"
+      }
+    },
+    {
+      "data": {
+        "id": "e116",
+        "source": "426.10",
+        "target": "426.30",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Cross-Complaint Requirements"
+      }
+    },
+    {
+      "data": {
+        "id": "e117",
+        "source": "426.10",
+        "target": "426.50",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Cross-Complaint Requirements"
+      }
+    },
+    {
+      "data": {
+        "id": "e118",
+        "source": "426.30",
+        "target": "426.50",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Cross-Complaint Requirements"
+      }
+    },
+    {
+      "data": {
+        "id": "e119",
+        "source": "430.10",
+        "target": "430.30",
+        "type": "cross_reference",
+        "weight": 3,
+        "label": "References",
+        "description": "Section 430.10 references Section 430.30"
+      }
+    },
+    {
+      "data": {
+        "id": "e120",
+        "source": "430.10",
+        "target": "411.35",
+        "type": "cross_reference",
+        "weight": 3,
+        "label": "References",
+        "description": "Section 430.10 references Section 411.35"
+      }
+    },
+    {
+      "data": {
+        "id": "e121",
+        "source": "430.10",
+        "target": "430.20",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Demurrer (Motion to Dismiss)"
+      }
+    },
+    {
+      "data": {
+        "id": "e122",
+        "source": "430.10",
+        "target": "430.30",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Demurrer (Motion to Dismiss)"
+      }
+    },
+    {
+      "data": {
+        "id": "e123",
+        "source": "430.10",
+        "target": "430.40",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Demurrer (Motion to Dismiss)"
+      }
+    },
+    {
+      "data": {
+        "id": "e124",
+        "source": "430.10",
+        "target": "430.41",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Demurrer (Motion to Dismiss)"
+      }
+    },
+    {
+      "data": {
+        "id": "e125",
+        "source": "430.20",
+        "target": "430.30",
+        "type": "cross_reference",
+        "weight": 3,
+        "label": "References",
+        "description": "Section 430.20 references Section 430.30"
+      }
+    },
+    {
+      "data": {
+        "id": "e126",
+        "source": "430.20",
+        "target": "430.30",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Demurrer (Motion to Dismiss)"
+      }
+    },
+    {
+      "data": {
+        "id": "e127",
+        "source": "430.20",
+        "target": "430.40",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Demurrer (Motion to Dismiss)"
+      }
+    },
+    {
+      "data": {
+        "id": "e128",
+        "source": "430.20",
+        "target": "430.41",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Demurrer (Motion to Dismiss)"
+      }
+    },
+    {
+      "data": {
+        "id": "e129",
+        "source": "430.30",
+        "target": "430.40",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Demurrer (Motion to Dismiss)"
+      }
+    },
+    {
+      "data": {
+        "id": "e130",
+        "source": "430.30",
+        "target": "430.41",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Demurrer (Motion to Dismiss)"
+      }
+    },
+    {
+      "data": {
+        "id": "e131",
+        "source": "430.40",
+        "target": "430.41",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Demurrer (Motion to Dismiss)"
+      }
+    },
+    {
+      "data": {
+        "id": "e132",
+        "source": "430.41",
+        "target": "472",
+        "type": "cross_reference",
+        "weight": 3,
+        "label": "References",
+        "description": "Section 430.41 references Section 472"
+      }
+    },
+    {
+      "data": {
+        "id": "e133",
+        "source": "431.30",
+        "target": "431.40",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Answer Requirements"
+      }
+    },
+    {
+      "data": {
+        "id": "e134",
+        "source": "435",
+        "target": "436",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Motion to Strike"
+      }
+    },
+    {
+      "data": {
+        "id": "e135",
+        "source": "435",
+        "target": "437",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Motion to Strike"
+      }
+    },
+    {
+      "data": {
+        "id": "e136",
+        "source": "436",
+        "target": "435",
+        "type": "cross_reference",
+        "weight": 3,
+        "label": "References",
+        "description": "Section 436 references Section 435"
+      }
+    },
+    {
+      "data": {
+        "id": "e137",
+        "source": "436",
+        "target": "437",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Motion to Strike"
+      }
+    },
+    {
+      "data": {
+        "id": "e138",
+        "source": "438",
+        "target": "436",
+        "type": "cross_reference",
+        "weight": 3,
+        "label": "References",
+        "description": "Section 438 references Section 436"
+      }
+    },
+    {
+      "data": {
+        "id": "e139",
+        "source": "438",
+        "target": "473",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings"
+      }
+    },
+    {
+      "data": {
+        "id": "e140",
+        "source": "664.5",
+        "target": "664.6",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Judgment Entry"
+      }
+    },
+    {
+      "data": {
+        "id": "e141",
+        "source": "664.5",
+        "target": "664",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Judgment Entry"
+      }
+    },
+    {
+      "data": {
+        "id": "e142",
+        "source": "664.5",
+        "target": "667",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Judgment Entry"
+      }
+    },
+    {
+      "data": {
+        "id": "e143",
+        "source": "664.5",
+        "target": "670",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Judgment Entry"
+      }
+    },
+    {
+      "data": {
+        "id": "e144",
+        "source": "664.6",
+        "target": "664",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Judgment Entry"
+      }
+    },
+    {
+      "data": {
+        "id": "e145",
+        "source": "664.6",
+        "target": "667",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Judgment Entry"
+      }
+    },
+    {
+      "data": {
+        "id": "e146",
+        "source": "664.6",
+        "target": "670",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Judgment Entry"
+      }
+    },
+    {
+      "data": {
+        "id": "e147",
+        "source": "664",
+        "target": "667",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Judgment Entry"
+      }
+    },
+    {
+      "data": {
+        "id": "e148",
+        "source": "664",
+        "target": "670",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Judgment Entry"
+      }
+    },
+    {
+      "data": {
+        "id": "e149",
+        "source": "667",
+        "target": "670",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Judgment Entry"
+      }
+    },
+    {
+      "data": {
+        "id": "e150",
+        "source": "437c",
+        "target": "437",
+        "type": "cross_reference",
+        "weight": 3,
+        "label": "References",
+        "description": "Section 437c references Section 437"
+      }
+    },
+    {
+      "data": {
+        "id": "e151",
+        "source": "437c",
+        "target": "1005",
+        "type": "cross_reference",
+        "weight": 3,
+        "label": "References",
+        "description": "Section 437c references Section 1005"
+      }
+    },
+    {
+      "data": {
+        "id": "e152",
+        "source": "527",
+        "target": "1005",
+        "type": "cross_reference",
+        "weight": 3,
+        "label": "References",
+        "description": "Section 527 references Section 1005"
+      }
+    },
+    {
+      "data": {
+        "id": "e153",
+        "source": "430.10",
+        "target": "435",
+        "type": "alternative_motion",
+        "weight": 3,
+        "label": "Alternative Motion",
+        "description": "Demurrer and Motion to Strike are often filed together as alternative challenges"
+      }
+    },
+    {
+      "data": {
+        "id": "e154",
+        "source": "430.10",
+        "target": "436",
+        "type": "alternative_motion",
+        "weight": 3,
+        "label": "Alternative Motion",
+        "description": "Demurrer and Motion to Strike are often filed together as alternative challenges"
+      }
+    },
+    {
+      "data": {
+        "id": "e155",
+        "source": "430.10",
+        "target": "437",
+        "type": "alternative_motion",
+        "weight": 3,
+        "label": "Alternative Motion",
+        "description": "Demurrer and Motion to Strike are often filed together as alternative challenges"
+      }
+    },
+    {
+      "data": {
+        "id": "e156",
+        "source": "430.20",
+        "target": "435",
+        "type": "alternative_motion",
+        "weight": 3,
+        "label": "Alternative Motion",
+        "description": "Demurrer and Motion to Strike are often filed together as alternative challenges"
+      }
+    },
+    {
+      "data": {
+        "id": "e157",
+        "source": "430.20",
+        "target": "436",
+        "type": "alternative_motion",
+        "weight": 3,
+        "label": "Alternative Motion",
+        "description": "Demurrer and Motion to Strike are often filed together as alternative challenges"
+      }
+    },
+    {
+      "data": {
+        "id": "e158",
+        "source": "430.20",
+        "target": "437",
+        "type": "alternative_motion",
+        "weight": 3,
+        "label": "Alternative Motion",
+        "description": "Demurrer and Motion to Strike are often filed together as alternative challenges"
+      }
+    },
+    {
+      "data": {
+        "id": "e159",
+        "source": "430.30",
+        "target": "435",
+        "type": "alternative_motion",
+        "weight": 3,
+        "label": "Alternative Motion",
+        "description": "Demurrer and Motion to Strike are often filed together as alternative challenges"
+      }
+    },
+    {
+      "data": {
+        "id": "e160",
+        "source": "430.30",
+        "target": "436",
+        "type": "alternative_motion",
+        "weight": 3,
+        "label": "Alternative Motion",
+        "description": "Demurrer and Motion to Strike are often filed together as alternative challenges"
+      }
+    },
+    {
+      "data": {
+        "id": "e161",
+        "source": "430.30",
+        "target": "437",
+        "type": "alternative_motion",
+        "weight": 3,
+        "label": "Alternative Motion",
+        "description": "Demurrer and Motion to Strike are often filed together as alternative challenges"
+      }
+    },
+    {
+      "data": {
+        "id": "e162",
+        "source": "430.40",
+        "target": "435",
+        "type": "alternative_motion",
+        "weight": 3,
+        "label": "Alternative Motion",
+        "description": "Demurrer and Motion to Strike are often filed together as alternative challenges"
+      }
+    },
+    {
+      "data": {
+        "id": "e163",
+        "source": "430.40",
+        "target": "436",
+        "type": "alternative_motion",
+        "weight": 3,
+        "label": "Alternative Motion",
+        "description": "Demurrer and Motion to Strike are often filed together as alternative challenges"
+      }
+    },
+    {
+      "data": {
+        "id": "e164",
+        "source": "430.40",
+        "target": "437",
+        "type": "alternative_motion",
+        "weight": 3,
+        "label": "Alternative Motion",
+        "description": "Demurrer and Motion to Strike are often filed together as alternative challenges"
+      }
+    },
+    {
+      "data": {
+        "id": "e165",
+        "source": "430.41",
+        "target": "435",
+        "type": "alternative_motion",
+        "weight": 3,
+        "label": "Alternative Motion",
+        "description": "Demurrer and Motion to Strike are often filed together as alternative challenges"
+      }
+    },
+    {
+      "data": {
+        "id": "e166",
+        "source": "430.41",
+        "target": "436",
+        "type": "alternative_motion",
+        "weight": 3,
+        "label": "Alternative Motion",
+        "description": "Demurrer and Motion to Strike are often filed together as alternative challenges"
+      }
+    },
+    {
+      "data": {
+        "id": "e167",
+        "source": "430.41",
+        "target": "437",
+        "type": "alternative_motion",
+        "weight": 3,
+        "label": "Alternative Motion",
+        "description": "Demurrer and Motion to Strike are often filed together as alternative challenges"
+      }
+    },
+    {
+      "data": {
+        "id": "e168",
+        "source": "430.10",
+        "target": "472",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "If demurrer is sustained with leave to amend, pleading amendment follows"
+      }
+    },
+    {
+      "data": {
+        "id": "e169",
+        "source": "430.20",
+        "target": "472",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "If demurrer is sustained with leave to amend, pleading amendment follows"
+      }
+    },
+    {
+      "data": {
+        "id": "e170",
+        "source": "430.30",
+        "target": "472",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "If demurrer is sustained with leave to amend, pleading amendment follows"
+      }
+    },
+    {
+      "data": {
+        "id": "e171",
+        "source": "430.40",
+        "target": "472",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "If demurrer is sustained with leave to amend, pleading amendment follows"
+      }
+    },
+    {
+      "data": {
+        "id": "e172",
+        "source": "430.41",
+        "target": "472",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "If demurrer is sustained with leave to amend, pleading amendment follows"
+      }
+    },
+    {
+      "data": {
+        "id": "e173",
+        "source": "472",
+        "target": "431.30",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "After amendment, defendant must file answer or further motion"
+      }
+    },
+    {
+      "data": {
+        "id": "e174",
+        "source": "472",
+        "target": "431.40",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "After amendment, defendant must file answer or further motion"
+      }
+    },
+    {
+      "data": {
+        "id": "e175",
+        "source": "2024.020",
+        "target": "437c",
+        "type": "timing_relationship",
+        "weight": 4,
+        "label": "Timing Relation",
+        "description": "Discovery must be substantially completed before summary judgment motion"
+      }
+    },
+    {
+      "data": {
+        "id": "e176",
+        "source": "2025.010",
+        "target": "437c",
+        "type": "timing_relationship",
+        "weight": 4,
+        "label": "Timing Relation",
+        "description": "Discovery must be substantially completed before summary judgment motion"
+      }
+    },
+    {
+      "data": {
+        "id": "e177",
+        "source": "2025.480",
+        "target": "437c",
+        "type": "timing_relationship",
+        "weight": 4,
+        "label": "Timing Relation",
+        "description": "Discovery must be substantially completed before summary judgment motion"
+      }
+    },
+    {
+      "data": {
+        "id": "e178",
+        "source": "2030.010",
+        "target": "437c",
+        "type": "timing_relationship",
+        "weight": 4,
+        "label": "Timing Relation",
+        "description": "Discovery must be substantially completed before summary judgment motion"
+      }
+    },
+    {
+      "data": {
+        "id": "e179",
+        "source": "2030.300",
+        "target": "437c",
+        "type": "timing_relationship",
+        "weight": 4,
+        "label": "Timing Relation",
+        "description": "Discovery must be substantially completed before summary judgment motion"
+      }
+    },
+    {
+      "data": {
+        "id": "e180",
+        "source": "2031.010",
+        "target": "437c",
+        "type": "timing_relationship",
+        "weight": 4,
+        "label": "Timing Relation",
+        "description": "Discovery must be substantially completed before summary judgment motion"
+      }
+    },
+    {
+      "data": {
+        "id": "e181",
+        "source": "2031.310",
+        "target": "437c",
+        "type": "timing_relationship",
+        "weight": 4,
+        "label": "Timing Relation",
+        "description": "Discovery must be substantially completed before summary judgment motion"
+      }
+    },
+    {
+      "data": {
+        "id": "e182",
+        "source": "1010",
+        "target": "437c",
+        "type": "timing_requirement",
+        "weight": 6,
+        "label": "Timing Requirement",
+        "description": "Service method affects 81-day notice period calculation for summary judgment"
+      }
+    },
+    {
+      "data": {
+        "id": "e183",
+        "source": "1011",
+        "target": "437c",
+        "type": "timing_requirement",
+        "weight": 6,
+        "label": "Timing Requirement",
+        "description": "Service method affects 81-day notice period calculation for summary judgment"
+      }
+    },
+    {
+      "data": {
+        "id": "e184",
+        "source": "1012",
+        "target": "437c",
+        "type": "timing_requirement",
+        "weight": 6,
+        "label": "Timing Requirement",
+        "description": "Service method affects 81-day notice period calculation for summary judgment"
+      }
+    },
+    {
+      "data": {
+        "id": "e185",
+        "source": "1013",
+        "target": "437c",
+        "type": "timing_requirement",
+        "weight": 6,
+        "label": "Timing Requirement",
+        "description": "Service method affects 81-day notice period calculation for summary judgment"
+      }
+    },
+    {
+      "data": {
+        "id": "e186",
+        "source": "1003",
+        "target": "437c",
+        "type": "procedural_foundation",
+        "weight": 7,
+        "label": "Procedural Foundation",
+        "description": "Fundamental motion practice rules apply to summary judgment"
+      }
+    },
+    {
+      "data": {
+        "id": "e187",
+        "source": "1005",
+        "target": "437c",
+        "type": "procedural_foundation",
+        "weight": 7,
+        "label": "Procedural Foundation",
+        "description": "Fundamental motion practice rules apply to summary judgment"
+      }
+    },
+    {
+      "data": {
+        "id": "e188",
+        "source": "437c",
+        "target": "437c",
+        "type": "evidence_requirement",
+        "weight": 6,
+        "label": "Evidence Required",
+        "description": "Evidence must be properly authenticated for summary judgment motion"
+      }
+    },
+    {
+      "data": {
+        "id": "e189",
+        "source": "437c",
+        "target": "437c",
+        "type": "mandatory_document",
+        "weight": 8,
+        "label": "Mandatory Document",
+        "description": "Separate statement is mandatory for summary judgment motion"
+      }
+    },
+    {
+      "data": {
+        "id": "e190",
+        "source": "1005",
+        "target": "437c",
+        "type": "timing_requirement",
+        "weight": 5,
+        "label": "Timing Requirement",
+        "description": "Opposition and reply timing rules apply to summary judgment"
+      }
+    },
+    {
+      "data": {
+        "id": "e191",
+        "source": "437c",
+        "target": "437c",
+        "type": "timing_requirement",
+        "weight": 5,
+        "label": "Timing Requirement",
+        "description": "Opposition and reply timing rules apply to summary judgment"
+      }
+    },
+    {
+      "data": {
+        "id": "e192",
+        "source": "437c",
+        "target": "430.40",
+        "type": "scheduling_coordination",
+        "weight": 6,
+        "label": "Schedule Coordination",
+        "description": "Summary judgment must be heard at least 30 days before trial"
+      }
+    },
+    {
+      "data": {
+        "id": "e193",
+        "source": "437c",
+        "target": "438",
+        "type": "scheduling_coordination",
+        "weight": 6,
+        "label": "Schedule Coordination",
+        "description": "Summary judgment must be heard at least 30 days before trial"
+      }
+    },
+    {
+      "data": {
+        "id": "e194",
+        "source": "437c",
+        "target": "437c",
+        "type": "scheduling_coordination",
+        "weight": 6,
+        "label": "Schedule Coordination",
+        "description": "Summary judgment must be heard at least 30 days before trial"
+      }
+    },
+    {
+      "data": {
+        "id": "e195",
+        "source": "437c",
+        "target": "437",
+        "type": "related_procedure",
+        "weight": 7,
+        "label": "Related Procedure",
+        "description": "Summary judgment and summary adjudication are related procedures"
+      }
+    },
+    {
+      "data": {
+        "id": "e196",
+        "source": "1003",
+        "target": "430.10",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e197",
+        "source": "1003",
+        "target": "430.20",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e198",
+        "source": "1003",
+        "target": "430.30",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e199",
+        "source": "1003",
+        "target": "430.40",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e200",
+        "source": "1003",
+        "target": "430.41",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e201",
+        "source": "1003",
+        "target": "435",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e202",
+        "source": "1003",
+        "target": "436",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e203",
+        "source": "1003",
+        "target": "437",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e204",
+        "source": "1003",
+        "target": "437c",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e205",
+        "source": "1005",
+        "target": "430.10",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e206",
+        "source": "1005",
+        "target": "430.20",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e207",
+        "source": "1005",
+        "target": "430.30",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e208",
+        "source": "1005",
+        "target": "430.40",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e209",
+        "source": "1005",
+        "target": "430.41",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e210",
+        "source": "1005",
+        "target": "435",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e211",
+        "source": "1005",
+        "target": "436",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e212",
+        "source": "1005",
+        "target": "437",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e213",
+        "source": "1005",
+        "target": "437c",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e214",
+        "source": "1010.6",
+        "target": "430.10",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e215",
+        "source": "1010.6",
+        "target": "430.20",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e216",
+        "source": "1010.6",
+        "target": "430.30",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e217",
+        "source": "1010.6",
+        "target": "430.40",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e218",
+        "source": "1010.6",
+        "target": "430.41",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e219",
+        "source": "1010.6",
+        "target": "435",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e220",
+        "source": "1010.6",
+        "target": "436",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e221",
+        "source": "1010.6",
+        "target": "437",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e222",
+        "source": "1010.6",
+        "target": "437c",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e223",
+        "source": "1010",
+        "target": "430.10",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e224",
+        "source": "1010",
+        "target": "430.20",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e225",
+        "source": "1010",
+        "target": "430.30",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e226",
+        "source": "1010",
+        "target": "430.40",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e227",
+        "source": "1010",
+        "target": "430.41",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e228",
+        "source": "1010",
+        "target": "435",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e229",
+        "source": "1010",
+        "target": "436",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e230",
+        "source": "1010",
+        "target": "437",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e231",
+        "source": "1010",
+        "target": "437c",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e232",
+        "source": "1011",
+        "target": "430.10",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e233",
+        "source": "1011",
+        "target": "430.20",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e234",
+        "source": "1011",
+        "target": "430.30",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e235",
+        "source": "1011",
+        "target": "430.40",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e236",
+        "source": "1011",
+        "target": "430.41",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e237",
+        "source": "1011",
+        "target": "435",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e238",
+        "source": "1011",
+        "target": "436",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e239",
+        "source": "1011",
+        "target": "437",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e240",
+        "source": "1011",
+        "target": "437c",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e241",
+        "source": "1012",
+        "target": "430.10",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e242",
+        "source": "1012",
+        "target": "430.20",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e243",
+        "source": "1012",
+        "target": "430.30",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e244",
+        "source": "1012",
+        "target": "430.40",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e245",
+        "source": "1012",
+        "target": "430.41",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e246",
+        "source": "1012",
+        "target": "435",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e247",
+        "source": "1012",
+        "target": "436",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e248",
+        "source": "1012",
+        "target": "437",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e249",
+        "source": "1012",
+        "target": "437c",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e250",
+        "source": "1013",
+        "target": "430.10",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e251",
+        "source": "1013",
+        "target": "430.20",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e252",
+        "source": "1013",
+        "target": "430.30",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e253",
+        "source": "1013",
+        "target": "430.40",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e254",
+        "source": "1013",
+        "target": "430.41",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e255",
+        "source": "1013",
+        "target": "435",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e256",
+        "source": "1013",
+        "target": "436",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e257",
+        "source": "1013",
+        "target": "437",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e258",
+        "source": "1013",
+        "target": "437c",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e259",
+        "source": "1014",
+        "target": "430.10",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e260",
+        "source": "1014",
+        "target": "430.20",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e261",
+        "source": "1014",
+        "target": "430.30",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e262",
+        "source": "1014",
+        "target": "430.40",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e263",
+        "source": "1014",
+        "target": "430.41",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e264",
+        "source": "1014",
+        "target": "435",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e265",
+        "source": "1014",
+        "target": "436",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e266",
+        "source": "1014",
+        "target": "437",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e267",
+        "source": "1014",
+        "target": "437c",
+        "type": "document_requirement",
+        "weight": 5,
+        "label": "Required Document",
+        "description": "Service and notice requirements apply to this motion type"
+      }
+    },
+    {
+      "data": {
+        "id": "e268",
+        "source": "425.10",
+        "target": "430.10",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Demurrer challenges the legal sufficiency of the complaint"
+      }
+    },
+    {
+      "data": {
+        "id": "e269",
+        "source": "425.10",
+        "target": "430.20",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Demurrer challenges the legal sufficiency of the complaint"
+      }
+    },
+    {
+      "data": {
+        "id": "e270",
+        "source": "425.10",
+        "target": "430.30",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Demurrer challenges the legal sufficiency of the complaint"
+      }
+    },
+    {
+      "data": {
+        "id": "e271",
+        "source": "425.10",
+        "target": "430.40",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Demurrer challenges the legal sufficiency of the complaint"
+      }
+    },
+    {
+      "data": {
+        "id": "e272",
+        "source": "425.10",
+        "target": "430.41",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Demurrer challenges the legal sufficiency of the complaint"
+      }
+    },
+    {
+      "data": {
+        "id": "e273",
+        "source": "425.10",
+        "target": "435",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Motion to strike challenges improper matter in complaint"
+      }
+    },
+    {
+      "data": {
+        "id": "e274",
+        "source": "425.10",
+        "target": "436",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Motion to strike challenges improper matter in complaint"
+      }
+    },
+    {
+      "data": {
+        "id": "e275",
+        "source": "425.10",
+        "target": "437",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Motion to strike challenges improper matter in complaint"
+      }
+    },
+    {
+      "data": {
+        "id": "e276",
+        "source": "425.10",
+        "target": "431.30",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Defendant may answer complaint directly instead of filing motion"
+      }
+    },
+    {
+      "data": {
+        "id": "e277",
+        "source": "425.10",
+        "target": "431.40",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Defendant may answer complaint directly instead of filing motion"
+      }
+    },
+    {
+      "data": {
+        "id": "e278",
+        "source": "425.11",
+        "target": "430.10",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Demurrer challenges the legal sufficiency of the complaint"
+      }
+    },
+    {
+      "data": {
+        "id": "e279",
+        "source": "425.11",
+        "target": "430.20",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Demurrer challenges the legal sufficiency of the complaint"
+      }
+    },
+    {
+      "data": {
+        "id": "e280",
+        "source": "425.11",
+        "target": "430.30",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Demurrer challenges the legal sufficiency of the complaint"
+      }
+    },
+    {
+      "data": {
+        "id": "e281",
+        "source": "425.11",
+        "target": "430.40",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Demurrer challenges the legal sufficiency of the complaint"
+      }
+    },
+    {
+      "data": {
+        "id": "e282",
+        "source": "425.11",
+        "target": "430.41",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Demurrer challenges the legal sufficiency of the complaint"
+      }
+    },
+    {
+      "data": {
+        "id": "e283",
+        "source": "425.11",
+        "target": "435",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Motion to strike challenges improper matter in complaint"
+      }
+    },
+    {
+      "data": {
+        "id": "e284",
+        "source": "425.11",
+        "target": "436",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Motion to strike challenges improper matter in complaint"
+      }
+    },
+    {
+      "data": {
+        "id": "e285",
+        "source": "425.11",
+        "target": "437",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Motion to strike challenges improper matter in complaint"
+      }
+    },
+    {
+      "data": {
+        "id": "e286",
+        "source": "425.11",
+        "target": "431.30",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Defendant may answer complaint directly instead of filing motion"
+      }
+    },
+    {
+      "data": {
+        "id": "e287",
+        "source": "425.11",
+        "target": "431.40",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Defendant may answer complaint directly instead of filing motion"
+      }
+    },
+    {
+      "data": {
+        "id": "e288",
+        "source": "425.12",
+        "target": "430.10",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Demurrer challenges the legal sufficiency of the complaint"
+      }
+    },
+    {
+      "data": {
+        "id": "e289",
+        "source": "425.12",
+        "target": "430.20",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Demurrer challenges the legal sufficiency of the complaint"
+      }
+    },
+    {
+      "data": {
+        "id": "e290",
+        "source": "425.12",
+        "target": "430.30",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Demurrer challenges the legal sufficiency of the complaint"
+      }
+    },
+    {
+      "data": {
+        "id": "e291",
+        "source": "425.12",
+        "target": "430.40",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Demurrer challenges the legal sufficiency of the complaint"
+      }
+    },
+    {
+      "data": {
+        "id": "e292",
+        "source": "425.12",
+        "target": "430.41",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Demurrer challenges the legal sufficiency of the complaint"
+      }
+    },
+    {
+      "data": {
+        "id": "e293",
+        "source": "425.12",
+        "target": "435",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Motion to strike challenges improper matter in complaint"
+      }
+    },
+    {
+      "data": {
+        "id": "e294",
+        "source": "425.12",
+        "target": "436",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Motion to strike challenges improper matter in complaint"
+      }
+    },
+    {
+      "data": {
+        "id": "e295",
+        "source": "425.12",
+        "target": "437",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Motion to strike challenges improper matter in complaint"
+      }
+    },
+    {
+      "data": {
+        "id": "e296",
+        "source": "425.12",
+        "target": "431.30",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Defendant may answer complaint directly instead of filing motion"
+      }
+    },
+    {
+      "data": {
+        "id": "e297",
+        "source": "425.12",
+        "target": "431.40",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Defendant may answer complaint directly instead of filing motion"
+      }
+    },
+    {
+      "data": {
+        "id": "e298",
+        "source": "425.13",
+        "target": "430.10",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Demurrer challenges the legal sufficiency of the complaint"
+      }
+    },
+    {
+      "data": {
+        "id": "e299",
+        "source": "425.13",
+        "target": "430.20",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Demurrer challenges the legal sufficiency of the complaint"
+      }
+    },
+    {
+      "data": {
+        "id": "e300",
+        "source": "425.13",
+        "target": "430.30",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Demurrer challenges the legal sufficiency of the complaint"
+      }
+    },
+    {
+      "data": {
+        "id": "e301",
+        "source": "425.13",
+        "target": "430.40",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Demurrer challenges the legal sufficiency of the complaint"
+      }
+    },
+    {
+      "data": {
+        "id": "e302",
+        "source": "425.13",
+        "target": "430.41",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Demurrer challenges the legal sufficiency of the complaint"
+      }
+    },
+    {
+      "data": {
+        "id": "e303",
+        "source": "425.13",
+        "target": "435",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Motion to strike challenges improper matter in complaint"
+      }
+    },
+    {
+      "data": {
+        "id": "e304",
+        "source": "425.13",
+        "target": "436",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Motion to strike challenges improper matter in complaint"
+      }
+    },
+    {
+      "data": {
+        "id": "e305",
+        "source": "425.13",
+        "target": "437",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Motion to strike challenges improper matter in complaint"
+      }
+    },
+    {
+      "data": {
+        "id": "e306",
+        "source": "425.13",
+        "target": "431.30",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Defendant may answer complaint directly instead of filing motion"
+      }
+    },
+    {
+      "data": {
+        "id": "e307",
+        "source": "425.13",
+        "target": "431.40",
+        "type": "motion_sequence",
+        "weight": 6,
+        "label": "Motion Sequence",
+        "description": "Defendant may answer complaint directly instead of filing motion"
+      }
+    }
+  ]
+}

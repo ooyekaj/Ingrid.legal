@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingrid | Procedural Rules Search Engine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- PDF Generation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f7f8fa 0%, #e9eaf3 100%);
+        }
+        .tab-button {
+            padding: 10px 16px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .tab-button.active {
+            color: #DB2777;
+            border-bottom-color: #DB2777;
+            font-weight: 600;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        #main-container.centered-start {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            width: 100vw;
+            background: transparent;
+        }
+        #search-panel.centered {
+            max-width: 700px;
+            width: 100%;
+            margin: 0 auto;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+            background: white;
+            border-radius: 1.25rem;
+            padding: 48px 32px;
+            border: 1.5px solid #ececf0;
+            transition: box-shadow 0.5s, border 0.5s;
+        }
+        #main-container {
+            transition: grid-template-columns 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55), display 0.7s;
+        }
+        .shifted {
+            display: grid !important;
+            grid-template-columns: 1.2fr 0.04fr 2fr;
+        }
+        #search-panel, #results-panel {
+            transition: all 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+        #search-panel.shrunk {
+            max-width: 420px;
+            margin-right: 0;
+            opacity: 0.97;
+            background: white;
+            box-shadow: 0 4px 24px 0 rgba(31, 38, 135, 0.09);
+            padding: 32px 20px;
+            border-radius: 1.25rem;
+            border: 1.5px solid #ececf0;
+            position: relative;
+            left: 0;
+            transform: translateX(-30px) scale(0.97);
+        }
+        #search-panel {
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-top: 48px;
+            padding-bottom: 48px;
+            z-index: 2;
+        }
+        #results-panel {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateX(40px);
+            height: 100vh;
+            min-height: 100vh;
+            max-height: 100vh;
+            overflow-y: auto;
+            position: relative;
+            top: 0;
+            padding-left: 48px;
+            padding-right: 48px;
+            background: white;
+            border-radius: 1.25rem 0 0 1.25rem;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+            border: 1.5px solid #ececf0;
+        }
+        #results-panel.visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateX(0);
+        }
+        .soft-divider {
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(to bottom, #ececf0 0%, #f7f8fa 100%);
+            opacity: 0.7;
+            z-index: 1;
+        }
+        /* CM-010 Form Styles */
+        .form-section {
+            border: 1px solid #d1d5db;
+            padding: 0.75rem;
+        }
+        .form-label {
+            font-size: 0.7rem;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
+            display: block;
+        }
+        .form-input {
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid #9ca3af;
+            padding: 0.25rem 0;
+            font-size: 0.875rem;
+            background-color: transparent;
+        }
+         .form-input:focus {
+            outline: none;
+            border-bottom: 1px solid #DB2777;
+        }
+        .form-input-prefilled {
+            background-color: #f3f4f6;
+            color: #4b5563;
+        }
+        .case-type-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        .case-type-col h4 {
+            font-weight: 600;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 1200px) {
+            .shifted { grid-template-columns: 1fr 0.04fr 1.3fr; }
+            #results-panel { padding-left: 24px; padding-right: 24px; }
+        }
+        @media (max-width: 900px) {
+            #main-container.shifted, #main-container.centered-start {
+                display: flex !important;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                min-height: auto;
+                padding: 1rem;
+            }
+            #results-panel {
+                margin-top: 24px;
+                transform: none !important;
+                height: auto;
+                min-height: 0;
+                max-height: none;
+                position: static;
+                padding: 1rem;
+                border-radius: 1.25rem;
+            }
+            .search-panel-outer {
+                height: auto !important;
+                min-height: 0 !important;
+                width: 100% !important;
+            }
+            #search-panel.shrunk, #search-panel, #search-panel.centered {
+                max-width: 100%;
+                padding: 1rem;
+                left: 0;
+                transform: none;
+            }
+            .soft-divider { display: none; }
+        }
+        @media (min-width: 901px) {
+            .search-panel-outer {
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div id="main-container" class="centered-start">
+        <!-- Search Panel -->
+        <div class="search-panel-outer flex items-center justify-center h-screen w-full bg-transparent">
+            <div id="search-panel" class="centered">
+                <div class="w-full max-w-xl mx-auto">
+                    <div class="flex justify-center items-center mb-4">
+                        <svg width="45" height="50" viewBox="0 0 45 50" fill="none" xmlns="http://www.w3.org/2000/svg" class="mr-3 h-10 w-auto"><rect x="0" y="5" width="35" height="45" rx="3" fill="#EC4899" opacity="0.6"/><rect x="8" y="0" width="35" height="45" rx="3" fill="#DB2777" opacity="1"/><path d="M 20 25 L 25 30 L 35 20" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <h1 class="text-3xl font-bold text-gray-900">Ingrid</h1>
+                    </div>
+                    <p class="text-center text-gray-600 mb-6">Procedural Compliance Engine</p>
+
+                    <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg border border-gray-200">
+                        <form id="search-form" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4"><input type="text" id="attorney-name" placeholder="Attorney Name" class="w-full mt-1 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm rounded-md shadow-sm"> <input type="text" id="bar-number" placeholder="State Bar Number" class="w-full mt-1 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm rounded-md shadow-sm"></div>
+                            <div><label for="division" class="block text-sm font-medium text-gray-700 mb-1">Division</label><select id="division" name="division" class="w-full mt-1 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm rounded-md shadow-sm"><option>Complex Civil Litigation</option><option>Civil Division</option></select></div>
+                            <div><label for="judge" class="block text-sm font-medium text-gray-700 mb-1">Judge</label><select id="judge" name="judge" class="w-full mt-1 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm rounded-md shadow-sm"><!-- JS will populate this --></select></div>
+                            <div><label for="document-type" class="block text-sm font-medium text-gray-700 mb-1">Document Type</label><select id="document-type" name="document-type" class="w-full mt-1 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm rounded-md shadow-sm"><option>Complaint</option><option>Motion for Summary Judgment</option><option>Motion to Dismiss (Demurrer)</option><option>Motion to Compel Further Discovery Responses</option><option>Motion to Strike</option><option>Answer</option></select></div>
+                            <div><button type="submit" id="generate-report-btn" class="w-full mt-1 bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">Generate Report</button></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Soft Divider -->
+        <div class="soft-divider" style="display:none;"></div>
+        <!-- Results Panel -->
+        <div id="results-panel" class="bg-white p-4 md:p-8 overflow-y-auto" style="display:none;">
+            <div id="results-container" class="hidden">
+                 <div class="flex justify-between items-center pb-4 border-b border-gray-200">
+                     <div><h2 class="text-xl font-bold text-gray-800">Filing Requirements Report</h2><p id="results-header" class="text-sm text-gray-500"></p></div>
+                     <div class="flex items-center space-x-2"><button id="download-pdf-btn" class="no-print bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-3 rounded-lg flex items-center transition"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> PDF</button><button id="new-search-btn" class="no-print bg-pink-600 hover:bg-pink-700 text-white font-semibold py-2 px-3 rounded-lg flex items-center transition"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg> New Search</button></div>
+                 </div>
+                 <div class="border-b border-gray-200 no-print mt-4">
+                     <nav id="tabs" class="flex space-x-2 overflow-x-auto -mb-px" aria-label="Tabs">
+                         <button class="tab-button active" data-target="checklist">Checklist</button>
+                         <button class="tab-button" data-target="documents">Mandatory Docs</button>
+                         <button class="tab-button" data-target="conditional">Conditional Docs</button>
+                         <button class="tab-button" data-target="rules" id="governing-rules-tab-btn">Governing Rules</button>
+                         <button class="tab-button" data-target="cm010-form" id="cm010-form-tab-btn">Fillable CM-010</button>
+                         <button class="tab-button" data-target="docx-shell" id="docx-shell-tab-btn">.docx Shell</button>
+                     </nav>
+                 </div>
+                 <div class="py-6">
+                     <div id="tab-content-container">
+                         <div id="checklist" class="tab-content active"></div>
+                         <div id="documents" class="tab-content"></div>
+                         <div id="conditional" class="tab-content"></div>
+                         <div id="rules" class="tab-content"></div>
+                         <div id="cm010-form" class="tab-content"></div>
+                         <div id="docx-shell" class="tab-content flex flex-col items-center justify-center"></div>
+                     </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- Mock Database ---
+        const JUDGES = [
+            { name: "Charles F. Adams", division: "Complex Civil Litigation", dept: "1" }, 
+            { name: "Carol Overton", division: "Complex Civil Litigation", dept: "1" },
+            { name: "Panteha E. Saban", division: "Civil Division", dept: "TBD" }, 
+            { name: "Lori E. Pegg", division: "Civil Division", dept: "5" },
+            { name: "JoAnne McCracken", division: "Civil Division", dept: "8" }, 
+            { name: "Julia Alloggiamento", division: "Civil Division", dept: "TBD" }
+        ];
+        const COURT_INFO = {
+            "Santa Clara": {
+                street: "191 North First Street",
+                mailing: "191 North First Street",
+                cityZip: "San Jose, CA 95113",
+                branch: "Downtown Superior Court"
+            }
+        };
+        const MOCK_DB = { /* Your existing MOCK_DB goes here */ };
+
+        // --- DOM Element References ---
+        const divisionSelect = document.getElementById('division');
+        const judgeSelect = document.getElementById('judge');
+        const resultsHeader = document.getElementById('results-header');
+        const checklistContainer = document.getElementById('checklist');
+        const documentsContainer = document.getElementById('documents');
+        const conditionalContainer = document.getElementById('conditional');
+        const rulesContainer = document.getElementById('rules');
+        const cm010FormContainer = document.getElementById('cm010-form');
+        const tabs = document.getElementById('tabs');
+
+        // --- Core Functions ---
+        function updateJudgeDropdown() {
+            const selectedDivision = divisionSelect.value;
+            judgeSelect.innerHTML = '';
+            const filteredJudges = JUDGES.filter(j => j.division === selectedDivision);
+            filteredJudges.forEach(judge => {
+                const option = document.createElement('option');
+                option.value = judge.name;
+                option.textContent = judge.name;
+                judgeSelect.appendChild(option);
+            });
+        }
+
+        function performSearch() {
+            const docType = document.getElementById('document-type').value;
+            const judge = judgeSelect.value;
+            const data = MOCK_DB[docType]?.[judge];
+
+            if (data) {
+                // ... (rest of your performSearch logic for other tabs)
+                populateCm010Form(); // New function call
+            } else {
+                // ... (your existing else block)
+                cm010FormContainer.innerHTML = `<p class="text-gray-500">Form cannot be populated without valid search criteria.</p>`;
+            }
+        }
+        
+        function populateCm010Form() {
+            const attorneyName = document.getElementById('attorney-name').value;
+            const barNumber = document.getElementById('bar-number').value;
+            const selectedJudge = judgeSelect.value;
+            const judgeData = JUDGES.find(j => j.name === selectedJudge);
+            const courtData = COURT_INFO["Santa Clara"];
+
+            cm010FormContainer.innerHTML = `
+                <div class="bg-white p-4 sm:p-6 border border-gray-400 font-sans text-sm">
+                    <div class="flex justify-between items-start mb-4">
+                        <h2 class="font-bold text-lg">CIVIL CASE COVER SHEET</h2>
+                        <div class="text-right">
+                            <div class="font-bold">CM-010</div>
+                            <div class="border-2 border-black p-4 mt-2">FOR COURT USE ONLY</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="form-label">ATTORNEY OR PARTY WITHOUT ATTORNEY (Name, State Bar number, and address):</label>
+                            <textarea class="form-input h-24" placeholder="Your Name or Firm Name\nYour Address\nYour City, State, Zip">${attorneyName}, #${barNumber}</textarea>
+                        </div>
+                        <div>
+                            <label class="form-label">ATTORNEY FOR (Name):</label>
+                            <input type="text" class="form-input" placeholder="e.g., Plaintiff John Smith">
+                            <label class="form-label mt-2">TELEPHONE NO.:</label>
+                            <input type="tel" class="form-input" placeholder="(555) 555-5555">
+                        </div>
+                    </div>
+
+                    <div class="form-section mt-[-1px]">
+                         <label class="form-label">SUPERIOR COURT OF CALIFORNIA, COUNTY OF</label>
+                         <input type="text" class="form-input form-input-prefilled" value="Santa Clara" readonly>
+                    </div>
+
+                     <div class="grid grid-cols-1 md:grid-cols-2 mt-[-1px]">
+                        <div class="form-section">
+                            <label class="form-label">STREET ADDRESS:</label>
+                            <input type="text" class="form-input form-input-prefilled" value="${courtData.street}" readonly>
+                        </div>
+                        <div class="form-section md:ml-[-1px]">
+                            <label class="form-label">MAILING ADDRESS:</label>
+                            <input type="text" class="form-input form-input-prefilled" value="${courtData.mailing}" readonly>
+                        </div>
+                    </div>
+                     <div class="grid grid-cols-1 md:grid-cols-2 mt-[-1px]">
+                        <div class="form-section">
+                            <label class="form-label">CITY AND ZIP CODE:</label>
+                             <input type="text" class="form-input form-input-prefilled" value="${courtData.cityZip}" readonly>
+                        </div>
+                        <div class="form-section md:ml-[-1px]">
+                             <label class="form-label">BRANCH NAME:</label>
+                             <input type="text" class="form-input form-input-prefilled" value="${courtData.branch}" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-section mt-[-1px]">
+                        <label class="form-label">CASE NAME:</label>
+                        <input type="text" class="form-input" placeholder="e.g., John Smith vs. Jane Doe">
+                    </div>
+
+                    <div class="grid grid-cols-3 mt-[-1px]">
+                         <div class="form-section">
+                            <label class="form-label">CASE NUMBER:</label>
+                            <input type="text" class="form-input" value="Assigned by Clerk" readonly>
+                         </div>
+                         <div class="form-section ml-[-1px]">
+                            <label class="form-label">JUDGE:</label>
+                            <input type="text" class="form-input form-input-prefilled" value="${selectedJudge}" readonly>
+                         </div>
+                         <div class="form-section ml-[-1px]">
+                            <label class="form-label">DEPT.:</label>
+                            <input type="text" class="form-input form-input-prefilled" value="${judgeData.dept}" readonly>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section mt-4">
+                        <p class="mb-2 text-xs">Items 1-6 below must be completed (see instructions on page 2).</p>
+                        <h3 class="font-bold mb-2">1. Check one box below for the case type that best describes this case:</h3>
+                        <div class="case-type-grid text-xs">
+                           <!-- Case type checkboxes would be dynamically generated here -->
+                           <div class="case-type-col">
+                                <h4>Auto Tort</h4>
+                                <label class="flex items-center space-x-2"><input type="radio" name="case-type" class="form-radio text-pink-600"> <span>Auto (22)</span></label>
+                                <label class="flex items-center space-x-2"><input type="radio" name="case-type" class="form-radio text-pink-600"> <span>Uninsured motorist (46)</span></label>
+                           </div>
+                           <div class="case-type-col">
+                                <h4>Contract</h4>
+                                <label class="flex items-center space-x-2"><input type="radio" name="case-type" class="form-radio text-pink-600"> <span>Breach of contract/warranty (06)</span></label>
+                                <label class="flex items-center space-x-2"><input type="radio" name="case-type" class="form-radio text-pink-600"> <span>Rule 3.740 collections (09)</span></label>
+                                <label class="flex items-center space-x-2"><input type="radio" name="case-type" class="form-radio text-pink-600"> <span>Other collections (09)</span></label>
+                                <label class="flex items-center space-x-2"><input type="radio" name="case-type" class="form-radio text-pink-600"> <span>Insurance coverage (18)</span></label>
+                                <label class="flex items-center space-x-2"><input type="radio" name="case-type" class="form-radio text-pink-600"> <span>Other contract (37)</span></label>
+                           </div>
+                           <div class="case-type-col">
+                                <h4>Provisionally Complex</h4>
+                                <label class="flex items-center space-x-2"><input type="radio" name="case-type" class="form-radio text-pink-600"> <span>Antitrust/Trade regulation (03)</span></label>
+                                <label class="flex items-center space-x-2"><input type="radio" name="case-type" class="form-radio text-pink-600"> <span>Construction defect (10)</span></label>
+                                <label class="flex items-center space-x-2"><input type="radio" name="case-type" class="form-radio text-pink-600"> <span>Mass tort (40)</span></label>
+                           </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section mt-4">
+                        <h3 class="font-bold mb-2">2. This case</h3>
+                        <label class="mr-4"><input type="radio" name="is-complex"> is</label>
+                        <label><input type="radio" name="is-complex" checked> is not</label>
+                        <span class="ml-2">complex under rule 3.400 of the California Rules of Court.</span>
+                    </div>
+
+                    <div class="mt-8 flex justify-end">
+                        <button class="bg-pink-600 hover:bg-pink-700 text-white font-bold py-2 px-6 rounded-lg transition">Generate & Download CM-010</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        document.getElementById('division').addEventListener('change', updateJudgeDropdown);
+        
+        tabs.addEventListener('click', function(event) {
+            if(event.target.classList.contains('tab-button')) {
+                document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+                event.target.classList.add('active');
+                const targetId = event.target.dataset.target;
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.classList.add('active');
+                }
+            }
+        });
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            updateJudgeDropdown();
+            document.getElementById('division').dispatchEvent(new Event('change'));
+        });
+
+        const mainContainer = document.getElementById('main-container');
+        const searchPanel = document.getElementById('search-panel');
+        const resultsPanel = document.getElementById('results-panel');
+        const newSearchBtn = document.getElementById('new-search-btn');
+        const searchForm = document.getElementById('search-form');
+        const softDivider = document.querySelector('.soft-divider');
+
+        function showResultsPanel() {
+            mainContainer.classList.remove('centered-start', 'not-shifted');
+            mainContainer.classList.add('shifted');
+            searchPanel.classList.remove('centered');
+            searchPanel.classList.add('shrunk');
+            resultsPanel.classList.add('visible');
+            resultsPanel.style.display = '';
+            softDivider.style.display = '';
+        }
+        function hideResultsPanel() {
+            mainContainer.classList.remove('shifted');
+            mainContainer.classList.add('centered-start');
+            searchPanel.classList.remove('shrunk');
+            searchPanel.classList.add('centered');
+            resultsPanel.classList.remove('visible');
+            setTimeout(() => { resultsPanel.style.display = 'none'; softDivider.style.display = 'none'; }, 500);
+        }
+
+        searchForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            performSearch();
+            showResultsPanel();
+        });
+        if (newSearchBtn) {
+            newSearchBtn.addEventListener('click', function() {
+                hideResultsPanel();
+            });
+        }
+    </script>
+</body>
+</html>

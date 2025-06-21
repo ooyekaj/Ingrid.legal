@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingrid | Your Filing Assistant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- PDF Generation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" xintegrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .tab-button {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        .tab-button.active {
+            color: #DB2777; /* Pink */
+            border-bottom-color: #DB2777;
+            font-weight: 600;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        /* Styles for the PDF output to ensure clean export */
+        @media print {
+            body, html {
+                margin: 0;
+                padding: 0;
+                background-color: #fff;
+            }
+            .no-print {
+                display: none !important;
+            }
+            #results-for-pdf {
+                box-shadow: none;
+                border: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <div class="min-h-screen flex flex-col items-center p-4 pt-12">
+        
+        <div class="w-full max-w-4xl mx-auto">
+            <div class="flex justify-center items-center mb-6">
+                <svg width="45" height="50" viewBox="0 0 45 50" fill="none" xmlns="http://www.w3.org/2000/svg" class="mr-3">
+                    <rect x="0" y="5" width="35" height="45" rx="3" fill="#EC4899" opacity="0.6"/>
+                    <rect x="8" y="0" width="35" height="45" rx="3" fill="#DB2777" opacity="1"/>
+                    <path d="M 20 25 L 25 30 L 35 20" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <h1 class="text-3xl font-bold text-gray-900">Ingrid</h1>
+            </div>
+            <p class="text-center text-gray-600 mb-8">Your Filing Assistant</p>
+
+            <div class="bg-white p-8 rounded-2xl shadow-md border border-gray-200">
+                <form id="search-form" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                    <div class="col-span-1 md:col-span-2">
+                        <label for="state" class="block text-sm font-medium text-gray-700 mb-1">State</label>
+                        <select id="state" name="state" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm rounded-md shadow-sm">
+                            <option>California</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="county" class="block text-sm font-medium text-gray-700 mb-1">County</label>
+                        <select id="county" name="county" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm rounded-md shadow-sm">
+                            <option>Santa Clara</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="division" class="block text-sm font-medium text-gray-700 mb-1">Division</label>
+                        <select id="division" name="division" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm rounded-md shadow-sm">
+                            <option>Complex Civil Litigation</option>
+                            <option>Civil Division</option>
+                        </select>
+                    </div>
+
+                    <div class="col-span-1 md:col-span-2">
+                        <label for="document-type" class="block text-sm font-medium text-gray-700 mb-1">Document Type</label>
+                        <select id="document-type" name="document-type" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm rounded-md shadow-sm">
+                            <option>Motion to Dismiss</option>
+                            <option>Motion for Summary Judgement</option>
+                            <option>Motion for Extension of Time</option>
+                            <option>Motion for Protective Order</option>
+                            <option>Motion to Compel Discovery</option>
+                        </select>
+                    </div>
+
+                    <div class="col-span-1 md:col-span-2">
+                        <label for="judge" class="block text-sm font-medium text-gray-700 mb-1">Judge</label>
+                        <select id="judge" name="judge" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm rounded-md shadow-sm">
+                            <option>Charles F. Adams</option>
+                            <option>Panteha E. Saban</option>
+                            <option>Lori E. Pegg</option>
+                            <option>JoAnne McCracken</option>
+                            <option>Julia Alloggiamento</option>
+                            <option>Carol Overton</option>
+                        </select>
+                    </div>
+
+                    <div class="col-span-1 md:col-span-2">
+                        <button type="submit" class="w-full mt-4 bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105">
+                            Get Requirements
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- New Results Section -->
+            <div id="results-container" class="mt-8 hidden">
+                 <div id="results-for-pdf" class="bg-white rounded-2xl shadow-md border border-gray-200">
+                    <div class="p-6 border-b border-gray-200">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h2 class="text-xl font-bold text-gray-800">Filing Requirements</h2>
+                                <p id="results-header" class="text-sm text-gray-500"></p>
+                            </div>
+                            <button id="download-pdf-btn" class="no-print bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-lg flex items-center transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                Download PDF
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="border-b border-gray-200 no-print">
+                        <nav id="tabs" class="flex space-x-4 px-6" aria-label="Tabs">
+                            <button class="tab-button active" data-target="checklist">Actionable Checklist</button>
+                            <button class="tab-button" data-target="documents">Required Documents</button>
+                            <button class="tab-button" data-target="rules">Governing Rules</button>
+                        </nav>
+                    </div>
+
+                    <div class="p-6">
+                        <!-- Content for PDF Export - All tabs shown -->
+                        <div id="pdf-content" class="hidden">
+                            <!-- All content will be cloned here for PDF export -->
+                        </div>
+
+                        <!-- Tabbed Content for UI -->
+                        <div id="tab-content-container">
+                            <div id="checklist" class="tab-content active space-y-4"></div>
+                            <div id="documents" class="tab-content space-y-3"></div>
+                            <div id="rules" class="tab-content space-y-4"></div>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- Mock Database (This would be replaced by API calls to your deterministic engine) ---
+        const MOCK_DB = {
+            "Motion for Summary Judgement": {
+                "Charles F. Adams": {
+                    documents: [
+                        "Notice of Motion and Motion for Summary Judgment",
+                        "Memorandum of Points and Authorities (20-page limit)",
+                        "Separate Statement of Undisputed Material Facts (MANDATORY)",
+                        "Supporting Declarations",
+                        "Evidence (Exhibits)",
+                        "Proposed Order",
+                        "Request for Judicial Notice (if applicable)",
+                        "Proof of Service"
+                    ],
+                    rules: [
+                        { name: "Governing Statute", text: "CCP § 437c: This law governs all aspects of MSJs, including the 75-day notice period and the requirement for a Separate Statement.", link: "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=437c." },
+                        { name: "Procedural Implementation", text: "CRC, Rule 3.1350: This rule implements the statute, detailing the two-column format for the Separate Statement and setting the 20-page limit.", link: "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1350" },
+                        { name: "Operational Requirements", text: "Santa Clara Local Rules 5.F & 6.H: These rules mandate the delivery of a paper courtesy copy to the judge's chambers and require emailing a Word version of the Proposed Order to the department.", link: "https://www.scscourt.org/system/files/rules/civil.pdf" },
+                        { name: "Courtroom-Specific Practices", text: "Check Judge Adams's page on the court website for any Standing Orders. The absence of a detailed order necessitates a direct call to the Department 7 Clerk.", link: "https://www.scscourt.org/divisions/civil/judges.shtml" }
+                    ],
+                    checklist: [
+                        { phase: "Pre-Drafting", task: "Reserve Hearing Date via CRS", notes: "Must be at least 75 calendar days out, plus time for service." },
+                        { phase: "Pre-Drafting", task: "Verify Judge's Standing Orders", notes: "Check the official court website for any department-specific rules." },
+                        { phase: "Pre-Drafting", task: "Call Dept. 7 Clerk", notes: "Confirm courtesy copy and scheduling preferences." },
+                        { phase: "Document Components", task: "Draft Separate Statement", notes: "(MANDATORY) Must be in two-column format per CRC 3.1350." },
+                        { phase: "Document Components", task: "Check Memo Page Limit", notes: "Must be 20 pages or less." },
+                        { phase: "Filing & Post-Filing", task: "Calculate Deadline", notes: "75 calendar days + 2 court days for electronic service." },
+                        { phase: "Filing & Post-Filing", task: "Deliver Courtesy Copy", notes: "Deliver file-stamped packet to chambers by 5:00 PM same-day." },
+                        { phase: "Filing & Post-Filing", task: "Email Proposed Order", notes: "Send editable Word version to the department's email." },
+                        { phase: "Filing & Post-Filing", task: "Calendar Deadlines", notes: "Opposition is due 14 calendar days before hearing; Reply is due 5 calendar days before." },
+                    ]
+                }
+            }
+        };
+
+        const searchForm = document.getElementById('search-form');
+        const resultsContainer = document.getElementById('results-container');
+        const resultsHeader = document.getElementById('results-header');
+        const checklistContainer = document.getElementById('checklist');
+        const documentsContainer = document.getElementById('documents');
+        const rulesContainer = document.getElementById('rules');
+        const tabs = document.getElementById('tabs');
+        const tabContents = document.getElementById('tab-content-container');
+        const downloadBtn = document.getElementById('download-pdf-btn');
+
+        searchForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const docType = document.getElementById('document-type').value;
+            const judge = document.getElementById('judge').value;
+            const county = document.getElementById('county').value;
+            const division = document.getElementById('division').value;
+            
+            checklistContainer.innerHTML = '';
+            documentsContainer.innerHTML = '';
+            rulesContainer.innerHTML = '';
+
+            const data = MOCK_DB[docType]?.[judge];
+
+            if (data) {
+                resultsHeader.textContent = `${docType} before Judge ${judge} in ${county} County, ${division}`;
+                
+                // --- Populate UI Content ---
+                populateDocuments(data.documents);
+                populateRules(data.rules);
+                populateChecklist(data.checklist);
+                
+                resultsContainer.classList.remove('hidden');
+                tabs.children[0].click(); // Activate first tab
+            } else {
+                resultsHeader.textContent = `No verified data found for your selection.`;
+                checklistContainer.innerHTML = `<p class="text-gray-500">Our database is constantly expanding. Please check back soon or contact us to request coverage for this specific scenario.</p>`;
+                documentsContainer.innerHTML = '';
+                rulesContainer.innerHTML = '';
+                resultsContainer.classList.remove('hidden');
+                 tabs.children[0].click();
+            }
+        });
+        
+        // --- Content Population Functions ---
+        function populateDocuments(docs) {
+            let docsHtml = '<h3 class="text-lg font-semibold text-gray-900 mb-3">Required Documents</h3><ul class="list-disc list-inside space-y-2">';
+            docs.forEach(doc => {
+                docsHtml += `<li class="text-gray-800">${doc.replace('(MANDATORY)', '<span class="font-bold text-pink-600">(MANDATORY)</span>')}</li>`;
+            });
+            docsHtml += '</ul>';
+            documentsContainer.innerHTML = docsHtml;
+        }
+
+        function populateRules(rules) {
+             let rulesHtml = '<h3 class="text-lg font-semibold text-gray-900 mb-3">Governing Rules</h3><div class="space-y-4">';
+            rules.forEach(rule => {
+                rulesHtml += `
+                    <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                        <p class="font-semibold text-gray-800">${rule.name}</p>
+                        <p class="text-sm text-gray-600 mt-1">${rule.text}</p>
+                        <a href="${rule.link}" target="_blank" class="text-sm text-pink-600 hover:underline mt-2 inline-block">Source Link &rarr;</a>
+                    </div>
+                `;
+            });
+            rulesHtml += '</div>';
+            rulesContainer.innerHTML = rulesHtml;
+        }
+
+        function populateChecklist(checklist) {
+            let checklistHtml = '<h3 class="text-lg font-semibold text-gray-900 mb-3">Actionable Checklist</h3><div class="space-y-6">';
+            let currentPhase = "";
+            checklist.forEach(item => {
+                if(item.phase !== currentPhase) {
+                    if(currentPhase !== "") checklistHtml += '</div>';
+                    currentPhase = item.phase;
+                    checklistHtml += `<div class="phase-group"><h4 class="text-md font-bold text-pink-700 mb-3 border-b border-pink-200 pb-2">${item.phase}</h4>`;
+                }
+                checklistHtml += `
+                    <div class="flex items-start">
+                        <input id="${item.task.replace(/\s+/g, '')}" type="checkbox" class="h-5 w-5 rounded border-gray-300 text-pink-600 focus:ring-pink-500 mt-0.5 flex-shrink-0">
+                        <label for="${item.task.replace(/\s+/g, '')}" class="ml-3 text-sm text-gray-800">
+                            <span class="font-medium">${item.task}</span>
+                            <span class="block text-gray-500">${item.notes}</span>
+                        </label>
+                    </div>
+                `;
+            });
+            checklistHtml += '</div></div>';
+            checklistContainer.innerHTML = checklistHtml;
+        }
+
+        // --- Tab Functionality ---
+        tabs.addEventListener('click', function(event) {
+            if(event.target.classList.contains('tab-button')) {
+                for (const button of tabs.children) { button.classList.remove('active'); }
+                for (const content of tabContents.children) { content.classList.remove('active'); }
+                event.target.classList.add('active');
+                document.getElementById(event.target.dataset.target).classList.add('active');
+            }
+        });
+        
+        // --- PDF Export Functionality ---
+        downloadBtn.addEventListener('click', function() {
+            const docType = document.getElementById('document-type').value;
+            const judge = document.getElementById('judge').value;
+            const elementToPrint = document.createElement('div');
+            const pdfContent = document.getElementById('pdf-content');
+            
+            // Prepare the content for printing by showing all sections
+            pdfContent.innerHTML = ''; // Clear previous
+            pdfContent.innerHTML += document.getElementById('documents').innerHTML;
+            pdfContent.innerHTML += '<div style="margin-top: 24px;"></div>'; // Add space
+            pdfContent.innerHTML += document.getElementById('rules').innerHTML;
+             pdfContent.innerHTML += '<div style="margin-top: 24px;"></div>';
+            pdfContent.innerHTML += document.getElementById('checklist').innerHTML;
+
+            // Clone the header and the content into the new element for export
+            const headerClone = document.getElementById('results-header').cloneNode(true);
+            const mainTitle = document.createElement('h2');
+            mainTitle.className = 'text-xl font-bold text-gray-800 mb-1';
+            mainTitle.textContent = 'Filing Requirements';
+
+            elementToPrint.appendChild(mainTitle);
+            elementToPrint.appendChild(headerClone);
+            elementToPrint.innerHTML += '<div style="height: 1px; background-color: #e5e7eb; margin: 24px 0;"></div>'; // A separator
+            elementToPrint.appendChild(pdfContent);
+
+            const opt = {
+                margin:       1,
+                filename:     `Ingrid_Report_${docType.replace(/\s+/g, '_')}_${judge.replace(/\s+/g, '_')}.pdf`,
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2, useCORS: true },
+                jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+
+            html2pdf().set(opt).from(elementToPrint).save();
+        });
+    </script>
+</body>
+</html>

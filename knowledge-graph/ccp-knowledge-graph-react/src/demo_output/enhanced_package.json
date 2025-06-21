@@ -1,0 +1,508 @@
+{
+  "caseParameters": {
+    "state": "California",
+    "county": "Santa Clara County",
+    "division": "Complex Civil Litigation",
+    "department": "Dept 7",
+    "judge": "Charles F. Adams",
+    "motionType": "Motion for Summary Judgment",
+    "caseDetails": {
+      "movingParty": "PLAINTIFF TECHCORP SOLUTIONS, INC.",
+      "opposingParty": "DEFENDANT INNOVATE SYSTEMS LLC",
+      "judge": "Hon. Charles F. Adams",
+      "department": "7",
+      "hearingDate": "2024-09-15",
+      "hearingTime": "9:00 AM",
+      "courtAddress": "Superior Court of California, County of Santa Clara\n191 N. First Street\nSan Jose, CA 95113",
+      "caseNumber": "24CV567890",
+      "claimDescription": "breach of software licensing contract with disputed performance terms and complex damage calculations"
+    }
+  },
+  "applicableSections": [
+    {
+      "section": "437",
+      "title": "CCP Section 437",
+      "category": "Pleadings",
+      "filingRelevance": 8,
+      "wordCount": 3199,
+      "crossReferences": 6
+    }
+  ],
+  "documentRequirements": {
+    "mandatory": [
+      {
+        "document": "Notice of Motion and Motion",
+        "rule": "[CCP § 437c(a), CRC Rule 3.1350(b)]",
+        "link": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=437c",
+        "critical": false
+      },
+      {
+        "document": "Memorandum of Points and Authorities",
+        "rule": "Limit: 20 pages [CRC Rule 3.1113(d)]",
+        "link": "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1113",
+        "pageLimit": 20,
+        "critical": false
+      },
+      {
+        "document": "Separate Statement of Undisputed Material Facts",
+        "rule": "MANDATORY [CCP § 437c(b)(1), CRC Rule 3.1350(d)]",
+        "link": "https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1350",
+        "critical": true
+      },
+      {
+        "document": "Supporting Declarations",
+        "rule": "[CRC Rule 3.1350(c), Evidence Code §§ 1400-1402]",
+        "link": "https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=EVID",
+        "critical": false
+      },
+      {
+        "document": "Supporting Evidence",
+        "rule": "Attach as labeled exhibits [CRC Rule 3.1350(c), Evidence Code § 452]",
+        "link": "https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=EVID",
+        "critical": false
+      },
+      {
+        "document": "Proposed Order",
+        "rule": "Editable Word format required [Local Rule 6.H, CRC Rule 3.1312]",
+        "link": "https://www.scscourt.org/general_info/rules/civil_rules.shtml#rule6",
+        "format": "Word",
+        "critical": false
+      },
+      {
+        "document": "Proof of Service",
+        "rule": "[CCP § 1013, CRC Rule 2.251]",
+        "link": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1013",
+        "critical": false
+      }
+    ],
+    "conditional": [
+      {
+        "document": "Request for Judicial Notice",
+        "rule": "File if relying on judicially noticeable facts. [Evid. Code § 452]",
+        "condition": "relying_on_judicial_notice",
+        "link": "https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=EVID"
+      },
+      {
+        "document": "Proposed Judgment",
+        "rule": "File if the motion is dispositive of the entire action.",
+        "condition": "dispositive_motion"
+      }
+    ],
+    "formatting": [
+      {
+        "requirement": "CCP 437 Compliance",
+        "description": "Ensure compliance with CCP Section 437",
+        "category": "Pleadings",
+        "importance": 8
+      }
+    ],
+    "procedural": [
+      {
+        "requirement": "81-Day Notice Period",
+        "description": "Motion must be served at least 81 days before hearing",
+        "statute": "CCP § 437c(a)(2)",
+        "critical": true
+      },
+      {
+        "requirement": "Separate Statement Format",
+        "description": "Two-column format with numbered facts and evidence citations",
+        "statute": "CRC Rule 3.1350(d)",
+        "critical": true
+      },
+      {
+        "requirement": "Evidence Authentication",
+        "description": "All evidence must be authenticated via declarations",
+        "statute": "CCP § 437c(b)(1)",
+        "critical": true
+      }
+    ]
+  },
+  "customTemplates": {
+    "Notice of Motion": {
+      "content": "NOTICE OF MOTION AND MOTION FOR SUMMARY JUDGMENT\n\nTO ALL PARTIES AND THEIR ATTORNEYS OF RECORD:\n\nPLEASE TAKE NOTICE that on 2024-09-15, at 9:00 AM in Department 7, located at Superior Court of California, County of Santa Clara\n191 N. First Street\nSan Jose, CA 95113, PLAINTIFF TECHCORP SOLUTIONS, INC. will and hereby does move this Court for an order granting summary judgment in favor of PLAINTIFF TECHCORP SOLUTIONS, INC. and against DEFENDANT INNOVATE SYSTEMS LLC on the grounds that:\n\n1. There is no triable issue of material fact as to {{CLAIM_DESCRIPTION}};\n2. PLAINTIFF TECHCORP SOLUTIONS, INC. is entitled to judgment as a matter of law;\n3. {{ADDITIONAL_GROUNDS}}.\n\nThis motion is made on the grounds that {{LEGAL_GROUNDS}} and is based upon this Notice of Motion, the Memorandum of Points and Authorities filed herewith, the Separate Statement of Undisputed Material Facts filed herewith, the declarations of {{DECLARANTS}} filed herewith, the exhibits attached thereto, the pleadings and papers on file in this action, and such other evidence and argument as may be presented at the hearing of this motion.\n\n{{SERVICE_NOTICE}}\n\nDATED: 6/20/2025\n\n{{ATTORNEY_SIGNATURE_BLOCK}}",
+      "variables": [
+        "HEARING_DATE",
+        "HEARING_TIME",
+        "DEPARTMENT",
+        "COURT_ADDRESS",
+        "MOVING_PARTY",
+        "OPPOSING_PARTY",
+        "CLAIM_DESCRIPTION",
+        "ADDITIONAL_GROUNDS",
+        "LEGAL_GROUNDS",
+        "DECLARANTS",
+        "SERVICE_NOTICE",
+        "DATE",
+        "ATTORNEY_SIGNATURE_BLOCK"
+      ],
+      "originalTemplate": "NOTICE OF MOTION AND MOTION FOR SUMMARY JUDGMENT\n\nTO ALL PARTIES AND THEIR ATTORNEYS OF RECORD:\n\nPLEASE TAKE NOTICE that on {{HEARING_DATE}}, at {{HEARING_TIME}} in Department {{DEPARTMENT}}, located at {{COURT_ADDRESS}}, {{MOVING_PARTY}} will and hereby does move this Court for an order granting summary judgment in favor of {{MOVING_PARTY}} and against {{OPPOSING_PARTY}} on the grounds that:\n\n1. There is no triable issue of material fact as to {{CLAIM_DESCRIPTION}};\n2. {{MOVING_PARTY}} is entitled to judgment as a matter of law;\n3. {{ADDITIONAL_GROUNDS}}.\n\nThis motion is made on the grounds that {{LEGAL_GROUNDS}} and is based upon this Notice of Motion, the Memorandum of Points and Authorities filed herewith, the Separate Statement of Undisputed Material Facts filed herewith, the declarations of {{DECLARANTS}} filed herewith, the exhibits attached thereto, the pleadings and papers on file in this action, and such other evidence and argument as may be presented at the hearing of this motion.\n\n{{SERVICE_NOTICE}}\n\nDATED: {{DATE}}\n\n{{ATTORNEY_SIGNATURE_BLOCK}}"
+    },
+    "Separate Statement": {
+      "content": "SEPARATE STATEMENT OF UNDISPUTED MATERIAL FACTS\nIN SUPPORT OF MOTION FOR SUMMARY JUDGMENT\n\nTO THE HONORABLE Hon. Charles F. Adams, JUDGE OF THE ABOVE-ENTITLED COURT:\n\nPursuant to California Code of Civil Procedure section 437c(b)(1) and California Rules of Court, rule 3.1350, PLAINTIFF TECHCORP SOLUTIONS, INC. hereby submits the following separate statement of undisputed material facts:\n\n{{#FACTS}}\n{{FACT_NUMBER}}. {{FACT_STATEMENT}}\n\nSupporting Evidence: {{EVIDENCE_CITATION}}\n\n{{/FACTS}}\n\nDATED: 6/20/2025\n\n{{ATTORNEY_SIGNATURE_BLOCK}}",
+      "variables": [
+        "JUDGE_NAME",
+        "MOVING_PARTY",
+        "FACTS",
+        "DATE",
+        "ATTORNEY_SIGNATURE_BLOCK"
+      ],
+      "originalTemplate": "SEPARATE STATEMENT OF UNDISPUTED MATERIAL FACTS\nIN SUPPORT OF MOTION FOR SUMMARY JUDGMENT\n\nTO THE HONORABLE {{JUDGE_NAME}}, JUDGE OF THE ABOVE-ENTITLED COURT:\n\nPursuant to California Code of Civil Procedure section 437c(b)(1) and California Rules of Court, rule 3.1350, {{MOVING_PARTY}} hereby submits the following separate statement of undisputed material facts:\n\n{{#FACTS}}\n{{FACT_NUMBER}}. {{FACT_STATEMENT}}\n\nSupporting Evidence: {{EVIDENCE_CITATION}}\n\n{{/FACTS}}\n\nDATED: {{DATE}}\n\n{{ATTORNEY_SIGNATURE_BLOCK}}"
+    },
+    "Memorandum of Points and Authorities": {
+      "content": "MEMORANDUM OF POINTS AND AUTHORITIES\nIN SUPPORT OF MOTION FOR SUMMARY JUDGMENT\n\nTO THE HONORABLE Hon. Charles F. Adams, JUDGE OF THE ABOVE-ENTITLED COURT:\n\nI. INTRODUCTION\n\nPLAINTIFF TECHCORP SOLUTIONS, INC. respectfully moves this Court for summary judgment against DEFENDANT INNOVATE SYSTEMS LLC on the grounds that there is no triable issue of material fact and PLAINTIFF TECHCORP SOLUTIONS, INC. is entitled to judgment as a matter of law.\n\nII. STATEMENT OF FACTS\n\n{{FACTUAL_BACKGROUND}}\n\nIII. LEGAL STANDARD\n\n{{LEGAL_STANDARD_SECTION}}\n\nIV. ARGUMENT\n\n{{LEGAL_ARGUMENTS}}\n\nV. CONCLUSION\n\nFor the foregoing reasons, PLAINTIFF TECHCORP SOLUTIONS, INC. respectfully requests that this Court grant the motion for summary judgment.\n\nDATED: 6/20/2025\n\n{{ATTORNEY_SIGNATURE_BLOCK}}",
+      "variables": [
+        "JUDGE_NAME",
+        "MOVING_PARTY",
+        "OPPOSING_PARTY",
+        "FACTUAL_BACKGROUND",
+        "LEGAL_STANDARD_SECTION",
+        "LEGAL_ARGUMENTS",
+        "DATE",
+        "ATTORNEY_SIGNATURE_BLOCK"
+      ],
+      "originalTemplate": "MEMORANDUM OF POINTS AND AUTHORITIES\nIN SUPPORT OF MOTION FOR SUMMARY JUDGMENT\n\nTO THE HONORABLE {{JUDGE_NAME}}, JUDGE OF THE ABOVE-ENTITLED COURT:\n\nI. INTRODUCTION\n\n{{MOVING_PARTY}} respectfully moves this Court for summary judgment against {{OPPOSING_PARTY}} on the grounds that there is no triable issue of material fact and {{MOVING_PARTY}} is entitled to judgment as a matter of law.\n\nII. STATEMENT OF FACTS\n\n{{FACTUAL_BACKGROUND}}\n\nIII. LEGAL STANDARD\n\n{{LEGAL_STANDARD_SECTION}}\n\nIV. ARGUMENT\n\n{{LEGAL_ARGUMENTS}}\n\nV. CONCLUSION\n\nFor the foregoing reasons, {{MOVING_PARTY}} respectfully requests that this Court grant the motion for summary judgment.\n\nDATED: {{DATE}}\n\n{{ATTORNEY_SIGNATURE_BLOCK}}"
+    }
+  },
+  "deadlines": [
+    {
+      "task": "Serve Motion and Supporting Papers",
+      "deadline": "6/25/2024",
+      "daysFromHearing": 81,
+      "critical": true,
+      "statute": "CCP § 437c(a)(2)"
+    },
+    {
+      "task": "Opposition Due",
+      "deadline": "8/25/2024",
+      "daysFromHearing": 20,
+      "critical": false,
+      "statute": "CCP § 437c(b)(2)"
+    },
+    {
+      "task": "Reply Brief Due",
+      "deadline": "9/9/2024",
+      "daysFromHearing": 5,
+      "critical": false,
+      "statute": "CCP § 437c(b)(2)"
+    }
+  ],
+  "procedureChecklist": [
+    {
+      "phase": "Phase 1: Pre-Filing Requirements",
+      "tasks": [
+        {
+          "task": "Assess Legal Viability",
+          "description": "Confirm no triable issue of material fact exists",
+          "statute": "CCP § 437c",
+          "completed": false
+        },
+        {
+          "task": "Calendar Critical Deadlines",
+          "description": "Calculate 81-day notice period and other deadlines",
+          "statute": "CCP § 437c(a)(2)",
+          "completed": false
+        },
+        {
+          "task": "Gather Supporting Evidence",
+          "description": "Collect declarations, exhibits, and other evidence",
+          "statute": "CCP § 437c(b)(1)",
+          "completed": false
+        }
+      ]
+    },
+    {
+      "phase": "Phase 2: Document Preparation",
+      "tasks": [
+        {
+          "task": "Draft Notice of Motion",
+          "description": "Include all required elements and proper notice language",
+          "statute": "CCP § 437c(a)",
+          "completed": false
+        },
+        {
+          "task": "Prepare Separate Statement",
+          "description": "Use two-column format with numbered facts and evidence citations",
+          "statute": "CRC Rule 3.1350(d)",
+          "completed": false,
+          "critical": true
+        },
+        {
+          "task": "Draft Memorandum of Points and Authorities",
+          "description": "Limit to 20 pages unless court permission obtained",
+          "statute": "CRC Rule 3.1113(d)",
+          "completed": false
+        },
+        {
+          "task": "Prepare Supporting Declarations",
+          "description": "Authenticate all exhibits and evidence",
+          "statute": "Evidence Code §§ 1400-1402",
+          "completed": false
+        }
+      ]
+    },
+    {
+      "phase": "Phase 3: Filing and Service",
+      "tasks": [
+        {
+          "task": "File Motion with Court",
+          "description": "Ensure all documents are properly formatted and complete",
+          "statute": "CRC Rule 2.100 et seq.",
+          "completed": false
+        },
+        {
+          "task": "Serve All Parties",
+          "description": "Serve at least 81 days before hearing date",
+          "statute": "CCP § 437c(a)(2)",
+          "completed": false,
+          "critical": true
+        },
+        {
+          "task": "File Proof of Service",
+          "description": "File proof of service with the court",
+          "statute": "CCP § 1013",
+          "completed": false
+        }
+      ]
+    }
+  ],
+  "knowledgeGraphInsights": {
+    "totalRelevantSections": 57,
+    "highImportanceSections": 0,
+    "categoryCoverage": {
+      "General Procedures": 17,
+      "Service & Notice": 2,
+      "Depositions": 1,
+      "Document Production": 1,
+      "Requests for Admission": 1,
+      "Jurisdiction & Service": 11,
+      "Pleadings": 21,
+      "Dismissal Procedures": 1,
+      "Judgment Enforcement": 2
+    },
+    "crossReferenceAnalysis": {}
+  },
+  "aiEnhancements": {
+    "legalAnalysis": {
+      "caseType": "Contract Dispute",
+      "legalTheories": [
+        "Breach of Contract",
+        "Contract Interpretation",
+        "Damages"
+      ],
+      "elements": [
+        {
+          "element": "Formation",
+          "description": "Valid contract formation",
+          "strength": "high"
+        },
+        {
+          "element": "Performance",
+          "description": "Plaintiff performed or was excused",
+          "strength": "medium"
+        },
+        {
+          "element": "Breach",
+          "description": "Defendant breached contract terms",
+          "strength": "medium"
+        },
+        {
+          "element": "Damages",
+          "description": "Plaintiff suffered damages from breach",
+          "strength": "low"
+        }
+      ],
+      "strengths": [
+        {
+          "strength": "Clear Contract Terms",
+          "description": "Contract language appears unambiguous",
+          "evidence": "Written contract with specific performance requirements",
+          "weight": 8
+        },
+        {
+          "strength": "Documentary Evidence",
+          "description": "Strong documentary evidence of breach",
+          "evidence": "Email communications, performance records",
+          "weight": 7
+        }
+      ],
+      "weaknesses": [
+        {
+          "weakness": "Disputed Facts",
+          "description": "Some material facts may be in dispute",
+          "impact": "Could prevent summary judgment",
+          "mitigation": "Focus on undisputed facts only"
+        }
+      ],
+      "recommendations": [
+        {
+          "category": "Strategy",
+          "recommendation": "Focus motion on contract interpretation rather than disputed performance",
+          "priority": "high"
+        },
+        {
+          "category": "Evidence",
+          "recommendation": "Obtain additional declarations to authenticate documents",
+          "priority": "medium"
+        }
+      ]
+    },
+    "precedentResearch": {
+      "totalFound": 0,
+      "highlyRelevant": [],
+      "moderatelyRelevant": [],
+      "precedents": []
+    },
+    "riskAssessment": {
+      "overallRisk": "medium",
+      "riskFactors": {
+        "high": [
+          {
+            "factor": "Disputed Material Facts",
+            "description": "Evidence suggests genuine disputes over key facts",
+            "mitigation": "Focus on undisputed facts, use declarations to clarify disputed issues"
+          },
+          {
+            "factor": "Incomplete Discovery",
+            "description": "Discovery still ongoing or incomplete",
+            "mitigation": "Complete essential discovery before filing, consider continuance under CCP § 437c(h)"
+          }
+        ],
+        "medium": [
+          {
+            "factor": "Complex Legal Issues",
+            "description": "Novel or complex legal questions involved",
+            "mitigation": "Provide thorough legal analysis, cite relevant authority"
+          }
+        ],
+        "low": [
+          {
+            "factor": "Clear Legal Standard",
+            "description": "Well-established legal principles apply",
+            "mitigation": "Follow standard motion format and requirements"
+          }
+        ]
+      },
+      "mitigationStrategies": [
+        {
+          "risk": "Disputed Material Facts",
+          "strategy": "Focus on undisputed facts, use declarations to clarify disputed issues",
+          "priority": "high"
+        },
+        {
+          "risk": "Incomplete Discovery",
+          "strategy": "Complete essential discovery before filing, consider continuance under CCP § 437c(h)",
+          "priority": "high"
+        }
+      ],
+      "successProbability": 35
+    },
+    "strategicRecommendations": {
+      "overallStrategy": "Standard motion practice approach",
+      "keyArguments": [],
+      "recommendedEvidence": [],
+      "tacticalConsiderations": [
+        {
+          "consideration": "Timing",
+          "recommendation": "File motion after discovery completion but before trial preparation intensifies",
+          "rationale": "Maximizes chance of success while conserving resources"
+        },
+        {
+          "consideration": "Settlement Leverage",
+          "recommendation": "Use motion filing as settlement pressure point",
+          "rationale": "Demonstrates confidence in legal position"
+        }
+      ],
+      "alternativeApproaches": [
+        {
+          "approach": "Summary Adjudication",
+          "description": "Move for summary adjudication on specific issues rather than entire case",
+          "pros": [
+            "Lower risk",
+            "Partial victory possible"
+          ],
+          "cons": [
+            "Less impactful",
+            "May not resolve case"
+          ]
+        },
+        {
+          "approach": "Settlement Conference",
+          "description": "Request settlement conference before motion hearing",
+          "pros": [
+            "Cost-effective resolution",
+            "Maintains relationships"
+          ],
+          "cons": [
+            "May show weakness",
+            "Not guaranteed resolution"
+          ]
+        }
+      ]
+    },
+    "enhancedTemplates": {
+      "Notice of Motion": {
+        "content": "NOTICE OF MOTION AND MOTION FOR SUMMARY JUDGMENT\n\nTO ALL PARTIES AND THEIR ATTORNEYS OF RECORD:\n\nPLEASE TAKE NOTICE that on 2024-09-15, at 9:00 AM in Department 7, located at Superior Court of California, County of Santa Clara\n191 N. First Street\nSan Jose, CA 95113, PLAINTIFF TECHCORP SOLUTIONS, INC. will and hereby does move this Court for an order granting summary judgment in favor of PLAINTIFF TECHCORP SOLUTIONS, INC. and against DEFENDANT INNOVATE SYSTEMS LLC on the grounds that:\n\n1. There is no triable issue of material fact as to {{CLAIM_DESCRIPTION}};\n2. PLAINTIFF TECHCORP SOLUTIONS, INC. is entitled to judgment as a matter of law;\n3. {{ADDITIONAL_GROUNDS}}.\n\nThis motion is made on the grounds that {{LEGAL_GROUNDS}} and is based upon this Notice of Motion, the Memorandum of Points and Authorities filed herewith, the Separate Statement of Undisputed Material Facts filed herewith, the declarations of {{DECLARANTS}} filed herewith, the exhibits attached thereto, the pleadings and papers on file in this action, and such other evidence and argument as may be presented at the hearing of this motion.\n\n{{SERVICE_NOTICE}}\n\nDATED: 6/20/2025\n\n{{ATTORNEY_SIGNATURE_BLOCK}}",
+        "variables": [
+          "HEARING_DATE",
+          "HEARING_TIME",
+          "DEPARTMENT",
+          "COURT_ADDRESS",
+          "MOVING_PARTY",
+          "OPPOSING_PARTY",
+          "CLAIM_DESCRIPTION",
+          "ADDITIONAL_GROUNDS",
+          "LEGAL_GROUNDS",
+          "DECLARANTS",
+          "SERVICE_NOTICE",
+          "DATE",
+          "ATTORNEY_SIGNATURE_BLOCK"
+        ],
+        "originalTemplate": "NOTICE OF MOTION AND MOTION FOR SUMMARY JUDGMENT\n\nTO ALL PARTIES AND THEIR ATTORNEYS OF RECORD:\n\nPLEASE TAKE NOTICE that on {{HEARING_DATE}}, at {{HEARING_TIME}} in Department {{DEPARTMENT}}, located at {{COURT_ADDRESS}}, {{MOVING_PARTY}} will and hereby does move this Court for an order granting summary judgment in favor of {{MOVING_PARTY}} and against {{OPPOSING_PARTY}} on the grounds that:\n\n1. There is no triable issue of material fact as to {{CLAIM_DESCRIPTION}};\n2. {{MOVING_PARTY}} is entitled to judgment as a matter of law;\n3. {{ADDITIONAL_GROUNDS}}.\n\nThis motion is made on the grounds that {{LEGAL_GROUNDS}} and is based upon this Notice of Motion, the Memorandum of Points and Authorities filed herewith, the Separate Statement of Undisputed Material Facts filed herewith, the declarations of {{DECLARANTS}} filed herewith, the exhibits attached thereto, the pleadings and papers on file in this action, and such other evidence and argument as may be presented at the hearing of this motion.\n\n{{SERVICE_NOTICE}}\n\nDATED: {{DATE}}\n\n{{ATTORNEY_SIGNATURE_BLOCK}}",
+        "aiEnhancements": {
+          "legalStandard": "Standard legal principles apply.",
+          "factualAnalysis": "Based on the undisputed material facts:\n\n1. Formation: Valid contract formation - Evidence strength: high\n2. Performance: Plaintiff performed or was excused - Evidence strength: medium\n3. Breach: Defendant breached contract terms - Evidence strength: medium\n4. Damages: Plaintiff suffered damages from breach - Evidence strength: low\n",
+          "legalArguments": "The following legal arguments support the motion:\n\n1. Breach of Contract: Standard legal principles apply.\n2. Contract Interpretation: Standard legal principles apply.\n3. Damages: Standard legal principles apply.\n",
+          "suggestedCitations": []
+        }
+      },
+      "Separate Statement": {
+        "content": "SEPARATE STATEMENT OF UNDISPUTED MATERIAL FACTS\nIN SUPPORT OF MOTION FOR SUMMARY JUDGMENT\n\nTO THE HONORABLE Hon. Charles F. Adams, JUDGE OF THE ABOVE-ENTITLED COURT:\n\nPursuant to California Code of Civil Procedure section 437c(b)(1) and California Rules of Court, rule 3.1350, PLAINTIFF TECHCORP SOLUTIONS, INC. hereby submits the following separate statement of undisputed material facts:\n\n{{#FACTS}}\n{{FACT_NUMBER}}. {{FACT_STATEMENT}}\n\nSupporting Evidence: {{EVIDENCE_CITATION}}\n\n{{/FACTS}}\n\nDATED: 6/20/2025\n\n{{ATTORNEY_SIGNATURE_BLOCK}}",
+        "variables": [
+          "JUDGE_NAME",
+          "MOVING_PARTY",
+          "FACTS",
+          "DATE",
+          "ATTORNEY_SIGNATURE_BLOCK"
+        ],
+        "originalTemplate": "SEPARATE STATEMENT OF UNDISPUTED MATERIAL FACTS\nIN SUPPORT OF MOTION FOR SUMMARY JUDGMENT\n\nTO THE HONORABLE {{JUDGE_NAME}}, JUDGE OF THE ABOVE-ENTITLED COURT:\n\nPursuant to California Code of Civil Procedure section 437c(b)(1) and California Rules of Court, rule 3.1350, {{MOVING_PARTY}} hereby submits the following separate statement of undisputed material facts:\n\n{{#FACTS}}\n{{FACT_NUMBER}}. {{FACT_STATEMENT}}\n\nSupporting Evidence: {{EVIDENCE_CITATION}}\n\n{{/FACTS}}\n\nDATED: {{DATE}}\n\n{{ATTORNEY_SIGNATURE_BLOCK}}",
+        "aiEnhancements": {
+          "legalStandard": "Standard legal principles apply.",
+          "factualAnalysis": "Based on the undisputed material facts:\n\n1. Formation: Valid contract formation - Evidence strength: high\n2. Performance: Plaintiff performed or was excused - Evidence strength: medium\n3. Breach: Defendant breached contract terms - Evidence strength: medium\n4. Damages: Plaintiff suffered damages from breach - Evidence strength: low\n",
+          "legalArguments": "The following legal arguments support the motion:\n\n1. Breach of Contract: Standard legal principles apply.\n2. Contract Interpretation: Standard legal principles apply.\n3. Damages: Standard legal principles apply.\n",
+          "suggestedCitations": []
+        }
+      },
+      "Memorandum of Points and Authorities": {
+        "content": "MEMORANDUM OF POINTS AND AUTHORITIES\nIN SUPPORT OF MOTION FOR SUMMARY JUDGMENT\n\nTO THE HONORABLE Hon. Charles F. Adams, JUDGE OF THE ABOVE-ENTITLED COURT:\n\nI. INTRODUCTION\n\nPLAINTIFF TECHCORP SOLUTIONS, INC. respectfully moves this Court for summary judgment against DEFENDANT INNOVATE SYSTEMS LLC on the grounds that there is no triable issue of material fact and PLAINTIFF TECHCORP SOLUTIONS, INC. is entitled to judgment as a matter of law.\n\nII. STATEMENT OF FACTS\n\n{{FACTUAL_BACKGROUND}}\n\nIII. LEGAL STANDARD\n\n{{LEGAL_STANDARD_SECTION}}\n\nIV. ARGUMENT\n\n{{LEGAL_ARGUMENTS}}\n\nV. CONCLUSION\n\nFor the foregoing reasons, PLAINTIFF TECHCORP SOLUTIONS, INC. respectfully requests that this Court grant the motion for summary judgment.\n\nDATED: 6/20/2025\n\n{{ATTORNEY_SIGNATURE_BLOCK}}",
+        "variables": [
+          "JUDGE_NAME",
+          "MOVING_PARTY",
+          "OPPOSING_PARTY",
+          "FACTUAL_BACKGROUND",
+          "LEGAL_STANDARD_SECTION",
+          "LEGAL_ARGUMENTS",
+          "DATE",
+          "ATTORNEY_SIGNATURE_BLOCK"
+        ],
+        "originalTemplate": "MEMORANDUM OF POINTS AND AUTHORITIES\nIN SUPPORT OF MOTION FOR SUMMARY JUDGMENT\n\nTO THE HONORABLE {{JUDGE_NAME}}, JUDGE OF THE ABOVE-ENTITLED COURT:\n\nI. INTRODUCTION\n\n{{MOVING_PARTY}} respectfully moves this Court for summary judgment against {{OPPOSING_PARTY}} on the grounds that there is no triable issue of material fact and {{MOVING_PARTY}} is entitled to judgment as a matter of law.\n\nII. STATEMENT OF FACTS\n\n{{FACTUAL_BACKGROUND}}\n\nIII. LEGAL STANDARD\n\n{{LEGAL_STANDARD_SECTION}}\n\nIV. ARGUMENT\n\n{{LEGAL_ARGUMENTS}}\n\nV. CONCLUSION\n\nFor the foregoing reasons, {{MOVING_PARTY}} respectfully requests that this Court grant the motion for summary judgment.\n\nDATED: {{DATE}}\n\n{{ATTORNEY_SIGNATURE_BLOCK}}",
+        "aiEnhancements": {
+          "legalStandard": "Standard legal principles apply.",
+          "factualAnalysis": "Based on the undisputed material facts:\n\n1. Formation: Valid contract formation - Evidence strength: high\n2. Performance: Plaintiff performed or was excused - Evidence strength: medium\n3. Breach: Defendant breached contract terms - Evidence strength: medium\n4. Damages: Plaintiff suffered damages from breach - Evidence strength: low\n",
+          "legalArguments": "The following legal arguments support the motion:\n\n1. Breach of Contract: Standard legal principles apply.\n2. Contract Interpretation: Standard legal principles apply.\n3. Damages: Standard legal principles apply.\n",
+          "suggestedCitations": []
+        }
+      }
+    },
+    "confidence": 52
+  }
+}

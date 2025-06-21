@@ -1,0 +1,3710 @@
+{
+  "nodes": [
+    {
+      "id": "1003",
+      "label": "CCP 1003",
+      "title": "CCP Section 1003",
+      "category": "Service & Notice",
+      "group": 1,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 53,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 1,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1003",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "1005",
+      "label": "CCP 1005",
+      "title": "CCP Section 1005",
+      "category": "Service & Notice",
+      "group": 1,
+      "size": 6.49,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 649,
+        "pageCount": 2,
+        "proceduralRequirements": 3,
+        "deadlinesAndTiming": 2,
+        "crossReferences": 15,
+        "keyProvisions": 2,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1005",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "1010.6",
+      "label": "CCP 1010.6",
+      "title": "CCP Section 1010.6",
+      "category": "Service & Notice",
+      "group": 1,
+      "size": 33.42,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 3342,
+        "pageCount": 7,
+        "proceduralRequirements": 7,
+        "deadlinesAndTiming": 1,
+        "crossReferences": 11,
+        "keyProvisions": 5,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1010.6",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "1010",
+      "label": "CCP 1010",
+      "title": "CCP Section 1010",
+      "category": "Service & Notice",
+      "group": 1,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 164,
+        "pageCount": 1,
+        "proceduralRequirements": 1,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 1,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1010",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "1011",
+      "label": "CCP 1011",
+      "title": "CCP Section 1011",
+      "category": "Service & Notice",
+      "group": 1,
+      "size": 5.38,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 538,
+        "pageCount": 2,
+        "proceduralRequirements": 1,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 2,
+        "keyProvisions": 2,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1011",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "1012",
+      "label": "CCP 1012",
+      "title": "CCP Section 1012",
+      "category": "Service & Notice",
+      "group": 1,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 89,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 1,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1012",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "1013",
+      "label": "CCP 1013",
+      "title": "CCP Section 1013",
+      "category": "Service & Notice",
+      "group": 1,
+      "size": 10.8,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 1080,
+        "pageCount": 2,
+        "proceduralRequirements": 5,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 4,
+        "keyProvisions": 2,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1013",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "1014",
+      "label": "CCP 1014",
+      "title": "CCP Section 1014",
+      "category": "Service & Notice",
+      "group": 1,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 125,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 3,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1014",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "1086",
+      "label": "CCP 1086",
+      "title": "CCP Section 1086",
+      "category": "Mandates",
+      "group": 2,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 60,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 1,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1086",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "1094.5",
+      "label": "CCP 1094.5",
+      "title": "CCP Section 1094.5",
+      "category": "Mandates",
+      "group": 2,
+      "size": 16.75,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 1675,
+        "pageCount": 3,
+        "proceduralRequirements": 3,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 13,
+        "keyProvisions": 3,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1094.5",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "1094.6",
+      "label": "CCP 1094.6",
+      "title": "CCP Section 1094.6",
+      "category": "Mandates",
+      "group": 2,
+      "size": 7.19,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 719,
+        "pageCount": 2,
+        "proceduralRequirements": 1,
+        "deadlinesAndTiming": 4,
+        "crossReferences": 4,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=1094.6",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "128.7",
+      "label": "CCP 128.7",
+      "title": "CCP Section 128.7",
+      "category": "General Procedures",
+      "group": 3,
+      "size": 9.59,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 959,
+        "pageCount": 2,
+        "proceduralRequirements": 4,
+        "deadlinesAndTiming": 2,
+        "crossReferences": 2,
+        "keyProvisions": 2,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=128.7",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "12",
+      "label": "CCP 12",
+      "title": "CCP Section 12",
+      "category": "General Procedures",
+      "group": 3,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 114,
+        "pageCount": 1,
+        "proceduralRequirements": 1,
+        "deadlinesAndTiming": 1,
+        "crossReferences": 2,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=12",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "2024.020",
+      "label": "CCP 2024.020",
+      "title": "CCP Section 2024.020",
+      "category": "Discovery Sanctions",
+      "group": 4,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 113,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 2,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2024.020",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "2025.010",
+      "label": "CCP 2025.010",
+      "title": "CCP Section 2025.010",
+      "category": "Depositions",
+      "group": 5,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 102,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 3,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2025.010",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "2025.480",
+      "label": "CCP 2025.480",
+      "title": "CCP Section 2025.480",
+      "category": "Depositions",
+      "group": 5,
+      "size": 8.37,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 837,
+        "pageCount": 2,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 1,
+        "crossReferences": 3,
+        "keyProvisions": 2,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2025.480",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "2030.010",
+      "label": "CCP 2030.010",
+      "title": "CCP Section 2030.010",
+      "category": "Interrogatories",
+      "group": 6,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 151,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 3,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2030.010",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "2030.300",
+      "label": "CCP 2030.300",
+      "title": "CCP Section 2030.300",
+      "category": "Interrogatories",
+      "group": 6,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 361,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 1,
+        "crossReferences": 4,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2030.300",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "2031.010",
+      "label": "CCP 2031.010",
+      "title": "CCP Section 2031.010",
+      "category": "Document Production",
+      "group": 7,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 314,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 3,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2031.010",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "2031.310",
+      "label": "CCP 2031.310",
+      "title": "CCP Section 2031.310",
+      "category": "Document Production",
+      "group": 7,
+      "size": 7.71,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 771,
+        "pageCount": 2,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 1,
+        "crossReferences": 3,
+        "keyProvisions": 2,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=2031.310",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "367",
+      "label": "CCP 367",
+      "title": "CCP Section 367",
+      "category": "General Procedures",
+      "group": 3,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 49,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 1,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=367",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "372",
+      "label": "CCP 372",
+      "title": "CCP Section 372",
+      "category": "General Procedures",
+      "group": 3,
+      "size": 12.05,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 1205,
+        "pageCount": 3,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 9,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=372",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "392",
+      "label": "CCP 392",
+      "title": "CCP Section 392",
+      "category": "Venue & Jurisdiction",
+      "group": 8,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 235,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 2,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=392",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "410.10",
+      "label": "CCP 410.10",
+      "title": "CCP Section 410.10",
+      "category": "Jurisdiction & Service",
+      "group": 9,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 47,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 1,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=410.10",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "410.42",
+      "label": "CCP 410.42",
+      "title": "CCP Section 410.42",
+      "category": "Jurisdiction & Service",
+      "group": 9,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 204,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 4,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=410.42",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "410.70",
+      "label": "CCP 410.70",
+      "title": "CCP Section 410.70",
+      "category": "Jurisdiction & Service",
+      "group": 9,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 70,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 1,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=410.70",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "411.10",
+      "label": "CCP 411.10",
+      "title": "CCP Section 411.10",
+      "category": "Jurisdiction & Service",
+      "group": 9,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 35,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 1,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=411.10",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "411.35",
+      "label": "CCP 411.35",
+      "title": "CCP Section 411.35",
+      "category": "Jurisdiction & Service",
+      "group": 9,
+      "size": 10.16,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 1016,
+        "pageCount": 3,
+        "proceduralRequirements": 2,
+        "deadlinesAndTiming": 2,
+        "crossReferences": 8,
+        "keyProvisions": 3,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=411.35",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "412.30",
+      "label": "CCP 412.30",
+      "title": "CCP Section 412.30",
+      "category": "Jurisdiction & Service",
+      "group": 9,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 197,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 2,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=412.30",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "413.40",
+      "label": "CCP 413.40",
+      "title": "CCP Section 413.40",
+      "category": "Jurisdiction & Service",
+      "group": 9,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 67,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 2,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=413.40",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "414.10",
+      "label": "CCP 414.10",
+      "title": "CCP Section 414.10",
+      "category": "Jurisdiction & Service",
+      "group": 9,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 46,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 1,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=414.10",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "415.95",
+      "label": "CCP 415.95",
+      "title": "CCP Section 415.95",
+      "category": "Jurisdiction & Service",
+      "group": 9,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 150,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 1,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=415.95",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "416.90",
+      "label": "CCP 416.90",
+      "title": "CCP Section 416.90",
+      "category": "Jurisdiction & Service",
+      "group": 9,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 63,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 1,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=416.90",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "417.40",
+      "label": "CCP 417.40",
+      "title": "CCP Section 417.40",
+      "category": "Jurisdiction & Service",
+      "group": 9,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 81,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 3,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=417.40",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "418.11",
+      "label": "CCP 418.11",
+      "title": "CCP Section 418.11",
+      "category": "General Procedures",
+      "group": 3,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 76,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 2,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=418.11",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "425.10",
+      "label": "CCP 425.10",
+      "title": "CCP Section 425.10",
+      "category": "Complaint Requirements",
+      "group": 10,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 149,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 3,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=425.10",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "425.11",
+      "label": "CCP 425.11",
+      "title": "CCP Section 425.11",
+      "category": "Complaint Requirements",
+      "group": 10,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 284,
+        "pageCount": 1,
+        "proceduralRequirements": 4,
+        "deadlinesAndTiming": 1,
+        "crossReferences": 3,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=425.11",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "425.12",
+      "label": "CCP 425.12",
+      "title": "CCP Section 425.12",
+      "category": "Complaint Requirements",
+      "group": 10,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 163,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 1,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=425.12",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "425.13",
+      "label": "CCP 425.13",
+      "title": "CCP Section 425.13",
+      "category": "Complaint Requirements",
+      "group": 10,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 295,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 5,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=425.13",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "426.10",
+      "label": "CCP 426.10",
+      "title": "CCP Section 426.10",
+      "category": "Cross-Complaint Requirements",
+      "group": 11,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 82,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 1,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=426.10",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "426.30",
+      "label": "CCP 426.30",
+      "title": "CCP Section 426.30",
+      "category": "Cross-Complaint Requirements",
+      "group": 11,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 154,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 1,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=426.30",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "426.50",
+      "label": "CCP 426.50",
+      "title": "CCP Section 426.50",
+      "category": "Cross-Complaint Requirements",
+      "group": 11,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 138,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 1,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=426.50",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "430.10",
+      "label": "CCP 430.10",
+      "title": "CCP Section 430.10",
+      "category": "Demurrer (Motion to Dismiss)",
+      "group": 12,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 189,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 3,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=430.10",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "430.20",
+      "label": "CCP 430.20",
+      "title": "CCP Section 430.20",
+      "category": "Demurrer (Motion to Dismiss)",
+      "group": 12,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 101,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 2,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=430.20",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "430.30",
+      "label": "CCP 430.30",
+      "title": "CCP Section 430.30",
+      "category": "Demurrer (Motion to Dismiss)",
+      "group": 12,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 114,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 1,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=430.30",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "430.40",
+      "label": "CCP 430.40",
+      "title": "CCP Section 430.40",
+      "category": "Demurrer (Motion to Dismiss)",
+      "group": 12,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 78,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 2,
+        "crossReferences": 1,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=430.40",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "430.41",
+      "label": "CCP 430.41",
+      "title": "CCP Section 430.41",
+      "category": "Demurrer (Motion to Dismiss)",
+      "group": 12,
+      "size": 8.48,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 848,
+        "pageCount": 2,
+        "proceduralRequirements": 1,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 3,
+        "keyProvisions": 2,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=430.41",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "431.30",
+      "label": "CCP 431.30",
+      "title": "CCP Section 431.30",
+      "category": "Answer Requirements",
+      "group": 13,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 397,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 2,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=431.30",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "431.40",
+      "label": "CCP 431.40",
+      "title": "CCP Section 431.40",
+      "category": "Answer Requirements",
+      "group": 13,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 159,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 1,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=431.40",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "435",
+      "label": "CCP 435",
+      "title": "CCP Section 435",
+      "category": "Motion to Strike",
+      "group": 14,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 245,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 3,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=435",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "436",
+      "label": "CCP 436",
+      "title": "CCP Section 436",
+      "category": "Motion to Strike",
+      "group": 14,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 93,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 2,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=436",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "437",
+      "label": "CCP 437",
+      "title": "CCP Section 437",
+      "category": "Motion to Strike",
+      "group": 14,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 108,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 2,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=437",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "438",
+      "label": "CCP 438",
+      "title": "CCP Section 438",
+      "category": "Pleadings",
+      "group": 15,
+      "size": 11.53,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 1153,
+        "pageCount": 3,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 1,
+        "crossReferences": 5,
+        "keyProvisions": 3,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=438",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "472",
+      "label": "CCP 472",
+      "title": "CCP Section 472",
+      "category": "Pleading Amendments",
+      "group": 16,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 84,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 1,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=472",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "473",
+      "label": "CCP 473",
+      "title": "CCP Section 473",
+      "category": "Pleadings",
+      "group": 15,
+      "size": 8.23,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 823,
+        "pageCount": 2,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 1,
+        "crossReferences": 2,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=473",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "664.5",
+      "label": "CCP 664.5",
+      "title": "CCP Section 664.5",
+      "category": "Judgment Entry",
+      "group": 17,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 304,
+        "pageCount": 1,
+        "proceduralRequirements": 3,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 1,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=664.5",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "664.6",
+      "label": "CCP 664.6",
+      "title": "CCP Section 664.6",
+      "category": "Judgment Entry",
+      "group": 17,
+      "size": 6.76,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 676,
+        "pageCount": 2,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 3,
+        "keyProvisions": 2,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=664.6",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "664",
+      "label": "CCP 664",
+      "title": "CCP Section 664",
+      "category": "Judgment Entry",
+      "group": 17,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 126,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 1,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=664",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "667",
+      "label": "CCP 667",
+      "title": "CCP Section 667",
+      "category": "Judgment Entry",
+      "group": 17,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 117,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 1,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=667",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "670",
+      "label": "CCP 670",
+      "title": "CCP Section 670",
+      "category": "Judgment Entry",
+      "group": 17,
+      "size": 5,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 267,
+        "pageCount": 1,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 0,
+        "crossReferences": 1,
+        "keyProvisions": 1,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=670",
+        "source": "existing_pdf"
+      }
+    },
+    {
+      "id": "437c",
+      "label": "CCP 437c",
+      "title": "CCP Section 437c - Summary Judgment Motion Requirements (WHAT: Notice, Separate Statement, Points & Authorities, Evidence)",
+      "category": "Summary Judgment Motion",
+      "group": 18,
+      "size": 31.99,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 3199,
+        "pageCount": 6,
+        "proceduralRequirements": 5,
+        "deadlinesAndTiming": 4,
+        "crossReferences": 6,
+        "keyProvisions": 5,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=437c",
+        "source": "critical_filing_question_WHAT"
+      }
+    },
+    {
+      "id": "527",
+      "label": "CCP 527",
+      "title": "CCP Section 527 - TRO Filing Requirements (WHAT/HOW: Emergency relief filing requirements)",
+      "category": "Filing & Service",
+      "group": 19,
+      "size": 9.42,
+      "filingRelevance": 8,
+      "properties": {
+        "wordCount": 942,
+        "pageCount": 2,
+        "proceduralRequirements": 0,
+        "deadlinesAndTiming": 1,
+        "crossReferences": 2,
+        "keyProvisions": 2,
+        "filingRelevance": 8,
+        "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CCP&sectionNum=527",
+        "source": "critical_filing_question_WHAT_HOW"
+      }
+    }
+  ],
+  "links": [
+    {
+      "source": "1003",
+      "target": "1005",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Service & Notice"
+    },
+    {
+      "source": "1003",
+      "target": "1010.6",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Service & Notice"
+    },
+    {
+      "source": "1003",
+      "target": "1010",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Service & Notice"
+    },
+    {
+      "source": "1003",
+      "target": "1011",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Service & Notice"
+    },
+    {
+      "source": "1003",
+      "target": "1012",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Service & Notice"
+    },
+    {
+      "source": "1003",
+      "target": "1013",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Service & Notice"
+    },
+    {
+      "source": "1003",
+      "target": "1014",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Service & Notice"
+    },
+    {
+      "source": "1005",
+      "target": "1013",
+      "type": "cross_reference",
+      "weight": 3,
+      "label": "References",
+      "description": "Section 1005 references Section 1013"
+    },
+    {
+      "source": "1005",
+      "target": "1010.6",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Service & Notice"
+    },
+    {
+      "source": "1005",
+      "target": "1010",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Service & Notice"
+    },
+    {
+      "source": "1005",
+      "target": "1011",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Service & Notice"
+    },
+    {
+      "source": "1005",
+      "target": "1012",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Service & Notice"
+    },
+    {
+      "source": "1005",
+      "target": "1013",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Service & Notice"
+    },
+    {
+      "source": "1005",
+      "target": "1014",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Service & Notice"
+    },
+    {
+      "source": "1010.6",
+      "target": "1010",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Service & Notice"
+    },
+    {
+      "source": "1010.6",
+      "target": "1011",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Service & Notice"
+    },
+    {
+      "source": "1010.6",
+      "target": "1012",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Service & Notice"
+    },
+    {
+      "source": "1010.6",
+      "target": "1013",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Service & Notice"
+    },
+    {
+      "source": "1010.6",
+      "target": "1014",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Service & Notice"
+    },
+    {
+      "source": "1010",
+      "target": "1011",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Service & Notice"
+    },
+    {
+      "source": "1010",
+      "target": "1012",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Service & Notice"
+    },
+    {
+      "source": "1010",
+      "target": "1013",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Service & Notice"
+    },
+    {
+      "source": "1010",
+      "target": "1014",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Service & Notice"
+    },
+    {
+      "source": "1011",
+      "target": "1010.6",
+      "type": "cross_reference",
+      "weight": 3,
+      "label": "References",
+      "description": "Section 1011 references Section 1010.6"
+    },
+    {
+      "source": "1011",
+      "target": "1012",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Service & Notice"
+    },
+    {
+      "source": "1011",
+      "target": "1013",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Service & Notice"
+    },
+    {
+      "source": "1011",
+      "target": "1014",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Service & Notice"
+    },
+    {
+      "source": "1012",
+      "target": "1013",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Service & Notice"
+    },
+    {
+      "source": "1012",
+      "target": "1014",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Service & Notice"
+    },
+    {
+      "source": "1013",
+      "target": "1010.6",
+      "type": "cross_reference",
+      "weight": 3,
+      "label": "References",
+      "description": "Section 1013 references Section 1010.6"
+    },
+    {
+      "source": "1013",
+      "target": "1010",
+      "type": "procedural_dependency",
+      "weight": 5,
+      "label": "Depends On",
+      "description": "Procedural dependency: \"be permitted pursuant to Section 1010...\""
+    },
+    {
+      "source": "1013",
+      "target": "1014",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Service & Notice"
+    },
+    {
+      "source": "1086",
+      "target": "1094.5",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Mandates"
+    },
+    {
+      "source": "1086",
+      "target": "1094.6",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Mandates"
+    },
+    {
+      "source": "1094.5",
+      "target": "1010",
+      "type": "cross_reference",
+      "weight": 3,
+      "label": "References",
+      "description": "Section 1094.5 references Section 1010"
+    },
+    {
+      "source": "1094.5",
+      "target": "1094.6",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Mandates"
+    },
+    {
+      "source": "1094.6",
+      "target": "1094.5",
+      "type": "cross_reference",
+      "weight": 3,
+      "label": "References",
+      "description": "Section 1094.6 references Section 1094.5"
+    },
+    {
+      "source": "1094.6",
+      "target": "1013",
+      "type": "cross_reference",
+      "weight": 3,
+      "label": "References",
+      "description": "Section 1094.6 references Section 1013"
+    },
+    {
+      "source": "128.7",
+      "target": "1010",
+      "type": "cross_reference",
+      "weight": 3,
+      "label": "References",
+      "description": "Section 128.7 references Section 1010"
+    },
+    {
+      "source": "128.7",
+      "target": "1010",
+      "type": "procedural_dependency",
+      "weight": 5,
+      "label": "Depends On",
+      "description": "Procedural dependency: \"as provided in Section 1010, but\nshall not be filed with or presented to the court unless, within 21...\""
+    },
+    {
+      "source": "128.7",
+      "target": "12",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: General Procedures"
+    },
+    {
+      "source": "128.7",
+      "target": "367",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: General Procedures"
+    },
+    {
+      "source": "128.7",
+      "target": "372",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: General Procedures"
+    },
+    {
+      "source": "128.7",
+      "target": "418.11",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: General Procedures"
+    },
+    {
+      "source": "12",
+      "target": "367",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: General Procedures"
+    },
+    {
+      "source": "12",
+      "target": "372",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: General Procedures"
+    },
+    {
+      "source": "12",
+      "target": "418.11",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: General Procedures"
+    },
+    {
+      "source": "2025.010",
+      "target": "2025.480",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Depositions"
+    },
+    {
+      "source": "2030.010",
+      "target": "2030.300",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Interrogatories"
+    },
+    {
+      "source": "2031.010",
+      "target": "2031.310",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Document Production"
+    },
+    {
+      "source": "367",
+      "target": "372",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: General Procedures"
+    },
+    {
+      "source": "367",
+      "target": "418.11",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: General Procedures"
+    },
+    {
+      "source": "372",
+      "target": "418.11",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: General Procedures"
+    },
+    {
+      "source": "410.10",
+      "target": "410.42",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "410.10",
+      "target": "410.70",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "410.10",
+      "target": "411.10",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "410.10",
+      "target": "411.35",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "410.10",
+      "target": "412.30",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "410.10",
+      "target": "413.40",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "410.10",
+      "target": "414.10",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "410.10",
+      "target": "415.95",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "410.10",
+      "target": "416.90",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "410.10",
+      "target": "417.40",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "410.42",
+      "target": "410.70",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "410.42",
+      "target": "411.10",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "410.42",
+      "target": "411.35",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "410.42",
+      "target": "412.30",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "410.42",
+      "target": "413.40",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "410.42",
+      "target": "414.10",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "410.42",
+      "target": "415.95",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "410.42",
+      "target": "416.90",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "410.42",
+      "target": "417.40",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "410.70",
+      "target": "411.10",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "410.70",
+      "target": "411.35",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "410.70",
+      "target": "412.30",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "410.70",
+      "target": "413.40",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "410.70",
+      "target": "414.10",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "410.70",
+      "target": "415.95",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "410.70",
+      "target": "416.90",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "410.70",
+      "target": "417.40",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "411.10",
+      "target": "411.35",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "411.10",
+      "target": "412.30",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "411.10",
+      "target": "413.40",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "411.10",
+      "target": "414.10",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "411.10",
+      "target": "415.95",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "411.10",
+      "target": "416.90",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "411.10",
+      "target": "417.40",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "411.35",
+      "target": "430.10",
+      "type": "cross_reference",
+      "weight": 3,
+      "label": "References",
+      "description": "Section 411.35 references Section 430.10"
+    },
+    {
+      "source": "411.35",
+      "target": "412.30",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "411.35",
+      "target": "413.40",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "411.35",
+      "target": "414.10",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "411.35",
+      "target": "415.95",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "411.35",
+      "target": "416.90",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "411.35",
+      "target": "417.40",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "412.30",
+      "target": "413.40",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "412.30",
+      "target": "414.10",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "412.30",
+      "target": "415.95",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "412.30",
+      "target": "416.90",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "412.30",
+      "target": "417.40",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "413.40",
+      "target": "414.10",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "413.40",
+      "target": "415.95",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "413.40",
+      "target": "416.90",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "413.40",
+      "target": "417.40",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "414.10",
+      "target": "415.95",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "414.10",
+      "target": "416.90",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "414.10",
+      "target": "417.40",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "415.95",
+      "target": "416.90",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "415.95",
+      "target": "417.40",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "416.90",
+      "target": "417.40",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Jurisdiction & Service"
+    },
+    {
+      "source": "425.10",
+      "target": "425.11",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Complaint Requirements"
+    },
+    {
+      "source": "425.10",
+      "target": "425.12",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Complaint Requirements"
+    },
+    {
+      "source": "425.10",
+      "target": "425.13",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Complaint Requirements"
+    },
+    {
+      "source": "425.11",
+      "target": "1010",
+      "type": "cross_reference",
+      "weight": 3,
+      "label": "References",
+      "description": "Section 425.11 references Section 1010"
+    },
+    {
+      "source": "425.11",
+      "target": "425.12",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Complaint Requirements"
+    },
+    {
+      "source": "425.11",
+      "target": "425.13",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Complaint Requirements"
+    },
+    {
+      "source": "425.12",
+      "target": "425.13",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Complaint Requirements"
+    },
+    {
+      "source": "426.10",
+      "target": "426.30",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Cross-Complaint Requirements"
+    },
+    {
+      "source": "426.10",
+      "target": "426.50",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Cross-Complaint Requirements"
+    },
+    {
+      "source": "426.30",
+      "target": "426.50",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Cross-Complaint Requirements"
+    },
+    {
+      "source": "430.10",
+      "target": "430.30",
+      "type": "cross_reference",
+      "weight": 3,
+      "label": "References",
+      "description": "Section 430.10 references Section 430.30"
+    },
+    {
+      "source": "430.10",
+      "target": "411.35",
+      "type": "cross_reference",
+      "weight": 3,
+      "label": "References",
+      "description": "Section 430.10 references Section 411.35"
+    },
+    {
+      "source": "430.10",
+      "target": "430.20",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Demurrer (Motion to Dismiss)"
+    },
+    {
+      "source": "430.10",
+      "target": "430.30",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Demurrer (Motion to Dismiss)"
+    },
+    {
+      "source": "430.10",
+      "target": "430.40",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Demurrer (Motion to Dismiss)"
+    },
+    {
+      "source": "430.10",
+      "target": "430.41",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Demurrer (Motion to Dismiss)"
+    },
+    {
+      "source": "430.20",
+      "target": "430.30",
+      "type": "cross_reference",
+      "weight": 3,
+      "label": "References",
+      "description": "Section 430.20 references Section 430.30"
+    },
+    {
+      "source": "430.20",
+      "target": "430.30",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Demurrer (Motion to Dismiss)"
+    },
+    {
+      "source": "430.20",
+      "target": "430.40",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Demurrer (Motion to Dismiss)"
+    },
+    {
+      "source": "430.20",
+      "target": "430.41",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Demurrer (Motion to Dismiss)"
+    },
+    {
+      "source": "430.30",
+      "target": "430.40",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Demurrer (Motion to Dismiss)"
+    },
+    {
+      "source": "430.30",
+      "target": "430.41",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Demurrer (Motion to Dismiss)"
+    },
+    {
+      "source": "430.40",
+      "target": "430.41",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Demurrer (Motion to Dismiss)"
+    },
+    {
+      "source": "430.41",
+      "target": "472",
+      "type": "cross_reference",
+      "weight": 3,
+      "label": "References",
+      "description": "Section 430.41 references Section 472"
+    },
+    {
+      "source": "431.30",
+      "target": "431.40",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Answer Requirements"
+    },
+    {
+      "source": "435",
+      "target": "436",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Motion to Strike"
+    },
+    {
+      "source": "435",
+      "target": "437",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Motion to Strike"
+    },
+    {
+      "source": "436",
+      "target": "435",
+      "type": "cross_reference",
+      "weight": 3,
+      "label": "References",
+      "description": "Section 436 references Section 435"
+    },
+    {
+      "source": "436",
+      "target": "437",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Motion to Strike"
+    },
+    {
+      "source": "438",
+      "target": "436",
+      "type": "cross_reference",
+      "weight": 3,
+      "label": "References",
+      "description": "Section 438 references Section 436"
+    },
+    {
+      "source": "438",
+      "target": "473",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Pleadings"
+    },
+    {
+      "source": "664.5",
+      "target": "664.6",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Judgment Entry"
+    },
+    {
+      "source": "664.5",
+      "target": "664",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Judgment Entry"
+    },
+    {
+      "source": "664.5",
+      "target": "667",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Judgment Entry"
+    },
+    {
+      "source": "664.5",
+      "target": "670",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Judgment Entry"
+    },
+    {
+      "source": "664.6",
+      "target": "664",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Judgment Entry"
+    },
+    {
+      "source": "664.6",
+      "target": "667",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Judgment Entry"
+    },
+    {
+      "source": "664.6",
+      "target": "670",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Judgment Entry"
+    },
+    {
+      "source": "664",
+      "target": "667",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Judgment Entry"
+    },
+    {
+      "source": "664",
+      "target": "670",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Judgment Entry"
+    },
+    {
+      "source": "667",
+      "target": "670",
+      "type": "category_similarity",
+      "weight": 2,
+      "label": "Similar Category",
+      "description": "Both sections belong to category: Judgment Entry"
+    },
+    {
+      "source": "437c",
+      "target": "437",
+      "type": "cross_reference",
+      "weight": 3,
+      "label": "References",
+      "description": "Section 437c references Section 437"
+    },
+    {
+      "source": "437c",
+      "target": "1005",
+      "type": "cross_reference",
+      "weight": 3,
+      "label": "References",
+      "description": "Section 437c references Section 1005"
+    },
+    {
+      "source": "527",
+      "target": "1005",
+      "type": "cross_reference",
+      "weight": 3,
+      "label": "References",
+      "description": "Section 527 references Section 1005"
+    },
+    {
+      "source": "430.10",
+      "target": "435",
+      "type": "alternative_motion",
+      "weight": 3,
+      "label": "Alternative Motion",
+      "description": "Demurrer and Motion to Strike are often filed together as alternative challenges"
+    },
+    {
+      "source": "430.10",
+      "target": "436",
+      "type": "alternative_motion",
+      "weight": 3,
+      "label": "Alternative Motion",
+      "description": "Demurrer and Motion to Strike are often filed together as alternative challenges"
+    },
+    {
+      "source": "430.10",
+      "target": "437",
+      "type": "alternative_motion",
+      "weight": 3,
+      "label": "Alternative Motion",
+      "description": "Demurrer and Motion to Strike are often filed together as alternative challenges"
+    },
+    {
+      "source": "430.20",
+      "target": "435",
+      "type": "alternative_motion",
+      "weight": 3,
+      "label": "Alternative Motion",
+      "description": "Demurrer and Motion to Strike are often filed together as alternative challenges"
+    },
+    {
+      "source": "430.20",
+      "target": "436",
+      "type": "alternative_motion",
+      "weight": 3,
+      "label": "Alternative Motion",
+      "description": "Demurrer and Motion to Strike are often filed together as alternative challenges"
+    },
+    {
+      "source": "430.20",
+      "target": "437",
+      "type": "alternative_motion",
+      "weight": 3,
+      "label": "Alternative Motion",
+      "description": "Demurrer and Motion to Strike are often filed together as alternative challenges"
+    },
+    {
+      "source": "430.30",
+      "target": "435",
+      "type": "alternative_motion",
+      "weight": 3,
+      "label": "Alternative Motion",
+      "description": "Demurrer and Motion to Strike are often filed together as alternative challenges"
+    },
+    {
+      "source": "430.30",
+      "target": "436",
+      "type": "alternative_motion",
+      "weight": 3,
+      "label": "Alternative Motion",
+      "description": "Demurrer and Motion to Strike are often filed together as alternative challenges"
+    },
+    {
+      "source": "430.30",
+      "target": "437",
+      "type": "alternative_motion",
+      "weight": 3,
+      "label": "Alternative Motion",
+      "description": "Demurrer and Motion to Strike are often filed together as alternative challenges"
+    },
+    {
+      "source": "430.40",
+      "target": "435",
+      "type": "alternative_motion",
+      "weight": 3,
+      "label": "Alternative Motion",
+      "description": "Demurrer and Motion to Strike are often filed together as alternative challenges"
+    },
+    {
+      "source": "430.40",
+      "target": "436",
+      "type": "alternative_motion",
+      "weight": 3,
+      "label": "Alternative Motion",
+      "description": "Demurrer and Motion to Strike are often filed together as alternative challenges"
+    },
+    {
+      "source": "430.40",
+      "target": "437",
+      "type": "alternative_motion",
+      "weight": 3,
+      "label": "Alternative Motion",
+      "description": "Demurrer and Motion to Strike are often filed together as alternative challenges"
+    },
+    {
+      "source": "430.41",
+      "target": "435",
+      "type": "alternative_motion",
+      "weight": 3,
+      "label": "Alternative Motion",
+      "description": "Demurrer and Motion to Strike are often filed together as alternative challenges"
+    },
+    {
+      "source": "430.41",
+      "target": "436",
+      "type": "alternative_motion",
+      "weight": 3,
+      "label": "Alternative Motion",
+      "description": "Demurrer and Motion to Strike are often filed together as alternative challenges"
+    },
+    {
+      "source": "430.41",
+      "target": "437",
+      "type": "alternative_motion",
+      "weight": 3,
+      "label": "Alternative Motion",
+      "description": "Demurrer and Motion to Strike are often filed together as alternative challenges"
+    },
+    {
+      "source": "430.10",
+      "target": "472",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "If demurrer is sustained with leave to amend, pleading amendment follows"
+    },
+    {
+      "source": "430.20",
+      "target": "472",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "If demurrer is sustained with leave to amend, pleading amendment follows"
+    },
+    {
+      "source": "430.30",
+      "target": "472",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "If demurrer is sustained with leave to amend, pleading amendment follows"
+    },
+    {
+      "source": "430.40",
+      "target": "472",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "If demurrer is sustained with leave to amend, pleading amendment follows"
+    },
+    {
+      "source": "430.41",
+      "target": "472",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "If demurrer is sustained with leave to amend, pleading amendment follows"
+    },
+    {
+      "source": "472",
+      "target": "431.30",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "After amendment, defendant must file answer or further motion"
+    },
+    {
+      "source": "472",
+      "target": "431.40",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "After amendment, defendant must file answer or further motion"
+    },
+    {
+      "source": "2024.020",
+      "target": "437c",
+      "type": "timing_relationship",
+      "weight": 4,
+      "label": "Timing Relation",
+      "description": "Discovery must be substantially completed before summary judgment motion"
+    },
+    {
+      "source": "2025.010",
+      "target": "437c",
+      "type": "timing_relationship",
+      "weight": 4,
+      "label": "Timing Relation",
+      "description": "Discovery must be substantially completed before summary judgment motion"
+    },
+    {
+      "source": "2025.480",
+      "target": "437c",
+      "type": "timing_relationship",
+      "weight": 4,
+      "label": "Timing Relation",
+      "description": "Discovery must be substantially completed before summary judgment motion"
+    },
+    {
+      "source": "2030.010",
+      "target": "437c",
+      "type": "timing_relationship",
+      "weight": 4,
+      "label": "Timing Relation",
+      "description": "Discovery must be substantially completed before summary judgment motion"
+    },
+    {
+      "source": "2030.300",
+      "target": "437c",
+      "type": "timing_relationship",
+      "weight": 4,
+      "label": "Timing Relation",
+      "description": "Discovery must be substantially completed before summary judgment motion"
+    },
+    {
+      "source": "2031.010",
+      "target": "437c",
+      "type": "timing_relationship",
+      "weight": 4,
+      "label": "Timing Relation",
+      "description": "Discovery must be substantially completed before summary judgment motion"
+    },
+    {
+      "source": "2031.310",
+      "target": "437c",
+      "type": "timing_relationship",
+      "weight": 4,
+      "label": "Timing Relation",
+      "description": "Discovery must be substantially completed before summary judgment motion"
+    },
+    {
+      "source": "1010",
+      "target": "437c",
+      "type": "timing_requirement",
+      "weight": 6,
+      "label": "Timing Requirement",
+      "description": "Service method affects 81-day notice period calculation for summary judgment"
+    },
+    {
+      "source": "1011",
+      "target": "437c",
+      "type": "timing_requirement",
+      "weight": 6,
+      "label": "Timing Requirement",
+      "description": "Service method affects 81-day notice period calculation for summary judgment"
+    },
+    {
+      "source": "1012",
+      "target": "437c",
+      "type": "timing_requirement",
+      "weight": 6,
+      "label": "Timing Requirement",
+      "description": "Service method affects 81-day notice period calculation for summary judgment"
+    },
+    {
+      "source": "1013",
+      "target": "437c",
+      "type": "timing_requirement",
+      "weight": 6,
+      "label": "Timing Requirement",
+      "description": "Service method affects 81-day notice period calculation for summary judgment"
+    },
+    {
+      "source": "1003",
+      "target": "437c",
+      "type": "procedural_foundation",
+      "weight": 7,
+      "label": "Procedural Foundation",
+      "description": "Fundamental motion practice rules apply to summary judgment"
+    },
+    {
+      "source": "1005",
+      "target": "437c",
+      "type": "procedural_foundation",
+      "weight": 7,
+      "label": "Procedural Foundation",
+      "description": "Fundamental motion practice rules apply to summary judgment"
+    },
+    {
+      "source": "437c",
+      "target": "437c",
+      "type": "evidence_requirement",
+      "weight": 6,
+      "label": "Evidence Required",
+      "description": "Evidence must be properly authenticated for summary judgment motion"
+    },
+    {
+      "source": "437c",
+      "target": "437c",
+      "type": "mandatory_document",
+      "weight": 8,
+      "label": "Mandatory Document",
+      "description": "Separate statement is mandatory for summary judgment motion"
+    },
+    {
+      "source": "1005",
+      "target": "437c",
+      "type": "timing_requirement",
+      "weight": 5,
+      "label": "Timing Requirement",
+      "description": "Opposition and reply timing rules apply to summary judgment"
+    },
+    {
+      "source": "437c",
+      "target": "437c",
+      "type": "timing_requirement",
+      "weight": 5,
+      "label": "Timing Requirement",
+      "description": "Opposition and reply timing rules apply to summary judgment"
+    },
+    {
+      "source": "437c",
+      "target": "430.40",
+      "type": "scheduling_coordination",
+      "weight": 6,
+      "label": "Schedule Coordination",
+      "description": "Summary judgment must be heard at least 30 days before trial"
+    },
+    {
+      "source": "437c",
+      "target": "438",
+      "type": "scheduling_coordination",
+      "weight": 6,
+      "label": "Schedule Coordination",
+      "description": "Summary judgment must be heard at least 30 days before trial"
+    },
+    {
+      "source": "437c",
+      "target": "437c",
+      "type": "scheduling_coordination",
+      "weight": 6,
+      "label": "Schedule Coordination",
+      "description": "Summary judgment must be heard at least 30 days before trial"
+    },
+    {
+      "source": "437c",
+      "target": "437",
+      "type": "related_procedure",
+      "weight": 7,
+      "label": "Related Procedure",
+      "description": "Summary judgment and summary adjudication are related procedures"
+    },
+    {
+      "source": "1003",
+      "target": "430.10",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1003",
+      "target": "430.20",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1003",
+      "target": "430.30",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1003",
+      "target": "430.40",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1003",
+      "target": "430.41",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1003",
+      "target": "435",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1003",
+      "target": "436",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1003",
+      "target": "437",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1003",
+      "target": "437c",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1005",
+      "target": "430.10",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1005",
+      "target": "430.20",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1005",
+      "target": "430.30",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1005",
+      "target": "430.40",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1005",
+      "target": "430.41",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1005",
+      "target": "435",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1005",
+      "target": "436",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1005",
+      "target": "437",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1005",
+      "target": "437c",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1010.6",
+      "target": "430.10",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1010.6",
+      "target": "430.20",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1010.6",
+      "target": "430.30",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1010.6",
+      "target": "430.40",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1010.6",
+      "target": "430.41",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1010.6",
+      "target": "435",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1010.6",
+      "target": "436",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1010.6",
+      "target": "437",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1010.6",
+      "target": "437c",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1010",
+      "target": "430.10",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1010",
+      "target": "430.20",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1010",
+      "target": "430.30",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1010",
+      "target": "430.40",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1010",
+      "target": "430.41",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1010",
+      "target": "435",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1010",
+      "target": "436",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1010",
+      "target": "437",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1010",
+      "target": "437c",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1011",
+      "target": "430.10",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1011",
+      "target": "430.20",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1011",
+      "target": "430.30",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1011",
+      "target": "430.40",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1011",
+      "target": "430.41",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1011",
+      "target": "435",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1011",
+      "target": "436",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1011",
+      "target": "437",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1011",
+      "target": "437c",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1012",
+      "target": "430.10",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1012",
+      "target": "430.20",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1012",
+      "target": "430.30",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1012",
+      "target": "430.40",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1012",
+      "target": "430.41",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1012",
+      "target": "435",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1012",
+      "target": "436",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1012",
+      "target": "437",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1012",
+      "target": "437c",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1013",
+      "target": "430.10",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1013",
+      "target": "430.20",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1013",
+      "target": "430.30",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1013",
+      "target": "430.40",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1013",
+      "target": "430.41",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1013",
+      "target": "435",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1013",
+      "target": "436",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1013",
+      "target": "437",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1013",
+      "target": "437c",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1014",
+      "target": "430.10",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1014",
+      "target": "430.20",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1014",
+      "target": "430.30",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1014",
+      "target": "430.40",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1014",
+      "target": "430.41",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1014",
+      "target": "435",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1014",
+      "target": "436",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1014",
+      "target": "437",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "1014",
+      "target": "437c",
+      "type": "document_requirement",
+      "weight": 5,
+      "label": "Required Document",
+      "description": "Service and notice requirements apply to this motion type"
+    },
+    {
+      "source": "425.10",
+      "target": "430.10",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Demurrer challenges the legal sufficiency of the complaint"
+    },
+    {
+      "source": "425.10",
+      "target": "430.20",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Demurrer challenges the legal sufficiency of the complaint"
+    },
+    {
+      "source": "425.10",
+      "target": "430.30",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Demurrer challenges the legal sufficiency of the complaint"
+    },
+    {
+      "source": "425.10",
+      "target": "430.40",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Demurrer challenges the legal sufficiency of the complaint"
+    },
+    {
+      "source": "425.10",
+      "target": "430.41",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Demurrer challenges the legal sufficiency of the complaint"
+    },
+    {
+      "source": "425.10",
+      "target": "435",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Motion to strike challenges improper matter in complaint"
+    },
+    {
+      "source": "425.10",
+      "target": "436",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Motion to strike challenges improper matter in complaint"
+    },
+    {
+      "source": "425.10",
+      "target": "437",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Motion to strike challenges improper matter in complaint"
+    },
+    {
+      "source": "425.10",
+      "target": "431.30",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Defendant may answer complaint directly instead of filing motion"
+    },
+    {
+      "source": "425.10",
+      "target": "431.40",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Defendant may answer complaint directly instead of filing motion"
+    },
+    {
+      "source": "425.11",
+      "target": "430.10",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Demurrer challenges the legal sufficiency of the complaint"
+    },
+    {
+      "source": "425.11",
+      "target": "430.20",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Demurrer challenges the legal sufficiency of the complaint"
+    },
+    {
+      "source": "425.11",
+      "target": "430.30",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Demurrer challenges the legal sufficiency of the complaint"
+    },
+    {
+      "source": "425.11",
+      "target": "430.40",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Demurrer challenges the legal sufficiency of the complaint"
+    },
+    {
+      "source": "425.11",
+      "target": "430.41",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Demurrer challenges the legal sufficiency of the complaint"
+    },
+    {
+      "source": "425.11",
+      "target": "435",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Motion to strike challenges improper matter in complaint"
+    },
+    {
+      "source": "425.11",
+      "target": "436",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Motion to strike challenges improper matter in complaint"
+    },
+    {
+      "source": "425.11",
+      "target": "437",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Motion to strike challenges improper matter in complaint"
+    },
+    {
+      "source": "425.11",
+      "target": "431.30",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Defendant may answer complaint directly instead of filing motion"
+    },
+    {
+      "source": "425.11",
+      "target": "431.40",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Defendant may answer complaint directly instead of filing motion"
+    },
+    {
+      "source": "425.12",
+      "target": "430.10",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Demurrer challenges the legal sufficiency of the complaint"
+    },
+    {
+      "source": "425.12",
+      "target": "430.20",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Demurrer challenges the legal sufficiency of the complaint"
+    },
+    {
+      "source": "425.12",
+      "target": "430.30",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Demurrer challenges the legal sufficiency of the complaint"
+    },
+    {
+      "source": "425.12",
+      "target": "430.40",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Demurrer challenges the legal sufficiency of the complaint"
+    },
+    {
+      "source": "425.12",
+      "target": "430.41",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Demurrer challenges the legal sufficiency of the complaint"
+    },
+    {
+      "source": "425.12",
+      "target": "435",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Motion to strike challenges improper matter in complaint"
+    },
+    {
+      "source": "425.12",
+      "target": "436",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Motion to strike challenges improper matter in complaint"
+    },
+    {
+      "source": "425.12",
+      "target": "437",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Motion to strike challenges improper matter in complaint"
+    },
+    {
+      "source": "425.12",
+      "target": "431.30",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Defendant may answer complaint directly instead of filing motion"
+    },
+    {
+      "source": "425.12",
+      "target": "431.40",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Defendant may answer complaint directly instead of filing motion"
+    },
+    {
+      "source": "425.13",
+      "target": "430.10",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Demurrer challenges the legal sufficiency of the complaint"
+    },
+    {
+      "source": "425.13",
+      "target": "430.20",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Demurrer challenges the legal sufficiency of the complaint"
+    },
+    {
+      "source": "425.13",
+      "target": "430.30",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Demurrer challenges the legal sufficiency of the complaint"
+    },
+    {
+      "source": "425.13",
+      "target": "430.40",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Demurrer challenges the legal sufficiency of the complaint"
+    },
+    {
+      "source": "425.13",
+      "target": "430.41",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Demurrer challenges the legal sufficiency of the complaint"
+    },
+    {
+      "source": "425.13",
+      "target": "435",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Motion to strike challenges improper matter in complaint"
+    },
+    {
+      "source": "425.13",
+      "target": "436",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Motion to strike challenges improper matter in complaint"
+    },
+    {
+      "source": "425.13",
+      "target": "437",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Motion to strike challenges improper matter in complaint"
+    },
+    {
+      "source": "425.13",
+      "target": "431.30",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Defendant may answer complaint directly instead of filing motion"
+    },
+    {
+      "source": "425.13",
+      "target": "431.40",
+      "type": "motion_sequence",
+      "weight": 6,
+      "label": "Motion Sequence",
+      "description": "Defendant may answer complaint directly instead of filing motion"
+    }
+  ]
+}

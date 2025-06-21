@@ -1,0 +1,23 @@
+{
+  "name": "california-legal-scraper",
+  "version": "1.0.0",
+  "description": "California legal document scraper and analyzer",
+  "main": "hierarchial_scraper.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:unit": "jest --testPathPattern=unit",
+    "test:regression": "jest --testPathPattern=regression",
+    "test:verbose": "jest --verbose",
+    "test:silent": "jest --silent"
+  },
+  "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "jest": "^29.7.0",
+    "jest-runner": "^30.0.2"
+  },
+  "dependencies": {
+    "playwright": "^1.40.0"
+  }
+}

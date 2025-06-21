@@ -1,0 +1,813 @@
+[
+  {
+    "rule_number": "1.1.",
+    "title": "Rule 1.1.  The California Rules of Court",
+    "last_updated": "2007-01-01",
+    "introduction": "These rules are entitled the California Rules of Court. \n \nRule 1.1 adopted effective January 1, 2007.",
+    "sub_rules": {}
+  },
+  {
+    "rule_number": "1.2.",
+    "title": "Rule 1.2.  Title",
+    "last_updated": "2007-01-01",
+    "introduction": "The rules in this title of the California Rules of Court may be referred to as the Rules \nApplicable to All Courts. \n \nRule 1.2 adopted effective January 1, 2007.",
+    "sub_rules": {}
+  },
+  {
+    "rule_number": "1.3.",
+    "title": "Rule 1.3.  Authority",
+    "last_updated": null,
+    "introduction": "Rule 1.4  Contents of the rules",
+    "sub_rules": {}
+  },
+  {
+    "rule_number": "1.3.",
+    "title": "Rule 1.3.  Authority",
+    "last_updated": "2008-01-01",
+    "introduction": "The rules in the California Rules of Court are adopted by the Judicial Council of \nCalifornia under the authority of article VI, section 6, of the Constitution of the State of \nCalifornia, unless otherwise indicated. The rules in division 5 of title 8 and in title 9 were \nadopted by the Supreme Court. \n \nRule 1.3 amended effective January 1, 2008; adopted effective January 1, 2007.",
+    "sub_rules": {}
+  },
+  {
+    "rule_number": "1.4.",
+    "title": "Rule 1.4.  Contents of the rules",
+    "last_updated": "2023-09-01",
+    "introduction": "",
+    "sub_rules": {
+      "a": {
+        "content": "The titles \n \nThe California Rules of Court includes the following titles:",
+        "last_updated": null
+      },
+      "1": {
+        "content": "Appendix A. Judicial Council Legal Forms List;",
+        "last_updated": null
+      },
+      "2": {
+        "content": "Appendix B. Liability Limits of a Parent or Guardian Having Custody and \nControl of a Minor for the Torts of a Minor;",
+        "last_updated": null
+      },
+      "3": {
+        "content": "Appendix C. Guidelines for the Operation of Family Law Information \nCenters and Family Law Facilitator Offices;",
+        "last_updated": null
+      },
+      "4": {
+        "content": "Appendix D. Judicial Council Governance Policies;",
+        "last_updated": null
+      },
+      "5": {
+        "content": "Appendix E. Guidelines for Determining Financial Eligibility for County \nPayment of the Cost of Counsel Appointed by the Court in Proceedings \nUnder the Guardianship-Conservatorship Law; \n \n \n3",
+        "last_updated": null
+      },
+      "6": {
+        "content": "Appendix F. Guidelines for the Juvenile Dependency Counsel Collections \nProgram; and",
+        "last_updated": null
+      },
+      "7": {
+        "content": "Appendix G. Parliamentary Procedures for the Judicial Council of California. \n \n(Subd (d) amended effective February 26, 2013; adopted as subd (e) effective January 1, \n2007; previously relettered effective January 1, 2008; previously amended effective August \n14, 2009, and January 1, 2013.) \n \nRule 1.4 amended effective September 1, 2023; adopted effective January 1, 2007; previously \namended effective January 1, 2008, August 14, 2009, January 1, 2013, and February 26, 2013.",
+        "last_updated": "2023-09-01"
+      },
+      "8": {
+        "content": "Title 8. Appellate Rules;",
+        "last_updated": null
+      },
+      "9": {
+        "content": "Title 9. Rules on Law Practice, Attorneys, and Judges; and",
+        "last_updated": null
+      },
+      "10": {
+        "content": "Title 10. Judicial Administration Rules. \n \n(Subd (a) amended effective September 1, 2023.)",
+        "last_updated": "2023-09-01"
+      },
+      "b": {
+        "content": "Standards of Judicial Administration \n \nThe California Rules of Court includes the Standards of Judicial Administration \nadopted by the Judicial Council.",
+        "last_updated": null
+      },
+      "c": {
+        "content": "Ethics Standards for Neutral Arbitrators in Contractual Arbitrations \n \nThe California Rules of Court includes Ethics Standards for Neutral Arbitrators in \nContractual Arbitrations adopted by the Judicial Council under the authority of \nCode of Civil Procedure section 1281.85. \n \n(Subd (c) relettered effective January 1, 2008; adopted as subd (d) effective January 1, \n2007.)",
+        "last_updated": "2008-01-01"
+      },
+      "d": {
+        "content": "The appendixes \n \nThe California Rules of Court includes the following appendixes:",
+        "last_updated": null
+      }
+    }
+  },
+  {
+    "rule_number": "1.5.",
+    "title": "Rule 1.5.  Construction of rules and standards",
+    "last_updated": null,
+    "introduction": "Rule 1.6  Definitions and use of terms",
+    "sub_rules": {}
+  },
+  {
+    "rule_number": "1.5.",
+    "title": "Rule 1.5.  Construction of rules and standards",
+    "last_updated": "2007-01-01",
+    "introduction": "",
+    "sub_rules": {
+      "a": {
+        "content": "Construction \n \nThe rules and standards of the California Rules of Court must be liberally construed \nto ensure the just and speedy determination of the proceedings that they govern.",
+        "last_updated": null
+      },
+      "b": {
+        "content": "Terminology \n \nAs used in the rules and standards:",
+        "last_updated": null
+      },
+      "1": {
+        "content": "Each tense (past, present, or future) includes the others;",
+        "last_updated": null
+      },
+      "2": {
+        "content": "Each gender (masculine, feminine, or neuter) includes the others; and \n \n4",
+        "last_updated": null
+      },
+      "3": {
+        "content": "Each number (singular or plural) includes the other. \n \nRule 1.5 adopted effective January 1, 2007.",
+        "last_updated": "2007-01-01"
+      },
+      "4": {
+        "content": "\u201cWill\u201d expresses a future contingency or predicts action by a court or person \nin the ordinary course of events, but does not signify a mandatory duty; and",
+        "last_updated": null
+      },
+      "5": {
+        "content": "\u201cShould\u201d expresses a preference or a nonbinding recommendation.",
+        "last_updated": null
+      },
+      "c": {
+        "content": "Standards \n \nStandards are guidelines or goals recommended by the Judicial Council. The \nnonbinding nature of standards is indicated by the use of \u201cshould\u201d in the standards \ninstead of the mandatory \u201cmust\u201d used in the rules.",
+        "last_updated": null
+      },
+      "d": {
+        "content": "Construction of additional terms \n \nIn the rules:",
+        "last_updated": null
+      }
+    }
+  },
+  {
+    "rule_number": "1.6.",
+    "title": "Rule 1.6.  Definitions and use of terms",
+    "last_updated": "2014-01-01",
+    "introduction": "As used in the California Rules of Court, unless the context or subject matter otherwise \nrequires:",
+    "sub_rules": {
+      "1": {
+        "content": "\u201cAction\u201d includes special proceeding.",
+        "last_updated": null
+      },
+      "2": {
+        "content": "\u201cCase\u201d includes action or proceeding.",
+        "last_updated": null
+      },
+      "3": {
+        "content": "\u201cCivil case\u201d means a case prosecuted by one party against another for the \ndeclaration, enforcement, or protection of a right or the redress or prevention of a \nwrong. Civil cases include all cases except criminal cases and petitions for habeas \ncorpus.",
+        "last_updated": null
+      },
+      "4": {
+        "content": "\u201cGeneral civil case\u201d means all civil cases except probate, guardianship, \nconservatorship, juvenile, and family law proceedings (including proceedings \nunder divisions 6\u20139 of the Family Code, Uniform Parentage Act, Domestic \nViolence Prevention Act, and Uniform Interstate Family Support Act; freedom \nfrom parental custody and control proceedings; and adoption proceedings), small \nclaims proceedings, unlawful detainer proceedings, and \u201cother civil petitions\u201d \ndescribed in (5).",
+        "last_updated": null
+      },
+      "5": {
+        "content": "\u201cCivil petitions\u201d that are not general civil cases include petitions to prevent civil \nharassment, elder abuse, and workplace violence; petitions for name change; \nelection contest petitions; and petitions for relief from late claims.",
+        "last_updated": null
+      },
+      "6": {
+        "content": "\u201cUnlimited civil cases\u201d and \u201climited civil cases\u201d are defined in Code of Civil \nProcedure section 85 et seq.",
+        "last_updated": null
+      },
+      "7": {
+        "content": "\u201cCriminal case\u201d means a proceeding by which a party charged with a public \noffense is accused and prosecuted for the offense.",
+        "last_updated": null
+      },
+      "8": {
+        "content": "\u201cRule\u201d means a rule of the California Rules of Court.",
+        "last_updated": null
+      },
+      "9": {
+        "content": "\u201cLocal rule\u201d means every rule, regulation, order, policy, form, or standard of \ngeneral application adopted by a court to govern practice and procedure in that \ncourt or by a judge of the court to govern practice or procedure in that judge\u2019s \ncourtroom.",
+        "last_updated": null
+      },
+      "10": {
+        "content": "\u201cChief Justice\u201d and \u201cpresiding justice\u201d include the Acting Chief Justice and the \nacting presiding justice, respectively. \n \n \n5",
+        "last_updated": null
+      },
+      "11": {
+        "content": "\u201cPresiding judge\u201d includes the acting presiding judge or the judicial officer \ndesignated by the presiding judge.",
+        "last_updated": null
+      },
+      "12": {
+        "content": "\u201cJudge\u201d includes, as applicable, a judge of the superior court, a commissioner, or a \ntemporary judge.",
+        "last_updated": null
+      },
+      "13": {
+        "content": "\u201cTemporary judge\u201d means an active or inactive member of the State Bar of \nCalifornia who, under article VI, section 21 of the California Constitution and these \nrules, serves or expects to serve as a judge once, sporadically, or regularly on a \npart-time basis under a separate court appointment for each period of service or \neach case heard.",
+        "last_updated": null
+      },
+      "14": {
+        "content": "\u201cPerson\u201d includes a corporation or other legal entity as well as a natural person.",
+        "last_updated": null
+      },
+      "15": {
+        "content": "\u201cParty\u201d is a person appearing in an action. Parties include both self-represented \npersons and persons represented by an attorney of record. \u201cParty,\u201d \u201cplaintiff,\u201d \n\u201cPeople of the State of California,\u201d \u201capplicant,\u201d \u201cpetitioner,\u201d \u201cdefendant,\u201d \n\u201crespondent,\u201d \u201cother parent,\u201d or any other designation of a party includes the \nparty\u2019s attorney of record.",
+        "last_updated": null
+      },
+      "16": {
+        "content": "\u201cAttorney\u201d means a member of the State Bar of California.",
+        "last_updated": null
+      },
+      "17": {
+        "content": "\u201cCounsel\u201d means an attorney.",
+        "last_updated": null
+      },
+      "18": {
+        "content": "\u201cSheriff\u201d includes marshal.",
+        "last_updated": null
+      },
+      "19": {
+        "content": "\u201cService\u201d means service in the manner prescribed by a statute or rule.",
+        "last_updated": null
+      },
+      "20": {
+        "content": "\u201cMemorandum\u201d means a written document containing: a statement of facts; a \nconcise statement of the law, evidence, and arguments relied on; and a discussion \nof the statutes, cases, rules, and other legal sources relied on in support of the \nposition advanced.",
+        "last_updated": null
+      },
+      "21": {
+        "content": "\u201cDeclaration\u201d includes \u201caffidavit.\u201d",
+        "last_updated": null
+      },
+      "22": {
+        "content": "\u201cCalifornia Courts Web Site\u201d means the Web site established by the Judicial \nCouncil that includes news and information, reference materials, rules and forms, \nand a self-help center. The address is: www.courts.ca.gov. \n \nRule 1.6 amended effective January 1, 2014; adopted as rule 200.1 effective January 1, 2003; \npreviously amended and renumbered effective January 1, 2007; previously amended effective \nJuly 1, 2007, July 1, 2008, and July 1, 2013. \n \n \nChapter 2.  Timing and Holidays",
+        "last_updated": "2014-01-01"
+      }
+    }
+  },
+  {
+    "rule_number": "1.10.",
+    "title": "Rule 1.10.  Time for actions",
+    "last_updated": null,
+    "introduction": "6",
+    "sub_rules": {}
+  },
+  {
+    "rule_number": "1.10.",
+    "title": "Rule 1.10.  Time for actions",
+    "last_updated": "2007-01-01",
+    "introduction": "",
+    "sub_rules": {
+      "a": {
+        "content": "Computation of time \n \nThe time in which any act provided by these rules is to be performed is computed \nby excluding the first day and including the last, unless the last day is a Saturday, \nSunday, or other legal holiday, and then it is also excluded. \n \n(Subd (a) amended effective January 1, 2007.)",
+        "last_updated": "2007-01-01"
+      },
+      "b": {
+        "content": "Holidays \n \nUnless otherwise provided by law, if the last day for the performance of any act \nthat is required by these rules to be performed within a specific period of time falls \non a Saturday, Sunday, or other legal holiday, the period is extended to and \nincludes the next day that is not a holiday. \n \n(Subd (b) amended effective January 1, 2007.)",
+        "last_updated": "2007-01-01"
+      },
+      "c": {
+        "content": "Extending or shortening time \n \nUnless otherwise provided by law, the court may extend or shorten the time within \nwhich a party must perform any act under the rules. \n \n(Subd (c) amended effective January 1, 2007.) \n \nRule 1.10 amended and renumbered effective January 1, 2007; adopted as rule 200.3 effective \nJanuary 1, 2003.",
+        "last_updated": "2007-01-01"
+      }
+    }
+  },
+  {
+    "rule_number": "1.11.",
+    "title": "Rule 1.11.  Holiday falling on a Saturday or Sunday",
+    "last_updated": "2007-01-01",
+    "introduction": "When a judicial holiday specified by Code of Civil Procedure section 135 falls on a \nSaturday, the courts must observe the holiday on the preceding Friday. When a judicial \nholiday specified by Code of Civil Procedure section 135 falls on a Sunday, the courts \nmust observe the holiday on the following Monday. \n \nRule 1.11 amended and renumbered effective January 1, 2007; adopted as rule 987 effective \nJanuary 1, 1986, operative January 1, 1989. \n \n \nChapter 3.  Service and Filing \n \nRule 1.20  Effective Date of Filing",
+    "sub_rules": {}
+  },
+  {
+    "rule_number": "1.20.",
+    "title": "Rule 1.20.  Effective Date of Filing",
+    "last_updated": "2017-01-01",
+    "introduction": "Unless otherwise provided, a document is deemed filed on the date it is received by \nthe court clerk. \n \nRule 1.20 amended effective January 1, 2017; adopted effective January 1, 2007; previously \namended effective January 1, 2008.",
+    "sub_rules": {}
+  },
+  {
+    "rule_number": "1.21.",
+    "title": "Rule 1.21.  Service",
+    "last_updated": null,
+    "introduction": "7",
+    "sub_rules": {}
+  },
+  {
+    "rule_number": "1.21.",
+    "title": "Rule 1.21.  Service",
+    "last_updated": "2007-01-01",
+    "introduction": "",
+    "sub_rules": {
+      "a": {
+        "content": "Service on a party or attorney \n \nWhenever a document is required to be served on a party, the service must be made \non the party\u2019s attorney if  the party is represented. \n \n(Subd (a) amended effective January 1, 2007.)",
+        "last_updated": "2007-01-01"
+      },
+      "b": {
+        "content": "\u201cServe and file\u201d \n \nAs used in these rules, unless a statute or rule provides for a different method for \nfiling or service, a requirement to \u201cserve and file\u201d a document means that a copy of \nthe document must be served on the attorney for each party separately represented, \non each self-represented party, and on any other person or entity when required by \nstatute,  rule, or court order, and that the document and a proof of service of the \ndocument must be filed with the court. \n \n(Subd (b) amended effective January 1, 2007.)",
+        "last_updated": "2007-01-01"
+      },
+      "c": {
+        "content": "\u201cProof of service\u201d  \n \nAs used in these rules, \u201cproof of service\u201d means a declaration stating that service \nhas been made as provided in (a) and (b). If the proof of service names attorneys \nfor separately represented parties, it must also state which party or parties each of \nthe attorneys served is representing. \n \n(Subd (c) adopted effective January 1, 2007.) \n \nRule 1.21 amended effective January 1, 2007; adopted effective January 1, 2007.",
+        "last_updated": "2007-01-01"
+      }
+    }
+  },
+  {
+    "rule_number": "1.22.",
+    "title": "Rule 1.22.  Recycled paper [Repealed]",
+    "last_updated": "2014-01-01",
+    "introduction": "Rule 1.22 repealed effective January 1, 2014; adopted effective January 1, 2007. \n \n \n \n8 \nChapter 4.  Judicial Council Forms",
+    "sub_rules": {}
+  },
+  {
+    "rule_number": "1.30.",
+    "title": "Rule 1.30.  Judicial Council forms",
+    "last_updated": "2007-01-01",
+    "introduction": "",
+    "sub_rules": {
+      "a": {
+        "content": "Application \n \nThe rules in this chapter apply to Judicial Council forms. \n \n(Subd (a) adopted effective January 1, 2007.)",
+        "last_updated": "2007-01-01"
+      },
+      "b": {
+        "content": "Mandatory or optional forms \n \nJudicial Council forms are either mandatory or optional. \n \n(Subd (b) relettered effective January 1, 2007; adopted as subd (a) effective January 1, \n2003.) \n \nRule 1.30 amended and renumbered effective January 1, 2007; adopted as rule 982 effective \nNovember 10, 1969; previously amended effective November 23, 1969, July 1, 1970, November \n23, 1970, January 1, 1971, January 1, 1972, march 4, 1972, July 1, 1972, March 7, 1973, \nJanuary 1, 1975, July 1, 1975, July 1, 1976, January 1, 1977, July 1, 1977, January 1, 1978, \nOctober 1, 1978, January 1, 1979, July 1, 1980, January 1, 1981, July 1, 1983, July 1, 1988, \nJanuary 1, 1997, and January 1, 2006; amended and renumbered as rule 201.1 effective January \n1, 2003.",
+        "last_updated": "2007-01-01"
+      }
+    }
+  },
+  {
+    "rule_number": "1.31.",
+    "title": "Rule 1.31.  Mandatory forms",
+    "last_updated": "2017-09-01",
+    "introduction": "",
+    "sub_rules": {
+      "a": {
+        "content": "Use of mandatory forms and acceptance for filing \n \nForms adopted by the Judicial Council for mandatory use are forms prescribed \nunder Government Code section 68511. Wherever applicable, they must be used by \nall parties and must be accepted for filing by all courts. In some areas, alternative \nmandatory forms have been adopted. \n \n9",
+        "last_updated": null
+      },
+      "b": {
+        "content": "List of mandatory forms \n \nEach mandatory Judicial Council form is identified as mandatory by an asterisk (*) \non the list of Judicial Council forms in Appendix A to the California Rules of \nCourt. The list is available on the California Courts website at \nwww.courts.ca.gov/forms. \n \n(Subd (b) amended effective January 1, 2015.)",
+        "last_updated": "2015-01-01"
+      },
+      "c": {
+        "content": "Identification of mandatory forms \n \nForms adopted by the Judicial Council for mandatory use bear the words \u201cForm \nAdopted for Mandatory Use,\u201d \u201cMandatory Form,\u201d or \u201cForm Adopted for \nAlternative Mandatory Use\u201d in the lower left corner of the first page.",
+        "last_updated": null
+      },
+      "d": {
+        "content": "Words on forms \n \nPublishers and courts reprinting a mandatory Judicial Council form in effect before \nJuly 1, 1999, must add the words \u201cMandatory Form\u201d to the bottom of the first page.",
+        "last_updated": "1999-07-01"
+      },
+      "e": {
+        "content": "No alteration of forms  \n \nExcept as provided in rule 3.52(6), concerning court fee waiver orders, and rule \n5.504, concerning court orders in juvenile court proceedings, courts may not \nrequire the use of an altered mandatory Judicial Council form in place of the \nJudicial Council form. However, a judicial officer may modify a Judicial Council \nform order as necessary or appropriate to adjudicate a particular case.  \n \n(Subd (e) amended effective September 1, 2017; previously amended effective January 1, \n2007, January 1, 2009, and July 1, 2009.)",
+        "last_updated": "2017-09-01"
+      },
+      "f": {
+        "content": "No colored forms \n \nCourts may not require that any mandatory Judicial Council form be submitted on \nany color of paper other than white.",
+        "last_updated": null
+      },
+      "g": {
+        "content": "Orders not on mandatory forms \n \nAn otherwise legally sufficient court order for which there is a mandatory Judicial \nCouncil form is not invalid or unenforceable because the order is not prepared on a \nJudicial Council form or the correct Judicial Council form. \n \nRule 1.31 amended effective September 1, 2017; adopted effective January 1, 2007; previously \namended effective January 1, 2007, January 1, 2009, July 1, 2009, and January 1, 2015. \n \n \n10",
+        "last_updated": "2017-09-01"
+      }
+    }
+  },
+  {
+    "rule_number": "1.35.",
+    "title": "Rule 1.35.  Optional forms",
+    "last_updated": "2015-01-01",
+    "introduction": "",
+    "sub_rules": {
+      "a": {
+        "content": "Use of optional forms and acceptance for filing \n \nForms approved by the Judicial Council for optional use, wherever applicable, may \nbe used by parties and must be accepted for filing by all courts.",
+        "last_updated": null
+      },
+      "b": {
+        "content": "List of optional forms \n \nEach optional Judicial Council form appears without an asterisk (*) on the list of \nJudicial Council forms in Appendix A to the California Rules of Court. The list is \navailable on the California Courts website at www.courts.ca.gov/forms. \n \n(Subd (b) amended effective January 1, 2015.)",
+        "last_updated": "2015-01-01"
+      },
+      "c": {
+        "content": "Identification of optional forms \n \nForms approved by the Judicial Council for optional use bear the words \u201cForm \nApproved for Optional Use\u201d or \u201cOptional Form\u201d in the lower left corner of the first \npage.",
+        "last_updated": null
+      },
+      "d": {
+        "content": "Words on forms \n \nPublishers and courts reprinting an optional Judicial Council form in effect before \nJuly 1, 1999, must add the words \u201cOptional Form\u201d to the bottom of the first page.",
+        "last_updated": "1999-07-01"
+      },
+      "e": {
+        "content": "No alteration of forms \n \nCourts may not require the use of an altered optional Judicial Council form in place \nof the Judicial Council form. However, a judicial officer may modify a Judicial \nCouncil form order as necessary or appropriate to adjudicate a particular case. \n \n(Subd (e) amended effective January 1, 2009.)",
+        "last_updated": "2009-01-01"
+      },
+      "f": {
+        "content": "No colored forms \n \nCourts may not require that any optional Judicial Council form be submitted on any \ncolor of paper other than white. \n \nRule 1.35 amended effective January 1, 2015; adopted effective January 1, 2007; previously \namended effective January 1, 2009.",
+        "last_updated": "2015-01-01"
+      }
+    }
+  },
+  {
+    "rule_number": "1.37.",
+    "title": "Rule 1.37.  Use of forms",
+    "last_updated": "2007-01-01",
+    "introduction": "A person serving and filing a Judicial Council form must use the current version of the \nform adopted or approved by the council, unless a rule in the California Rules of Court \nallows the use of a different form. \n \n11 \n \nRule 1.37 adopted effective January 1, 2007.",
+    "sub_rules": {}
+  },
+  {
+    "rule_number": "1.40.",
+    "title": "Rule 1.40.  Statutory references on forms",
+    "last_updated": "2007-01-01",
+    "introduction": "The references to statutes and rules at the bottom of Judicial Council forms are advisory \nonly. The presence or absence of a particular reference is not a ground for rejecting a \nform otherwise applicable in the action or proceeding for the purpose presented. \n \nRule 1.40 adopted effective January 1, 2007.",
+    "sub_rules": {}
+  },
+  {
+    "rule_number": "1.41.",
+    "title": "Rule 1.41.  Proofs of service on forms",
+    "last_updated": "2007-01-01",
+    "introduction": "Proofs of service are included on some Judicial Council forms solely for the convenience \nof the parties. A party may use an included proof of service or any other proper proof of \nservice. \n \nRule 1.41 adopted effective January 1, 2007.",
+    "sub_rules": {}
+  },
+  {
+    "rule_number": "1.42.",
+    "title": "Rule 1.42.  Forms not to be rejected",
+    "last_updated": "2007-01-01",
+    "introduction": "A court must not reject for filing a Judicial Council form for any of the following \nreasons:",
+    "sub_rules": {
+      "1": {
+        "content": "The form lacks the preprinted title and address of the court;",
+        "last_updated": null
+      },
+      "2": {
+        "content": "The form lacks the name of the clerk;",
+        "last_updated": null
+      },
+      "3": {
+        "content": "The preprinted title and address of another court or its clerk\u2019s name is legibly \nmodified;",
+        "last_updated": null
+      },
+      "4": {
+        "content": "The form lacks the court\u2019s local form number;",
+        "last_updated": null
+      },
+      "5": {
+        "content": "The form lacks any other material added by a court, unless the material is required \nby the Judicial Council;",
+        "last_updated": null
+      },
+      "6": {
+        "content": "The form is printed by a publisher or another court;",
+        "last_updated": null
+      },
+      "7": {
+        "content": "The form is imprinted with the name or symbol of the publisher, unless the name or \nsymbol replaces or obscures any material on the printed form;",
+        "last_updated": null
+      },
+      "8": {
+        "content": "The form is legibly and obviously modified to correct a code section number or to \ncomply with the law under which the form is filed; or",
+        "last_updated": null
+      },
+      "9": {
+        "content": "The form is not the latest version of the form adopted or approved by the Judicial \nCouncil. \n \n \n12 \nRule 1.42 amended effective January 1, 2007; adopted effective January 1, 2007.",
+        "last_updated": "2007-01-01"
+      }
+    }
+  },
+  {
+    "rule_number": "1.43.",
+    "title": "Rule 1.43.  Legibility",
+    "last_updated": "2007-01-01",
+    "introduction": "A Judicial Council form filed must be a true copy of the original form and must be as \nlegible as a printed form. \n \nRule 1.43 adopted effective January 1, 2007.",
+    "sub_rules": {}
+  },
+  {
+    "rule_number": "1.44.",
+    "title": "Rule 1.44.  Electronically produced forms",
+    "last_updated": "2007-01-01",
+    "introduction": "A party or attorney may file a duplicate of a Judicial Council form produced by a \ncomputer and a printer or similar device with a resolution of at least 300 dots per inch. \n \nRule 1.44 adopted effective January 1, 2007.",
+    "sub_rules": {}
+  },
+  {
+    "rule_number": "1.45.",
+    "title": "Rule 1.45.  Judicial Council pleading forms",
+    "last_updated": "2008-07-01",
+    "introduction": "",
+    "sub_rules": {
+      "a": {
+        "content": "Pleading forms \n \nThe forms listed under the \u201cPleading\u201d heading on the list of Judicial Council forms \nin Appendix A to the California Rules of Court are approved by the Judicial \nCouncil. \n \n(Subd (a) amended effective July 1, 2008; previously amended effective July 1, 1999, \nJanuary 1, 2005, and January 1, 2007.)",
+        "last_updated": "2008-07-01"
+      },
+      "b": {
+        "content": "Cause of action forms \n \nAny approved cause of action form may be attached to any approved form of \ncomplaint or cross-complaint. \n \n(Subd (b) adopted effective January 1, 1982.)",
+        "last_updated": "1982-01-01"
+      },
+      "c": {
+        "content": "Other causes of action \n \nA cause of action for which no form has been approved may be prepared in the \nformat prescribed by the rules in chapter 1 of division 2 of title 2 and attached to \nany approved form of complaint or cross-complaint. Each paragraph within a cause \nof action must be numbered consecutively beginning with one. Each paragraph \nnumber must be preceded with one or more identifying letters derived from the title \nof the cause of action. \n \n(Subd (c) amended effective January 1, 2007; adopted effective January 1, 1982; \npreviously amended effective January 1, 2003.) \n \n \n13 \nRule 1.45 amended effective July 1, 2008; adopted as rule 982.1 effective January 1, 1982; \npreviously amended effective July 1, 1995, July 1, 1996, January 1, 1997, July 1, 1999, and \nJanuary 1, 2005; previously amended and renumbered as rule 201.2 effective January 1, 2003; \npreviously amended and renumbered effective January 1, 2007.",
+        "last_updated": "2008-07-01"
+      }
+    }
+  },
+  {
+    "rule_number": "1.51.",
+    "title": "Rule 1.51.  California Law Enforcement Telecommunications System (CLETS)",
+    "last_updated": null,
+    "introduction": "information form",
+    "sub_rules": {}
+  },
+  {
+    "rule_number": "1.51.",
+    "title": "Rule 1.51.  California Law Enforcement Telecommunications System (CLETS)",
+    "last_updated": "2019-01-01",
+    "introduction": "information form",
+    "sub_rules": {
+      "a": {
+        "content": "Confidential CLETS Information form to be submitted to the court \n \nA person requesting protective orders under Code of Civil Procedure section 527.6, \n527.8, or 527.85; Family Code section 6320, 6404, or 6454; Penal Code sections \n18100\u201318205; or Welfare and Institutions Code section 213.5 or 15657.03 must \nsubmit to the court with the request a completed Confidential CLETS Information \nform. \n \n(Subd (a) amended effective January 1, 2019.)",
+        "last_updated": "2019-01-01"
+      },
+      "b": {
+        "content": "Confidentiality of the form \n \nThe Confidential CLETS Information form is confidential, and access to the \ninformation on the form is limited to the persons listed in (c).",
+        "last_updated": null
+      },
+      "c": {
+        "content": "Access to information on the form \n \nThe Confidential CLETS Information form must not be included in the court file. \nAfter the form is submitted to the court, only the following persons may have \naccess to the information on the form:",
+        "last_updated": null
+      },
+      "1": {
+        "content": "When a Confidential CLETS Information form is submitted to the court, the \ncourt, if a temporary restraining order or order after hearing is entered, may:",
+        "last_updated": null
+      },
+      "2": {
+        "content": "If no temporary restraining order or order after hearing is entered, the court \nmay promptly destroy the form or delete it from its records.",
+        "last_updated": null
+      },
+      "d": {
+        "content": "Amendment of the form \n \nA person requesting protective orders or the person\u2019s attorney may submit an \namended Confidential CLETS Information form as a matter of right to provide \nupdated or more complete and accurate information.",
+        "last_updated": null
+      },
+      "e": {
+        "content": "Retention and destruction of the form",
+        "last_updated": null
+      },
+      "A": {
+        "content": "Transmit the form to a law enforcement agency for entry into CLETS \nand not retain any copy; or \n \n14",
+        "last_updated": null
+      },
+      "B": {
+        "content": "Enter the information on the form into CLETS itself and promptly \ndestroy the form or delete it from its records.",
+        "last_updated": null
+      },
+      "3": {
+        "content": "Until the court has completed (1) or (2), the form must be retained in a secure \nmanner that prevents access to the information on the form except to those \npersons identified in (c). \n \nRule 1.51 amended effective January 1, 2019; adopted effective January 1, 2011. \n \nChapter 5.  Accommodations",
+        "last_updated": "2019-01-01"
+      }
+    }
+  },
+  {
+    "rule_number": "1.100.",
+    "title": "Rule 1.100.  Requests for accommodations by persons with disabilities",
+    "last_updated": "2017-07-01",
+    "introduction": "",
+    "sub_rules": {
+      "a": {
+        "content": "Definitions \n \nAs used in this rule:",
+        "last_updated": null
+      },
+      "1": {
+        "content": "If the determination to grant or deny a request for accommodation is made by \nnonjudicial court personnel, an applicant or any participant in the proceeding \nmay submit a written request for review of that determination to the presiding \njudge or designated judicial officer. The request for review must be submitted \nwithin 10 days of the date the response under (e)(2) was delivered in person \nor sent.",
+        "last_updated": null
+      },
+      "2": {
+        "content": "If the determination to grant or deny a request for accommodation is made by \na presiding judge or another judicial officer, an applicant or any participant in \nthe proceeding may file a petition for a writ of mandate under rules 8.485\u2013\n8.493 or 8.930\u20138.936 in the appropriate reviewing court. The petition must be \nfiled within 10 days of the date the response under (e)(2) was delivered in \nperson or sent to the petitioner. For purposes of this rule, only those \nparticipants in the proceeding who were notified by the court of the \ndetermination to grant or deny the request for accommodation are considered \nreal parties in interest in a writ proceeding. The petition for the writ must be \nserved on the respondent court and any real party in interest as defined in this \nrule.",
+        "last_updated": null
+      },
+      "3": {
+        "content": "The confidentiality of all information of the applicant concerning the request \nfor accommodation and review under (g)(1) or (2) must be maintained as \nrequired under (c)(4). \n \n(Subd (g) amended effective January 1, 2010; previously amended effective January 1, \n2006.)",
+        "last_updated": "2010-01-01"
+      },
+      "b": {
+        "content": "Policy \n \nIt is the policy of the courts of this state to ensure that persons with disabilities have \nequal and full access to the judicial system. To ensure access to the courts for \npersons with disabilities, each superior and appellate court must delegate at least \none person to be the ADA coordinator, also known as the access coordinator, or \ndesignee to address requests for accommodations. This rule is not intended to \nimpose limitations or to invalidate the remedies, rights, and procedures accorded to \npersons with disabilities under state or federal law. \n \n(Subd (b) adopted effective January 1, 2007.)",
+        "last_updated": "2007-01-01"
+      },
+      "c": {
+        "content": "Process for requesting accommodations \n \nThe process for requesting accommodations is as follows:",
+        "last_updated": null
+      },
+      "4": {
+        "content": "The court must keep confidential all information of the applicant concerning \nthe request for accommodation, unless confidentiality is waived in writing by \nthe applicant or disclosure is required by law. The applicant\u2019s identity and \nconfidential information may not be disclosed to the public or to persons \nother than those involved in the accommodation process. Confidential \ninformation includes all medical information pertaining to the applicant, and \nall oral or written communication from the applicant concerning the request \nfor accommodation. \n \n \n16 \n(Subd (c) amended effective July 1, 2017; previously amended effective January 1, 2006, \nand January 1, 2007.)",
+        "last_updated": "2017-07-01"
+      },
+      "d": {
+        "content": "Permitted communication \n \nCommunications under this rule must address only the accommodation requested \nby the applicant and must not address, in any manner, the subject matter or merits \nof the proceedings before the court. \n \n(Subd (d) amended effective January 1, 2006.)",
+        "last_updated": "2006-01-01"
+      },
+      "e": {
+        "content": "Response to accommodation request  \n \nThe court must respond to a request for accommodation as follows:",
+        "last_updated": null
+      },
+      "A": {
+        "content": "Whether the request for accommodation is granted or denied, in whole \nor in part, or an alternative accommodation is granted;",
+        "last_updated": null
+      },
+      "B": {
+        "content": "If the request for accommodation is denied, in whole or in part, the \nreason therefor;",
+        "last_updated": null
+      },
+      "C": {
+        "content": "The nature of any accommodation to be provided;",
+        "last_updated": null
+      },
+      "D": {
+        "content": "The duration of any accommodation to be provided; and",
+        "last_updated": null
+      },
+      "E": {
+        "content": "If the response is in writing, the date the response was delivered in \nperson or sent to the applicant. \n \n(Subd (e) amended effective January 1, 2010; previously amended effective January 1, \n2006, and January 1, 2007.)",
+        "last_updated": "2010-01-01"
+      },
+      "f": {
+        "content": "Denial of accommodation request \n \nA request for accommodation may be denied only when the court determines that: \n \n17",
+        "last_updated": null
+      },
+      "g": {
+        "content": "Review procedure",
+        "last_updated": null
+      },
+      "h": {
+        "content": "Duration of accommodations \n \nThe accommodation by the court must be provided for the duration indicated in the \nresponse to the request for accommodation and must remain in effect for the period \nspecified. The court may provide an accommodation for an indefinite period of \ntime, for a limited period of time, or for a particular matter or appearance. \n \n \n18 \n(Subd (h) amended effective January 1, 2006.) \n \nRule 1.100 amended effective July 1, 2017; adopted as rule 989.3 effective January 1, 1996; \npreviously amended effective January 1, 2006; previously amended and renumbered effective \nJanuary 1, 2007; previously amended January 1, 2010. \n \nAdvisory Committee Comment \nSubdivision (g)(2). Which court is the \u201cappropriate reviewing court\u201d under this rule depends on \nthe court in which the accommodation decision is made and the nature of the underlying case. If \nthe accommodation decision is made by a superior court judicial officer and the underlying case \nis a limited civil, misdemeanor, or infraction case, the appropriate reviewing court is the appellate \ndivision of the superior court. If the accommodation decision is made by a superior court judicial \nofficer and the case is anything other than a limited civil, misdemeanor, or infraction case, such \nas a family law, unlimited civil, or felony case, the appropriate reviewing court is the Court of \nAppeal. If the accommodation decision is made by a judicial officer of the Court of Appeal, the \nappropriate reviewing court is the California Supreme Court. \n \n \nChapter 6.  Public Access to Court Proceedings",
+        "last_updated": "2017-07-01"
+      }
+    }
+  },
+  {
+    "rule_number": "1.150.",
+    "title": "Rule 1.150.  Photographing, recording, and broadcasting in court",
+    "last_updated": "2008-01-01",
+    "introduction": "",
+    "sub_rules": {
+      "a": {
+        "content": "Introduction \n \nThe judiciary is responsible for ensuring the fair and equal administration of \njustice. The judiciary adjudicates controversies, both civil and criminal, in \naccordance with established legal procedures in the calmness and solemnity of the \ncourtroom. Photographing, recording, and broadcasting of courtroom proceedings \nmay be permitted as circumscribed in this rule if executed in a manner that ensures \nthat the fairness and dignity of the proceedings are not adversely affected. This rule \ndoes not create a presumption for or against granting permission to photograph, \nrecord, or broadcast court proceedings. \n \n(Subd (a) adopted effective January 1, 1997.)",
+        "last_updated": "1997-01-01"
+      },
+      "b": {
+        "content": "Definitions \n \nAs used in this rule:",
+        "last_updated": null
+      },
+      "1": {
+        "content": "Request for order \n \nThe media may request an order on Media Request to Photograph, Record, \nor Broadcast (form MC-500). The form must be filed at least five court days \nbefore the portion of the proceeding to be covered unless good cause is \nshown. A completed, proposed order on Order on Media Request to Permit \nCoverage (form MC-510) must be filed with the request. The judge assigned \nto the proceeding must rule on the request. If no judge has been assigned, the \nrequest will be submitted to the judge supervising the calendar department, \nand thereafter be ruled on by the judge assigned to the proceeding. The clerk \nmust promptly notify the parties that a request has been filed.",
+        "last_updated": null
+      },
+      "2": {
+        "content": "Hearing on request \n \nThe judge may hold a hearing on the request or may rule on the request \nwithout a hearing.",
+        "last_updated": null
+      },
+      "3": {
+        "content": "Factors to be considered by the judge \n \nIn ruling on the request, the judge is to consider the following factors:",
+        "last_updated": null
+      },
+      "4": {
+        "content": "Order permitting media coverage \n \nThe judge ruling on the request to permit media coverage is not required to \nmake findings or a statement of decision. The order may incorporate any \nlocal rule or order of the presiding or supervising judge regulating media \nactivity outside of the courtroom. The judge may condition the order \npermitting media coverage on the media agency\u2019s agreement to pay any \nincreased court-incurred costs resulting from the permitted media coverage \n(for example, for additional court security or utility service). Each media \nagency is responsible for ensuring that all its media personnel who cover the \ncourt proceeding know and follow the provisions of the court order and this \nrule.",
+        "last_updated": null
+      },
+      "5": {
+        "content": "Modified order \n \nThe order permitting media coverage may be modified or terminated on the \n \n22 \njudge\u2019s own motion or on application to the judge without the necessity of a \nprior hearing or written findings. Notice of the application and any \nmodification or termination ordered under the application must be given to \nthe parties and each media agency permitted by the previous order to cover \nthe proceeding.",
+        "last_updated": null
+      },
+      "6": {
+        "content": "Prohibited coverage \n \nThe judge may not permit media coverage of the following:",
+        "last_updated": null
+      },
+      "7": {
+        "content": "Equipment and personnel \n \nThe judge may require media agencies to demonstrate that proposed \npersonnel and equipment comply with this rule. The judge may specify the \nplacement of media personnel and equipment to permit reasonable media \ncoverage without disruption of the proceedings.",
+        "last_updated": null
+      },
+      "c": {
+        "content": "Photographing, recording, and broadcasting prohibited \n \nExcept as provided in this rule, court proceedings may not be photographed, \nrecorded, or broadcast. This rule does not prohibit courts from photographing or \nvideotaping sessions for judicial education or publications and is not intended to \napply to closed-circuit television broadcasts solely within the courthouse or \nbetween court facilities if the broadcasts are controlled by the court and court \npersonnel. \n \n(Subd (c) amended effective January 1, 2006; adopted effective January 1, 1997.)",
+        "last_updated": "2006-01-01"
+      },
+      "d": {
+        "content": "Personal recording devices \n \nThe judge may permit inconspicuous personal recording devices to be used by \npersons in a courtroom to make sound recordings as personal notes of the \nproceedings. A person proposing to use a recording device must obtain advance \npermission from the judge. The recordings must not be used for any purpose other \nthan as personal notes. \n \n \n20 \n(Subd (d) amended effective January 1, 2007; adopted as subd (c) effective July 1, 1984; \npreviously amended and relettered as subd (d) effective January 1, 1997; previously \namended effective January 1, 2006.)",
+        "last_updated": "2007-01-01"
+      },
+      "e": {
+        "content": "Media coverage \n \nMedia coverage may be permitted only on written order of the judge as provided in \nthis subdivision. The judge in his or her discretion may permit, refuse, limit, or \nterminate media coverage. This rule does not otherwise limit or restrict the right of \nthe media to cover and report court proceedings.",
+        "last_updated": null
+      },
+      "A": {
+        "content": "One television camera and one still photographer will be permitted.",
+        "last_updated": null
+      },
+      "B": {
+        "content": "The equipment used may not produce distracting sound or light. Signal \nlights or devices to show when equipment is operating may not be \nvisible.",
+        "last_updated": null
+      },
+      "C": {
+        "content": "An order permitting or requiring modification of existing sound or \nlighting systems is deemed to require that the modifications be \ninstalled, maintained, and removed without public expense or \ndisruption of proceedings.",
+        "last_updated": null
+      },
+      "D": {
+        "content": "Microphones and wiring must be unobtrusively located in places \napproved by the judge and must be operated by one person. \n \n23",
+        "last_updated": null
+      },
+      "E": {
+        "content": "Operators may not move equipment or enter or leave the courtroom \nwhile the court is in session, or otherwise cause a distraction.",
+        "last_updated": null
+      },
+      "F": {
+        "content": "Equipment or clothing must not bear the insignia or marking of a media \nagency.",
+        "last_updated": null
+      },
+      "G": {
+        "content": "The effect on the parties\u2019 ability to select a fair and unbiased jury;",
+        "last_updated": null
+      },
+      "H": {
+        "content": "The effect on any ongoing law enforcement activity in the case;",
+        "last_updated": null
+      },
+      "I": {
+        "content": "The effect on any unresolved identification issues;",
+        "last_updated": null
+      },
+      "J": {
+        "content": "The effect on any subsequent proceedings in the case;",
+        "last_updated": null
+      },
+      "K": {
+        "content": "The effect of coverage on the willingness of witnesses to cooperate, \nincluding the risk that coverage will engender threats to the health or \nsafety of any witness;",
+        "last_updated": null
+      },
+      "L": {
+        "content": "The effect on excluded witnesses who would have access to the \ntelevised testimony of prior witnesses;",
+        "last_updated": null
+      },
+      "M": {
+        "content": "The scope of the coverage and whether partial coverage might unfairly \ninfluence or distract the jury;",
+        "last_updated": null
+      },
+      "N": {
+        "content": "The difficulty of jury selection if a mistrial is declared;",
+        "last_updated": null
+      },
+      "O": {
+        "content": "The security and dignity of the court;",
+        "last_updated": null
+      },
+      "P": {
+        "content": "Undue administrative or financial burden to the court or participants;",
+        "last_updated": null
+      },
+      "Q": {
+        "content": "The interference with neighboring courtrooms;",
+        "last_updated": null
+      },
+      "R": {
+        "content": "The maintenance of the orderly conduct of the proceeding; and",
+        "last_updated": null
+      },
+      "S": {
+        "content": "Any other factor the judge deems relevant.",
+        "last_updated": null
+      },
+      "8": {
+        "content": "Normal requirements for media coverage of proceedings \n \nUnless the judge in his or her discretion orders otherwise, the following \nrequirements apply to media coverage of court proceedings:",
+        "last_updated": null
+      },
+      "9": {
+        "content": "Media pooling \n \nIf two or more media agencies of the same type request media coverage of a \nproceeding, they must file a joint statement of agreed arrangements.  If they \nare unable to agree, the judge may deny media coverage by that type of \nmedia agency. \n \n(Subd (e) amended effective January 1, 2007; adopted as subd (b) effective July 1, 1984; \npreviously amended and relettered as subd (e) effective January 1, 1997; previously \namended effective January 1, 2006.)",
+        "last_updated": "2007-01-01"
+      },
+      "f": {
+        "content": "Sanctions \n \nAny violation of this rule or an order made under this rule is an unlawful \ninterference with the proceedings of the court and may be the basis for an order \nterminating media coverage, a citation for contempt of court, or an order imposing \nmonetary or other sanctions as provided by law. \n \n(Subd (f) amended and relettered as subd (f) effective January 1, 1997; adopted as subd (e) \neffective July 1, 1984.) \n \nRule 1.150 amended and renumbered effective January 1, 2007; adopted as rule 980 \neffective July 1, 1984; previously amended effective January 1, 1997, and January 1, 2006. \n \nChapter 7.  Form and Format of Papers \n \nChapter 7 adopted effective January 1, 2008.",
+        "last_updated": "2008-01-01"
+      }
+    }
+  },
+  {
+    "rule_number": "1.200.",
+    "title": "Rule 1.200.  Format of citations",
+    "last_updated": "2008-01-01",
+    "introduction": "Citations to cases and other authorities in all documents filed in the courts must be in the \nstyle established by either the California Style Manual or The Bluebook: A Uniform \nSystem of Citation, at the option of the party filing the document. The same style must be \nused consistently throughout the document.  \n \nRule 1.200 adopted effective January 1, 2008. \n \n24",
+    "sub_rules": {}
+  },
+  {
+    "rule_number": "1.201.",
+    "title": "Rule 1.201.  Protection of privacy",
+    "last_updated": "2017-01-01",
+    "introduction": "",
+    "sub_rules": {
+      "a": {
+        "content": "Exclusion or redaction of identifiers \n \nTo protect personal privacy and other legitimate interests, parties and their \nattorneys must not include, or must redact where inclusion is necessary, the \nfollowing identifiers from all pleadings and other papers filed in the court\u2019s public \nfile, whether filed in paper or electronic form, unless otherwise provided by law or \nordered by the court:",
+        "last_updated": null
+      },
+      "1": {
+        "content": "Social security numbers. If an individual\u2019s social security number is required \nin a pleading or other paper filed in the public file, only the last four digits of \nthat number may be used.",
+        "last_updated": null
+      },
+      "2": {
+        "content": "Financial account numbers. If financial account numbers are required in a \npleading or other paper filed in the public file, only the last four digits of \nthese numbers may be used.",
+        "last_updated": null
+      },
+      "b": {
+        "content": "Responsibility of the filer \n \nThe responsibility for excluding or redacting identifiers identified in (a) from all \ndocuments filed with the court rests solely with the parties and their attorneys. The \ncourt clerk will not review each pleading or other paper for compliance with this \nprovision.",
+        "last_updated": null
+      },
+      "c": {
+        "content": "Confidential reference list \n \nIf the court orders on a showing of good cause, a party filing a document \ncontaining identifiers listed in (a) may file, along with the redacted document that \nwill be placed in the public file, a reference list. The reference list is confidential. A \nparty filing a confidential reference list must use Confidential Reference List of \nIdentifiers (form MC-120) for that purpose. The confidential list must identify each \nitem of redacted information and specify an appropriate reference that uniquely \ncorresponds to each item of redacted information listed. All references in the case \nto the redacted identifiers included in the confidential reference list will be \nunderstood to refer to the corresponding complete identifier. A party may amend its \nreference list as of right.",
+        "last_updated": null
+      },
+      "d": {
+        "content": "Scope \n \nThe requirements of this rule do not apply to documents or records that by court \norder or operation of law are filed in their entirety either confidentially or under \nseal. \n \nRule 1.201 adopted effective January 1, 2017.",
+        "last_updated": "2017-01-01"
+      }
+    }
+  }
+]

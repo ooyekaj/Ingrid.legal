@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns">
+  <key id="label" for="node" attr.name="label" attr.type="string"/>
+  <key id="type" for="node" attr.name="type" attr.type="string"/>
+  <key id="relationship" for="edge" attr.name="relationship" attr.type="string"/>
+  <graph id="unified_knowledge_graph" edgedefault="directed">
+    <node id="1003">
+      <data key="label">CCP 1003</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="1005">
+      <data key="label">CCP 1005</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="1010.6">
+      <data key="label">CCP 1010.6</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="1010">
+      <data key="label">CCP 1010</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="1011">
+      <data key="label">CCP 1011</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="1012">
+      <data key="label">CCP 1012</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="1013">
+      <data key="label">CCP 1013</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="1014">
+      <data key="label">CCP 1014</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="1086">
+      <data key="label">CCP 1086</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="1094.5">
+      <data key="label">CCP 1094.5</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="1094.6">
+      <data key="label">CCP 1094.6</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="128.7">
+      <data key="label">CCP 128.7</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="12">
+      <data key="label">CCP 12</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="2024.020">
+      <data key="label">CCP 2024.020</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="2025.010">
+      <data key="label">CCP 2025.010</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="2025.480">
+      <data key="label">CCP 2025.480</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="2030.010">
+      <data key="label">CCP 2030.010</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="2030.300">
+      <data key="label">CCP 2030.300</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="2031.010">
+      <data key="label">CCP 2031.010</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="2031.310">
+      <data key="label">CCP 2031.310</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="367">
+      <data key="label">CCP 367</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="372">
+      <data key="label">CCP 372</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="392">
+      <data key="label">CCP 392</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="410.10">
+      <data key="label">CCP 410.10</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="410.42">
+      <data key="label">CCP 410.42</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="410.70">
+      <data key="label">CCP 410.70</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="411.10">
+      <data key="label">CCP 411.10</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="411.35">
+      <data key="label">CCP 411.35</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="412.30">
+      <data key="label">CCP 412.30</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="413.40">
+      <data key="label">CCP 413.40</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="414.10">
+      <data key="label">CCP 414.10</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="415.95">
+      <data key="label">CCP 415.95</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="416.90">
+      <data key="label">CCP 416.90</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="417.40">
+      <data key="label">CCP 417.40</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="418.11">
+      <data key="label">CCP 418.11</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="425.10">
+      <data key="label">CCP 425.10</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="425.11">
+      <data key="label">CCP 425.11</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="425.12">
+      <data key="label">CCP 425.12</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="425.13">
+      <data key="label">CCP 425.13</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="426.10">
+      <data key="label">CCP 426.10</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="426.30">
+      <data key="label">CCP 426.30</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="426.50">
+      <data key="label">CCP 426.50</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="430.10">
+      <data key="label">CCP 430.10</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="430.20">
+      <data key="label">CCP 430.20</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="430.30">
+      <data key="label">CCP 430.30</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="430.40">
+      <data key="label">CCP 430.40</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="430.41">
+      <data key="label">CCP 430.41</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="431.30">
+      <data key="label">CCP 431.30</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="431.40">
+      <data key="label">CCP 431.40</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="435">
+      <data key="label">CCP 435</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="436">
+      <data key="label">CCP 436</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="437">
+      <data key="label">CCP 437</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="438">
+      <data key="label">CCP 438</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="472">
+      <data key="label">CCP 472</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="473">
+      <data key="label">CCP 473</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="664.5">
+      <data key="label">CCP 664.5</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="664.6">
+      <data key="label">CCP 664.6</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="664">
+      <data key="label">CCP 664</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="667">
+      <data key="label">CCP 667</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="670">
+      <data key="label">CCP 670</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="437c">
+      <data key="label">CCP 437c</data>
+      <data key="type">ccp_rule</data>
+    </node>
+    <node id="527">
+      <data key="label">CCP 527</data>
+      <data key="type">ccp_rule</data>
+    </node>
+  </graph>
+</graphml>

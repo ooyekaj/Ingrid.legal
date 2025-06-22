@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced PDF Test - Summary Judgment Requirements</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-button {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .test-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+        }
+        .preview {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #3498db;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Enhanced PDF Generation Test</h1>
+        <p>This test demonstrates the enhanced PDF generation with comprehensive summary judgment requirements and proper text wrapping.</p>
+        
+        <div class="preview">
+            <h3>📄 What will be included in the PDF:</h3>
+            <ul>
+                <li><strong>Required Documents:</strong> Complete checklist with detailed requirements</li>
+                <li><strong>Procedural Timeline:</strong> Day-by-day breakdown of deadlines</li>
+                <li><strong>Formatting Requirements:</strong> Court-specific formatting rules</li>
+                <li><strong>Critical Deadlines:</strong> 81-day timeline with opposition/reply deadlines</li>
+                <li><strong>Proper Text Wrapping:</strong> All text properly fits within page margins</li>
+            </ul>
+        </div>
+        
+        <button class="test-button" onclick="generateEnhancedPDF()">
+            📄 Generate Enhanced Summary Judgment PDF
+        </button>
+        
+        <button class="test-button" onclick="generateComprehensivePDF()">
+            📋 Generate Comprehensive Requirements PDF
+        </button>
+    </div>
+
+    <script>
+        function generateEnhancedPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            // Header
+            doc.setFontSize(20);
+            doc.setFont(undefined, 'bold');
+            doc.text('California Summary Judgment Motion Requirements', 20, 30);
+            
+            doc.setFontSize(12);
+            doc.setFont(undefined, 'normal');
+            doc.text('Query: Motion for Summary Judgment - Complete Requirements', 20, 45);
+            doc.text(`Generated: ${new Date().toLocaleDateString()}`, 20, 55);
+            doc.line(20, 65, 190, 65);
+            
+            let yPosition = 80;
+            
+            // Required Documents Section
+            doc.setFontSize(16);
+            doc.setFont(undefined, 'bold');
+            doc.text('REQUIRED DOCUMENTS CHECKLIST', 20, yPosition);
+            yPosition += 15;
+            
+            const documents = [
+                {
+                    title: 'Notice of Motion',
+                    description: 'Must specify hearing date, time, location, and relief sought',
+                    requirements: [
+                        'State specific grounds for summary judgment',
+                        'Include hearing date at least 81 days from service',
+                        'Specify department and courtroom',
+                        'List all parties to be served'
+                    ]
+                },
+                {
+                    title: 'Separate Statement of Undisputed Material Facts',
+                    description: 'Two-column format required per CRC 3.1350',
+                    requirements: [
+                        'Left column: numbered material facts',
+                        'Right column: supporting evidence with page/line citations',
+                        'Each fact must be followed by evidence reference',
+                        'Cannot incorporate by reference',
+                        'Must be filed as separate document'
+                    ]
+                },
+                {
+                    title: 'Memorandum of Points and Authorities',
+                    description: 'Legal argument supporting motion',
+                    requirements: [
+                        'Maximum 20 pages (CRC 3.1113)',
+                        'Table of contents if over 10 pages',
+                        'Table of authorities',
+                        'Statement of facts',
+                        'Legal argument with case citations',
+                        'Conclusion with specific relief requested'
+                    ]
+                }
+            ];
+            
+            documents.forEach((docReq, idx) => {
+                if (yPosition > 240) {
+                    doc.addPage();
+                    yPosition = 30;
+                }
+                
+                // Document title
+                doc.setFontSize(12);
+                doc.setFont(undefined, 'bold');
+                const titleLines = doc.splitTextToSize(`${idx + 1}. ${docReq.title}`, 170);
+                doc.text(titleLines, 20, yPosition);
+                yPosition += titleLines.length * 6 + 3;
+                
+                // Description
+                doc.setFontSize(10);
+                doc.setFont(undefined, 'italic');
+                const descLines = doc.splitTextToSize(docReq.description, 170);
+                doc.text(descLines, 25, yPosition);
+                yPosition += descLines.length * 5 + 5;
+                
+                // Requirements
+                doc.setFont(undefined, 'bold');
+                doc.text('Requirements:', 25, yPosition);
+                yPosition += 8;
+                
+                docReq.requirements.forEach((req, reqIdx) => {
+                    if (yPosition > 250) {
+                        doc.addPage();
+                        yPosition = 30;
+                    }
+                    
+                    doc.setFont(undefined, 'normal');
+                    doc.rect(30, yPosition - 3, 3, 3); // Checkbox
+                    const reqLines = doc.splitTextToSize(`${String.fromCharCode(97 + reqIdx)}. ${req}`, 150);
+                    doc.text(reqLines, 38, yPosition);
+                    yPosition += reqLines.length * 5 + 2;
+                });
+                
+                yPosition += 8; // Space between documents
+            });
+            
+            // Timeline Section
+            if (yPosition > 200) {
+                doc.addPage();
+                yPosition = 30;
+            }
+            
+            doc.setFontSize(16);
+            doc.setFont(undefined, 'bold');
+            doc.text('PROCEDURAL TIMELINE', 20, yPosition);
+            yPosition += 15;
+            
+            const timeline = [
+                { deadline: 'Day 0', action: 'File and serve motion papers', details: 'Serve all parties at least 81 days before hearing' },
+                { deadline: 'Day 61', action: 'Opposition papers due', details: 'Served and filed 20 days before hearing' },
+                { deadline: 'Day 70', action: 'Reply papers due', details: 'Filed 11 days before hearing' },
+                { deadline: 'Day 80', action: 'Check tentative ruling', details: 'If court publishes tentative rulings' },
+                { deadline: 'Day 81', action: 'Hearing date', details: 'Appear if tentative ruling contested' }
+            ];
+            
+            timeline.forEach((step, idx) => {
+                if (yPosition > 250) {
+                    doc.addPage();
+                    yPosition = 30;
+                }
+                
+                doc.setFontSize(11);
+                doc.setFont(undefined, 'bold');
+                const deadlineLines = doc.splitTextToSize(`${step.deadline}: ${step.action}`, 170);
+                doc.text(deadlineLines, 20, yPosition);
+                yPosition += deadlineLines.length * 6 + 2;
+                
+                doc.setFontSize(10);
+                doc.setFont(undefined, 'normal');
+                const detailLines = doc.splitTextToSize(step.details, 170);
+                doc.text(detailLines, 25, yPosition);
+                yPosition += detailLines.length * 5 + 8;
+            });
+            
+            // Footer on each page
+            const pageCount = doc.internal.getNumberOfPages();
+            for (let i = 1; i <= pageCount; i++) {
+                doc.setPage(i);
+                doc.setFontSize(8);
+                doc.setFont(undefined, 'normal');
+                doc.text(`Page ${i} of ${pageCount} | Enhanced Summary Judgment Requirements`, 20, 285);
+                doc.text('Generated by Enhanced Knowledge Graph System', 20, 290);
+            }
+            
+            // Download
+            doc.save('Enhanced_Summary_Judgment_Requirements.pdf');
+            alert('✅ Enhanced PDF generated with comprehensive requirements and proper text wrapping!');
+        }
+        
+        function generateComprehensivePDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            // Header
+            doc.setFontSize(20);
+            doc.setFont(undefined, 'bold');
+            doc.text('Comprehensive Summary Judgment Filing Guide', 20, 30);
+            
+            doc.setFontSize(12);
+            doc.setFont(undefined, 'normal');
+            doc.text('Complete Requirements for California Superior Court', 20, 45);
+            doc.text(`Generated: ${new Date().toLocaleDateString()}`, 20, 55);
+            doc.line(20, 65, 190, 65);
+            
+            let yPosition = 80;
+            
+            // Executive Summary
+            doc.setFontSize(16);
+            doc.setFont(undefined, 'bold');
+            doc.text('EXECUTIVE SUMMARY', 20, yPosition);
+            yPosition += 15;
+            
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'normal');
+            const summaryText = 'This comprehensive guide provides all requirements for filing a motion for summary judgment in California Superior Court, including the updated 81-day notice requirement effective January 1, 2025, detailed document requirements, formatting specifications, and procedural deadlines.';
+            const summaryLines = doc.splitTextToSize(summaryText, 170);
+            doc.text(summaryLines, 20, yPosition);
+            yPosition += summaryLines.length * 5 + 15;
+            
+            // Critical Updates
+            doc.setFontSize(14);
+            doc.setFont(undefined, 'bold');
+            doc.text('🚨 CRITICAL UPDATE - EFFECTIVE JANUARY 1, 2025', 20, yPosition);
+            yPosition += 10;
+            
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'normal');
+            const updateText = 'CCP 437c has been amended to require 81 days notice for summary judgment motions (increased from 28 days). Opposition papers are now due 20 days before hearing, and reply papers are due 11 days before hearing.';
+            const updateLines = doc.splitTextToSize(updateText, 170);
+            doc.text(updateLines, 20, yPosition);
+            yPosition += updateLines.length * 5 + 15;
+            
+            // Formatting Requirements
+            doc.setFontSize(16);
+            doc.setFont(undefined, 'bold');
+            doc.text('FORMATTING REQUIREMENTS', 20, yPosition);
+            yPosition += 15;
+            
+            const formatReqs = [
+                'Double-spaced text (CRC 2.104)',
+                '12-point Times New Roman font',
+                'One-inch margins on all sides',
+                'Line numbers on left margin',
+                'Page numbers at bottom center',
+                'Blue-backed or bound if paper filing',
+                'Electronic filing in PDF format (if available)'
+            ];
+            
+            formatReqs.forEach((req, idx) => {
+                if (yPosition > 250) {
+                    doc.addPage();
+                    yPosition = 30;
+                }
+                
+                doc.setFontSize(10);
+                doc.setFont(undefined, 'normal');
+                doc.rect(20, yPosition - 3, 3, 3); // Checkbox
+                const reqLines = doc.splitTextToSize(`${idx + 1}. ${req}`, 160);
+                doc.text(reqLines, 28, yPosition);
+                yPosition += reqLines.length * 5 + 3;
+            });
+            
+            // Footer
+            const pageCount = doc.internal.getNumberOfPages();
+            for (let i = 1; i <= pageCount; i++) {
+                doc.setPage(i);
+                doc.setFontSize(8);
+                doc.setFont(undefined, 'normal');
+                doc.text(`Page ${i} of ${pageCount} | Comprehensive Summary Judgment Guide`, 20, 285);
+                doc.text('Enhanced Knowledge Graph System - Updated Jan 2025', 20, 290);
+            }
+            
+            doc.save('Comprehensive_Summary_Judgment_Guide.pdf');
+            alert('✅ Comprehensive PDF generated with all requirements and proper formatting!');
+        }
+    </script>
+</body>
+</html> 

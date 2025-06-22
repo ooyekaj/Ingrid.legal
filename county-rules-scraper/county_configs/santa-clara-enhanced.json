@@ -1,0 +1,383 @@
+{
+  "county": "Santa Clara",
+  "baseUrl": "https://www.scscourt.org",
+  "version": "2.0-enhanced",
+  "last_updated": "2025-06-22",
+  
+  "discoveryPatterns": {
+    "civil_division": {
+      "url": "/divisions/civil-division",
+      "subpages": [
+        "/civil/complex-civil-litigation",
+        "/civil/general-civil",
+        "/civil/unlimited-civil",
+        "/civil/limited-civil"
+      ]
+    },
+    "rules_and_orders": {
+      "url": "/rules",
+      "document_patterns": [
+        "a[href*=\"rule\"]",
+        "a[href*=\"order\"]",
+        "a[href*=\"pdf\"]",
+        "a[href*=\"procedure\"]",
+        "a[href*=\"guidelines\"]",
+        "a[href*=\"complexcivillitigationguidelines\"]"
+      ]
+    },
+    "judge_specific_pages": {
+      "url_patterns": [
+        "/judges/",
+        "/judicial-officers/", 
+        "/departments/",
+        "/complex-civil-guidelines/",
+        "/department-*/",
+        "/judge-*/",
+        "/court_divisions/civil/complex/"
+      ],
+      "selectors": [
+        "a[href*='judge']",
+        "a[href*='department']", 
+        "a[href*='guidelines']",
+        "a[href*='judicial']",
+        "a[href*='curriculum']",
+        "a[href*='vitae']"
+      ]
+    },
+    "case_management": {
+      "url": "/case-management",
+      "subpages": [
+        "/case-management/civil",
+        "/case-management/complex",
+        "/case-management/scheduling"
+      ]
+    },
+    "local_forms": {
+      "url": "/forms",
+      "subpages": [
+        "/forms/civil",
+        "/forms/local"
+      ]
+    }
+  },
+
+  "filingAreas": {
+    "local_rules": {
+      "selectors": [".rule-content", ".local-rule", ".court-rule", ".rule-text"],
+      "url_patterns": ["/rules/", "/local-rules/", "/court-rules/"]
+    },
+    "standing_orders": {
+      "selectors": [".order-content", ".standing-order", ".general-order"],
+      "url_patterns": ["/orders/", "/standing-orders/", "/general-orders/"]
+    },
+    "judge_orders": {
+      "selectors": [".judge-order", ".judicial-order", ".department-order"],
+      "url_patterns": ["/judge-orders/", "/judicial-orders/", "/department-orders/"]
+    },
+    "complex_civil_guidelines": {
+      "selectors": [".complex-civil", ".guidelines", ".litigation-guidelines"],
+      "url_patterns": ["/complex-civil/", "/guidelines/", "/complexcivillitigationguidelines"]
+    },
+    "case_management": {
+      "selectors": [".case-management", ".scheduling", ".cmco"],
+      "url_patterns": ["/case-management/", "/scheduling/", "/cmco/"]
+    },
+    "civil_procedures": {
+      "selectors": [".civil-procedure", ".procedure-content", ".practice-guide"],
+      "url_patterns": ["/civil/", "/procedures/", "/practice/"]
+    },
+    "electronic_filing": {
+      "selectors": [".efiling", ".electronic-filing", ".online-filing"],
+      "url_patterns": ["/efiling/", "/electronic-filing/", "/online-services/"]
+    }
+  },
+
+  "documentFormats": {
+    "pdf": {
+      "selectors": [
+        "a[href$=\".pdf\"]", 
+        ".pdf-link", 
+        "a[title*=\"PDF\"]", 
+        ".document-link",
+        "a[href*=\"complexcivillitigationguidelines\"]"
+      ],
+      "processing": "pdf_extraction",
+      "priority_patterns": [
+        "complexcivillitigationguidelines",
+        "curriculum-vitae",
+        "judicial-profile",
+        "standing-order",
+        "guidelines"
+      ]
+    },
+    "html": {
+      "selectors": [".content", ".rule-text", ".order-text", ".main-content", ".page-content"],
+      "processing": "html_parsing"
+    },
+    "word": {
+      "selectors": ["a[href$=\".docx\"]", "a[href$=\".doc\"]", ".word-doc", ".document-download"],
+      "processing": "word_extraction"
+    },
+    "excel": {
+      "selectors": ["a[href$=\".xlsx\"]", "a[href$=\".xls\"]", ".spreadsheet"],
+      "processing": "excel_extraction"
+    }
+  },
+
+  "specificSelectors": {
+    "navigation_menus": [
+      ".main-nav", ".primary-nav", ".nav-menu", ".site-nav", 
+      ".header-nav", ".menu-main-navigation"
+    ],
+    "content_areas": [
+      ".entry-content", ".page-content", ".post-content", 
+      ".main-content", ".content-area", ".site-content"
+    ],
+    "document_links": [
+      ".document-list a", ".file-list a", ".attachment a",
+      ".download-link", ".resource-link", "a[href*=\"document\"]",
+      "a[href*=\"guidelines\"]", "a[href*=\"curriculum\"]"
+    ],
+    "breadcrumbs": [
+      ".breadcrumb", ".breadcrumbs", ".nav-breadcrumb"
+    ],
+    "judge_info": [
+      ".judge-profile", ".judicial-officer", ".department-info",
+      ".judge-contact", ".curriculum-vitae", ".judge-bio"
+    ]
+  },
+
+  "priorityPages": [
+    "/rules",
+    "/local-rules",
+    "/standing-orders",
+    "/case-management",
+    "/civil",
+    "/efiling",
+    "/forms",
+    "/procedures",
+    "/practice-guides",
+    "/complex-civil",
+    "/judges",
+    "/judicial-officers",
+    "/departments",
+    "/guidelines"
+  ],
+
+  "criticalDocuments": [
+    {
+      "name": "Complex Civil Litigation Guidelines",
+      "url_pattern": "complexcivillitigationguidelines",
+      "mandatory_service": true,
+      "revision_tracking": true,
+      "judge_specific": true
+    },
+    {
+      "name": "Judge Adams Curriculum Vitae",
+      "url_pattern": "curriculum.*adams",
+      "department": "7",
+      "judge_specific": true
+    },
+    {
+      "name": "Department 7 Standing Orders",
+      "url_pattern": "department.*7.*order",
+      "department": "7",
+      "judge_specific": true
+    }
+  ],
+
+  "changeDetection": {
+    "enabled": true,
+    "track_revision_dates": true,
+    "compare_content": true,
+    "notification_threshold": "any_change",
+    "critical_patterns": [
+      "PLAINTIFF MUST SERVE",
+      "MANDATORY",
+      "Revised \\d{2}/\\d{2}/\\d{4}",
+      "Standing Order",
+      "Department \\d+",
+      "Judge [A-Z][a-z]+ [A-Z][a-z]+"
+    ]
+  },
+
+  "judgeSpecificMonitoring": {
+    "enabled": true,
+    "target_judges": [
+      {
+        "name": "Charles F. Adams",
+        "department": "7",
+        "assignment": "Complex Civil Litigation",
+        "monitoring_patterns": [
+          "Adams",
+          "Department 7",
+          "Complex Civil",
+          "curriculum vitae",
+          "standing order"
+        ]
+      },
+      {
+        "name": "Theodore C. Zayner", 
+        "department": "19",
+        "assignment": "Complex Civil Litigation",
+        "monitoring_patterns": [
+          "Zayner",
+          "Department 19", 
+          "Complex Civil"
+        ]
+      }
+    ]
+  },
+
+  "scraping_config": {
+    "rate_limit": 2000,
+    "user_agent": "Enhanced Legal Research Tool - Santa Clara County Rules Scraper v2.0",
+    "respect_robots": true,
+    "max_concurrent": 3,
+    "timeout": 45000,
+    "retries": 5,
+    "delay_between_pages": 1500,
+    "use_headless_browser": true,
+    "javascript_enabled": true,
+    "follow_redirects": true,
+    "deep_scan_enabled": true
+  },
+
+  "exclusionPatterns": [
+    "/calendar/",
+    "/jury-service/",
+    "/contact/",
+    "/directions/",
+    "/employment/",
+    "/news/",
+    "/press-releases/",
+    "/about/",
+    "/history/",
+    "/parking/",
+    "/security/"
+  ],
+
+  "filingSpecificKeywords": [
+    "filing deadline",
+    "electronic filing",
+    "e-filing",
+    "case management statement",
+    "proof of service",
+    "motion practice",
+    "pleading requirements",
+    "service of process",
+    "discovery deadlines",
+    "trial setting",
+    "scheduling order",
+    "case management conference",
+    "mandatory settlement conference",
+    "final status conference",
+    "tentative ruling",
+    "ex parte application",
+    "informal discovery conference",
+    "complex civil guidelines",
+    "plaintiff must serve",
+    "standing order",
+    "judicial officer",
+    "curriculum vitae",
+    "department assignment"
+  ],
+
+  "specialProcedures": {
+    "complex_civil": {
+      "identifier_keywords": [
+        "complex litigation", 
+        "coordination", 
+        "JCCP",
+        "complex civil guidelines",
+        "plaintiff must serve",
+        "joint case management"
+      ],
+      "special_requirements": [
+        "case management order", 
+        "coordination motion", 
+        "complex case statement",
+        "serve guidelines with summons",
+        "joint case management statement",
+        "electronic filing mandatory"
+      ]
+    },
+    "judge_adams_procedures": {
+      "identifier_keywords": [
+        "Judge Adams",
+        "Department 7",
+        "Complex Civil",
+        "Charles F. Adams"
+      ],
+      "special_requirements": [
+        "complex civil guidelines service",
+        "joint case management statements",
+        "electronic filing mandatory",
+        "tentative ruling procedures",
+        "informal discovery conference"
+      ]
+    },
+    "unlawful_detainer": {
+      "identifier_keywords": ["unlawful detainer", "eviction", "UD"],
+      "special_requirements": ["5-day notice", "3-day notice", "summary judgment"]
+    },
+    "personal_injury": {
+      "identifier_keywords": ["personal injury", "PI", "tort"],
+      "special_requirements": ["expert witness", "medical records", "settlement conference"]
+    }
+  },
+
+  "contactInfo": {
+    "court_address": "191 N. First Street, San Jose, CA 95113",
+    "phone": "(408) 882-2100",
+    "hours": "Monday-Friday 8:00 AM - 4:00 PM",
+    "efiling_support": "(408) 882-2900",
+    "complex_litigation_clerk": {
+      "email": "complex@scscourt.org",
+      "phone": "(408) 882-5710"
+    },
+    "department_7": {
+      "judge": "Charles F. Adams",
+      "clerk": "Thomas Duarte",
+      "phone": "(408) 882-2170",
+      "email": "department7@scscourt.org"
+    },
+    "department_19": {
+      "judge": "Theodore C. Zayner",
+      "clerk": "Maggie Castellon", 
+      "phone": "(408) 882-2310",
+      "email": "department19@scscourt.org"
+    }
+  },
+
+  "monitoringSchedule": {
+    "daily_check": {
+      "enabled": true,
+      "targets": ["standing_orders", "critical_documents"],
+      "time": "09:00"
+    },
+    "weekly_scan": {
+      "enabled": true,
+      "targets": ["judge_specific_pages", "complex_civil_guidelines"],
+      "day": "Monday",
+      "time": "06:00"
+    },
+    "monthly_deep_scan": {
+      "enabled": true,
+      "targets": ["all_discovery_patterns"],
+      "day": 1,
+      "time": "02:00"
+    }
+  },
+
+  "notificationSettings": {
+    "email_alerts": true,
+    "webhook_notifications": true,
+    "change_summary_reports": true,
+    "critical_update_threshold": "immediate",
+    "routine_update_threshold": "daily_digest"
+  },
+
+  "lastUpdated": "2025-06-22T00:00:00Z",
+  "configVersion": "2.0-enhanced"
+} 

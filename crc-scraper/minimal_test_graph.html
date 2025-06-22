@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Minimal Test Graph</title>
+    <script src="https://unpkg.com/cytoscape@3.21.0/dist/cytoscape.min.js"></script>
+    <style>
+        #cy { width: 100%; height: 100vh; background: #f0f0f0; }
+        #debug { position: fixed; top: 10px; right: 10px; background: white; padding: 10px; }
+    </style>
+</head>
+<body>
+    <div id="debug">
+        <div>Elements: <span id="element-count">0</span></div>
+        <div>Nodes: <span id="node-count">0</span></div>
+        <div>Edges: <span id="edge-count">0</span></div>
+        <div>Status: <span id="status">Loading...</span></div>
+    </div>
+    <div id="cy"></div>
+    
+    <script>
+        console.log('🚀 Starting minimal test...');
+        
+        const elements = [
+  {
+    "data": {
+      "id": "12",
+      "label": "CCP 12",
+      "title": "12\nCHAPTER 12. Actions for Restitution for or Replacement of Certain Motor Vehicles",
+      "category": "General Procedures",
+      "wordCount": 56,
+      "filingRelevance": 8,
+      "proceduralRequirements": 0,
+      "crossReferences": 1,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 12",
+      "unified_id": "ccp_12",
+      "original_id": "12"
+    }
+  },
+  {
+    "data": {
+      "id": "34",
+      "label": "CCP 34",
+      "title": "34\nTITLE 1. OF THE FORM OF CIVIL ACTIONS",
+      "category": "General Procedures",
+      "wordCount": 53,
+      "filingRelevance": 8,
+      "proceduralRequirements": 0,
+      "crossReferences": 2,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 34",
+      "unified_id": "ccp_34",
+      "original_id": "34"
+    }
+  },
+  {
+    "data": {
+      "id": "286",
+      "label": "CCP 286",
+      "title": "286\nTITLE 1. ORGANIZATION AND JURISDICTION",
+      "category": "Venue & Jurisdiction",
+      "wordCount": 80,
+      "filingRelevance": 8,
+      "proceduralRequirements": 0,
+      "crossReferences": 1,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 286",
+      "unified_id": "ccp_286",
+      "original_id": "286"
+    }
+  },
+  {
+    "data": {
+      "id": "394",
+      "label": "CCP 394",
+      "title": "394\nARTICLE 7. Enforceability of Decree",
+      "category": "Venue & Jurisdiction",
+      "wordCount": 815,
+      "filingRelevance": 8,
+      "proceduralRequirements": 0,
+      "crossReferences": 2,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 394",
+      "unified_id": "ccp_394",
+      "original_id": "394"
+    }
+  },
+  {
+    "data": {
+      "id": "401",
+      "label": "CCP 401",
+      "title": "401\nARTICLE 8. Costs",
+      "category": "Venue & Jurisdiction",
+      "wordCount": 185,
+      "filingRelevance": 8,
+      "proceduralRequirements": 0,
+      "crossReferences": 1,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 401",
+      "unified_id": "ccp_401",
+      "original_id": "401"
+    }
+  },
+  {
+    "data": {
+      "id": "410.10",
+      "label": "CCP 410.10",
+      "title": "410.10\nARTICLE 2. Forum",
+      "category": "Jurisdiction & Service",
+      "wordCount": 47,
+      "filingRelevance": 8,
+      "proceduralRequirements": 0,
+      "crossReferences": 1,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 410.10",
+      "unified_id": "ccp_410.10",
+      "original_id": "410.10"
+    }
+  },
+  {
+    "data": {
+      "id": "410.42",
+      "label": "CCP 410.42",
+      "title": "410.42\nARTICLE 3. Jurisdiction in Action",
+      "category": "Jurisdiction & Service",
+      "wordCount": 204,
+      "filingRelevance": 8,
+      "proceduralRequirements": 0,
+      "crossReferences": 4,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 410.42",
+      "unified_id": "ccp_410.42",
+      "original_id": "410.42"
+    }
+  },
+  {
+    "data": {
+      "id": "410.70",
+      "label": "CCP 410.70",
+      "title": "410.70\nARTICLE 1. Jurisdiction",
+      "category": "Jurisdiction & Service",
+      "wordCount": 70,
+      "filingRelevance": 8,
+      "proceduralRequirements": 0,
+      "crossReferences": 1,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 410.70",
+      "unified_id": "ccp_410.70",
+      "original_id": "410.70"
+    }
+  },
+  {
+    "data": {
+      "id": "411.35",
+      "label": "CCP 411.35",
+      "title": "411.35\nCHAPTER 3. Summons",
+      "category": "Jurisdiction & Service",
+      "wordCount": 1016,
+      "filingRelevance": 8,
+      "proceduralRequirements": 2,
+      "crossReferences": 8,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 411.35",
+      "unified_id": "ccp_411.35",
+      "original_id": "411.35"
+    }
+  },
+  {
+    "data": {
+      "id": "412.30",
+      "label": "CCP 412.30",
+      "title": "412.30\nCHAPTER 4. Service of Summons",
+      "category": "Jurisdiction & Service",
+      "wordCount": 197,
+      "filingRelevance": 8,
+      "proceduralRequirements": 0,
+      "crossReferences": 2,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 412.30",
+      "unified_id": "ccp_412.30",
+      "original_id": "412.30"
+    }
+  },
+  {
+    "data": {
+      "id": "413.40",
+      "label": "CCP 413.40",
+      "title": "413.40\nARTICLE 2. Persons Who May Serve Summons",
+      "category": "Jurisdiction & Service",
+      "wordCount": 67,
+      "filingRelevance": 8,
+      "proceduralRequirements": 0,
+      "crossReferences": 2,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 413.40",
+      "unified_id": "ccp_413.40",
+      "original_id": "413.40"
+    }
+  },
+  {
+    "data": {
+      "id": "414.10",
+      "label": "CCP 414.10",
+      "title": "414.10\nARTICLE 3. Manner of Service of Summons",
+      "category": "Jurisdiction & Service",
+      "wordCount": 46,
+      "filingRelevance": 8,
+      "proceduralRequirements": 0,
+      "crossReferences": 1,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 414.10",
+      "unified_id": "ccp_414.10",
+      "original_id": "414.10"
+    }
+  },
+  {
+    "data": {
+      "id": "415.95",
+      "label": "CCP 415.95",
+      "title": "415.95\nARTICLE 4. Persons Upon Whom Summons May Be Served",
+      "category": "Jurisdiction & Service",
+      "wordCount": 150,
+      "filingRelevance": 8,
+      "proceduralRequirements": 0,
+      "crossReferences": 1,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 415.95",
+      "unified_id": "ccp_415.95",
+      "original_id": "415.95"
+    }
+  },
+  {
+    "data": {
+      "id": "416.90",
+      "label": "CCP 416.90",
+      "title": "416.90\nARTICLE 5. Proof of Service",
+      "category": "Jurisdiction & Service",
+      "wordCount": 63,
+      "filingRelevance": 8,
+      "proceduralRequirements": 0,
+      "crossReferences": 1,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 416.90",
+      "unified_id": "ccp_416.90",
+      "original_id": "416.90"
+    }
+  },
+  {
+    "data": {
+      "id": "417.40",
+      "label": "CCP 417.40",
+      "title": "417.40\nARTICLE 1. General",
+      "category": "Jurisdiction & Service",
+      "wordCount": 81,
+      "filingRelevance": 8,
+      "proceduralRequirements": 0,
+      "crossReferences": 3,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 417.40",
+      "unified_id": "ccp_417.40",
+      "original_id": "417.40"
+    }
+  },
+  {
+    "data": {
+      "id": "418.11",
+      "label": "CCP 418.11",
+      "title": "418.11\nCHAPTER 1. Jurisdiction and Forum",
+      "category": "Venue & Jurisdiction",
+      "wordCount": 76,
+      "filingRelevance": 8,
+      "proceduralRequirements": 0,
+      "crossReferences": 2,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 418.11",
+      "unified_id": "ccp_418.11",
+      "original_id": "418.11"
+    }
+  },
+  {
+    "data": {
+      "id": "437",
+      "label": "CCP 437",
+      "title": "437\nCHAPTER 5. Summary Judgments and Motions for Judgment on the Pleadings",
+      "category": "Summary Judgment Motion",
+      "wordCount": 108,
+      "filingRelevance": 8,
+      "proceduralRequirements": 0,
+      "crossReferences": 2,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 437",
+      "unified_id": "ccp_437",
+      "original_id": "437"
+    }
+  },
+  {
+    "data": {
+      "id": "483.020",
+      "label": "CCP 483.020",
+      "title": "483.020\nCHAPTER 4. Noticed Hearing Procedure for Obtaining Writ of Attachment",
+      "category": "Writs",
+      "wordCount": 375,
+      "filingRelevance": 8,
+      "proceduralRequirements": 0,
+      "crossReferences": 3,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 483.020",
+      "unified_id": "ccp_483.020",
+      "original_id": "483.020"
+    }
+  },
+  {
+    "data": {
+      "id": "660",
+      "label": "CCP 660",
+      "title": "660\nCHAPTER 7. Undertakings",
+      "category": "General Procedures",
+      "wordCount": 469,
+      "filingRelevance": 8,
+      "proceduralRequirements": 0,
+      "crossReferences": 3,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 660",
+      "unified_id": "ccp_660",
+      "original_id": "660"
+    }
+  },
+  {
+    "data": {
+      "id": "1062.34",
+      "label": "CCP 1062.34",
+      "title": "1062.34\nTITLE 1. OF THE FORM OF CIVIL ACTIONS",
+      "category": "General Procedures",
+      "wordCount": 68,
+      "filingRelevance": 8,
+      "proceduralRequirements": 0,
+      "crossReferences": 2,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 1062.34",
+      "unified_id": "ccp_1062.34",
+      "original_id": "1062.34"
+    }
+  },
+  {
+    "data": {
+      "id": "1250.430",
+      "label": "CCP 1250.430",
+      "title": "1250.430\nARTICLE 1. Jurisdiction and Venue",
+      "category": "Venue & Jurisdiction",
+      "wordCount": 149,
+      "filingRelevance": 8,
+      "proceduralRequirements": 0,
+      "crossReferences": 2,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 1250.430",
+      "unified_id": "ccp_1250.430",
+      "original_id": "1250.430"
+    }
+  },
+  {
+    "data": {
+      "id": "1291.2",
+      "label": "CCP 1291.2",
+      "title": "1291.2\nARTICLE 2. Venue, Jurisdiction and Costs",
+      "category": "Venue & Jurisdiction",
+      "wordCount": 97,
+      "filingRelevance": 8,
+      "proceduralRequirements": 0,
+      "crossReferences": 1,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 1291.2",
+      "unified_id": "ccp_1291.2",
+      "original_id": "1291.2"
+    }
+  },
+  {
+    "data": {
+      "id": "2025.010",
+      "label": "CCP 2025.010",
+      "title": "2025.010\nARTICLE 2. Deposition Notice",
+      "category": "Depositions",
+      "wordCount": 102,
+      "filingRelevance": 8,
+      "proceduralRequirements": 0,
+      "crossReferences": 3,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 2025.010",
+      "unified_id": "ccp_2025.010",
+      "original_id": "2025.010"
+    }
+  },
+  {
+    "data": {
+      "id": "2025.480",
+      "label": "CCP 2025.480",
+      "title": "2025.480\nARTICLE 5. Transcript or Recording",
+      "category": "Depositions",
+      "wordCount": 837,
+      "filingRelevance": 8,
+      "proceduralRequirements": 0,
+      "crossReferences": 3,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 2025.480",
+      "unified_id": "ccp_2025.480",
+      "original_id": "2025.480"
+    }
+  },
+  {
+    "data": {
+      "id": "2033.740",
+      "label": "CCP 2033.740",
+      "title": "2033.740\nCHAPTER 18. Simultaneous Exchange of Expert Witness Information",
+      "category": "Requests for Admission",
+      "wordCount": 101,
+      "filingRelevance": 8,
+      "proceduralRequirements": 0,
+      "crossReferences": 1,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 2033.740",
+      "unified_id": "ccp_2033.740",
+      "original_id": "2033.740"
+    }
+  },
+  {
+    "data": {
+      "id": "2034.010",
+      "label": "CCP 2034.010",
+      "title": "2034.010\nARTICLE 2. Demand for Exchange of Expert Witness Information",
+      "category": "General Procedures",
+      "wordCount": 70,
+      "filingRelevance": 8,
+      "proceduralRequirements": 0,
+      "crossReferences": 2,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 2034.010",
+      "unified_id": "ccp_2034.010",
+      "original_id": "2034.010"
+    }
+  },
+  {
+    "data": {
+      "id": "2034.630",
+      "label": "CCP 2034.630",
+      "title": "2034.630\nARTICLE 5. Motion To Submit Tardy Expert Witness Information",
+      "category": "Motion Practice",
+      "wordCount": 98,
+      "filingRelevance": 8,
+      "proceduralRequirements": 0,
+      "crossReferences": 2,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 2034.630",
+      "unified_id": "ccp_2034.630",
+      "original_id": "2034.630"
+    }
+  },
+  {
+    "data": {
+      "id": "2035.060",
+      "label": "CCP 2035.060",
+      "title": "2035.060\nCHAPTER 20. Perpetuation of Testimony or Preservation of Information Pending",
+      "category": "General Procedures",
+      "wordCount": 122,
+      "filingRelevance": 8,
+      "proceduralRequirements": 0,
+      "crossReferences": 2,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 2035.060",
+      "unified_id": "ccp_2035.060",
+      "original_id": "2035.060"
+    }
+  },
+  {
+    "data": {
+      "id": "437c",
+      "label": "CCP 437c",
+      "title": "CCP Section 437c - Summary Judgment Motions",
+      "category": "Summary Judgment Motion",
+      "wordCount": 3199,
+      "filingRelevance": 8,
+      "proceduralRequirements": 5,
+      "crossReferences": 6,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 437c",
+      "unified_id": "ccp_437c",
+      "original_id": "437c"
+    }
+  },
+  {
+    "data": {
+      "id": "438",
+      "label": "CCP 438",
+      "title": "CCP Section 438 - Summary Judgment Procedure",
+      "category": "Pleadings",
+      "wordCount": 1153,
+      "filingRelevance": 8,
+      "proceduralRequirements": 0,
+      "crossReferences": 5,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 438",
+      "unified_id": "ccp_438",
+      "original_id": "438"
+    }
+  },
+  {
+    "data": {
+      "id": "1005",
+      "label": "CCP 1005",
+      "title": "CCP Section 1005 - Motion Deadlines and Notice Requirements (16 court days notice, 9 days for opposition, 5 days for reply)",
+      "category": "Service & Notice",
+      "wordCount": 649,
+      "filingRelevance": 8,
+      "proceduralRequirements": 3,
+      "crossReferences": 15,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 1005",
+      "unified_id": "ccp_1005",
+      "original_id": "1005"
+    }
+  },
+  {
+    "data": {
+      "id": "1010",
+      "label": "CCP 1010",
+      "title": "CCP Section 1010 - Service Methods and Requirements",
+      "category": "Service & Notice",
+      "wordCount": 164,
+      "filingRelevance": 8,
+      "proceduralRequirements": 1,
+      "crossReferences": 1,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 1010",
+      "unified_id": "ccp_1010",
+      "original_id": "1010"
+    }
+  },
+  {
+    "data": {
+      "id": "1010.6",
+      "label": "CCP 1010.6",
+      "title": "CCP Section 1010.6 - Electronic Service Procedures",
+      "category": "Service & Notice",
+      "wordCount": 3342,
+      "filingRelevance": 8,
+      "proceduralRequirements": 7,
+      "crossReferences": 11,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 1010.6",
+      "unified_id": "ccp_1010.6",
+      "original_id": "1010.6"
+    }
+  },
+  {
+    "data": {
+      "id": "1011",
+      "label": "CCP 1011",
+      "title": "CCP Section 1011 - Personal Service Requirements",
+      "category": "Service & Notice",
+      "wordCount": 538,
+      "filingRelevance": 8,
+      "proceduralRequirements": 1,
+      "crossReferences": 2,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 1011",
+      "unified_id": "ccp_1011",
+      "original_id": "1011"
+    }
+  },
+  {
+    "data": {
+      "id": "1012",
+      "label": "CCP 1012",
+      "title": "CCP Section 1012 - Service by Mail Timing and Extensions",
+      "category": "Service & Notice",
+      "wordCount": 89,
+      "filingRelevance": 8,
+      "proceduralRequirements": 0,
+      "crossReferences": 1,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 1012",
+      "unified_id": "ccp_1012",
+      "original_id": "1012"
+    }
+  },
+  {
+    "data": {
+      "id": "1013",
+      "label": "CCP 1013",
+      "title": "CCP Section 1013 - Time Extensions for Mail Service (+5 days in CA, +10 out of state, +2 court days for fax/overnight)",
+      "category": "Service & Notice",
+      "wordCount": 1080,
+      "filingRelevance": 8,
+      "proceduralRequirements": 5,
+      "crossReferences": 4,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 1013",
+      "unified_id": "ccp_1013",
+      "original_id": "1013"
+    }
+  },
+  {
+    "data": {
+      "id": "1019.5",
+      "label": "CCP 1019.5",
+      "title": "CCP Section 1019.5 - Notice of Court Orders and Decisions",
+      "category": "Service & Notice",
+      "wordCount": 133,
+      "filingRelevance": 8,
+      "proceduralRequirements": 0,
+      "crossReferences": 1,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 1019.5",
+      "unified_id": "ccp_1019.5",
+      "original_id": "1019.5"
+    }
+  },
+  {
+    "data": {
+      "id": "1014",
+      "label": "CCP 1014",
+      "title": "CCP Section 1014 - Proof of Service Requirements",
+      "category": "Service & Notice",
+      "wordCount": 125,
+      "filingRelevance": 8,
+      "proceduralRequirements": 0,
+      "crossReferences": 3,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 1014",
+      "unified_id": "ccp_1014",
+      "original_id": "1014"
+    }
+  },
+  {
+    "data": {
+      "id": "473",
+      "label": "CCP 473",
+      "title": "CCP Section 473 - Relief from Default Judgments and Procedural Errors",
+      "category": "Pleadings",
+      "wordCount": 823,
+      "filingRelevance": 8,
+      "proceduralRequirements": 0,
+      "crossReferences": 2,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 473",
+      "unified_id": "ccp_473",
+      "original_id": "473"
+    }
+  },
+  {
+    "data": {
+      "id": "128.7",
+      "label": "CCP 128.7",
+      "title": "CCP Section 128.7 - Sanctions for Frivolous Filings",
+      "category": "General Procedures",
+      "wordCount": 959,
+      "filingRelevance": 8,
+      "proceduralRequirements": 4,
+      "crossReferences": 2,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 128.7",
+      "unified_id": "ccp_128.7",
+      "original_id": "128.7"
+    }
+  },
+  {
+    "data": {
+      "id": "170",
+      "label": "CCP 170",
+      "title": "CCP Section 170 - Judge Disqualification Procedures",
+      "category": "General Procedures",
+      "wordCount": 44,
+      "filingRelevance": 8,
+      "proceduralRequirements": 0,
+      "crossReferences": 1,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 170",
+      "unified_id": "ccp_170",
+      "original_id": "170"
+    }
+  },
+  {
+    "data": {
+      "id": "170.1",
+      "label": "CCP 170.1",
+      "title": "CCP Section 170.1 - Judge Disqualification Grounds",
+      "category": "General Procedures",
+      "wordCount": 1342,
+      "filingRelevance": 8,
+      "proceduralRequirements": 0,
+      "crossReferences": 5,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 170.1",
+      "unified_id": "ccp_170.1",
+      "original_id": "170.1"
+    }
+  },
+  {
+    "data": {
+      "id": "170.3",
+      "label": "CCP 170.3",
+      "title": "CCP Section 170.3 - Judge Disqualification Procedure",
+      "category": "General Procedures",
+      "wordCount": 1039,
+      "filingRelevance": 8,
+      "proceduralRequirements": 2,
+      "crossReferences": 4,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 170.3",
+      "unified_id": "ccp_170.3",
+      "original_id": "170.3"
+    }
+  },
+  {
+    "data": {
+      "id": "170.6",
+      "label": "CCP 170.6",
+      "title": "CCP Section 170.6 - Peremptory Challenge to Judge",
+      "category": "General Procedures",
+      "wordCount": 1411,
+      "filingRelevance": 8,
+      "proceduralRequirements": 1,
+      "crossReferences": 3,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 170.6",
+      "unified_id": "ccp_170.6",
+      "original_id": "170.6"
+    }
+  },
+  {
+    "data": {
+      "id": "594",
+      "label": "CCP 594",
+      "title": "CCP Section 594 - Notice of Trial Requirements",
+      "category": "General Procedures",
+      "wordCount": 399,
+      "filingRelevance": 8,
+      "proceduralRequirements": 3,
+      "crossReferences": 2,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 594",
+      "unified_id": "ccp_594",
+      "original_id": "594"
+    }
+  },
+  {
+    "data": {
+      "id": "1003",
+      "label": "CCP 1003",
+      "title": "CCP Section 1003 - Ex Parte Applications",
+      "category": "Service & Notice",
+      "wordCount": 53,
+      "filingRelevance": 8,
+      "proceduralRequirements": 0,
+      "crossReferences": 1,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 1003",
+      "unified_id": "ccp_1003",
+      "original_id": "1003"
+    }
+  },
+  {
+    "data": {
+      "id": "1006",
+      "label": "CCP 1006",
+      "title": "CCP Section 1006 - Extensions of Time",
+      "category": "Service & Notice",
+      "wordCount": 89,
+      "filingRelevance": 8,
+      "proceduralRequirements": 0,
+      "crossReferences": 1,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 1006",
+      "unified_id": "ccp_1006",
+      "original_id": "1006"
+    }
+  },
+  {
+    "data": {
+      "id": "583.210",
+      "label": "CCP 583.210",
+      "title": "CCP Section 583.210 - Dismissal for Delay in Prosecution (2-year rule)",
+      "category": "Dismissal Procedures",
+      "wordCount": 94,
+      "filingRelevance": 8,
+      "proceduralRequirements": 3,
+      "crossReferences": 1,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 583.210",
+      "unified_id": "ccp_583.210",
+      "original_id": "583.210"
+    }
+  },
+  {
+    "data": {
+      "id": "583.220",
+      "label": "CCP 583.220",
+      "title": "CCP Section 583.220 - Dismissal for Delay - Service Requirements",
+      "category": "Dismissal Procedures",
+      "wordCount": 140,
+      "filingRelevance": 8,
+      "proceduralRequirements": 1,
+      "crossReferences": 2,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 583.220",
+      "unified_id": "ccp_583.220",
+      "original_id": "583.220"
+    }
+  },
+  {
+    "data": {
+      "id": "583.230",
+      "label": "CCP 583.230",
+      "title": "CCP Section 583.230 - Dismissal for Delay - Bringing to Trial",
+      "category": "Dismissal Procedures",
+      "wordCount": 100,
+      "filingRelevance": 8,
+      "proceduralRequirements": 1,
+      "crossReferences": 1,
+      "source_system": "CCP",
+      "system_color": "#4169E1",
+      "displayLabel": "CCP 583.230",
+      "unified_id": "ccp_583.230",
+      "original_id": "583.230"
+    }
+  }
+]; // First 50 elements only
+        
+        document.getElementById('element-count').textContent = elements.length;
+        document.getElementById('node-count').textContent = elements.filter(e => !e.data.source).length;
+        document.getElementById('edge-count').textContent = elements.filter(e => e.data.source).length;
+        
+        console.log('Elements to render:', elements.length);
+        
+        try {
+            const cy = cytoscape({
+                container: document.getElementById('cy'),
+                elements: elements,
+                
+                style: [
+                    {
+                        selector: 'node',
+                        style: {
+                            'background-color': 'data(system_color)',
+                            'label': 'data(displayLabel)',
+                            'width': 30,
+                            'height': 30,
+                            'font-size': 10,
+                            'color': 'white'
+                        }
+                    },
+                    {
+                        selector: 'edge',
+                        style: {
+                            'width': 2,
+                            'line-color': 'data(edge_color)',
+                            'target-arrow-color': 'data(edge_color)',
+                            'target-arrow-shape': 'triangle'
+                        }
+                    }
+                ],
+                
+                layout: {
+                    name: 'grid',
+                    rows: 10,
+                    cols: 10
+                }
+            });
+            
+            console.log('✅ Cytoscape initialized successfully');
+            console.log('Nodes rendered:', cy.nodes().length);
+            console.log('Edges rendered:', cy.edges().length);
+            
+            document.getElementById('status').textContent = 'SUCCESS!';
+            document.getElementById('status').style.color = 'green';
+            
+        } catch (error) {
+            console.error('❌ Cytoscape error:', error);
+            document.getElementById('status').textContent = 'ERROR: ' + error.message;
+            document.getElementById('status').style.color = 'red';
+        }
+    </script>
+</body>
+</html>

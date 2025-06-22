@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unified Knowledge Graph - Offline Version</title>
+    <script src="cytoscape.min.js"></script>
+    <script src="cytoscape-cose-bilkent.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .container {
+            display: flex;
+            gap: 20px;
+            height: 80vh;
+        }
+        
+        .sidebar {
+            width: 300px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .graph-container {
+            flex: 1;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        #cy {
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+        
+        .query-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        
+        .query-button {
+            width: 100%;
+            padding: 12px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .query-button:hover {
+            background: #0056b3;
+        }
+        
+        .legend {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 12px;
+            z-index: 1000;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        
+        .legend-color {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .results {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .rule-item {
+            padding: 8px;
+            background: white;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🔗 Unified Knowledge Graph</h1>
+        <p>California Legal Rules Visualization</p>
+    </div>
+    
+    <div class="container">
+        <div class="sidebar">
+            <h3>Query System</h3>
+            <textarea 
+                class="query-input" 
+                id="queryInput" 
+                placeholder="Enter query (e.g., 'Summary Judgment Motion')"
+                rows="3">Summary Judgment Motion</textarea>
+            <button class="query-button" onclick="processQuery()">Search Rules</button>
+            
+            <div id="results" class="results" style="display: none;"></div>
+            
+            <div style="margin-top: 20px;">
+                <h4>Sample Queries:</h4>
+                <div onclick="setQuery('Summary Judgment Motion')" style="cursor: pointer; color: #007bff; margin-bottom: 5px;">• Summary Judgment Motion</div>
+                <div onclick="setQuery('Discovery Motion')" style="cursor: pointer; color: #007bff; margin-bottom: 5px;">• Discovery Motion</div>
+                <div onclick="setQuery('Service and Notice')" style="cursor: pointer; color: #007bff; margin-bottom: 5px;">• Service and Notice</div>
+                <div onclick="setQuery('Electronic Filing')" style="cursor: pointer; color: #007bff;">• Electronic Filing</div>
+            </div>
+        </div>
+        
+        <div class="graph-container">
+            <div class="legend">
+                <h4 style="margin: 0 0 10px 0;">Node Types</h4>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #e74c3c;"></div>
+                    <span>CCP Rules</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #3498db;"></div>
+                    <span>CRC Rules</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #2ecc71;"></div>
+                    <span>County Rules</span>
+                </div>
+            </div>
+            
+            <div id="cy"></div>
+        </div>
+    </div>
+
+    <script>
+        // Test if Cytoscape loaded
+        if (typeof cytoscape === 'undefined') {
+            document.getElementById('cy').innerHTML = `
+                <div style="text-align: center; padding: 50px; color: red;">
+                    <h3>⚠️ Cytoscape.js not loaded</h3>
+                    <p>Please ensure cytoscape.min.js is in the same directory</p>
+                </div>
+            `;
+        } else {
+            console.log('Cytoscape loaded successfully!');
+            
+            // Sample data for testing
+            const graphData = {
+                nodes: [
+                    { data: { id: '437c', label: 'CCP 437c', category: 'Motion Practice', type: 'ccp_rule', title: 'Summary Judgment Motion' }},
+                    { data: { id: '1003', label: 'CCP 1003', category: 'Service & Notice', type: 'ccp_rule', title: 'Service of Process' }},
+                    { data: { id: '1010.6', label: 'CCP 1010.6', category: 'Service & Notice', type: 'ccp_rule', title: 'Electronic Service' }},
+                    { data: { id: '1005', label: 'CCP 1005', category: 'Service & Notice', type: 'ccp_rule', title: 'Notice Requirements' }},
+                    { data: { id: '2025.010', label: 'CCP 2025.010', category: 'Discovery', type: 'ccp_rule', title: 'Deposition Procedures' }},
+                    { data: { id: '2030.010', label: 'CCP 2030.010', category: 'Discovery', type: 'ccp_rule', title: 'Interrogatories' }},
+                    { data: { id: '2031.010', label: 'CCP 2031.010', category: 'Discovery', type: 'ccp_rule', title: 'Document Production' }},
+                    { data: { id: '425.10', label: 'CCP 425.10', category: 'Pleadings', type: 'ccp_rule', title: 'Complaint Requirements' }},
+                    { data: { id: '430.10', label: 'CCP 430.10', category: 'Pleadings', type: 'ccp_rule', title: 'Demurrer Procedures' }},
+                    { data: { id: '435', label: 'CCP 435', category: 'Pleadings', type: 'ccp_rule', title: 'Motion to Strike' }},
+                    { data: { id: '473', label: 'CCP 473', category: 'Relief', type: 'ccp_rule', title: 'Relief from Default' }},
+                    { data: { id: '527', label: 'CCP 527', category: 'Injunctions', type: 'ccp_rule', title: 'Injunction Procedures' }}
+                ],
+                edges: [
+                    { data: { source: '437c', target: '1003', relationship: 'requires_service' }},
+                    { data: { source: '437c', target: '1005', relationship: 'requires_notice' }},
+                    { data: { source: '2025.010', target: '1003', relationship: 'requires_service' }},
+                    { data: { source: '2030.010', target: '1005', relationship: 'requires_notice' }},
+                    { data: { source: '430.10', target: '1003', relationship: 'requires_service' }}
+                ]
+            };
+
+            let cy;
+
+            // Initialize graph
+            function initGraph() {
+                try {
+                    cy = cytoscape({
+                        container: document.getElementById('cy'),
+                        elements: graphData,
+                        style: [
+                            {
+                                selector: 'node',
+                                style: {
+                                    'background-color': function(ele) {
+                                        const category = ele.data('category');
+                                        switch(category) {
+                                            case 'Motion Practice': return '#e74c3c';
+                                            case 'Service & Notice': return '#3498db';
+                                            case 'Discovery': return '#2ecc71';
+                                            case 'Pleadings': return '#f39c12';
+                                            case 'Relief': return '#9b59b6';
+                                            case 'Injunctions': return '#e67e22';
+                                            default: return '#95a5a6';
+                                        }
+                                    },
+                                    'label': 'data(label)',
+                                    'text-valign': 'center',
+                                    'text-halign': 'center',
+                                    'font-size': '10px',
+                                    'font-weight': 'bold',
+                                    'color': '#2c3e50',
+                                    'text-outline-width': 1,
+                                    'text-outline-color': '#ffffff',
+                                    'width': 60,
+                                    'height': 60
+                                }
+                            },
+                            {
+                                selector: 'edge',
+                                style: {
+                                    'width': 2,
+                                    'line-color': '#bdc3c7',
+                                    'target-arrow-color': '#bdc3c7',
+                                    'target-arrow-shape': 'triangle',
+                                    'curve-style': 'bezier'
+                                }
+                            },
+                            {
+                                selector: '.highlighted',
+                                style: {
+                                    'background-color': '#f1c40f',
+                                    'border-width': 3,
+                                    'border-color': '#f39c12'
+                                }
+                            }
+                        ],
+                        layout: {
+                            name: 'cose',
+                            animate: true,
+                            animationDuration: 1000,
+                            fit: true,
+                            padding: 30
+                        }
+                    });
+
+                    // Add click handlers
+                    cy.on('tap', 'node', function(evt) {
+                        const node = evt.target;
+                        showNodeDetails(node);
+                    });
+
+                    console.log('Graph initialized with', cy.nodes().length, 'nodes');
+                    
+                } catch (error) {
+                    console.error('Error initializing graph:', error);
+                    document.getElementById('cy').innerHTML = `
+                        <div style="text-align: center; padding: 50px; color: red;">
+                            <h3>Error: ${error.message}</h3>
+                        </div>
+                    `;
+                }
+            }
+
+            function showNodeDetails(node) {
+                const data = node.data();
+                const details = `
+                    <div class="rule-item">
+                        <strong>${data.label}</strong><br>
+                        <em>${data.category}</em><br>
+                        ${data.title}
+                    </div>
+                `;
+                document.getElementById('results').innerHTML = details;
+                document.getElementById('results').style.display = 'block';
+            }
+
+            function setQuery(query) {
+                document.getElementById('queryInput').value = query;
+            }
+
+            function processQuery() {
+                const query = document.getElementById('queryInput').value.toLowerCase();
+                
+                // Clear previous highlights
+                cy.elements().removeClass('highlighted');
+                
+                // Find matching nodes
+                const matchingNodes = cy.nodes().filter(node => {
+                    const data = node.data();
+                    const searchText = `${data.label} ${data.title} ${data.category}`.toLowerCase();
+                    return searchText.includes(query);
+                });
+                
+                // Highlight matching nodes
+                matchingNodes.addClass('highlighted');
+                
+                // Show results
+                let resultsHtml = `<h4>Found ${matchingNodes.length} rules:</h4>`;
+                matchingNodes.forEach(node => {
+                    const data = node.data();
+                    resultsHtml += `
+                        <div class="rule-item">
+                            <strong>${data.label}</strong><br>
+                            <em>${data.category}</em><br>
+                            ${data.title}
+                        </div>
+                    `;
+                });
+                
+                if (matchingNodes.length === 0) {
+                    resultsHtml = '<div class="rule-item">No matching rules found. Try "Summary", "Discovery", or "Service".</div>';
+                }
+                
+                document.getElementById('results').innerHTML = resultsHtml;
+                document.getElementById('results').style.display = 'block';
+            }
+
+            // Initialize when DOM is ready
+            document.addEventListener('DOMContentLoaded', function() {
+                setTimeout(initGraph, 100);
+            });
+            
+            // Also try immediately
+            if (document.readyState === 'complete') {
+                setTimeout(initGraph, 100);
+            }
+        }
+    </script>
+</body>
+</html> 

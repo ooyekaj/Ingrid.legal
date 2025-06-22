@@ -1,0 +1,873 @@
+{
+  "nodes": [
+    {
+      "data": {
+        "id": "1003",
+        "label": "CCP 1003",
+        "title": "CCP Section 1003",
+        "category": "Service & Notice",
+        "wordCount": 53,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "1005",
+        "label": "CCP 1005",
+        "title": "CCP Section 1005",
+        "category": "Service & Notice",
+        "wordCount": 649,
+        "filingRelevance": 8,
+        "proceduralRequirements": 3,
+        "crossReferences": 15,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "1010.6",
+        "label": "CCP 1010.6",
+        "title": "CCP Section 1010.6",
+        "category": "Service & Notice",
+        "wordCount": 3342,
+        "filingRelevance": 8,
+        "proceduralRequirements": 7,
+        "crossReferences": 11,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "1010",
+        "label": "CCP 1010",
+        "title": "CCP Section 1010",
+        "category": "Service & Notice",
+        "wordCount": 164,
+        "filingRelevance": 8,
+        "proceduralRequirements": 1,
+        "crossReferences": 1,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "1011",
+        "label": "CCP 1011",
+        "title": "CCP Section 1011",
+        "category": "Service & Notice",
+        "wordCount": 538,
+        "filingRelevance": 8,
+        "proceduralRequirements": 1,
+        "crossReferences": 2,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "1012",
+        "label": "CCP 1012",
+        "title": "CCP Section 1012",
+        "category": "Service & Notice",
+        "wordCount": 89,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "1013",
+        "label": "CCP 1013",
+        "title": "CCP Section 1013",
+        "category": "Service & Notice",
+        "wordCount": 1080,
+        "filingRelevance": 8,
+        "proceduralRequirements": 5,
+        "crossReferences": 4,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "1014",
+        "label": "CCP 1014",
+        "title": "CCP Section 1014",
+        "category": "Service & Notice",
+        "wordCount": 125,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 3,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "1086",
+        "label": "CCP 1086",
+        "title": "CCP Section 1086",
+        "category": "Mandates",
+        "wordCount": 60,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "1094.5",
+        "label": "CCP 1094.5",
+        "title": "CCP Section 1094.5",
+        "category": "Mandates",
+        "wordCount": 1675,
+        "filingRelevance": 8,
+        "proceduralRequirements": 3,
+        "crossReferences": 13,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "1094.6",
+        "label": "CCP 1094.6",
+        "title": "CCP Section 1094.6",
+        "category": "Mandates",
+        "wordCount": 719,
+        "filingRelevance": 8,
+        "proceduralRequirements": 1,
+        "crossReferences": 4,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "128.7",
+        "label": "CCP 128.7",
+        "title": "CCP Section 128.7",
+        "category": "General Procedures",
+        "wordCount": 959,
+        "filingRelevance": 8,
+        "proceduralRequirements": 4,
+        "crossReferences": 2,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "12",
+        "label": "CCP 12",
+        "title": "CCP Section 12",
+        "category": "General Procedures",
+        "wordCount": 114,
+        "filingRelevance": 8,
+        "proceduralRequirements": 1,
+        "crossReferences": 2,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "2024.020",
+        "label": "CCP 2024.020",
+        "title": "CCP Section 2024.020",
+        "category": "Discovery Sanctions",
+        "wordCount": 113,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 2,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "2025.010",
+        "label": "CCP 2025.010",
+        "title": "CCP Section 2025.010",
+        "category": "Depositions",
+        "wordCount": 102,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 3,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "2025.480",
+        "label": "CCP 2025.480",
+        "title": "CCP Section 2025.480",
+        "category": "Depositions",
+        "wordCount": 837,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 3,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "2030.010",
+        "label": "CCP 2030.010",
+        "title": "CCP Section 2030.010",
+        "category": "Interrogatories",
+        "wordCount": 151,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 3,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "2030.300",
+        "label": "CCP 2030.300",
+        "title": "CCP Section 2030.300",
+        "category": "Interrogatories",
+        "wordCount": 361,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 4,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "2031.010",
+        "label": "CCP 2031.010",
+        "title": "CCP Section 2031.010",
+        "category": "Document Production",
+        "wordCount": 314,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 3,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "2031.310",
+        "label": "CCP 2031.310",
+        "title": "CCP Section 2031.310",
+        "category": "Document Production",
+        "wordCount": 771,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 3,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "367",
+        "label": "CCP 367",
+        "title": "CCP Section 367",
+        "category": "General Procedures",
+        "wordCount": 49,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "372",
+        "label": "CCP 372",
+        "title": "CCP Section 372",
+        "category": "General Procedures",
+        "wordCount": 1205,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 9,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "392",
+        "label": "CCP 392",
+        "title": "CCP Section 392",
+        "category": "Venue & Jurisdiction",
+        "wordCount": 235,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 2,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "410.10",
+        "label": "CCP 410.10",
+        "title": "CCP Section 410.10",
+        "category": "Jurisdiction & Service",
+        "wordCount": 47,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "410.42",
+        "label": "CCP 410.42",
+        "title": "CCP Section 410.42",
+        "category": "Jurisdiction & Service",
+        "wordCount": 204,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 4,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "410.70",
+        "label": "CCP 410.70",
+        "title": "CCP Section 410.70",
+        "category": "Jurisdiction & Service",
+        "wordCount": 70,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "411.10",
+        "label": "CCP 411.10",
+        "title": "CCP Section 411.10",
+        "category": "Jurisdiction & Service",
+        "wordCount": 35,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "411.35",
+        "label": "CCP 411.35",
+        "title": "CCP Section 411.35",
+        "category": "Jurisdiction & Service",
+        "wordCount": 1016,
+        "filingRelevance": 8,
+        "proceduralRequirements": 2,
+        "crossReferences": 8,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "412.30",
+        "label": "CCP 412.30",
+        "title": "CCP Section 412.30",
+        "category": "Jurisdiction & Service",
+        "wordCount": 197,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 2,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "413.40",
+        "label": "CCP 413.40",
+        "title": "CCP Section 413.40",
+        "category": "Jurisdiction & Service",
+        "wordCount": 67,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 2,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "414.10",
+        "label": "CCP 414.10",
+        "title": "CCP Section 414.10",
+        "category": "Jurisdiction & Service",
+        "wordCount": 46,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "415.95",
+        "label": "CCP 415.95",
+        "title": "CCP Section 415.95",
+        "category": "Jurisdiction & Service",
+        "wordCount": 150,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "416.90",
+        "label": "CCP 416.90",
+        "title": "CCP Section 416.90",
+        "category": "Jurisdiction & Service",
+        "wordCount": 63,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "417.40",
+        "label": "CCP 417.40",
+        "title": "CCP Section 417.40",
+        "category": "Jurisdiction & Service",
+        "wordCount": 81,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 3,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "418.11",
+        "label": "CCP 418.11",
+        "title": "CCP Section 418.11",
+        "category": "General Procedures",
+        "wordCount": 76,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 2,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "425.10",
+        "label": "CCP 425.10",
+        "title": "CCP Section 425.10",
+        "category": "Complaint Requirements",
+        "wordCount": 149,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 3,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "425.11",
+        "label": "CCP 425.11",
+        "title": "CCP Section 425.11",
+        "category": "Complaint Requirements",
+        "wordCount": 284,
+        "filingRelevance": 8,
+        "proceduralRequirements": 4,
+        "crossReferences": 3,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "425.12",
+        "label": "CCP 425.12",
+        "title": "CCP Section 425.12",
+        "category": "Complaint Requirements",
+        "wordCount": 163,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "425.13",
+        "label": "CCP 425.13",
+        "title": "CCP Section 425.13",
+        "category": "Complaint Requirements",
+        "wordCount": 295,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 5,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "426.10",
+        "label": "CCP 426.10",
+        "title": "CCP Section 426.10",
+        "category": "Cross-Complaint Requirements",
+        "wordCount": 82,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "426.30",
+        "label": "CCP 426.30",
+        "title": "CCP Section 426.30",
+        "category": "Cross-Complaint Requirements",
+        "wordCount": 154,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "426.50",
+        "label": "CCP 426.50",
+        "title": "CCP Section 426.50",
+        "category": "Cross-Complaint Requirements",
+        "wordCount": 138,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "430.10",
+        "label": "CCP 430.10",
+        "title": "CCP Section 430.10",
+        "category": "Demurrer (Motion to Dismiss)",
+        "wordCount": 189,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 3,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "430.20",
+        "label": "CCP 430.20",
+        "title": "CCP Section 430.20",
+        "category": "Demurrer (Motion to Dismiss)",
+        "wordCount": 101,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 2,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "430.30",
+        "label": "CCP 430.30",
+        "title": "CCP Section 430.30",
+        "category": "Demurrer (Motion to Dismiss)",
+        "wordCount": 114,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "430.40",
+        "label": "CCP 430.40",
+        "title": "CCP Section 430.40",
+        "category": "Demurrer (Motion to Dismiss)",
+        "wordCount": 78,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "430.41",
+        "label": "CCP 430.41",
+        "title": "CCP Section 430.41",
+        "category": "Demurrer (Motion to Dismiss)",
+        "wordCount": 848,
+        "filingRelevance": 8,
+        "proceduralRequirements": 1,
+        "crossReferences": 3,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "431.30",
+        "label": "CCP 431.30",
+        "title": "CCP Section 431.30",
+        "category": "Answer Requirements",
+        "wordCount": 397,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 2,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "431.40",
+        "label": "CCP 431.40",
+        "title": "CCP Section 431.40",
+        "category": "Answer Requirements",
+        "wordCount": 159,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "435",
+        "label": "CCP 435",
+        "title": "CCP Section 435",
+        "category": "Motion to Strike",
+        "wordCount": 245,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 3,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "436",
+        "label": "CCP 436",
+        "title": "CCP Section 436",
+        "category": "Motion to Strike",
+        "wordCount": 93,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 2,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "437",
+        "label": "CCP 437",
+        "title": "CCP Section 437",
+        "category": "Motion to Strike",
+        "wordCount": 108,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 2,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "438",
+        "label": "CCP 438",
+        "title": "CCP Section 438",
+        "category": "Pleadings",
+        "wordCount": 1153,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 5,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "472",
+        "label": "CCP 472",
+        "title": "CCP Section 472",
+        "category": "Pleading Amendments",
+        "wordCount": 84,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "473",
+        "label": "CCP 473",
+        "title": "CCP Section 473",
+        "category": "Pleadings",
+        "wordCount": 823,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 2,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "664.5",
+        "label": "CCP 664.5",
+        "title": "CCP Section 664.5",
+        "category": "Judgment Entry",
+        "wordCount": 304,
+        "filingRelevance": 8,
+        "proceduralRequirements": 3,
+        "crossReferences": 1,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "664.6",
+        "label": "CCP 664.6",
+        "title": "CCP Section 664.6",
+        "category": "Judgment Entry",
+        "wordCount": 676,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 3,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "664",
+        "label": "CCP 664",
+        "title": "CCP Section 664",
+        "category": "Judgment Entry",
+        "wordCount": 126,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "667",
+        "label": "CCP 667",
+        "title": "CCP Section 667",
+        "category": "Judgment Entry",
+        "wordCount": 117,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "670",
+        "label": "CCP 670",
+        "title": "CCP Section 670",
+        "category": "Judgment Entry",
+        "wordCount": 267,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "437c",
+        "label": "CCP 437c",
+        "title": "CCP Section 437c - Summary Judgment Motion Requirements (WHAT: Notice, Separate Statement, Points & Authorities, Evidence)",
+        "category": "Summary Judgment Motion",
+        "wordCount": 3199,
+        "filingRelevance": 8,
+        "proceduralRequirements": 5,
+        "crossReferences": 6,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    },
+    {
+      "data": {
+        "id": "527",
+        "label": "CCP 527",
+        "title": "CCP Section 527 - TRO Filing Requirements (WHAT/HOW: Emergency relief filing requirements)",
+        "category": "Filing & Service",
+        "wordCount": 942,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 2,
+        "type": "ccp_rule",
+        "source": "ccp"
+      }
+    }
+  ],
+  "edges": []
+}

@@ -1,0 +1,48 @@
+{
+  "county": "Santa Clara",
+  "generated_at": "2025-06-22T17:53:43.310Z",
+  "graph_statistics": {
+    "total_nodes": 1794,
+    "total_edges": 3001,
+    "node_types": {
+      "county_rule": 318,
+      "filing_question": 18,
+      "department": 69,
+      "procedure": 263,
+      "organization": 478,
+      "judge": 13,
+      "requirement": 520,
+      "standing_order": 42,
+      "court_department": 73
+    },
+    "edge_types": {
+      "answers filing question": 1194,
+      "applies to department": 85,
+      "specifies procedure": 263,
+      "mentions organization": 760,
+      "mentions judge": 14,
+      "specifies requirement": 520,
+      "contains order": 42,
+      "mentions department": 123
+    }
+  },
+  "key_insights": [
+    "Found 13 judges with specific procedures or preferences",
+    "Identified 69 court departments with specific rules",
+    "Top document categories: General Civil (568), Filing Procedures (546), Court Procedures (263)",
+    "Documents address 18 common filing questions",
+    "664 documents have high filing relevance (score ≥ 7)"
+  ],
+  "recommendations": [
+    {
+      "type": "DATA_GAP",
+      "message": "Some departments may be missing judge-specific information",
+      "priority": "MEDIUM"
+    },
+    {
+      "type": "PROCESS_IMPROVEMENT",
+      "message": "91 documents contain many procedural requirements - consider creating summary guides",
+      "priority": "MEDIUM"
+    }
+  ]
+}

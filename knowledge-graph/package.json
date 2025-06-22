@@ -1,0 +1,37 @@
+{
+  "name": "unified-knowledge-graph",
+  "version": "1.0.0",
+  "description": "Unified knowledge graph system connecting CCP, CRC, and county-specific legal rules for comprehensive filing requirement queries",
+  "main": "unified_knowledge_graph_generator.js",
+  "scripts": {
+    "demo": "node demo_unified_query.js",
+    "generate": "node unified_knowledge_graph_generator.js",
+    "test": "node test_unified_system.js",
+    "launch": "node start_server.js",
+    "start": "node start_server.js"
+  },
+  "keywords": [
+    "legal",
+    "knowledge-graph",
+    "ccp",
+    "crc",
+    "california-rules",
+    "court-procedures",
+    "filing-requirements"
+  ],
+  "author": "Knowledge Graph System",
+  "license": "MIT",
+  "dependencies": {
+    "fs-extra": "^11.1.1"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "."
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+} 

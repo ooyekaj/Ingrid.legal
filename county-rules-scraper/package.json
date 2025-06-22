@@ -1,0 +1,51 @@
+{
+  "name": "county-rules-scraper",
+  "version": "1.0.0",
+  "description": "Comprehensive multi-county legal document scraper for California county court rules, standing orders, and judicial directives",
+  "main": "scripts/main.js",
+  "scripts": {
+    "start": "node scripts/main.js",
+    "batch": "node scripts/county-batch.js",
+    "test": "jest",
+    "dev": "nodemon scripts/main.js"
+  },
+  "keywords": [
+    "legal",
+    "scraper",
+    "california",
+    "court-rules",
+    "judicial-documents",
+    "county-courts"
+  ],
+  "author": "Legal Research Tool",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0-rc.12",
+    "commander": "^11.1.0",
+    "compromise": "^14.10.0",
+    "fs-extra": "^11.1.1",
+    "lodash": "^4.17.21",
+    "mammoth": "^1.6.0",
+    "moment": "^2.29.4",
+    "natural": "^6.8.0",
+    "node-cron": "^3.0.3",
+    "p-limit": "^3.1.0",
+    "pdf-parse": "^1.1.1",
+    "pdfjs-dist": "^3.11.174",
+    "playwright": "^1.40.0",
+    "puppeteer": "^21.5.0",
+    "robots-parser": "^3.0.1",
+    "winston": "^3.11.0",
+    "xlsx": "^0.18.5",
+    "xml2js": "^0.6.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.55.0",
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

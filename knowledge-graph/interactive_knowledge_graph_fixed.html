@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Unified Knowledge Graph - California Legal Rules</title>
+    <script src="https://unpkg.com/cytoscape@3.26.0/dist/cytoscape.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            margin: 0;
+            color: #2c3e50;
+            font-size: 2.5em;
+        }
+        
+        .header p {
+            margin: 5px 0 0 0;
+            color: #7f8c8d;
+            font-size: 1.1em;
+        }
+        
+        .container {
+            display: flex;
+            height: calc(100vh - 120px);
+        }
+        
+        .sidebar {
+            width: 400px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            overflow-y: auto;
+        }
+        
+        .query-section {
+            margin-bottom: 25px;
+        }
+        
+        .query-section h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        
+        .query-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #bdc3c7;
+            border-radius: 8px;
+            font-size: 14px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            resize: vertical;
+        }
+        
+        .query-button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .query-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+        }
+        
+        .sample-queries {
+            margin-top: 20px;
+        }
+        
+        .sample-query {
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: background 0.2s ease;
+        }
+        
+        .sample-query:hover {
+            background: #e9ecef;
+        }
+        
+        .results-section {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+        
+        .rule-item {
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid #3498db;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .rule-title {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        
+        .rule-category {
+            color: #7f8c8d;
+            font-size: 12px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        
+        .rule-content {
+            color: #34495e;
+            font-size: 14px;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+        
+        .rule-metadata {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: #95a5a6;
+        }
+        
+        .cy-container {
+            flex: 1;
+            background: white;
+            position: relative;
+        }
+        
+        .legend {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            min-width: 200px;
+        }
+        
+        .legend h4 {
+            margin: 0 0 10px 0;
+            color: #2c3e50;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        .stats {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        
+        #cy {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .success-message {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .procedural-steps {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        
+        .procedural-steps h5 {
+            margin: 0 0 10px 0;
+            color: #856404;
+        }
+        
+        .step-item {
+            margin-bottom: 8px;
+            padding-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🔗 Complete Unified Knowledge Graph</h1>
+        <p>California Legal Rules with Full Content Integration</p>
+    </div>
+    
+    <div class="container">
+        <div class="sidebar">
+            <div class="success-message">
+                <strong>✅ Complete Knowledge Graph Loaded!</strong><br>
+                Full rule text, relationships, and filing requirements integrated.
+            </div>
+            
+            <div class="query-section">
+                <h3>📝 Query Filing Requirements</h3>
+                <textarea 
+                    class="query-input" 
+                    id="queryInput" 
+                    placeholder="Enter your comprehensive filing requirement query..."
+                    rows="4">California, Santa Clara County, Complex Civil Litigation, Judge Charles F. Adams, Motion for Summary Judgment</textarea>
+                <button class="query-button" onclick="processQuery()">🔍 Get Complete Filing Requirements</button>
+                <button class="query-button" onclick="downloadPDF()" style="margin-top: 10px; background: linear-gradient(135deg, #e74c3c, #c0392b);">📄 Download Requirements PDF</button>
+            </div>
+            
+            <div class="sample-queries">
+                <h4>💡 Sample Comprehensive Queries:</h4>
+                <div class="sample-query" onclick="setQuery(this.textContent)">
+                    California, Santa Clara County, Complex Civil Litigation, Judge Charles F. Adams, Motion for Summary Judgment
+                </div>
+                <div class="sample-query" onclick="setQuery(this.textContent)">
+                    California, Los Angeles County, Discovery Motion with Electronic Filing Requirements
+                </div>
+                <div class="sample-query" onclick="setQuery(this.textContent)">
+                    California, Service and Notice Requirements for Civil Litigation
+                </div>
+                <div class="sample-query" onclick="setQuery(this.textContent)">
+                    California, Demurrer Procedures and Timing Requirements
+                </div>
+                <div class="sample-query" onclick="setQuery(this.textContent)">
+                    California, Electronic Filing Format Requirements
+                </div>
+            </div>
+            
+            <div class="results-section" id="queryResults" style="display: none;">
+                <h4>⚖️ Complete Filing Requirements</h4>
+                <div id="resultsContent"></div>
+            </div>
+        </div>
+        
+        <div class="cy-container">
+            <div class="legend">
+                <h4>📊 Rule Types</h4>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #e74c3c;"></div>
+                    <span>CCP Rules</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #3498db;"></div>
+                    <span>CRC Rules</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #2ecc71;"></div>
+                    <span>County Rules</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #f39c12;"></div>
+                    <span>Judge Rules</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #9b59b6;"></div>
+                    <span>Procedure Rules</span>
+                </div>
+            </div>
+            
+            <div class="stats" id="graphStats">
+                <h4>📈 Graph Statistics</h4>
+                <div id="statsContent">Loading...</div>
+            </div>
+            
+            <div id="cy"></div>
+        </div>
+    </div>
+
+    <script>
+        // Complete knowledge graph with full rule content
+        const completeGraphData = {
+            nodes: [
+                // CCP Rules with full content
+                {
+                    data: {
+                        id: "ccp_437c",
+                        label: "CCP 437c",
+                        title: "Summary Judgment Motion",
+                        category: "Motion Practice",
+                        type: "ccp_rule",
+                        content: "A party may move for summary judgment in an action or proceeding if it is contended that the action has no merit or that there is no defense to the action or proceeding. The motion may be made at any time after 60 days have elapsed since the general appearance in the action or proceeding of each party against whom the motion is directed or at any earlier time after the general appearance that the court, with or without notice and upon good cause shown, may direct.",
+                        filingRelevance: 9,
+                        proceduralRequirements: [
+                            "Must be served at least 81 days before hearing (effective Jan 1, 2025)",
+                            "Must include separate statement of undisputed facts",
+                            "Must include supporting evidence",
+                            "Opposition papers due 20 days before hearing",
+                            "Reply papers due 11 days before hearing"
+                        ],
+                        deadlines: "81 days notice required for motion and supporting papers (CCP 437c as amended)",
+                        wordCount: 1200
+                    }
+                },
+                {
+                    data: {
+                        id: "ccp_1005",
+                        label: "CCP 1005",
+                        title: "Service and Notice Requirements",
+                        category: "Service & Notice",
+                        type: "ccp_rule",
+                        content: "Unless otherwise ordered or specifically provided by law, all moving and supporting papers shall be served and filed at least 16 court days before the hearing. However, if the notice is served by mail, the required 16-day period of notice before the hearing shall be increased by five calendar days if the place of mailing and the place of address are within the State of California.",
+                        filingRelevance: 9,
+                        proceduralRequirements: [
+                            "16 court days notice for personal service",
+                            "21 days notice if served by mail within California",
+                            "Must serve all parties",
+                            "Must file proof of service"
+                        ],
+                        deadlines: "16-21 days depending on service method",
+                        wordCount: 649
+                    }
+                },
+                {
+                    data: {
+                        id: "ccp_1010.6",
+                        label: "CCP 1010.6",
+                        title: "Electronic Service and Filing",
+                        category: "Electronic Filing",
+                        type: "ccp_rule",
+                        content: "A document may be served electronically in an action filed with the court as provided in this section. Electronic service of a document is complete at the time of the electronic transmission of the document or at the time that the electronic notification of service of the document is sent, whichever occurs first.",
+                        filingRelevance: 8,
+                        proceduralRequirements: [
+                            "Must have consent for electronic service",
+                            "Must provide electronic service address",
+                            "Must comply with formatting requirements",
+                            "Service complete upon transmission"
+                        ],
+                        deadlines: "Same as traditional service",
+                        wordCount: 3342
+                    }
+                },
+                {
+                    data: {
+                        id: "ccp_430.10",
+                        label: "CCP 430.10",
+                        title: "Demurrer Procedures",
+                        category: "Demurrer (Motion to Dismiss)",
+                        type: "ccp_rule",
+                        content: "A party against whom a complaint or cross-complaint has been filed may object, by demurrer or answer as provided in Section 430.30, to the pleading upon any one or more of the following grounds: (a) The court has no jurisdiction of the subject of the cause of action alleged in the pleading. (b) The person who filed the pleading does not have the legal capacity to sue.",
+                        filingRelevance: 8,
+                        proceduralRequirements: [
+                            "Must be filed within 30 days of service",
+                            "Must specify grounds for demurrer",
+                            "Must meet and confer before filing",
+                            "Must set hearing date"
+                        ],
+                        deadlines: "30 days to file demurrer",
+                        wordCount: 189
+                    }
+                },
+                // CRC Rules with full content
+                {
+                    data: {
+                        id: "crc_3.1350",
+                        label: "CRC 3.1350",
+                        title: "Motion for Summary Judgment Format",
+                        category: "Summary Judgment Motion",
+                        type: "crc_rule",
+                        content: "If made in the alternative, a motion for summary adjudication may make reference to and depend on the same evidence submitted in support of the summary judgment motion. The motion must contain and be supported by: (1) Notice of motion, (2) Separate statement of undisputed material facts, (3) Memorandum in support, (4) Evidence in support, (5) Request for judicial notice if appropriate.",
+                        filingRelevance: 9,
+                        proceduralRequirements: [
+                            "Must include all required documents",
+                            "Separate statement in two-column format",
+                            "Must cite to evidence with page and line numbers",
+                            "Memorandum cannot exceed 20 pages"
+                        ],
+                        deadlines: "Follow CCP 437c timing",
+                        wordCount: 10258
+                    }
+                },
+                {
+                    data: {
+                        id: "crc_2.100",
+                        label: "CRC 2.100",
+                        title: "Form and Format of Papers",
+                        category: "Document Format",
+                        type: "crc_rule",
+                        content: "The Judicial Council has preempted local rules relating to the form and format of papers to be filed in the trial courts. Papers that are submitted or filed electronically must meet the requirements in rule 2.256(b). The rules in this chapter prescribe the form and format of papers to be filed in the trial courts.",
+                        filingRelevance: 8,
+                        proceduralRequirements: [
+                            "Must comply with formatting rules",
+                            "Electronic papers must meet 2.256(b) requirements",
+                            "No local rule variations allowed",
+                            "Must use proper font and margins"
+                        ],
+                        deadlines: "N/A - formatting requirement",
+                        wordCount: 1400
+                    }
+                },
+                {
+                    data: {
+                        id: "crc_3.1345",
+                        label: "CRC 3.1345",
+                        title: "Format of Discovery Motions",
+                        category: "Discovery",
+                        type: "crc_rule",
+                        content: "Any motion involving the content of a discovery request or the responses to such a request must be accompanied by a separate statement. A separate statement is a separate document filed and served with the discovery motion that provides all the information necessary to understand each discovery request and all the responses to it that are at issue.",
+                        filingRelevance: 8,
+                        proceduralRequirements: [
+                            "Must include separate statement",
+                            "Must provide full request and response text",
+                            "Must state reasons for compelling further responses",
+                            "No incorporation by reference allowed"
+                        ],
+                        deadlines: "Follow general motion timing",
+                        wordCount: 3774
+                    }
+                },
+                {
+                    data: {
+                        id: "crc_2.256",
+                        label: "CRC 2.256",
+                        title: "Electronic Filing Requirements",
+                        category: "Electronic Filing",
+                        type: "crc_rule",
+                        content: "Each electronic filer must comply with court requirements designed to ensure the integrity of electronic filing and to protect sensitive personal information. A document that is filed electronically with the court must be in a format specified by the court unless it cannot be created in that format. The document must be text searchable when technologically feasible.",
+                        filingRelevance: 8,
+                        proceduralRequirements: [
+                            "Must provide electronic service address",
+                            "Must ensure document integrity",
+                            "Must use court-specified format",
+                            "Must make documents text-searchable"
+                        ],
+                        deadlines: "N/A - technical requirement",
+                        wordCount: 2817
+                    }
+                },
+                // County Rules (Santa Clara specific)
+                {
+                    data: {
+                        id: "sc_complex_civil",
+                        label: "SC Complex Civil",
+                        title: "Santa Clara Complex Civil Procedures",
+                        category: "Complex Civil Litigation",
+                        type: "county_rule",
+                        content: "Complex civil cases in Santa Clara County require additional case management procedures. Cases involving multiple parties, extensive discovery, or novel legal issues may be designated as complex. Special scheduling and management orders apply to ensure efficient resolution.",
+                        filingRelevance: 7,
+                        proceduralRequirements: [
+                            "Must file case management statement",
+                            "May require early case management conference",
+                            "Special discovery scheduling may apply",
+                            "Coordination with other related cases"
+                        ],
+                        deadlines: "Case-specific scheduling",
+                        wordCount: 450
+                    }
+                },
+                {
+                    data: {
+                        id: "judge_adams",
+                        label: "Judge Adams",
+                        title: "Judge Charles F. Adams - Dept. 7 Complex Civil",
+                        category: "Official Judicial Guidelines",
+                        type: "judge_rule",
+                        content: "Judge Charles F. Adams presides over Department 7 in Santa Clara County Superior Court Complex Civil Litigation Department. Appointed October 11, 2018, elected 2020. Current assignment: Complex Civil Litigation 2024-present. Previously: Civil Trials 2023-2024, Family Division Supervising Judge 2021-2023. Requires strict compliance with Complex Civil Guidelines (revised 03/24/2025). All counsel must be familiar with these comprehensive procedural requirements.",
+                        filingRelevance: 10,
+                        proceduralRequirements: [
+                            "MANDATORY: Plaintiff must serve Complex Civil Guidelines with summons and complaint",
+                            "Joint case management statements required (Form CM-110 NOT acceptable for complex cases)",
+                            "Electronic filing mandatory for all represented parties in complex cases",
+                            "Must clear hearing dates with opposing parties BEFORE contacting Complex Litigation Clerk",
+                            "Tentative rulings posted online by 2:00 p.m. day before hearing",
+                            "Objections to tentative rulings must be filed by 4:00 p.m. day before hearing or ruling becomes final",
+                            "Ex parte applications discouraged except unusual situations - advance reservation required",
+                            "Discovery motions require Informal Discovery Conference (IDC) before filing",
+                            "Must actually meet and confer (in-person/phone/video) - not just letters",
+                            "Case management conferences every 120 days at 2:30 p.m. Thursday",
+                            "Law and motion hearings at 1:30 p.m. Thursday",
+                            "Continuances discouraged and may be denied even if parties agree",
+                            "Must notify court immediately if case settles",
+                            "Formality, civility and proper decorum required at all times",
+                            "All electronic devices must be turned OFF in courtroom",
+                            "Must stand when objecting or addressing the Court",
+                            "Trial counsel must be in courtroom 30 minutes before each morning session",
+                            "Witnesses must be ready through 4:30 p.m. or may be deemed to have rested",
+                            "CACI jury instructions required whenever feasible",
+                            "Exhibits must be exchanged at pre-trial meet and confer (except impeachment)",
+                            "Joint pre-trial statements required 10 days before trial"
+                        ],
+                        deadlines: "Law & Motion: Thursday 1:30 p.m. | Case Management: Thursday 2:30 p.m. | Pre-trial Conference: 10-15 days before trial",
+                        standingOrders: [
+                            "Complex Civil Guidelines Compliance (must serve with summons/complaint)",
+                            "Electronic Filing Mandatory for Represented Parties",
+                            "Tentative Ruling Procedures (2:00 p.m. posting, 4:00 p.m. objection deadline)",
+                            "Joint Case Management Statement Requirements (no Form CM-110)",
+                            "Informal Discovery Conference (IDC) Before Discovery Motions",
+                            "Meet and Confer Requirements (actual conference required)",
+                            "Ex Parte Application Restrictions and Advance Reservations",
+                            "Trial Preparation and Exhibit Exchange Requirements",
+                            "Courtroom Conduct and Technology Restrictions",
+                            "Settlement Notification Requirements"
+                        ],
+                        clerkContact: "Thomas Duarte, Department 7 Courtroom Clerk: 408-882-2170 | department7@scscourt.org | Complex Litigation Clerk: complex@scscourt.org, 408-882-5710",
+                        courtScheduleSystem: "CourtSchedule system available on court website for hearing reservations. Must provide case name, number, hearing type, requested date, and filing attorney contact info.",
+                        courtLocation: "Downtown Superior Courthouse, 191 North First Street, San Jose, CA 95113, Department 7",
+                        specialNotes: "Judge Adams has extensive civil trial experience and requires detailed preparation. Member of Judicial Council Family and Juvenile Law Advisory Committee. Received Henry B. Collada Memorial Award 2022. Former Administrative Law Clerk to Judge Edward J. Davila (N.D. Cal.).",
+                        wordCount: 850
+                    }
+                },
+                // Complex Civil Guidelines Document
+                {
+                    data: {
+                        id: "sc_complex_guidelines",
+                        label: "Complex Guidelines",
+                        title: "Santa Clara Complex Civil Guidelines",
+                        category: "Official Court Guidelines",
+                        type: "county_rule",
+                        content: "Official Guidelines and Protocols for Complex Civil Litigation Department, Superior Court of California, County of Santa Clara. Revised 03/24/2025. 24-page comprehensive document covering all procedural requirements for complex civil cases. Must be served with summons and complaint. Covers courtroom conduct, discovery procedures, case management, trials, and specific requirements for Departments 7 and 19.",
+                        filingRelevance: 10,
+                        proceduralRequirements: [
+                            "Counsel must be familiar with California Rules of Court, Local Rules, and Santa Clara County Bar Association Code of Professionalism",
+                            "Tentative rulings posted by 2:00 p.m. day before hearing",
+                            "Objections to tentatives must be raised by 4:00 p.m. day before hearing",
+                            "Ex parte hearings require advance reservation with Complex Litigation Clerk",
+                            "Letter briefs not acceptable for ex parte applications",
+                            "Case management statements must be in combined format (not Form CIV-110)",
+                            "No discovery motions until parties have met and conferred AND had Informal Discovery Conference",
+                            "Court requires detailed JOINT pre-trial statements",
+                            "Do NOT use Form CIV-110 for class or PAGA claims",
+                            "Mandatory Settlement Conference typically 1-2 weeks before trial",
+                            "Trial counsel must personally attend MSC with full settlement authority",
+                            "Jury fees $150.00 must be posted in advance",
+                            "Court does not provide court reporters in complex civil cases",
+                            "All in limine motions must be delivered on first day of trial"
+                        ],
+                        deadlines: "Case Management: First conference 120 days after filing, then every 120 days | Pre-trial Conference: 10-15 days before trial",
+                        trialRequirements: [
+                            "Joint Statement of the Case required",
+                            "Joint Witness List with accurate time estimates (in minutes)",
+                            "Exchange exhibits and inspect photos/diagrams",
+                            "Joint List of Controverted Issues",
+                            "Exchange all motions in limine",
+                            "Prepare voir dire questions for Court",
+                            "Joint proposed jury instructions (CACI only) and verdict forms"
+                        ],
+                        wordCount: 1200
+                    }
+                }
+            ],
+            edges: [
+                // Relationships between rules
+                { data: { source: "ccp_437c", target: "ccp_1005", relationship: "requires_notice", label: "Requires Notice" }},
+                { data: { source: "ccp_437c", target: "crc_3.1350", relationship: "implements", label: "Implements" }},
+                { data: { source: "crc_3.1350", target: "crc_2.100", relationship: "follows_format", label: "Follows Format" }},
+                { data: { source: "ccp_1005", target: "ccp_1010.6", relationship: "electronic_alternative", label: "Electronic Alternative" }},
+                { data: { source: "ccp_1010.6", target: "crc_2.256", relationship: "technical_requirements", label: "Technical Requirements" }},
+                { data: { source: "crc_3.1345", target: "crc_2.100", relationship: "follows_format", label: "Follows Format" }},
+                { data: { source: "sc_complex_civil", target: "ccp_437c", relationship: "applies_to", label: "Applies To" }},
+                { data: { source: "judge_adams", target: "sc_complex_civil", relationship: "presides_over", label: "Presides Over" }},
+                { data: { source: "judge_adams", target: "crc_2.256", relationship: "prefers", label: "Prefers Electronic" }},
+                { data: { source: "judge_adams", target: "sc_complex_guidelines", relationship: "enforces", label: "Enforces Guidelines" }},
+                { data: { source: "sc_complex_guidelines", target: "ccp_437c", relationship: "governs", label: "Governs Procedure" }},
+                { data: { source: "sc_complex_guidelines", target: "crc_3.1350", relationship: "implements", label: "Implements" }}
+            ]
+        };
+
+        let cy;
+
+        // Initialize the comprehensive visualization
+        function initializeGraph() {
+            try {
+                console.log('Initializing complete graph with', completeGraphData.nodes.length, 'nodes');
+                
+                cy = cytoscape({
+                    container: document.getElementById('cy'),
+                    elements: completeGraphData,
+                    style: [
+                        {
+                            selector: 'node',
+                            style: {
+                                'background-color': function(ele) {
+                                    const type = ele.data('type');
+                                    switch(type) {
+                                        case 'ccp_rule': return '#e74c3c';
+                                        case 'crc_rule': return '#3498db';
+                                        case 'county_rule': return '#2ecc71';
+                                        case 'judge_rule': return '#f39c12';
+                                        default: return '#9b59b6';
+                                    }
+                                },
+                                'label': 'data(label)',
+                                'text-valign': 'center',
+                                'text-halign': 'center',
+                                'font-size': '12px',
+                                'font-weight': 'bold',
+                                'color': '#2c3e50',
+                                'text-outline-width': 2,
+                                'text-outline-color': '#ffffff',
+                                'width': function(ele) {
+                                    const relevance = ele.data('filingRelevance') || 5;
+                                    return Math.max(60, relevance * 8);
+                                },
+                                'height': function(ele) {
+                                    const relevance = ele.data('filingRelevance') || 5;
+                                    return Math.max(60, relevance * 8);
+                                },
+                                'border-width': 2,
+                                'border-color': '#34495e'
+                            }
+                        },
+                        {
+                            selector: 'edge',
+                            style: {
+                                'width': 3,
+                                'line-color': '#7f8c8d',
+                                'target-arrow-color': '#7f8c8d',
+                                'target-arrow-shape': 'triangle',
+                                'curve-style': 'bezier',
+                                'label': 'data(label)',
+                                'font-size': '10px',
+                                'text-rotation': 'autorotate',
+                                'text-margin-y': -10
+                            }
+                        },
+                        {
+                            selector: '.highlighted',
+                            style: {
+                                'background-color': '#f1c40f',
+                                'border-width': 4,
+                                'border-color': '#f39c12',
+                                'z-index': 999
+                            }
+                        },
+                        {
+                            selector: '.connected',
+                            style: {
+                                'line-color': '#e74c3c',
+                                'target-arrow-color': '#e74c3c',
+                                'width': 4,
+                                'z-index': 998
+                            }
+                        }
+                    ],
+                    layout: {
+                        name: 'cose',
+                        animate: true,
+                        animationDuration: 1500,
+                        fit: true,
+                        padding: 50,
+                        nodeRepulsion: 400000,
+                        idealEdgeLength: 100,
+                        edgeElasticity: 100,
+                        nestingFactor: 5,
+                        gravity: 80,
+                        numIter: 1000,
+                        initialTemp: 200,
+                        coolingFactor: 0.95,
+                        minTemp: 1.0
+                    }
+                });
+
+                // Add comprehensive click handlers
+                cy.on('tap', 'node', function(evt) {
+                    const node = evt.target;
+                    showCompleteNodeDetails(node);
+                    highlightConnections(node);
+                });
+
+                // Update statistics
+                updateGraphStats();
+                
+                console.log('Complete graph initialized successfully!');
+                
+            } catch (error) {
+                console.error('Error initializing graph:', error);
+                document.getElementById('cy').innerHTML = `
+                    <div style="text-align: center; padding: 50px; color: #e74c3c;">
+                        <h3>⚠️ Error Initializing Graph</h3>
+                        <p>${error.message}</p>
+                        <p>Trying fallback layout...</p>
+                    </div>
+                `;
+                
+                // Try a simpler fallback
+                setTimeout(() => {
+                    try {
+                        cy = cytoscape({
+                            container: document.getElementById('cy'),
+                            elements: completeGraphData,
+                            layout: { name: 'grid' }
+                        });
+                    } catch (e) {
+                        console.error('Fallback failed:', e);
+                    }
+                }, 1000);
+            }
+        }
+
+        function showCompleteNodeDetails(node) {
+            const data = node.data();
+            let details = `
+                <div class="rule-item">
+                    <div class="rule-title">${data.label} - ${data.title}</div>
+                    <div class="rule-category">${data.category}</div>
+                    <div class="rule-content">${data.content}</div>
+                    <div class="rule-metadata">
+                        <span>Filing Relevance: ${data.filingRelevance}/10</span>
+                        <span>Words: ${data.wordCount || 'N/A'}</span>
+                    </div>
+                </div>
+            `;
+            
+            if (data.proceduralRequirements && data.proceduralRequirements.length > 0) {
+                details += `
+                    <div class="procedural-steps">
+                        <h5>📋 Procedural Requirements:</h5>
+                        ${data.proceduralRequirements.map((req, idx) => 
+                            `<div class="step-item">${idx + 1}. ${req}</div>`
+                        ).join('')}
+                    </div>
+                `;
+            }
+            
+            if (data.deadlines) {
+                details += `
+                    <div class="procedural-steps">
+                        <h5>⏰ Key Deadlines:</h5>
+                        <div class="step-item">${data.deadlines}</div>
+                    </div>
+                `;
+            }
+            
+            if (data.standingOrders && data.standingOrders.length > 0) {
+                details += `
+                    <div class="procedural-steps">
+                        <h5>⚖️ Standing Orders:</h5>
+                        ${data.standingOrders.map((order, idx) => 
+                            `<div class="step-item">${idx + 1}. ${order}</div>`
+                        ).join('')}
+                    </div>
+                `;
+            }
+            
+            if (data.clerkContact) {
+                details += `
+                    <div class="procedural-steps">
+                        <h5>📞 Clerk Contact:</h5>
+                        <div class="step-item">${data.clerkContact}</div>
+                    </div>
+                `;
+            }
+            
+            if (data.courtScheduleSystem) {
+                details += `
+                    <div class="procedural-steps">
+                        <h5>📅 Scheduling System:</h5>
+                        <div class="step-item">${data.courtScheduleSystem}</div>
+                    </div>
+                `;
+            }
+            
+            if (data.courtLocation) {
+                details += `
+                    <div class="procedural-steps">
+                        <h5>🏛️ Court Location:</h5>
+                        <div class="step-item">${data.courtLocation}</div>
+                    </div>
+                `;
+            }
+            
+            if (data.specialNotes) {
+                details += `
+                    <div class="procedural-steps">
+                        <h5>📝 Special Notes:</h5>
+                        <div class="step-item">${data.specialNotes}</div>
+                    </div>
+                `;
+            }
+            
+            if (data.trialRequirements && data.trialRequirements.length > 0) {
+                details += `
+                    <div class="procedural-steps">
+                        <h5>⚖️ Trial Requirements:</h5>
+                        ${data.trialRequirements.map((req, idx) => 
+                            `<div class="step-item">${idx + 1}. ${req}</div>`
+                        ).join('')}
+                    </div>
+                `;
+            }
+            
+            document.getElementById('resultsContent').innerHTML = details;
+            document.getElementById('queryResults').style.display = 'block';
+        }
+
+        function highlightConnections(node) {
+            // Clear previous highlights
+            cy.elements().removeClass('highlighted connected');
+            
+            // Highlight the selected node
+            node.addClass('highlighted');
+            
+            // Highlight connected edges and nodes
+            const connectedEdges = node.connectedEdges();
+            const connectedNodes = connectedEdges.connectedNodes();
+            
+            connectedEdges.addClass('connected');
+            connectedNodes.addClass('highlighted');
+        }
+
+        function updateGraphStats() {
+            const nodes = cy.nodes();
+            const edges = cy.edges();
+            
+            const nodeTypes = {};
+            nodes.forEach(node => {
+                const type = node.data('type') || 'unknown';
+                nodeTypes[type] = (nodeTypes[type] || 0) + 1;
+            });
+            
+            let statsHtml = `
+                <div><strong>Total Nodes:</strong> ${nodes.length}</div>
+                <div><strong>Total Edges:</strong> ${edges.length}</div>
+                <hr style="margin: 10px 0;">
+            `;
+            
+            Object.entries(nodeTypes).forEach(([type, count]) => {
+                const typeName = type.replace('_', ' ').toUpperCase();
+                statsHtml += `<div><strong>${typeName}:</strong> ${count}</div>`;
+            });
+            
+            document.getElementById('statsContent').innerHTML = statsHtml;
+        }
+
+        function setQuery(query) {
+            document.getElementById('queryInput').value = query;
+        }
+
+        function processQuery() {
+            const query = document.getElementById('queryInput').value;
+            if (!query.trim()) return;
+            
+            const results = processComprehensiveQuery(query);
+            displayComprehensiveResults(results);
+        }
+
+        function processComprehensiveQuery(query) {
+            const lowerQuery = query.toLowerCase();
+            const results = {
+                summary: query,
+                applicable_rules: [],
+                procedural_steps: [],
+                deadlines: [],
+                special_requirements: []
+            };
+            
+            // Find relevant nodes based on comprehensive matching
+            const relevantNodes = cy.nodes().filter(node => {
+                const data = node.data();
+                const searchText = `${data.label} ${data.title} ${data.category} ${data.content}`.toLowerCase();
+                
+                // Enhanced matching logic
+                if (lowerQuery.includes('summary judgment') && 
+                    (searchText.includes('summary') || searchText.includes('437c') || searchText.includes('3.1350'))) return true;
+                if (lowerQuery.includes('complex civil') && searchText.includes('complex')) return true;
+                if (lowerQuery.includes('adams') && searchText.includes('adams')) return true;
+                if (lowerQuery.includes('santa clara') && searchText.includes('santa clara')) return true;
+                if (lowerQuery.includes('electronic') && searchText.includes('electronic')) return true;
+                if (lowerQuery.includes('discovery') && searchText.includes('discovery')) return true;
+                if (lowerQuery.includes('service') && searchText.includes('service')) return true;
+                if (lowerQuery.includes('notice') && searchText.includes('notice')) return true;
+                if (lowerQuery.includes('demurrer') && searchText.includes('demurrer')) return true;
+                if (lowerQuery.includes('format') && searchText.includes('format')) return true;
+                
+                return false;
+            });
+            
+            // Process found nodes
+            relevantNodes.forEach(node => {
+                const data = node.data();
+                results.applicable_rules.push({
+                    rule: data.label,
+                    title: data.title,
+                    category: data.category,
+                    content: data.content.substring(0, 200) + '...',
+                    filing_relevance: data.filingRelevance,
+                    type: data.type
+                });
+                
+                if (data.proceduralRequirements) {
+                    results.procedural_steps.push(...data.proceduralRequirements);
+                }
+                
+                if (data.deadlines) {
+                    results.deadlines.push(data.deadlines);
+                }
+            });
+            
+            // Add comprehensive procedural guidance including official judge-specific orders
+            if (lowerQuery.includes('summary judgment')) {
+                results.special_requirements = [
+                    'Serve motion at least 81 days before hearing (CCP 437c as amended Jan 1, 2025)',
+                    'Opposition papers due 20 days before hearing',
+                    'Reply papers due 11 days before hearing',
+                    'Include separate statement in two-column format',
+                    'Cite to evidence with page and line numbers',
+                    'Serve all parties with complete motion papers',
+                    'Check for tentative ruling requirements',
+                    'Prepare for oral argument if tentative contested'
+                ];
+                
+                // Add comprehensive judge-specific requirements from official Complex Civil Guidelines
+                if (lowerQuery.includes('adams')) {
+                    results.judge_specific_orders = [
+                        'MANDATORY: Plaintiff must serve Complex Civil Guidelines (24 pages) with summons and complaint',
+                        'Joint case management statements required - Form CM-110 NOT acceptable for complex cases',
+                        'Electronic filing mandatory for all represented parties in complex cases per Standing Order',
+                        'Must clear hearing dates with opposing parties BEFORE contacting Complex Litigation Clerk',
+                        'Tentative rulings posted online by 2:00 p.m. day before hearing - must check',
+                        'Objections to tentative rulings must be filed by 4:00 p.m. day before hearing or ruling becomes final',
+                        'Ex parte applications discouraged except unusual situations - advance reservation required',
+                        'Discovery motions require Informal Discovery Conference (IDC) before filing - NO EXCEPTIONS',
+                        'Must actually meet and confer (in-person/phone/video) - not just exchange letters',
+                        'Case management conferences scheduled every 120 days at 2:30 p.m. Thursday',
+                        'Law and motion hearings at 1:30 p.m. Thursday - must appear 30 minutes early for trial',
+                        'Continuances discouraged and may be denied even if parties agree',
+                        'Must notify court immediately if case settles before hearing or trial',
+                        'Formality, civility and proper decorum required at all times',
+                        'All electronic devices must be turned OFF in courtroom - no exceptions',
+                        'Must stand when objecting or addressing the Court',
+                        'Witnesses must be ready through 4:30 p.m. or may be deemed to have rested case',
+                        'CACI jury instructions required whenever feasible - no custom instructions without approval',
+                        'Exhibits must be exchanged at pre-trial meet and confer (except impeachment)',
+                        'Joint pre-trial statements required 10 days before trial - detailed requirements'
+                    ];
+                    
+                    results.court_practical_info = [
+                        'Court Location: Downtown Superior Courthouse, 191 North First Street, San Jose, CA 95113, Department 7',
+                        'Thomas Duarte, Department 7 Courtroom Clerk: 408-882-2170 | department7@scscourt.org',
+                        'Complex Litigation Clerk: complex@scscourt.org, 408-882-5710 (for both Depts 7 and 19)',
+                        'CourtSchedule system: Must provide case name, number, hearing type, requested date, filing attorney contact',
+                        'Law & Motion: Thursday 1:30 p.m. | Case Management: Thursday 2:30 p.m.',
+                        'Tentative rulings: Posted 2:00 p.m. day before, objections by 4:00 p.m. day before',
+                        'E-Filing Website: http://www.scscourt.org/forms_and_filing/efiling.shtml',
+                        'Judge Adams Background: Appointed 2018, Complex Civil 2024-present, former Family Supervising Judge',
+                        'No courtesy copies required for electronically filed documents',
+                        'Court does not provide court reporters in complex civil cases - private arrangement required',
+                        'Jury fees: $150.00 must be posted in advance of jury trial',
+                        'Settlement notification required by 2:00 p.m. court day before trial to recover jury fees',
+                        'Complex Civil Guidelines: 24 pages, revised 03/24/2025, covers all procedural requirements',
+                        'Must be familiar with: CA Rules of Court, Local Rules, Santa Clara County Bar Code of Professionalism'
+                    ];
+                }
+                
+                // Add detailed document requirements
+                results.required_documents = [
+                    {
+                        title: 'Notice of Motion',
+                        description: 'Must specify hearing date, time, location, and relief sought',
+                        requirements: [
+                            'State specific grounds for summary judgment',
+                            'Include hearing date at least 81 days from service',
+                            'Specify department and courtroom',
+                            'List all parties to be served'
+                        ]
+                    },
+                    {
+                        title: 'Separate Statement of Undisputed Material Facts',
+                        description: 'Two-column format required per CRC 3.1350',
+                        requirements: [
+                            'Left column: numbered material facts',
+                            'Right column: supporting evidence with page/line citations',
+                            'Each fact must be followed by evidence reference',
+                            'Cannot incorporate by reference',
+                            'Must be filed as separate document'
+                        ]
+                    },
+                    {
+                        title: 'Memorandum of Points and Authorities',
+                        description: 'Legal argument supporting motion',
+                        requirements: [
+                            'Maximum 20 pages (CRC 3.1113)',
+                            'Table of contents if over 10 pages',
+                            'Table of authorities',
+                            'Statement of facts',
+                            'Legal argument with case citations',
+                            'Conclusion with specific relief requested'
+                        ]
+                    },
+                    {
+                        title: 'Supporting Evidence',
+                        description: 'Declarations, exhibits, and discovery responses',
+                        requirements: [
+                            'Declarations must be on personal knowledge',
+                            'Exhibits must be authenticated',
+                            'Discovery responses properly certified',
+                            'Deposition excerpts with page/line references',
+                            'All evidence must be admissible'
+                        ]
+                    },
+                    {
+                        title: 'Request for Judicial Notice (if applicable)',
+                        description: 'For court records, statutes, regulations',
+                        requirements: [
+                            'Separate document required',
+                            'Specify exact matter to be noticed',
+                            'Provide copies of documents',
+                            'Legal authority for judicial notice'
+                        ]
+                    },
+                    {
+                        title: 'Proof of Service',
+                        description: 'Evidence of proper service on all parties',
+                        requirements: [
+                            'Method of service specified',
+                            'Date and time of service',
+                            'Names and addresses of all served parties',
+                            'Declaration under penalty of perjury'
+                        ]
+                    }
+                ];
+                
+                // Add detailed procedural timeline
+                results.procedural_timeline = [
+                    {
+                        deadline: 'Day 0',
+                        action: 'File and serve motion papers',
+                        details: 'Serve all parties at least 81 days before hearing'
+                    },
+                    {
+                        deadline: 'Day 61',
+                        action: 'Opposition papers due',
+                        details: 'Served and filed 20 days before hearing'
+                    },
+                    {
+                        deadline: 'Day 70',
+                        action: 'Reply papers due',
+                        details: 'Filed 11 days before hearing'
+                    },
+                    {
+                        deadline: 'Day 80',
+                        action: 'Check tentative ruling',
+                        details: 'If court publishes tentative rulings'
+                    },
+                    {
+                        deadline: 'Day 81',
+                        action: 'Hearing date',
+                        details: 'Appear if tentative ruling contested'
+                    }
+                ];
+                
+                // Add formatting requirements
+                results.formatting_requirements = [
+                    'Double-spaced text (CRC 2.104)',
+                    '12-point Times New Roman font',
+                    'One-inch margins on all sides',
+                    'Line numbers on left margin',
+                    'Page numbers at bottom center',
+                    'Blue-backed or bound if paper filing',
+                    'Electronic filing in PDF format if available'
+                ];
+            }
+            
+            // Highlight relevant nodes
+            cy.elements().removeClass('highlighted connected');
+            relevantNodes.addClass('highlighted');
+            
+            // Also highlight connected nodes
+            relevantNodes.forEach(node => {
+                const connectedEdges = node.connectedEdges();
+                const connectedNodes = connectedEdges.connectedNodes();
+                connectedEdges.addClass('connected');
+                connectedNodes.addClass('highlighted');
+            });
+            
+            return results;
+        }
+
+        function displayComprehensiveResults(results) {
+            let html = `
+                <div style="margin-bottom: 15px;">
+                    <strong>📋 Comprehensive Query Analysis:</strong><br>
+                    <em>${results.summary}</em>
+                </div>
+            `;
+            
+            if (results.applicable_rules.length > 0) {
+                html += `<h5>📜 Applicable Rules (${results.applicable_rules.length})</h5>`;
+                results.applicable_rules.forEach(rule => {
+                    const typeColor = {
+                        'ccp_rule': '#e74c3c',
+                        'crc_rule': '#3498db', 
+                        'county_rule': '#2ecc71',
+                        'judge_rule': '#f39c12'
+                    }[rule.type] || '#9b59b6';
+                    
+                    html += `
+                        <div class="rule-item" style="border-left-color: ${typeColor}">
+                            <div class="rule-title">${rule.rule} - ${rule.title}</div>
+                            <div class="rule-category">${rule.category}</div>
+                            <div class="rule-content">${rule.content}</div>
+                            <div class="rule-metadata">
+                                <span>Relevance: ${rule.filing_relevance}/10</span>
+                                <span>Type: ${rule.type.replace('_', ' ').toUpperCase()}</span>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+            
+            if (results.special_requirements.length > 0) {
+                html += `
+                    <div class="procedural-steps">
+                        <h5>⚖️ Special Filing Requirements:</h5>
+                        ${results.special_requirements.map((req, idx) => 
+                            `<div class="step-item">${idx + 1}. ${req}</div>`
+                        ).join('')}
+                    </div>
+                `;
+            }
+            
+            if (results.deadlines.length > 0) {
+                html += `
+                    <div class="procedural-steps">
+                        <h5>⏰ Key Deadlines:</h5>
+                        ${results.deadlines.map((deadline, idx) => 
+                            `<div class="step-item">${idx + 1}. ${deadline}</div>`
+                        ).join('')}
+                    </div>
+                `;
+            }
+            
+            // Add detailed document requirements for summary judgment
+            if (results.required_documents && results.required_documents.length > 0) {
+                html += `
+                    <div class="procedural-steps">
+                        <h5>📄 Required Documents:</h5>
+                        ${results.required_documents.map((doc, idx) => `
+                            <div class="rule-item" style="margin-bottom: 15px;">
+                                <div class="rule-title">${idx + 1}. ${doc.title}</div>
+                                <div class="rule-content" style="font-style: italic; margin-bottom: 8px;">${doc.description}</div>
+                                <div class="rule-content">
+                                    <strong>Requirements:</strong>
+                                    <ul style="margin: 5px 0; padding-left: 20px;">
+                                        ${doc.requirements.map(req => `<li>${req}</li>`).join('')}
+                                    </ul>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+            
+            // Add procedural timeline
+            if (results.procedural_timeline && results.procedural_timeline.length > 0) {
+                html += `
+                    <div class="procedural-steps">
+                        <h5>📅 Procedural Timeline:</h5>
+                        ${results.procedural_timeline.map((step, idx) => `
+                            <div class="step-item">
+                                <strong>${step.deadline}:</strong> ${step.action}<br>
+                                <small style="color: #666;">${step.details}</small>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+            
+            // Add formatting requirements
+            if (results.formatting_requirements && results.formatting_requirements.length > 0) {
+                html += `
+                    <div class="procedural-steps">
+                        <h5>📝 Formatting Requirements:</h5>
+                        ${results.formatting_requirements.map((req, idx) => 
+                            `<div class="step-item">${idx + 1}. ${req}</div>`
+                        ).join('')}
+                    </div>
+                `;
+            }
+            
+            // Add judge-specific orders
+            if (results.judge_specific_orders && results.judge_specific_orders.length > 0) {
+                html += `
+                    <div class="procedural-steps">
+                        <h5>⚖️ Judge-Specific Orders (Judge Adams):</h5>
+                        ${results.judge_specific_orders.map((order, idx) => 
+                            `<div class="step-item">${idx + 1}. ${order}</div>`
+                        ).join('')}
+                    </div>
+                `;
+            }
+            
+            // Add court practical information
+            if (results.court_practical_info && results.court_practical_info.length > 0) {
+                html += `
+                    <div class="procedural-steps">
+                        <h5>🏛️ Court Practical Information:</h5>
+                        ${results.court_practical_info.map((info, idx) => 
+                            `<div class="step-item">${idx + 1}. ${info}</div>`
+                        ).join('')}
+                    </div>
+                `;
+            }
+            
+            if (results.applicable_rules.length === 0) {
+                html += `<div style="color: #7f8c8d; font-style: italic;">No specific rules found for this query. Try more specific terms or check the sample queries.</div>`;
+            }
+            
+            document.getElementById('resultsContent').innerHTML = html;
+            document.getElementById('queryResults').style.display = 'block';
+        }
+
+        function downloadPDF() {
+            const query = document.getElementById('queryInput').value || "General Filing Requirements";
+            const results = processComprehensiveQuery(query);
+            generateRequirementsPDF(query, results);
+        }
+
+        function generateRequirementsPDF(query, results) {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            // PDF page dimensions with proper margins
+            const pageWidth = doc.internal.pageSize.getWidth();
+            const pageHeight = doc.internal.pageSize.getHeight();
+            const leftMargin = 15;
+            const rightMargin = 15;
+            const topMargin = 20;
+            const bottomMargin = 20;
+            const textWidth = pageWidth - leftMargin - rightMargin;
+            const usableHeight = pageHeight - topMargin - bottomMargin;
+            
+            // Clean query and results from any emoji characters
+            const cleanQuery = query.replace(/[\u{1F600}-\u{1F64F}]|[\u{1F300}-\u{1F5FF}]|[\u{1F680}-\u{1F6FF}]|[\u{1F1E0}-\u{1F1FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]/gu, '');
+            
+            // Clean all text content in results
+            if (results.special_requirements) {
+                results.special_requirements = results.special_requirements.map(req => 
+                    req.replace(/[\u{1F600}-\u{1F64F}]|[\u{1F300}-\u{1F5FF}]|[\u{1F680}-\u{1F6FF}]|[\u{1F1E0}-\u{1F1FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]/gu, '')
+                );
+            }
+            if (results.judge_specific_orders) {
+                results.judge_specific_orders = results.judge_specific_orders.map(order => 
+                    order.replace(/[\u{1F600}-\u{1F64F}]|[\u{1F300}-\u{1F5FF}]|[\u{1F680}-\u{1F6FF}]|[\u{1F1E0}-\u{1F1FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]/gu, '')
+                );
+            }
+            
+            // Header
+            doc.setFontSize(18);
+            doc.setFont(undefined, 'bold');
+            const titleLines = doc.splitTextToSize('California Court Filing Requirements', textWidth);
+            doc.text(titleLines, leftMargin, topMargin + 10);
+            
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'normal');
+            const queryLines = doc.splitTextToSize(`Query: ${cleanQuery}`, textWidth);
+            doc.text(queryLines, leftMargin, topMargin + 25);
+            doc.text(`Generated: ${new Date().toLocaleDateString()}`, leftMargin, topMargin + 35);
+            
+            // Draw line
+            doc.line(leftMargin, topMargin + 45, pageWidth - rightMargin, topMargin + 45);
+            
+            let yPosition = topMargin + 60;
+            
+            // Executive Summary
+            doc.setFontSize(16);
+            doc.setFont(undefined, 'bold');
+            doc.text('EXECUTIVE SUMMARY', leftMargin, yPosition);
+            yPosition += 15;
+            
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'normal');
+            const summaryText = `This checklist provides actionable filing requirements for ${cleanQuery}. Each requirement includes the specific rule that enforces it and deadlines where applicable.`;
+            const summaryLines = doc.splitTextToSize(summaryText, textWidth);
+            doc.text(summaryLines, leftMargin, yPosition);
+            yPosition += summaryLines.length * 5 + 10;
+            
+            // Requirements Checklist
+            doc.setFontSize(16);
+            doc.setFont(undefined, 'bold');
+            doc.text('ACTIONABLE REQUIREMENTS CHECKLIST', leftMargin, yPosition);
+            yPosition += 15;
+            
+            let checklistNumber = 1;
+            
+            // Function to check if we need a new page
+            function checkNewPage() {
+                if (yPosition > pageHeight - bottomMargin - 30) {
+                    doc.addPage();
+                    yPosition = topMargin + 10;
+                }
+            }
+            
+            // Process each applicable rule
+            results.applicable_rules.forEach(rule => {
+                checkNewPage();
+                
+                // Rule header
+                doc.setFontSize(11);
+                doc.setFont(undefined, 'bold');
+                const ruleHeaderLines = doc.splitTextToSize(`${checklistNumber}. ${rule.rule} - ${rule.title}`, textWidth - 10);
+                doc.text(ruleHeaderLines, leftMargin, yPosition);
+                yPosition += ruleHeaderLines.length * 6 + 2;
+                
+                doc.setFontSize(9);
+                doc.setFont(undefined, 'normal');
+                doc.text(`Category: ${rule.category}`, leftMargin + 5, yPosition);
+                yPosition += 8;
+                
+                // Get detailed requirements for this rule
+                const ruleNode = cy.nodes().filter(node => node.data('label') === rule.rule);
+                if (ruleNode.length > 0) {
+                    const ruleData = ruleNode[0].data();
+                    
+                    if (ruleData.proceduralRequirements) {
+                        checkNewPage();
+                        doc.setFont(undefined, 'bold');
+                        doc.text('Required Actions:', leftMargin + 5, yPosition);
+                        yPosition += 8;
+                        
+                        ruleData.proceduralRequirements.forEach((req, idx) => {
+                            checkNewPage();
+                            doc.setFont(undefined, 'normal');
+                            doc.rect(leftMargin + 10, yPosition - 3, 3, 3); // Checkbox
+                            const reqText = `${String.fromCharCode(97 + idx)}. ${req}`;
+                            const reqLines = doc.splitTextToSize(reqText, textWidth - 30);
+                            doc.text(reqLines, leftMargin + 18, yPosition);
+                            yPosition += reqLines.length * 5 + 2;
+                        });
+                    }
+                    
+                    if (ruleData.deadlines) {
+                        checkNewPage();
+                        doc.setFont(undefined, 'bold');
+                        doc.text(`Deadline: ${ruleData.deadlines}`, leftMargin + 5, yPosition);
+                        yPosition += 8;
+                    }
+                }
+                
+                yPosition += 5;
+                checklistNumber++;
+            });
+            
+            // Required Documents Section
+            if (results.required_documents && results.required_documents.length > 0) {
+                checkNewPage();
+                
+                doc.setFontSize(16);
+                doc.setFont(undefined, 'bold');
+                doc.text('REQUIRED DOCUMENTS CHECKLIST', leftMargin, yPosition);
+                yPosition += 15;
+                
+                results.required_documents.forEach((docReq, idx) => {
+                    checkNewPage();
+                    
+                    // Document title
+                    doc.setFontSize(11);
+                    doc.setFont(undefined, 'bold');
+                    const titleLines = doc.splitTextToSize(`${idx + 1}. ${docReq.title}`, textWidth);
+                    doc.text(titleLines, leftMargin, yPosition);
+                    yPosition += titleLines.length * 6 + 3;
+                    
+                    // Description
+                    doc.setFontSize(9);
+                    doc.setFont(undefined, 'italic');
+                    const descLines = doc.splitTextToSize(docReq.description, textWidth - 10);
+                    doc.text(descLines, leftMargin + 5, yPosition);
+                    yPosition += descLines.length * 5 + 5;
+                    
+                    // Requirements
+                    doc.setFont(undefined, 'bold');
+                    doc.text('Requirements:', leftMargin + 5, yPosition);
+                    yPosition += 8;
+                    
+                    docReq.requirements.forEach((req, reqIdx) => {
+                        checkNewPage();
+                        
+                        doc.setFont(undefined, 'normal');
+                        doc.rect(leftMargin + 10, yPosition - 3, 3, 3); // Checkbox
+                        const reqLines = doc.splitTextToSize(`${String.fromCharCode(97 + reqIdx)}. ${req}`, textWidth - 30);
+                        doc.text(reqLines, leftMargin + 18, yPosition);
+                        yPosition += reqLines.length * 5 + 2;
+                    });
+                    
+                    yPosition += 8; // Space between documents
+                });
+            }
+            
+            // Procedural Timeline Section
+            if (results.procedural_timeline && results.procedural_timeline.length > 0) {
+                checkNewPage();
+                
+                doc.setFontSize(16);
+                doc.setFont(undefined, 'bold');
+                doc.text('PROCEDURAL TIMELINE', leftMargin, yPosition);
+                yPosition += 15;
+                
+                results.procedural_timeline.forEach((step, idx) => {
+                    checkNewPage();
+                    
+                    doc.setFontSize(10);
+                    doc.setFont(undefined, 'bold');
+                    const deadlineLines = doc.splitTextToSize(`${step.deadline}: ${step.action}`, textWidth);
+                    doc.text(deadlineLines, leftMargin, yPosition);
+                    yPosition += deadlineLines.length * 6 + 2;
+                    
+                    doc.setFontSize(9);
+                    doc.setFont(undefined, 'normal');
+                    const detailLines = doc.splitTextToSize(step.details, textWidth - 10);
+                    doc.text(detailLines, leftMargin + 5, yPosition);
+                    yPosition += detailLines.length * 5 + 8;
+                });
+            }
+            
+            // Formatting Requirements Section
+            if (results.formatting_requirements && results.formatting_requirements.length > 0) {
+                checkNewPage();
+                
+                doc.setFontSize(16);
+                doc.setFont(undefined, 'bold');
+                doc.text('FORMATTING REQUIREMENTS', leftMargin, yPosition);
+                yPosition += 15;
+                
+                results.formatting_requirements.forEach((req, idx) => {
+                    checkNewPage();
+                    
+                    doc.setFontSize(9);
+                    doc.setFont(undefined, 'normal');
+                    doc.rect(leftMargin, yPosition - 3, 3, 3); // Checkbox
+                    const reqLines = doc.splitTextToSize(`${idx + 1}. ${req}`, textWidth - 15);
+                    doc.text(reqLines, leftMargin + 8, yPosition);
+                    yPosition += reqLines.length * 5 + 3;
+                });
+            }
+            
+            // Special Requirements Section
+            if (results.special_requirements.length > 0) {
+                checkNewPage();
+                
+                doc.setFontSize(16);
+                doc.setFont(undefined, 'bold');
+                doc.text('SPECIAL FILING REQUIREMENTS', leftMargin, yPosition);
+                yPosition += 15;
+                
+                results.special_requirements.forEach((req, idx) => {
+                    checkNewPage();
+                    
+                    doc.setFontSize(9);
+                    doc.setFont(undefined, 'normal');
+                    doc.rect(leftMargin, yPosition - 3, 3, 3); // Checkbox
+                    const reqLines = doc.splitTextToSize(`${idx + 1}. ${req}`, textWidth - 15);
+                    doc.text(reqLines, leftMargin + 8, yPosition);
+                    yPosition += reqLines.length * 5 + 3;
+                });
+            }
+            
+            // Judge-Specific Orders Section
+            if (results.judge_specific_orders && results.judge_specific_orders.length > 0) {
+                checkNewPage();
+                
+                doc.setFontSize(16);
+                doc.setFont(undefined, 'bold');
+                doc.text('JUDGE-SPECIFIC ORDERS (JUDGE ADAMS)', leftMargin, yPosition);
+                yPosition += 15;
+                
+                results.judge_specific_orders.forEach((order, idx) => {
+                    checkNewPage();
+                    
+                    doc.setFontSize(9);
+                    doc.setFont(undefined, 'normal');
+                    doc.rect(leftMargin, yPosition - 3, 3, 3); // Checkbox
+                    const orderLines = doc.splitTextToSize(`${idx + 1}. ${order}`, textWidth - 15);
+                    doc.text(orderLines, leftMargin + 8, yPosition);
+                    yPosition += orderLines.length * 5 + 3;
+                });
+            }
+            
+            // Court Practical Information Section
+            if (results.court_practical_info && results.court_practical_info.length > 0) {
+                checkNewPage();
+                
+                doc.setFontSize(16);
+                doc.setFont(undefined, 'bold');
+                doc.text('COURT PRACTICAL INFORMATION', leftMargin, yPosition);
+                yPosition += 15;
+                
+                results.court_practical_info.forEach((info, idx) => {
+                    checkNewPage();
+                    
+                    doc.setFontSize(9);
+                    doc.setFont(undefined, 'normal');
+                    doc.rect(leftMargin, yPosition - 3, 3, 3); // Checkbox
+                    const infoLines = doc.splitTextToSize(`${idx + 1}. ${info}`, textWidth - 15);
+                    doc.text(infoLines, leftMargin + 8, yPosition);
+                    yPosition += infoLines.length * 5 + 3;
+                });
+            }
+            
+            // Deadlines Summary
+            if (results.deadlines.length > 0) {
+                checkNewPage();
+                
+                doc.setFontSize(16);
+                doc.setFont(undefined, 'bold');
+                doc.text('CRITICAL DEADLINES', leftMargin, yPosition);
+                yPosition += 15;
+                
+                results.deadlines.forEach((deadline, idx) => {
+                    checkNewPage();
+                    
+                    doc.setFontSize(10);
+                    doc.setFont(undefined, 'bold');
+                    const deadlineLines = doc.splitTextToSize(`${idx + 1}. ${deadline}`, textWidth);
+                    doc.text(deadlineLines, leftMargin, yPosition);
+                    yPosition += deadlineLines.length * 6 + 2;
+                });
+            }
+            
+            // Footer on each page
+            const pageCount = doc.internal.getNumberOfPages();
+            for (let i = 1; i <= pageCount; i++) {
+                doc.setPage(i);
+                doc.setFontSize(8);
+                doc.setFont(undefined, 'normal');
+                const footerY = pageHeight - bottomMargin + 5;
+                doc.text(`Page ${i} of ${pageCount} | California Court Filing Requirements Checklist`, leftMargin, footerY);
+                doc.text('Generated by Unified Knowledge Graph System', leftMargin, footerY + 5);
+            }
+            
+            // Download the PDF
+            const filename = `California_Filing_Requirements_${cleanQuery.replace(/[^a-zA-Z0-9]/g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`;
+            doc.save(filename);
+            
+            // Show confirmation
+            alert(`PDF downloaded: ${filename}\n\nThis checklist contains actionable requirements with specific rules and deadlines for your filing.`);
+        }
+
+        // Initialize when page loads
+        window.addEventListener('load', function() {
+            console.log('Page loaded, initializing complete graph...');
+            setTimeout(initializeGraph, 100);
+        });
+    </script>
+</body>
+</html> 

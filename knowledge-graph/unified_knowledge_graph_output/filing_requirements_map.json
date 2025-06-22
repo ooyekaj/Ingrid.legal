@@ -1,0 +1,68 @@
+{
+  "motion_for_summary_judgment": {
+    "description": "Motion For Summary Judgment",
+    "required_rules": {
+      "ccp_rules": [
+        "437c",
+        "439",
+        "1005"
+      ],
+      "crc_rules": [
+        "3.1350",
+        "3.1351",
+        "3.1300"
+      ],
+      "county_specific": [
+        "tentative_ruling_procedures",
+        "judge_preferences",
+        "department_rules"
+      ]
+    },
+    "applicable_nodes": [
+      "437c",
+      "1005"
+    ]
+  },
+  "complex_civil_litigation": {
+    "description": "Complex Civil Litigation",
+    "required_rules": {
+      "ccp_rules": [
+        "128.7",
+        "2024.020"
+      ],
+      "crc_rules": [
+        "3.400",
+        "3.401",
+        "3.402"
+      ],
+      "county_specific": [
+        "complex_civil_departments",
+        "specialized_judges"
+      ]
+    },
+    "applicable_nodes": [
+      "128.7",
+      "2024.020"
+    ]
+  },
+  "electronic_filing": {
+    "description": "Electronic Filing",
+    "required_rules": {
+      "ccp_rules": [
+        "1010.6"
+      ],
+      "crc_rules": [
+        "2.253",
+        "2.256",
+        "2.259"
+      ],
+      "county_specific": [
+        "local_efiling_rules",
+        "technical_requirements"
+      ]
+    },
+    "applicable_nodes": [
+      "1010.6"
+    ]
+  }
+}

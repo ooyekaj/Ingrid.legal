@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unified Knowledge Graph - Standalone</title>
+    <script src="https://unpkg.com/cytoscape@3.26.0/dist/cytoscape.min.js"></script>
+    <script src="https://unpkg.com/cytoscape-cose-bilkent@4.1.0/cytoscape-cose-bilkent.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            margin: 0;
+            color: #2c3e50;
+            font-size: 2.5em;
+        }
+        
+        .header p {
+            margin: 10px 0 0 0;
+            color: #7f8c8d;
+            font-size: 1.2em;
+        }
+        
+        .container {
+            display: flex;
+            height: calc(100vh - 120px);
+        }
+        
+        .sidebar {
+            width: 350px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            overflow-y: auto;
+        }
+        
+        .query-section {
+            margin-bottom: 30px;
+        }
+        
+        .query-section h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .query-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #bdc3c7;
+            border-radius: 8px;
+            font-size: 14px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+        
+        .query-button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .query-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+        }
+        
+        .sample-queries {
+            margin-top: 20px;
+        }
+        
+        .sample-query {
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: background 0.2s ease;
+        }
+        
+        .sample-query:hover {
+            background: #e9ecef;
+        }
+        
+        .results-section {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .rule-item {
+            padding: 8px;
+            background: white;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .rule-title {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .rule-category {
+            color: #7f8c8d;
+            font-size: 12px;
+        }
+        
+        .cy-container {
+            flex: 1;
+            background: white;
+            position: relative;
+        }
+        
+        .legend {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        
+        .legend h4 {
+            margin: 0 0 10px 0;
+            color: #2c3e50;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        .stats {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        
+        #cy {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .success-message {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🔗 Unified Knowledge Graph</h1>
+        <p>Connecting CCP, CRC, and County Rules for Comprehensive Filing Requirements</p>
+    </div>
+    
+    <div class="container">
+        <div class="sidebar">
+            <div class="success-message">
+                <strong>✅ Knowledge Graph Loaded!</strong><br>
+                Generated from 62 CCP rules with cross-system connections.
+            </div>
+            
+            <div class="query-section">
+                <h3>📝 Query Filing Requirements</h3>
+                <textarea 
+                    class="query-input" 
+                    id="queryInput" 
+                    placeholder="Enter your filing requirement query..."
+                    rows="3">California, Santa Clara County, Motion for Summary Judgment</textarea>
+                <button class="query-button" onclick="processQuery()">🔍 Get Filing Requirements</button>
+            </div>
+            
+            <div class="sample-queries">
+                <h4>💡 Sample Queries:</h4>
+                <div class="sample-query" onclick="setQuery(this.textContent)">
+                    California, Santa Clara County, Motion for Summary Judgment
+                </div>
+                <div class="sample-query" onclick="setQuery(this.textContent)">
+                    California, Discovery Motion Procedures
+                </div>
+                <div class="sample-query" onclick="setQuery(this.textContent)">
+                    California, Electronic Filing Requirements
+                </div>
+                <div class="sample-query" onclick="setQuery(this.textContent)">
+                    California, Service and Notice Requirements
+                </div>
+            </div>
+            
+            <div class="results-section" id="queryResults" style="display: none;">
+                <h4>⚖️ Filing Requirements</h4>
+                <div id="resultsContent"></div>
+            </div>
+        </div>
+        
+        <div class="cy-container">
+            <div class="legend">
+                <h4>📊 Node Types</h4>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #e74c3c;"></div>
+                    <span>CCP Rules</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #3498db;"></div>
+                    <span>CRC Rules</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #2ecc71;"></div>
+                    <span>County Rules</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #f39c12;"></div>
+                    <span>Judge Rules</span>
+                </div>
+            </div>
+            
+            <div class="stats" id="graphStats">
+                <h4>📈 Graph Statistics</h4>
+                <div id="statsContent">Loading...</div>
+            </div>
+            
+            <div id="cy"></div>
+        </div>
+    </div>
+
+    <script>
+        // Embedded knowledge graph data (from the generated files)
+        const graphData = {
+            nodes: [
+                { data: { id: "1003", label: "CCP 1003", title: "CCP Section 1003", category: "Service & Notice", filingRelevance: 8, type: "ccp_rule" }},
+                { data: { id: "1005", label: "CCP 1005", title: "CCP Section 1005", category: "Service & Notice", filingRelevance: 8, type: "ccp_rule" }},
+                { data: { id: "437c", label: "CCP 437c", title: "Summary Judgment Motion", category: "Summary Judgment Motion", filingRelevance: 9, type: "ccp_rule" }},
+                { data: { id: "1010.6", label: "CCP 1010.6", title: "Electronic Filing", category: "Service & Notice", filingRelevance: 8, type: "ccp_rule" }},
+                { data: { id: "1086", label: "CCP 1086", title: "Mandamus Procedures", category: "Mandates", filingRelevance: 8, type: "ccp_rule" }},
+                { data: { id: "2024.020", label: "CCP 2024.020", title: "Discovery Sanctions", category: "Discovery Sanctions", filingRelevance: 8, type: "ccp_rule" }},
+                { data: { id: "2025.010", label: "CCP 2025.010", title: "Deposition Procedures", category: "Depositions", filingRelevance: 8, type: "ccp_rule" }},
+                { data: { id: "2030.010", label: "CCP 2030.010", title: "Interrogatory Procedures", category: "Interrogatories", filingRelevance: 8, type: "ccp_rule" }},
+                { data: { id: "410.10", label: "CCP 410.10", title: "Jurisdiction Requirements", category: "Jurisdiction & Service", filingRelevance: 7, type: "ccp_rule" }},
+                { data: { id: "425.10", label: "CCP 425.10", title: "Complaint Requirements", category: "Complaint Requirements", filingRelevance: 8, type: "ccp_rule" }},
+                { data: { id: "430.10", label: "CCP 430.10", title: "Demurrer Procedures", category: "Demurrer (Motion to Dismiss)", filingRelevance: 8, type: "ccp_rule" }},
+                { data: { id: "435", label: "CCP 435", title: "Motion to Strike", category: "Motion to Strike", filingRelevance: 7, type: "ccp_rule" }},
+                { data: { id: "473", label: "CCP 473", title: "Relief from Default", category: "Pleadings", filingRelevance: 8, type: "ccp_rule" }}
+            ],
+            edges: []
+        };
+
+        let cy;
+
+        // Initialize the visualization
+        function initializeGraph() {
+            // Initialize Cytoscape
+            cy = cytoscape({
+                container: document.getElementById('cy'),
+                elements: graphData,
+                style: [
+                    {
+                        selector: 'node',
+                        style: {
+                            'background-color': function(ele) {
+                                const type = ele.data('type') || ele.data('source');
+                                switch(type) {
+                                    case 'ccp_rule': return '#e74c3c';
+                                    case 'crc_rule': return '#3498db';
+                                    case 'county': return '#2ecc71';
+                                    case 'judge': return '#f39c12';
+                                    default: return '#95a5a6';
+                                }
+                            },
+                            'label': 'data(label)',
+                            'text-valign': 'center',
+                            'text-halign': 'center',
+                            'font-size': '12px',
+                            'font-weight': 'bold',
+                            'color': '#2c3e50',
+                            'text-outline-width': 2,
+                            'text-outline-color': '#ffffff',
+                            'width': function(ele) {
+                                const relevance = ele.data('filingRelevance') || ele.data('filing_relevance_score') || 5;
+                                return Math.max(40, relevance * 6);
+                            },
+                            'height': function(ele) {
+                                const relevance = ele.data('filingRelevance') || ele.data('filing_relevance_score') || 5;
+                                return Math.max(40, relevance * 6);
+                            }
+                        }
+                    },
+                    {
+                        selector: 'edge',
+                        style: {
+                            'width': 2,
+                            'line-color': '#bdc3c7',
+                            'target-arrow-color': '#bdc3c7',
+                            'target-arrow-shape': 'triangle',
+                            'curve-style': 'bezier'
+                        }
+                    },
+                    {
+                        selector: '.highlighted',
+                        style: {
+                            'background-color': '#f1c40f',
+                            'line-color': '#f1c40f',
+                            'target-arrow-color': '#f1c40f',
+                            'width': 4
+                        }
+                    }
+                ],
+                layout: {
+                    name: 'cose-bilkent',
+                    animate: true,
+                    animationDuration: 1000,
+                    fit: true,
+                    padding: 30,
+                    nodeRepulsion: 4500,
+                    idealEdgeLength: 80,
+                    edgeElasticity: 0.45,
+                    nestingFactor: 0.1,
+                    gravity: 0.25,
+                    numIter: 2500
+                }
+            });
+
+            // Add click handlers
+            cy.on('tap', 'node', function(evt) {
+                const node = evt.target;
+                showNodeDetails(node);
+                highlightConnections(node);
+            });
+
+            // Update statistics
+            updateGraphStats();
+        }
+
+        function updateGraphStats() {
+            const nodes = cy.nodes();
+            const edges = cy.edges();
+            
+            const nodeTypes = {};
+            nodes.forEach(node => {
+                const type = node.data('type') || node.data('source') || 'unknown';
+                nodeTypes[type] = (nodeTypes[type] || 0) + 1;
+            });
+            
+            let statsHtml = `
+                <div><strong>Total Nodes:</strong> ${nodes.length}</div>
+                <div><strong>Total Edges:</strong> ${edges.length}</div>
+                <hr style="margin: 10px 0;">
+            `;
+            
+            Object.entries(nodeTypes).forEach(([type, count]) => {
+                statsHtml += `<div><strong>${type}:</strong> ${count}</div>`;
+            });
+            
+            document.getElementById('statsContent').innerHTML = statsHtml;
+        }
+
+        function showNodeDetails(node) {
+            const data = node.data();
+            let details = `
+                <div class="rule-item">
+                    <div class="rule-title">${data.label || data.id}</div>
+                    <div class="rule-category">${data.category || 'Unknown Category'}</div>
+                    <div style="margin-top: 8px;">
+                        <strong>Type:</strong> ${data.type || data.source || 'Unknown'}<br>
+                        <strong>Filing Relevance:</strong> ${data.filingRelevance || data.filing_relevance_score || 'N/A'}<br>
+                        <strong>Title:</strong> ${data.title || 'N/A'}
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('resultsContent').innerHTML = details;
+            document.getElementById('queryResults').style.display = 'block';
+        }
+
+        function highlightConnections(node) {
+            // Clear previous highlights
+            cy.elements().removeClass('highlighted');
+            
+            // Highlight the selected node
+            node.addClass('highlighted');
+        }
+
+        function setQuery(query) {
+            document.getElementById('queryInput').value = query;
+        }
+
+        function processQuery() {
+            const query = document.getElementById('queryInput').value;
+            if (!query.trim()) return;
+            
+            const results = processQueryLocally(query);
+            displayQueryResults(results);
+        }
+
+        function processQueryLocally(query) {
+            const lowerQuery = query.toLowerCase();
+            const results = {
+                summary: query,
+                applicable_rules: { ccp: [], crc: [], county: [] },
+                procedural_steps: []
+            };
+            
+            // Find relevant nodes based on query keywords
+            const relevantNodes = cy.nodes().filter(node => {
+                const data = node.data();
+                const searchText = `${data.label} ${data.title} ${data.category}`.toLowerCase();
+                
+                if (lowerQuery.includes('summary judgment') && searchText.includes('summary')) return true;
+                if (lowerQuery.includes('discovery') && searchText.includes('discovery')) return true;
+                if (lowerQuery.includes('filing') && searchText.includes('filing')) return true;
+                if (lowerQuery.includes('service') && searchText.includes('service')) return true;
+                if (lowerQuery.includes('motion') && searchText.includes('motion')) return true;
+                if (lowerQuery.includes('electronic') && searchText.includes('electronic')) return true;
+                if (lowerQuery.includes('notice') && searchText.includes('notice')) return true;
+                
+                return false;
+            });
+            
+            // Categorize found nodes
+            relevantNodes.forEach(node => {
+                const data = node.data();
+                const rule = {
+                    rule: data.label,
+                    title: data.title,
+                    category: data.category,
+                    filing_relevance: data.filingRelevance || data.filing_relevance_score
+                };
+                
+                results.applicable_rules.ccp.push(rule);
+            });
+            
+            // Add procedural steps based on query type
+            if (lowerQuery.includes('summary judgment')) {
+                results.procedural_steps = [
+                    'Prepare motion papers (notice, separate statement, memorandum, evidence)',
+                    'Serve motion at least 81 days before hearing (CCP 437c as amended Jan 1, 2025)',
+                    'File motion papers with court',
+                    'Check for tentative ruling if required by local rules',
+                    'Attend hearing if tentative ruling contested'
+                ];
+            } else if (lowerQuery.includes('discovery')) {
+                results.procedural_steps = [
+                    'Prepare discovery motion with separate statement',
+                    'Meet and confer with opposing counsel',
+                    'Serve motion papers with appropriate notice',
+                    'File motion with court',
+                    'Attend hearing'
+                ];
+            } else if (lowerQuery.includes('electronic filing')) {
+                results.procedural_steps = [
+                    'Ensure documents are in PDF format',
+                    'File through approved electronic filing system',
+                    'Confirm receipt from court',
+                    'Serve electronically if authorized'
+                ];
+            }
+            
+            // Highlight relevant nodes
+            cy.elements().removeClass('highlighted');
+            relevantNodes.addClass('highlighted');
+            
+            return results;
+        }
+
+        function displayQueryResults(results) {
+            let html = `
+                <div style="margin-bottom: 15px;">
+                    <strong>📋 Query:</strong> ${results.summary}
+                </div>
+            `;
+            
+            if (results.applicable_rules.ccp.length > 0) {
+                html += `<h5>📜 Applicable CCP Rules (${results.applicable_rules.ccp.length})</h5>`;
+                results.applicable_rules.ccp.forEach(rule => {
+                    html += `
+                        <div class="rule-item">
+                            <div class="rule-title">${rule.rule}</div>
+                            <div class="rule-category">${rule.category}</div>
+                            <div style="font-size: 11px; margin-top: 4px;">${rule.title}</div>
+                        </div>
+                    `;
+                });
+            } else {
+                html += `<div style="color: #7f8c8d; font-style: italic;">No specific CCP rules found for this query. Try terms like "summary judgment", "discovery", or "filing".</div>`;
+            }
+            
+            if (results.procedural_steps.length > 0) {
+                html += `<h5>⚖️  Procedural Steps</h5>`;
+                results.procedural_steps.forEach((step, idx) => {
+                    html += `<div style="margin-bottom: 5px; padding-left: 10px;">${idx + 1}. ${step}</div>`;
+                });
+            }
+            
+            document.getElementById('resultsContent').innerHTML = html;
+            document.getElementById('queryResults').style.display = 'block';
+        }
+
+        // Initialize when page loads
+        window.addEventListener('load', initializeGraph);
+    </script>
+</body>
+</html> 

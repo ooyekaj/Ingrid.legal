@@ -1,0 +1,14 @@
+{
+  "startTime": "2025-06-21T23:11:56.590Z",
+  "processed": 1386,
+  "total": 5,
+  "currentPhase": "pdf_download",
+  "lastProcessedRule": "8.976",
+  "errors": [],
+  "statistics": {
+    "pdfDownloads": 1386,
+    "contentExtractions": 0,
+    "knowledgeGraphNodes": 0
+  },
+  "lastUpdate": "2025-06-21T23:17:41.035Z"
+}

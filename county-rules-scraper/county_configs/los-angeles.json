@@ -1,0 +1,217 @@
+{
+  "county": "Los Angeles",
+  "baseUrl": "https://www.lacourt.org",
+  
+  "discoveryPatterns": {
+    "civil_division": {
+      "url": "/division/civil",
+      "subpages": [
+        "/division/civil/general-civil",
+        "/division/civil/complex-civil",
+        "/division/civil/unlimited-civil",
+        "/division/civil/limited-civil",
+        "/division/civil/personal-injury"
+      ]
+    },
+    "rules_and_orders": {
+      "url": "/courthouse-services/rules-and-orders",
+      "document_patterns": [
+        "a[href*=\"rule\"]",
+        "a[href*=\"order\"]",
+        "a[href*=\"pdf\"]",
+        "a[href*=\"general-order\"]",
+        "a[href*=\"standing-order\"]"
+      ]
+    },
+    "case_management": {
+      "url": "/case-management",
+      "subpages": [
+        "/case-management/civil",
+        "/case-management/complex",
+        "/case-management/pi-hub",
+        "/case-management/asbestos"
+      ]
+    },
+    "departments": {
+      "url": "/departments",
+      "subpages": [
+        "/departments/civil",
+        "/departments/complex",
+        "/departments/pi",
+        "/departments/unlawful-detainer"
+      ]
+    }
+  },
+
+  "filingAreas": {
+    "local_rules": {
+      "selectors": [".rule-content", ".local-rule", ".court-rule", ".rule-section"],
+      "url_patterns": ["/rules/", "/local-rules/", "/court-rules/"]
+    },
+    "general_orders": {
+      "selectors": [".general-order", ".order-content", ".standing-order"],
+      "url_patterns": ["/general-orders/", "/orders/", "/standing-orders/"]
+    },
+    "case_management": {
+      "selectors": [".case-management", ".scheduling", ".cmco", ".case-management-order"],
+      "url_patterns": ["/case-management/", "/scheduling/", "/cmco/"]
+    },
+    "department_procedures": {
+      "selectors": [".department-info", ".judge-procedures", ".courtroom-procedures"],
+      "url_patterns": ["/departments/", "/judges/", "/courtrooms/"]
+    },
+    "pi_hub": {
+      "selectors": [".pi-hub", ".personal-injury", ".pi-procedures"],
+      "url_patterns": ["/pi-hub/", "/personal-injury/", "/pi/"]
+    },
+    "complex_civil": {
+      "selectors": [".complex-civil", ".complex-litigation", ".coordination"],
+      "url_patterns": ["/complex/", "/complex-civil/", "/coordination/"]
+    }
+  },
+
+  "documentFormats": {
+    "pdf": {
+      "selectors": ["a[href$=\".pdf\"]", ".pdf-link", "a[title*=\"PDF\"]", ".document-pdf"],
+      "processing": "pdf_extraction"
+    },
+    "html": {
+      "selectors": [".content", ".rule-text", ".order-text", ".main-content", ".entry-content"],
+      "processing": "html_parsing"
+    },
+    "word": {
+      "selectors": ["a[href$=\".docx\"]", "a[href$=\".doc\"]", ".word-doc"],
+      "processing": "word_extraction"
+    }
+  },
+
+  "specificSelectors": {
+    "navigation_menus": [
+      ".navbar", ".main-navigation", ".primary-menu", ".nav-menu",
+      ".site-navigation", ".header-menu"
+    ],
+    "content_areas": [
+      ".page-content", ".entry-content", ".main-content", ".content-area",
+      ".post-content", ".article-content"
+    ],
+    "document_links": [
+      ".document-list a", ".file-list a", ".attachment-list a",
+      ".download-list a", ".resource-list a"
+    ],
+    "department_info": [
+      ".department-content", ".judge-info", ".courtroom-info"
+    ],
+    "alert_notices": [
+      ".alert", ".notice", ".important-notice", ".court-notice"
+    ]
+  },
+
+  "priorityPages": [
+    "/courthouse-services/rules-and-orders",
+    "/general-orders",
+    "/case-management",
+    "/division/civil",
+    "/departments",
+    "/pi-hub",
+    "/complex-civil",
+    "/efiling",
+    "/forms",
+    "/unlawful-detainer"
+  ],
+
+  "scraping_config": {
+    "rate_limit": 4000,
+    "user_agent": "Legal Research Tool - Los Angeles County Rules Scraper",
+    "respect_robots": true,
+    "max_concurrent": 2,
+    "timeout": 45000,
+    "retries": 4,
+    "delay_between_pages": 3000,
+    "use_headless_browser": true,
+    "javascript_enabled": true
+  },
+
+  "exclusionPatterns": [
+    "/calendar/",
+    "/jury/",
+    "/contact/",
+    "/directions/",
+    "/employment/",
+    "/news/",
+    "/media/",
+    "/about/",
+    "/history/",
+    "/accessibility/",
+    "/privacy/"
+  ],
+
+  "filingSpecificKeywords": [
+    "filing deadline",
+    "electronic filing",
+    "e-filing",
+    "case management statement",
+    "proof of service",
+    "motion practice",
+    "pleading requirements",
+    "service of process",
+    "discovery deadlines",
+    "trial setting",
+    "scheduling order",
+    "case management conference",
+    "mandatory settlement conference",
+    "final status conference",
+    "PI Hub procedures",
+    "complex case procedures",
+    "coordination procedures",
+    "unlawful detainer procedures"
+  ],
+
+  "specialProcedures": {
+    "pi_hub": {
+      "identifier_keywords": ["PI Hub", "personal injury hub", "PI procedures"],
+      "special_requirements": ["PI case management", "PI scheduling", "PI settlement"]
+    },
+    "complex_civil": {
+      "identifier_keywords": ["complex litigation", "coordination", "JCCP", "complex case"],
+      "special_requirements": ["complex case management", "coordination motion", "complex discovery"]
+    },
+    "unlawful_detainer": {
+      "identifier_keywords": ["unlawful detainer", "eviction", "UD", "landlord tenant"],
+      "special_requirements": ["UD procedures", "5-day notice", "3-day notice"]
+    },
+    "asbestos": {
+      "identifier_keywords": ["asbestos", "ATET", "asbestos litigation"],
+      "special_requirements": ["ATET procedures", "asbestos case management", "ATET scheduling"]
+    }
+  },
+
+  "departmentSpecificRules": {
+    "central_district": {
+      "courthouse": "Stanley Mosk Courthouse",
+      "address": "111 N. Hill Street, Los Angeles, CA 90012",
+      "departments": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"]
+    },
+    "spring_street": {
+      "courthouse": "Spring Street Courthouse",
+      "address": "312 N. Spring Street, Los Angeles, CA 90012",
+      "departments": ["20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34"]
+    },
+    "downtown": {
+      "courthouse": "Clara Shortridge Foltz Criminal Justice Center",
+      "address": "210 W. Temple Street, Los Angeles, CA 90012",
+      "departments": ["100", "101", "102", "103", "104", "105", "106", "107", "108", "109", "110"]
+    }
+  },
+
+  "contactInfo": {
+    "main_phone": "(213) 830-0800",
+    "civil_division": "(213) 830-0803",
+    "efiling_support": "(213) 830-0804",
+    "pi_hub": "(213) 830-0805",
+    "complex_civil": "(213) 830-0806",
+    "hours": "Monday-Friday 8:30 AM - 4:30 PM"
+  },
+
+  "lastUpdated": "2024-01-15T00:00:00Z",
+  "configVersion": "1.0"
+} 

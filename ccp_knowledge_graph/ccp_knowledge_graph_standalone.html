@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CCP Knowledge Graph - Rule Interdependencies</title>
+    <script src="https://unpkg.com/cytoscape@3.21.0/dist/cytoscape.min.js"></script>
+    <script src="https://unpkg.com/cytoscape-cose-bilkent@4.1.0/cytoscape-cose-bilkent.js"></script>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            padding: 20px; 
+            background-color: #f8f9fa;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.2em;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+        }
+        #cy { 
+            width: 100%; 
+            height: 700px; 
+            border: 2px solid #dee2e6; 
+            border-radius: 10px;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .controls { 
+            margin: 20px 0; 
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+        }
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .control-group label {
+            font-weight: 600;
+            color: #495057;
+        }
+        select, button {
+            padding: 8px 12px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .info-panel { 
+            margin-top: 20px; 
+            padding: 20px; 
+            background: white; 
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .category-legend { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 12px; 
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .category-item { 
+            padding: 8px 12px; 
+            border-radius: 20px; 
+            font-size: 12px; 
+            font-weight: 600;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .stat-card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        .stat-label {
+            color: #6c757d;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        #node-info {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🏛️ CCP Knowledge Graph</h1>
+        <p>Interactive visualization of California Code of Civil Procedure rule interdependencies</p>
+    </div>
+    
+    <div class="stats">
+        <div class="stat-card">
+            <div class="stat-number" id="total-nodes">--</div>
+            <div class="stat-label">CCP Sections</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="total-edges">--</div>
+            <div class="stat-label">Relationships</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="total-categories">--</div>
+            <div class="stat-label">Categories</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="network-density">--%</div>
+            <div class="stat-label">Network Density</div>
+        </div>
+    </div>
+    
+    <div class="controls">
+        <div class="control-group">
+            <label>Layout:</label>
+            <select id="layout-select">
+                <option value="cose-bilkent">Force-directed (recommended)</option>
+                <option value="circle">Circle</option>
+                <option value="grid">Grid</option>
+                <option value="breadthfirst">Hierarchical</option>
+                <option value="concentric">Concentric</option>
+            </select>
+        </div>
+        <div class="control-group">
+            <label>Filter by category:</label>
+            <select id="category-filter">
+                <option value="">All categories</option>
+            </select>
+        </div>
+        <button onclick="resetView()">🔄 Reset View</button>
+        <button onclick="fitToScreen()">📏 Fit to Screen</button>
+    </div>
+    
+    <div class="category-legend" id="legend"></div>
+    
+    <div id="cy">
+        <div class="loading">
+            <h3>Loading knowledge graph...</h3>
+            <p>Analyzing CCP rule interdependencies</p>
+        </div>
+    </div>
+    
+    <div class="info-panel">
+        <h3>📋 Instructions:</h3>
+        <ul>
+            <li><strong>Click</strong> on a node to see detailed section information</li>
+            <li><strong>Hover</strong> over edges to see relationship types</li>
+            <li><strong>Drag</strong> to pan around the graph</li>
+            <li><strong>Scroll</strong> or pinch to zoom in/out</li>
+            <li><strong>Filter</strong> by category to focus on specific procedural areas</li>
+            <li><strong>Change layouts</strong> to see different organizational patterns</li>
+        </ul>
+        <div id="node-info">
+            <p><em>Click on a CCP section node to see detailed information about that rule and its connections.</em></p>
+        </div>
+    </div>
+
+    <script src="./graph_data.js"></script>
+    <script>
+        let cy;
+        let originalData;
+
+        // Initialize the graph when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof graphData !== 'undefined') {
+                initializeGraph(graphData);
+            } else {
+                document.getElementById('cy').innerHTML = '<div class="loading"><h3>❌ Error</h3><p>Graph data not found. Please make sure graph_data.js is in the same directory.</p></div>';
+            }
+        });
+
+        function initializeGraph(data) {
+            originalData = data;
+            
+            // Update stats
+            document.getElementById('total-nodes').textContent = data.nodes.length;
+            document.getElementById('total-edges').textContent = data.edges.length;
+            
+            // Set up category colors
+            const categories = [...new Set(data.nodes.map(n => n.data.category))];
+            const colors = [
+                '#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', 
+                '#dda0dd', '#98d8c8', '#f7dc6f', '#bb8fce', '#85c1e9'
+            ];
+            
+            document.getElementById('total-categories').textContent = categories.length;
+            
+            // Calculate network density
+            const maxPossibleEdges = (data.nodes.length * (data.nodes.length - 1)) / 2;
+            const density = ((data.edges.length / maxPossibleEdges) * 100).toFixed(1);
+            document.getElementById('network-density').textContent = density + '%';
+            
+            // Populate category filter
+            const categoryFilter = document.getElementById('category-filter');
+            categories.forEach(category => {
+                const option = document.createElement('option');
+                option.value = category;
+                option.textContent = category;
+                categoryFilter.appendChild(option);
+            });
+            
+            // Create legend
+            const legend = document.getElementById('legend');
+            categories.forEach((category, index) => {
+                const item = document.createElement('div');
+                item.className = 'category-item';
+                item.style.backgroundColor = colors[index % colors.length];
+                item.textContent = category;
+                legend.appendChild(item);
+            });
+
+            cy = cytoscape({
+                container: document.getElementById('cy'),
+                elements: data,
+                style: [
+                    {
+                        selector: 'node',
+                        style: {
+                            'background-color': function(ele) {
+                                const categoryIndex = categories.indexOf(ele.data('category'));
+                                return colors[categoryIndex % colors.length];
+                            },
+                            'label': 'data(id)',
+                            'width': function(ele) { 
+                                return Math.max(25, Math.min(80, ele.data('wordCount') / 20)); 
+                            },
+                            'height': function(ele) { 
+                                return Math.max(25, Math.min(80, ele.data('wordCount') / 20)); 
+                            },
+                            'font-size': '11px',
+                            'font-weight': 'bold',
+                            'text-valign': 'center',
+                            'text-halign': 'center',
+                            'color': 'white',
+                            'text-outline-width': 2,
+                            'text-outline-color': '#000',
+                            'border-width': 2,
+                            'border-color': '#fff',
+                            'border-opacity': 0.8
+                        }
+                    },
+                    {
+                        selector: 'node:selected',
+                        style: {
+                            'border-width': 4,
+                            'border-color': '#ffd700',
+                            'border-opacity': 1
+                        }
+                    },
+                    {
+                        selector: 'edge',
+                        style: {
+                            'width': function(ele) { return Math.max(1, ele.data('weight')); },
+                            'line-color': function(ele) {
+                                const type = ele.data('type');
+                                if (type === 'cross_reference') return '#666';
+                                if (type === 'procedural_dependency') return '#ff6b6b';
+                                if (type === 'timing_relationship') return '#4ecdc4';
+                                if (type === 'category_similarity') return '#ddd';
+                                return '#ccc';
+                            },
+                            'target-arrow-color': function(ele) {
+                                const type = ele.data('type');
+                                if (type === 'cross_reference') return '#666';
+                                if (type === 'procedural_dependency') return '#ff6b6b';
+                                if (type === 'timing_relationship') return '#4ecdc4';
+                                return '#ccc';
+                            },
+                            'target-arrow-shape': 'triangle',
+                            'curve-style': 'bezier',
+                            'opacity': 0.7
+                        }
+                    },
+                    {
+                        selector: 'edge:selected',
+                        style: {
+                            'opacity': 1,
+                            'width': function(ele) { return Math.max(3, ele.data('weight') + 2); }
+                        }
+                    }
+                ],
+                layout: {
+                    name: 'cose-bilkent',
+                    animate: true,
+                    animationDuration: 1500,
+                    nodeRepulsion: 4500,
+                    idealEdgeLength: 50,
+                    edgeElasticity: 0.45,
+                    nestingFactor: 0.1,
+                    gravity: 0.25,
+                    numIter: 2500,
+                    tile: true,
+                    tilingPaddingVertical: 10,
+                    tilingPaddingHorizontal: 10
+                }
+            });
+
+            // Event handlers
+            cy.on('tap', 'node', function(evt) {
+                const node = evt.target;
+                const info = document.getElementById('node-info');
+                
+                // Highlight connected nodes
+                const connectedEdges = node.connectedEdges();
+                const connectedNodes = connectedEdges.connectedNodes();
+                
+                cy.elements().removeClass('highlighted');
+                node.addClass('highlighted');
+                connectedNodes.addClass('highlighted');
+                connectedEdges.addClass('highlighted');
+                
+                info.innerHTML = `
+                    <h4>📜 CCP Section ${node.data('id')}</h4>
+                    <p><strong>Title:</strong> ${node.data('title')}</p>
+                    <p><strong>Category:</strong> <span style="background: ${getCategoryColor(node.data('category'), categories, colors)}; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.9em;">${node.data('category')}</span></p>
+                    <p><strong>Word Count:</strong> ${node.data('wordCount')} words</p>
+                    <p><strong>Filing Relevance Score:</strong> ${node.data('filingRelevance')}/10</p>
+                    <p><strong>Procedural Requirements:</strong> ${node.data('proceduralRequirements')} identified</p>
+                    <p><strong>Cross References:</strong> ${node.data('crossReferences')} references</p>
+                    <p><strong>Connections:</strong> ${connectedEdges.length} relationships with other sections</p>
+                    <p><em>Connected sections are highlighted in the graph above.</em></p>
+                `;
+            });
+
+            // Click on background to deselect
+            cy.on('tap', function(evt) {
+                if (evt.target === cy) {
+                    cy.elements().removeClass('highlighted');
+                    document.getElementById('node-info').innerHTML = '<p><em>Click on a CCP section node to see detailed information about that rule and its connections.</em></p>';
+                }
+            });
+
+            // Layout change handler
+            document.getElementById('layout-select').addEventListener('change', function(e) {
+                const layoutName = e.target.value;
+                let layoutOptions = { name: layoutName, animate: true, animationDuration: 1000 };
+                
+                if (layoutName === 'cose-bilkent') {
+                    layoutOptions = {
+                        ...layoutOptions,
+                        nodeRepulsion: 4500,
+                        idealEdgeLength: 50,
+                        edgeElasticity: 0.45,
+                        nestingFactor: 0.1,
+                        gravity: 0.25,
+                        numIter: 2500
+                    };
+                }
+                
+                cy.layout(layoutOptions).run();
+            });
+
+            // Category filter handler
+            document.getElementById('category-filter').addEventListener('change', function(e) {
+                const selectedCategory = e.target.value;
+                if (selectedCategory) {
+                    const filteredNodes = originalData.nodes.filter(n => n.data.category === selectedCategory);
+                    const nodeIds = new Set(filteredNodes.map(n => n.data.id));
+                    const filteredEdges = originalData.edges.filter(e => 
+                        nodeIds.has(e.data.source) && nodeIds.has(e.data.target)
+                    );
+                    cy.elements().remove();
+                    cy.add([...filteredNodes, ...filteredEdges]);
+                } else {
+                    cy.elements().remove();
+                    cy.add(originalData);
+                }
+                cy.layout({name: 'cose-bilkent', animate: true}).run();
+            });
+
+            console.log('✅ CCP Knowledge Graph loaded successfully!');
+            console.log(`📊 ${data.nodes.length} sections, ${data.edges.length} relationships`);
+        }
+
+        function getCategoryColor(category, categories, colors) {
+            const index = categories.indexOf(category);
+            return colors[index % colors.length];
+        }
+
+        function resetView() {
+            if (cy) {
+                cy.elements().removeClass('highlighted');
+                document.getElementById('node-info').innerHTML = '<p><em>Click on a CCP section node to see detailed information about that rule and its connections.</em></p>';
+                document.getElementById('category-filter').value = '';
+                cy.elements().remove();
+                cy.add(originalData);
+                cy.layout({name: 'cose-bilkent', animate: true}).run();
+            }
+        }
+
+        function fitToScreen() {
+            if (cy) {
+                cy.fit();
+                cy.center();
+            }
+        }
+    </script>
+</body>
+</html> 

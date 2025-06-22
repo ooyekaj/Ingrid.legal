@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motion to Dismiss - Interactive Procedural Timeline</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+            padding: 2rem;
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        .flowchart-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            overflow-x: auto;
+            max-width: 100%;
+        }
+
+        .flowchart-container {
+            perspective: 2000px;
+            min-width: 1200px;
+        }
+
+        .flowchart-track {
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 4rem 2rem;
+        }
+
+        /* Base node styles */
+        .flowchart-node {
+            position: relative;
+            transform-style: preserve-3d;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer;
+            width: 200px;
+            flex-shrink: 0;
+            z-index: 10;
+        }
+
+        .flowchart-node:hover {
+            transform: translateY(-10px) scale(1.05);
+            z-index: 20;
+        }
+
+        .node-content {
+            background: linear-gradient(145deg, #ffffff, #f0f4f8);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            box-shadow: 
+                0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                0 2px 4px -1px rgba(0, 0, 0, 0.06),
+                inset 0 2px 4px 0 rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+        }
+
+        .flowchart-node:hover .node-content {
+            box-shadow: 
+                0 10px 25px -5px rgba(0, 0, 0, 0.15),
+                0 8px 10px -5px rgba(0, 0, 0, 0.04),
+                inset 0 2px 4px 0 rgba(255, 255, 255, 0.7);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        /* Color coding for different parties */
+        .node-plaintiff .node-content {
+            background: linear-gradient(145deg, #d1fae5, #a7f3d0);
+            border-color: #34d399;
+        }
+
+        .node-defendant .node-content {
+            background: linear-gradient(145deg, #dbeafe, #bfdbfe);
+            border-color: #60a5fa;
+        }
+
+        .node-court .node-content {
+            background: linear-gradient(145deg, #ede9fe, #ddd6fe);
+            border-color: #a78bfa;
+        }
+
+        /* Straight horizontal connectors */
+        .connector {
+            position: absolute;
+            height: 3px;
+            background: linear-gradient(90deg, #9ca3af 0%, #6b7280 50%, #9ca3af 100%);
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+
+        .connector::after {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-left: 8px solid #6b7280;
+            border-top: 6px solid transparent;
+            border-bottom: 6px solid transparent;
+        }
+
+        /* Branch connectors from decision node */
+        .branch-connector {
+            position: absolute;
+            transform-origin: left center;
+            z-index: 1;
+        }
+
+        .branch-connector svg {
+            overflow: visible;
+        }
+
+        /* Branch group styling */
+        .branch-group {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 2rem;
+            margin-left: 4rem;
+        }
+
+        /* Icon styles */
+        .node-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+        }
+
+        /* Modal styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.75);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(8px);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content-wrapper {
+            transform: scale(0.9) translateY(20px);
+            transition: all 0.3s ease;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+        }
+
+        .modal-overlay.active .modal-content-wrapper {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            padding: 2.5rem;
+            overflow-y: auto;
+            max-height: 90vh;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .close-button:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+
+        /* Pulsing animation for decision node */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .decision-node {
+            animation: pulse 2s infinite;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .flowchart-node {
+                width: 160px;
+            }
+            .node-content {
+                padding: 1rem;
+            }
+            .node-icon {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="text-center mb-8">
+        <h1 class="text-4xl font-bold text-gray-800 mb-2">Procedural Timeline: Motion to Dismiss</h1>
+        <p class="text-lg text-gray-600">Interactive visualization of typical filing sequences and outcomes</p>
+        <div class="mt-4 inline-flex items-center gap-4 text-sm bg-white px-4 py-2 rounded-full shadow">
+            <div class="flex items-center gap-2">
+                <div class="w-3 h-3 bg-green-400 rounded-full"></div>
+                <span>Plaintiff</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <div class="w-3 h-3 bg-blue-400 rounded-full"></div>
+                <span>Defendant</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <div class="w-3 h-3 bg-purple-400 rounded-full"></div>
+                <span>Court</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="flowchart-wrapper">
+        <div class="flowchart-container">
+            <div class="flowchart-track">
+                <!-- Node 1: Complaint -->
+                <div id="complaint" class="flowchart-node node-plaintiff">
+                    <div class="node-content">
+                        <i class="fas fa-file-alt node-icon text-green-600"></i>
+                        <h3 class="font-bold text-lg text-gray-800">Complaint Filed</h3>
+                        <p class="text-sm text-gray-600 mt-1">Day 0</p>
+                        <p class="text-xs text-gray-500 mt-2">Initiates lawsuit</p>
+                    </div>
+                </div>
+
+                <!-- Connector 1-2 -->
+                <div class="connector" style="left: 200px; width: 80px;"></div>
+
+                <!-- Node 2: Motion to Dismiss -->
+                <div id="motion-dismiss" class="flowchart-node node-defendant" style="margin-left: 80px;">
+                    <div class="node-content">
+                        <i class="fas fa-gavel node-icon text-blue-600"></i>
+                        <h3 class="font-bold text-lg text-gray-800">Motion to Dismiss</h3>
+                        <p class="text-sm text-gray-600 mt-1">Within 30 days</p>
+                        <p class="text-xs text-gray-500 mt-2">Challenge sufficiency</p>
+                    </div>
+                </div>
+
+                <!-- Connector 2-3 -->
+                <div class="connector" style="left: 480px; width: 80px;"></div>
+
+                <!-- Node 3: Opposition -->
+                <div id="opposition" class="flowchart-node node-plaintiff" style="margin-left: 80px;">
+                    <div class="node-content">
+                        <i class="fas fa-file-invoice node-icon text-green-600"></i>
+                        <h3 class="font-bold text-lg text-gray-800">Opposition Filed</h3>
+                        <p class="text-sm text-gray-600 mt-1">9 court days before</p>
+                        <p class="text-xs text-gray-500 mt-2">Plaintiff responds</p>
+                    </div>
+                </div>
+
+                <!-- Connector 3-4 -->
+                <div class="connector" style="left: 760px; width: 80px;"></div>
+
+                <!-- Node 4: Hearing -->
+                <div id="hearing" class="flowchart-node node-court" style="margin-left: 80px;">
+                    <div class="node-content">
+                        <i class="fas fa-users node-icon text-purple-600"></i>
+                        <h3 class="font-bold text-lg text-gray-800">Hearing</h3>
+                        <p class="text-sm text-gray-600 mt-1">~Day 60</p>
+                        <p class="text-xs text-gray-500 mt-2">Oral arguments</p>
+                    </div>
+                </div>
+
+                <!-- Connector 4-5 -->
+                <div class="connector" style="left: 1040px; width: 80px;"></div>
+
+                <!-- Node 5: Court Order (Decision Point) -->
+                <div id="order" class="flowchart-node node-court decision-node" style="margin-left: 80px;">
+                    <div class="node-content" style="border: 3px solid #a78bfa;">
+                        <i class="fas fa-balance-scale node-icon text-purple-600"></i>
+                        <h3 class="font-bold text-lg text-gray-800">Court Order</h3>
+                        <p class="text-sm text-gray-600 mt-1">Decision Point</p>
+                        <p class="text-xs text-purple-600 font-semibold mt-2">3 Possible Outcomes</p>
+                    </div>
+                </div>
+
+                <!-- Branch connectors -->
+                <svg class="branch-connector" style="left: 1320px; top: 50%; width: 200px; height: 300px; margin-top: -150px;">
+                    <!-- Top branch (Sustained w/o leave) -->
+                    <path d="M 0,150 Q 40,150 40,50 L 80,50" 
+                          fill="none" 
+                          stroke="#ef4444" 
+                          stroke-width="3"
+                          stroke-dasharray="5,5"/>
+                    <polygon points="80,45 90,50 80,55" fill="#ef4444"/>
+                    
+                    <!-- Middle branch (Overruled) -->
+                    <path d="M 0,150 L 80,150" 
+                          fill="none" 
+                          stroke="#3b82f6" 
+                          stroke-width="3"/>
+                    <polygon points="80,145 90,150 80,155" fill="#3b82f6"/>
+                    
+                    <!-- Bottom branch (Sustained w/ leave) -->
+                    <path d="M 0,150 Q 40,150 40,250 L 80,250" 
+                          fill="none" 
+                          stroke="#10b981" 
+                          stroke-width="3"
+                          stroke-dasharray="5,5"/>
+                    <polygon points="80,245 90,250 80,255" fill="#10b981"/>
+                </svg>
+
+                <!-- Branch outcomes -->
+                <div class="branch-group">
+                    <!-- Outcome 1: Judgment -->
+                    <div id="judgment" class="flowchart-node node-court">
+                        <div class="node-content" style="border-color: #ef4444;">
+                            <i class="fas fa-trophy node-icon text-red-500"></i>
+                            <h3 class="font-bold text-lg text-gray-800">Judgment</h3>
+                            <p class="text-sm text-red-600 mt-1">Case Dismissed</p>
+                            <p class="text-xs text-gray-500 mt-2">Sustained w/o leave</p>
+                        </div>
+                    </div>
+
+                    <!-- Outcome 2: Answer -->
+                    <div id="answer" class="flowchart-node node-defendant">
+                        <div class="node-content">
+                            <i class="fas fa-file-contract node-icon text-blue-600"></i>
+                            <h3 class="font-bold text-lg text-gray-800">Answer Filed</h3>
+                            <p class="text-sm text-blue-600 mt-1">Case Proceeds</p>
+                            <p class="text-xs text-gray-500 mt-2">Motion overruled</p>
+                        </div>
+                    </div>
+
+                    <!-- Outcome 3: Amended Complaint -->
+                    <div id="amended-complaint" class="flowchart-node node-plaintiff">
+                        <div class="node-content">
+                            <i class="fas fa-edit node-icon text-green-600"></i>
+                            <h3 class="font-bold text-lg text-gray-800">Amended Complaint</h3>
+                            <p class="text-sm text-green-600 mt-1">Fix & Refile</p>
+                            <p class="text-xs text-gray-500 mt-2">Sustained w/ leave</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal -->
+    <div id="modal-overlay" class="modal-overlay">
+        <div class="modal-content-wrapper">
+            <div id="modal-content" class="modal-content">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+        <button id="modal-close-btn" class="close-button">
+            <i class="fas fa-times text-gray-600"></i>
+        </button>
+    </div>
+
+    <script>
+        const timelineData = {
+            'complaint': {
+                label: 'Complaint Filed',
+                party: 'plaintiff',
+                icon: 'fas fa-file-alt',
+                color: 'green',
+                timing: 'Day 0',
+                details: {
+                    description: 'The lawsuit begins when the plaintiff files a complaint with the court. This document outlines the plaintiff\'s allegations and the legal basis for their claims.',
+                    deadline: 'Initiating event - no deadline',
+                    requirements: [
+                        'Complaint with all required elements',
+                        'Summons for each defendant',
+                        'Civil Case Cover Sheet (CM-010)',
+                        'Filing fee or fee waiver'
+                    ],
+                    statute: 'CCP § 425.10',
+                    nextSteps: 'Defendant must be served and has 30 days to respond'
+                }
+            },
+            'motion-dismiss': {
+                label: 'Motion to Dismiss (Demurrer)',
+                party: 'defendant',
+                icon: 'fas fa-gavel',
+                color: 'blue',
+                timing: 'Within 30 days of service',
+                details: {
+                    description: 'A demurrer challenges the legal sufficiency of the complaint, arguing that even if all facts are true, there\'s no valid legal claim.',
+                    deadline: '30 days from service of complaint',
+                    requirements: [
+                        'Notice of Motion and Motion',
+                        'Memorandum of Points & Authorities (15 page limit)',
+                        'Meet and Confer Declaration (required in some courts)',
+                        'Proposed Order'
+                    ],
+                    statute: 'CCP § 430.10 et seq.',
+                    tip: 'Must be filed instead of (not after) an answer'
+                }
+            },
+            'opposition': {
+                label: 'Opposition to Demurrer',
+                party: 'plaintiff',
+                icon: 'fas fa-file-invoice',
+                color: 'green',
+                timing: '9 court days before hearing',
+                details: {
+                    description: 'The plaintiff\'s response arguing why the complaint is legally sufficient and should not be dismissed.',
+                    deadline: '9 court days before the hearing',
+                    requirements: [
+                        'Opposition memorandum (15 page limit)',
+                        'Supporting declarations if introducing new facts',
+                        'Request for leave to amend (if needed)'
+                    ],
+                    statute: 'CCP § 1005(b)',
+                    tip: 'Focus on legal arguments, not factual disputes'
+                }
+            },
+            'hearing': {
+                label: 'Hearing on Motion',
+                party: 'court',
+                icon: 'fas fa-users',
+                color: 'purple',
+                timing: 'Typically ~60 days from filing',
+                details: {
+                    description: 'The court hears oral arguments from both sides regarding the demurrer.',
+                    deadline: 'As scheduled by court',
+                    requirements: [
+                        'Review tentative ruling (if issued)',
+                        'Prepare focused oral argument',
+                        'Bring courtesy copies if required'
+                    ],
+                    note: 'Many judges post tentative rulings online the day before',
+                    tip: 'If you agree with the tentative, you may not need to appear'
+                }
+            },
+            'order': {
+                label: 'Court Issues Order',
+                party: 'court',
+                icon: 'fas fa-balance-scale',
+                color: 'purple',
+                timing: 'At or shortly after hearing',
+                details: {
+                    description: 'The court\'s decision on the demurrer determines the next phase of litigation.',
+                    outcomes: [
+                        '<strong>Sustained without leave:</strong> Case dismissed permanently',
+                        '<strong>Sustained with leave:</strong> Plaintiff can fix and refile',
+                        '<strong>Overruled:</strong> Case proceeds, defendant must answer'
+                    ],
+                    deadline: 'Usually announced at hearing',
+                    note: 'This is the critical decision point in early litigation'
+                }
+            },
+            'judgment': {
+                label: 'Judgment Entered',
+                party: 'court',
+                icon: 'fas fa-trophy',
+                color: 'red',
+                timing: 'Upon order',
+                details: {
+                    description: 'When sustained without leave to amend, the case ends with judgment for defendant.',
+                    deadline: 'Immediate upon order',
+                    effect: 'Case dismissed with prejudice - cannot be refiled',
+                    requirements: [
+                        'Proposed judgment',
+                        'Notice of entry of judgment'
+                    ],
+                    nextSteps: 'Plaintiff has 60 days to appeal',
+                    statute: 'CCP § 581(f)(1)'
+                }
+            },
+            'answer': {
+                label: 'Answer Filed',
+                party: 'defendant',
+                icon: 'fas fa-file-contract',
+                color: 'blue',
+                timing: '10 days from order',
+                details: {
+                    description: 'When the demurrer is overruled, defendant must file an answer to the complaint.',
+                    deadline: '10 days from notice of order',
+                    requirements: [
+                        'Answer addressing each allegation',
+                        'Affirmative defenses',
+                        'Verification (if complaint is verified)',
+                        'Filing fee'
+                    ],
+                    statute: 'CCP § 472',
+                    nextSteps: 'Case proceeds to discovery phase'
+                }
+            },
+            'amended-complaint': {
+                label: 'Amended Complaint Filed',
+                party: 'plaintiff',
+                icon: 'fas fa-edit',
+                color: 'green',
+                timing: 'Typically 20-30 days',
+                details: {
+                    description: 'When sustained with leave, plaintiff may file an amended complaint fixing the identified defects.',
+                    deadline: 'As specified in order (usually 20-30 days)',
+                    requirements: [
+                        'Amended complaint addressing all defects',
+                        'Redlined version showing changes (some courts)',
+                        'No new causes of action without permission'
+                    ],
+                    warning: 'Failure to timely amend = case dismissed',
+                    nextSteps: 'Defendant can demur again or answer'
+                }
+            }
+        };
+
+        // Modal functionality
+        const modalOverlay = document.getElementById('modal-overlay');
+        const modalContent = document.getElementById('modal-content');
+        const modalCloseBtn = document.getElementById('modal-close-btn');
+
+        document.querySelectorAll('.flowchart-node').forEach(node => {
+            node.addEventListener('click', () => {
+                const item = timelineData[node.id];
+                if (!item) return;
+
+                let detailsHtml = `
+                    <div class="flex items-start mb-6">
+                        <div class="flex-shrink-0 w-14 h-14 rounded-full bg-${item.color}-100 flex items-center justify-center text-${item.color}-600 text-2xl mr-4">
+                            <i class="${item.icon}"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-800">${item.label}</h2>
+                            <p class="text-gray-600">${item.party.charAt(0).toUpperCase() + item.party.slice(1)} Action • ${item.timing}</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <h3 class="font-semibold text-gray-700 mb-2">Overview</h3>
+                            <p class="text-gray-700">${item.details.description}</p>
+                        </div>
+                `;
+
+                if (item.details.deadline) {
+                    detailsHtml += `
+                        <div class="bg-red-50 rounded-lg p-4">
+                            <h3 class="font-semibold text-red-700 mb-1">Critical Deadline</h3>
+                            <p class="text-red-600 font-medium">${item.details.deadline}</p>
+                        </div>
+                    `;
+                }
+
+                if (item.details.requirements) {
+                    detailsHtml += `
+                        <div class="bg-blue-50 rounded-lg p-4">
+                            <h3 class="font-semibold text-blue-700 mb-2">Required Documents</h3>
+                            <ul class="space-y-1">
+                                ${item.details.requirements.map(r => `
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-blue-500 mt-0.5 mr-2 flex-shrink-0"></i>
+                                        <span class="text-gray-700">${r}</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                if (item.details.outcomes) {
+                    detailsHtml += `
+                        <div class="bg-purple-50 rounded-lg p-4">
+                            <h3 class="font-semibold text-purple-700 mb-2">Possible Outcomes</h3>
+                            <ul class="space-y-2">
+                                ${item.details.outcomes.map(o => `<li class="text-gray-700">${o}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                if (item.details.statute) {
+                    detailsHtml += `
+                        <div class="flex items-center justify-between bg-gray-100 rounded-lg p-3">
+                            <span class="text-gray-600">Legal Authority:</span>
+                            <code class="text-blue-600 font-mono font-semibold">${item.details.statute}</code>
+                        </div>
+                    `;
+                }
+
+                if (item.details.tip || item.details.warning || item.details.note) {
+                    detailsHtml += `<div class="border-t pt-4 mt-4 space-y-2">`;
+                    
+                    if (item.details.tip) {
+                        detailsHtml += `
+                            <p class="text-sm flex items-start">
+                                <i class="fas fa-lightbulb text-yellow-500 mr-2 mt-0.5"></i>
+                                <span class="text-gray-600"><strong>Tip:</strong> ${item.details.tip}</span>
+                            </p>
+                        `;
+                    }
+                    
+                    if (item.details.warning) {
+                        detailsHtml += `
+                            <p class="text-sm flex items-start">
+                                <i class="fas fa-exclamation-triangle text-red-500 mr-2 mt-0.5"></i>
+                                <span class="text-gray-600"><strong>Warning:</strong> ${item.details.warning}</span>
+                            </p>
+                        `;
+                    }
+                    
+                    if (item.details.note) {
+                        detailsHtml += `
+                            <p class="text-sm flex items-start">
+                                <i class="fas fa-info-circle text-blue-500 mr-2 mt-0.5"></i>
+                                <span class="text-gray-600"><strong>Note:</strong> ${item.details.note}</span>
+                            </p>
+                        `;
+                    }
+                    
+                    detailsHtml += `</div>`;
+                }
+
+                if (item.details.nextSteps) {
+                    detailsHtml += `
+                        <div class="bg-green-50 rounded-lg p-4 mt-4">
+                            <h3 class="font-semibold text-green-700 mb-1">What Happens Next</h3>
+                            <p class="text-gray-700">${item.details.nextSteps}</p>
+                        </div>
+                    `;
+                }
+
+                detailsHtml += `</div>`;
+                
+                modalContent.innerHTML = detailsHtml;
+                modalOverlay.classList.add('active');
+            });
+        });
+
+        // Close modal handlers
+        const closeModal = () => modalOverlay.classList.remove('active');
+        modalCloseBtn.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) closeModal();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        // Add hover effect to show connections
+        document.querySelectorAll('.flowchart-node').forEach(node => {
+            node.addEventListener('mouseenter', () => {
+                node.style.zIndex = '20';
+            });
+            node.addEventListener('mouseleave', () => {
+                node.style.zIndex = '10';
+            });
+        });
+    </script>
+
+</body>
+</html>

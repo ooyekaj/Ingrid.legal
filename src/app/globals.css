@@ -1,0 +1,188 @@
+@import "tailwindcss";
+
+:root {
+	--background: #ffffff;
+	--foreground: #171717;
+}
+
+@theme inline {
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--font-sans: var(--font-geist-sans);
+	--font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--background: #0a0a0a;
+		--foreground: #ededed;
+	}
+}
+
+body {
+	background: var(--background);
+	color: var(--foreground);
+	font-family: "Inter", sans-serif;
+}
+
+.hero-gradient {
+	background: radial-gradient(
+		ellipse at 50% 30%,
+		rgba(236, 72, 153, 0.1),
+		transparent 70%
+	);
+}
+
+.feature-card {
+	background: #ffffff;
+	border: 1px solid #e5e7eb;
+	transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+	background: #f9fafb;
+	border: 1px solid #d1d5db;
+	transform: translateY(-5px);
+	box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05),
+		0 4px 6px -4px rgb(0 0 0 / 0.05);
+}
+
+.cta-button {
+	transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+	transform: scale(1.05);
+}
+
+/* Scroll reveal animation */
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.fade-in-section {
+	animation: fadeIn 1s ease-out forwards;
+	opacity: 0;
+}
+
+/* Refined and elegant animations */
+@keyframes float {
+	0%, 100% {
+		transform: translateY(0px);
+	}
+	50% {
+		transform: translateY(-10px);
+	}
+}
+
+@keyframes glow {
+	0%, 100% {
+		box-shadow: 0 0 20px rgba(236, 72, 153, 0.3);
+	}
+	50% {
+		box-shadow: 0 0 40px rgba(236, 72, 153, 0.6);
+	}
+}
+
+@keyframes shimmer {
+	0% {
+		background-position: -200% 0;
+	}
+	100% {
+		background-position: 200% 0;
+	}
+}
+
+@keyframes subtle-bounce {
+	0%, 100% {
+		transform: translateY(0) scale(1);
+	}
+	50% {
+		transform: translateY(-3px) scale(1.01);
+	}
+}
+
+@keyframes gentle-pulse {
+	0%, 100% {
+		opacity: 0.4;
+	}
+	50% {
+		opacity: 0.7;
+	}
+}
+
+@keyframes elegant-glow {
+	0%, 100% {
+		box-shadow: 0 0 15px rgba(236, 72, 153, 0.1);
+	}
+	50% {
+		box-shadow: 0 0 25px rgba(236, 72, 153, 0.2);
+	}
+}
+
+/* Utility classes */
+.animate-fade-in {
+	animation: fadeIn 1s ease-out forwards;
+}
+
+.animate-float {
+	animation: float 3s ease-in-out infinite;
+}
+
+.animate-glow {
+	animation: glow 2s ease-in-out infinite;
+}
+
+.animate-shimmer {
+	background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+	background-size: 200% 100%;
+	animation: shimmer 2s infinite;
+}
+
+.animate-subtle-bounce {
+	animation: subtle-bounce 6s ease-in-out infinite;
+}
+
+.animate-gentle-pulse {
+	animation: gentle-pulse 4s ease-in-out infinite;
+}
+
+.animate-elegant-glow {
+	animation: elegant-glow 3s ease-in-out infinite;
+}
+
+/* Scrollbar styling for dark theme */
+::-webkit-scrollbar {
+	width: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+	background: linear-gradient(to bottom, #ec4899, #a855f7);
+	border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: linear-gradient(to bottom, #db2777, #9333ea);
+}
+
+/* Selection styling */
+::selection {
+	background: rgba(236, 72, 153, 0.3);
+	color: white;
+}
+
+::-moz-selection {
+	background: rgba(236, 72, 153, 0.3);
+	color: white;
+}

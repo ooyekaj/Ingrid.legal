@@ -1,0 +1,2435 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns
+         http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  
+  <!-- Node attributes -->
+  <key id="label" for="node" attr.name="label" attr.type="string"/>
+  <key id="title" for="node" attr.name="title" attr.type="string"/>
+  <key id="category" for="node" attr.name="category" attr.type="string"/>
+  <key id="wordCount" for="node" attr.name="wordCount" attr.type="int"/>
+  <key id="filingRelevance" for="node" attr.name="filingRelevance" attr.type="double"/>
+  
+  <!-- Edge attributes -->
+  <key id="type" for="edge" attr.name="type" attr.type="string"/>
+  <key id="weight" for="edge" attr.name="weight" attr.type="double"/>
+  <key id="description" for="edge" attr.name="description" attr.type="string"/>
+  
+  <graph id="CCP_Knowledge_Graph" edgedefault="undirected">
+    <node id="020">
+      <data key="label">CCP 020</data>
+      <data key="title">CCP Section 020</data>
+      <data key="category">General Procedures</data>
+      <data key="wordCount">51</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="1002.7">
+      <data key="label">CCP 1002.7</data>
+      <data key="title">CCP Section 1002.7</data>
+      <data key="category">Service &amp; Notice</data>
+      <data key="wordCount">352</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="1008">
+      <data key="label">CCP 1008</data>
+      <data key="title">CCP Section 1008</data>
+      <data key="category">Service &amp; Notice</data>
+      <data key="wordCount">526</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="109">
+      <data key="label">CCP 109</data>
+      <data key="title">CCP Section 109</data>
+      <data key="category">General Procedures</data>
+      <data key="wordCount">51</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="116.630">
+      <data key="label">CCP 116.630</data>
+      <data key="title">CCP Section 116.630</data>
+      <data key="category">General Procedures</data>
+      <data key="wordCount">94</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="1250.250">
+      <data key="label">CCP 1250.250</data>
+      <data key="title">CCP Section 1250.250</data>
+      <data key="category">General Procedures</data>
+      <data key="wordCount">229</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="150">
+      <data key="label">CCP 150</data>
+      <data key="title">CCP Section 150</data>
+      <data key="category">General Procedures</data>
+      <data key="wordCount">51</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="161">
+      <data key="label">CCP 161</data>
+      <data key="title">CCP Section 161</data>
+      <data key="category">General Procedures</data>
+      <data key="wordCount">51</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="2025.340">
+      <data key="label">CCP 2025.340</data>
+      <data key="title">CCP Section 2025.340</data>
+      <data key="category">Depositions</data>
+      <data key="wordCount">983</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="2031.320">
+      <data key="label">CCP 2031.320</data>
+      <data key="title">CCP Section 2031.320</data>
+      <data key="category">Document Production</data>
+      <data key="wordCount">290</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="2033.740">
+      <data key="label">CCP 2033.740</data>
+      <data key="title">CCP Section 2033.740</data>
+      <data key="category">Requests for Admission</data>
+      <data key="wordCount">101</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="2034.010">
+      <data key="label">CCP 2034.010</data>
+      <data key="title">CCP Section 2034.010</data>
+      <data key="category">General Procedures</data>
+      <data key="wordCount">70</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="2034.630">
+      <data key="label">CCP 2034.630</data>
+      <data key="title">CCP Section 2034.630</data>
+      <data key="category">General Procedures</data>
+      <data key="wordCount">98</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="2035.060">
+      <data key="label">CCP 2035.060</data>
+      <data key="title">CCP Section 2035.060</data>
+      <data key="category">General Procedures</data>
+      <data key="wordCount">122</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="30">
+      <data key="label">CCP 30</data>
+      <data key="title">CCP Section 30</data>
+      <data key="category">General Procedures</data>
+      <data key="wordCount">50</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="340">
+      <data key="label">CCP 340</data>
+      <data key="title">CCP Section 340</data>
+      <data key="category">General Procedures</data>
+      <data key="wordCount">302</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="405.8">
+      <data key="label">CCP 405.8</data>
+      <data key="title">CCP Section 405.8</data>
+      <data key="category">General Procedures</data>
+      <data key="wordCount">60</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="410.10">
+      <data key="label">CCP 410.10</data>
+      <data key="title">CCP Section 410.10</data>
+      <data key="category">Jurisdiction &amp; Service</data>
+      <data key="wordCount">47</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="410.42">
+      <data key="label">CCP 410.42</data>
+      <data key="title">CCP Section 410.42</data>
+      <data key="category">Jurisdiction &amp; Service</data>
+      <data key="wordCount">204</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="410.70">
+      <data key="label">CCP 410.70</data>
+      <data key="title">CCP Section 410.70</data>
+      <data key="category">Jurisdiction &amp; Service</data>
+      <data key="wordCount">70</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="411.35">
+      <data key="label">CCP 411.35</data>
+      <data key="title">CCP Section 411.35</data>
+      <data key="category">Jurisdiction &amp; Service</data>
+      <data key="wordCount">1016</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="412.30">
+      <data key="label">CCP 412.30</data>
+      <data key="title">CCP Section 412.30</data>
+      <data key="category">Jurisdiction &amp; Service</data>
+      <data key="wordCount">197</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="412">
+      <data key="label">CCP 412</data>
+      <data key="title">CCP Section 412</data>
+      <data key="category">Jurisdiction &amp; Service</data>
+      <data key="wordCount">51</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="413.40">
+      <data key="label">CCP 413.40</data>
+      <data key="title">CCP Section 413.40</data>
+      <data key="category">Jurisdiction &amp; Service</data>
+      <data key="wordCount">67</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="414.10">
+      <data key="label">CCP 414.10</data>
+      <data key="title">CCP Section 414.10</data>
+      <data key="category">Jurisdiction &amp; Service</data>
+      <data key="wordCount">46</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="415.95">
+      <data key="label">CCP 415.95</data>
+      <data key="title">CCP Section 415.95</data>
+      <data key="category">Jurisdiction &amp; Service</data>
+      <data key="wordCount">150</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="416.90">
+      <data key="label">CCP 416.90</data>
+      <data key="title">CCP Section 416.90</data>
+      <data key="category">Jurisdiction &amp; Service</data>
+      <data key="wordCount">63</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="417.40">
+      <data key="label">CCP 417.40</data>
+      <data key="title">CCP Section 417.40</data>
+      <data key="category">Jurisdiction &amp; Service</data>
+      <data key="wordCount">81</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="418.11">
+      <data key="label">CCP 418.11</data>
+      <data key="title">CCP Section 418.11</data>
+      <data key="category">General Procedures</data>
+      <data key="wordCount">76</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="420">
+      <data key="label">CCP 420</data>
+      <data key="title">CCP Section 420</data>
+      <data key="category">Pleadings</data>
+      <data key="wordCount">40</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="421">
+      <data key="label">CCP 421</data>
+      <data key="title">CCP Section 421</data>
+      <data key="category">Pleadings</data>
+      <data key="wordCount">46</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="422.40">
+      <data key="label">CCP 422.40</data>
+      <data key="title">CCP Section 422.40</data>
+      <data key="category">Pleadings</data>
+      <data key="wordCount">76</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="425.55">
+      <data key="label">CCP 425.55</data>
+      <data key="title">CCP Section 425.55</data>
+      <data key="category">Pleadings</data>
+      <data key="wordCount">531</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="426.70">
+      <data key="label">CCP 426.70</data>
+      <data key="title">CCP Section 426.70</data>
+      <data key="category">Pleadings</data>
+      <data key="wordCount">95</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="427.10">
+      <data key="label">CCP 427.10</data>
+      <data key="title">CCP Section 427.10</data>
+      <data key="category">Pleadings</data>
+      <data key="wordCount">83</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="428.80">
+      <data key="label">CCP 428.80</data>
+      <data key="title">CCP Section 428.80</data>
+      <data key="category">Pleadings</data>
+      <data key="wordCount">89</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="429.30">
+      <data key="label">CCP 429.30</data>
+      <data key="title">CCP Section 429.30</data>
+      <data key="category">Pleadings</data>
+      <data key="wordCount">269</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="430.90">
+      <data key="label">CCP 430.90</data>
+      <data key="title">CCP Section 430.90</data>
+      <data key="category">Pleadings</data>
+      <data key="wordCount">315</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="430">
+      <data key="label">CCP 430</data>
+      <data key="title">CCP Section 430</data>
+      <data key="category">Pleadings</data>
+      <data key="wordCount">51</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="431.70">
+      <data key="label">CCP 431.70</data>
+      <data key="title">CCP Section 431.70</data>
+      <data key="category">Pleadings</data>
+      <data key="wordCount">244</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="432.10">
+      <data key="label">CCP 432.10</data>
+      <data key="title">CCP Section 432.10</data>
+      <data key="category">Pleadings</data>
+      <data key="wordCount">52</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="432">
+      <data key="label">CCP 432</data>
+      <data key="title">CCP Section 432</data>
+      <data key="category">Pleadings</data>
+      <data key="wordCount">51</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="437">
+      <data key="label">CCP 437</data>
+      <data key="title">CCP Section 437</data>
+      <data key="category">Pleadings</data>
+      <data key="wordCount">3199</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="439">
+      <data key="label">CCP 439</data>
+      <data key="title">CCP Section 439</data>
+      <data key="category">Pleadings</data>
+      <data key="wordCount">935</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="440">
+      <data key="label">CCP 440</data>
+      <data key="title">CCP Section 440</data>
+      <data key="category">Pleadings</data>
+      <data key="wordCount">51</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="446">
+      <data key="label">CCP 446</data>
+      <data key="title">CCP Section 446</data>
+      <data key="category">Pleadings</data>
+      <data key="wordCount">642</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="450">
+      <data key="label">CCP 450</data>
+      <data key="title">CCP Section 450</data>
+      <data key="category">Pleadings</data>
+      <data key="wordCount">51</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="465">
+      <data key="label">CCP 465</data>
+      <data key="title">CCP Section 465</data>
+      <data key="category">Pleadings</data>
+      <data key="wordCount">69</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="470">
+      <data key="label">CCP 470</data>
+      <data key="title">CCP Section 470</data>
+      <data key="category">Pleadings</data>
+      <data key="wordCount">57</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="475">
+      <data key="label">CCP 475</data>
+      <data key="title">CCP Section 475</data>
+      <data key="category">Pleadings</data>
+      <data key="wordCount">158</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="583.161">
+      <data key="label">CCP 583.161</data>
+      <data key="title">CCP Section 583.161</data>
+      <data key="category">Dismissal Procedures</data>
+      <data key="wordCount">224</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="703.150">
+      <data key="label">CCP 703.150</data>
+      <data key="title">CCP Section 703.150</data>
+      <data key="category">Judgment Enforcement</data>
+      <data key="wordCount">319</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="706.109">
+      <data key="label">CCP 706.109</data>
+      <data key="title">CCP Section 706.109</data>
+      <data key="category">Judgment Enforcement</data>
+      <data key="wordCount">50</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="762.090">
+      <data key="label">CCP 762.090</data>
+      <data key="title">CCP Section 762.090</data>
+      <data key="category">General Procedures</data>
+      <data key="wordCount">55</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="80">
+      <data key="label">CCP 80</data>
+      <data key="title">CCP Section 80</data>
+      <data key="category">General Procedures</data>
+      <data key="wordCount">51</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="834">
+      <data key="label">CCP 834</data>
+      <data key="title">CCP Section 834</data>
+      <data key="category">General Procedures</data>
+      <data key="wordCount">131</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <node id="95">
+      <data key="label">CCP 95</data>
+      <data key="title">CCP Section 95</data>
+      <data key="category">General Procedures</data>
+      <data key="wordCount">125</data>
+      <data key="filingRelevance">8</data>
+    </node>
+    <edge id="e0" source="020" target="109">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e1" source="020" target="116.630">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e2" source="020" target="1250.250">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e3" source="020" target="150">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e4" source="020" target="161">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e5" source="020" target="2034.010">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e6" source="020" target="2034.630">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e7" source="020" target="2035.060">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e8" source="020" target="30">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e9" source="020" target="340">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e10" source="020" target="405.8">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e11" source="020" target="418.11">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e12" source="020" target="762.090">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e13" source="020" target="80">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e14" source="020" target="834">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e15" source="020" target="95">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e16" source="1002.7" target="1008">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Service &amp; Notice</data>
+    </edge>
+    <edge id="e17" source="109" target="116.630">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e18" source="109" target="1250.250">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e19" source="109" target="150">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e20" source="109" target="161">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e21" source="109" target="2034.010">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e22" source="109" target="2034.630">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e23" source="109" target="2035.060">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e24" source="109" target="30">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e25" source="109" target="340">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e26" source="109" target="405.8">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e27" source="109" target="418.11">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e28" source="109" target="762.090">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e29" source="109" target="80">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e30" source="109" target="834">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e31" source="109" target="95">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e32" source="116.630" target="1250.250">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e33" source="116.630" target="150">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e34" source="116.630" target="161">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e35" source="116.630" target="2034.010">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e36" source="116.630" target="2034.630">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e37" source="116.630" target="2035.060">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e38" source="116.630" target="30">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e39" source="116.630" target="340">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e40" source="116.630" target="405.8">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e41" source="116.630" target="418.11">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e42" source="116.630" target="762.090">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e43" source="116.630" target="80">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e44" source="116.630" target="834">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e45" source="116.630" target="95">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e46" source="1250.250" target="150">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e47" source="1250.250" target="161">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e48" source="1250.250" target="2034.010">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e49" source="1250.250" target="2034.630">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e50" source="1250.250" target="2035.060">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e51" source="1250.250" target="30">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e52" source="1250.250" target="340">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e53" source="1250.250" target="405.8">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e54" source="1250.250" target="418.11">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e55" source="1250.250" target="762.090">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e56" source="1250.250" target="80">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e57" source="1250.250" target="834">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e58" source="1250.250" target="95">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e59" source="150" target="161">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e60" source="150" target="2034.010">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e61" source="150" target="2034.630">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e62" source="150" target="2035.060">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e63" source="150" target="30">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e64" source="150" target="340">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e65" source="150" target="405.8">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e66" source="150" target="418.11">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e67" source="150" target="762.090">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e68" source="150" target="80">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e69" source="150" target="834">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e70" source="150" target="95">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e71" source="161" target="2034.010">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e72" source="161" target="2034.630">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e73" source="161" target="2035.060">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e74" source="161" target="30">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e75" source="161" target="340">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e76" source="161" target="405.8">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e77" source="161" target="418.11">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e78" source="161" target="762.090">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e79" source="161" target="80">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e80" source="161" target="834">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e81" source="161" target="95">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e82" source="2034.010" target="2034.630">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e83" source="2034.010" target="2035.060">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e84" source="2034.010" target="30">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e85" source="2034.010" target="340">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e86" source="2034.010" target="405.8">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e87" source="2034.010" target="418.11">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e88" source="2034.010" target="762.090">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e89" source="2034.010" target="80">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e90" source="2034.010" target="834">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e91" source="2034.010" target="95">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e92" source="2034.630" target="2035.060">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e93" source="2034.630" target="30">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e94" source="2034.630" target="340">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e95" source="2034.630" target="405.8">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e96" source="2034.630" target="418.11">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e97" source="2034.630" target="762.090">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e98" source="2034.630" target="80">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e99" source="2034.630" target="834">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e100" source="2034.630" target="95">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e101" source="2035.060" target="30">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e102" source="2035.060" target="340">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e103" source="2035.060" target="405.8">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e104" source="2035.060" target="418.11">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e105" source="2035.060" target="762.090">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e106" source="2035.060" target="80">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e107" source="2035.060" target="834">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e108" source="2035.060" target="95">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e109" source="30" target="340">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e110" source="30" target="405.8">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e111" source="30" target="418.11">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e112" source="30" target="762.090">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e113" source="30" target="80">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e114" source="30" target="834">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e115" source="30" target="95">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e116" source="340" target="405.8">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e117" source="340" target="418.11">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e118" source="340" target="762.090">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e119" source="340" target="80">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e120" source="340" target="834">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e121" source="340" target="95">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e122" source="405.8" target="418.11">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e123" source="405.8" target="762.090">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e124" source="405.8" target="80">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e125" source="405.8" target="834">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e126" source="405.8" target="95">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e127" source="410.10" target="410.42">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e128" source="410.10" target="410.70">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e129" source="410.10" target="411.35">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e130" source="410.10" target="412.30">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e131" source="410.10" target="412">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e132" source="410.10" target="413.40">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e133" source="410.10" target="414.10">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e134" source="410.10" target="415.95">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e135" source="410.10" target="416.90">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e136" source="410.10" target="417.40">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e137" source="410.42" target="410.70">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e138" source="410.42" target="411.35">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e139" source="410.42" target="412.30">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e140" source="410.42" target="412">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e141" source="410.42" target="413.40">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e142" source="410.42" target="414.10">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e143" source="410.42" target="415.95">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e144" source="410.42" target="416.90">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e145" source="410.42" target="417.40">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e146" source="410.70" target="411.35">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e147" source="410.70" target="412.30">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e148" source="410.70" target="412">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e149" source="410.70" target="413.40">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e150" source="410.70" target="414.10">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e151" source="410.70" target="415.95">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e152" source="410.70" target="416.90">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e153" source="410.70" target="417.40">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e154" source="411.35" target="412.30">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e155" source="411.35" target="412">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e156" source="411.35" target="413.40">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e157" source="411.35" target="414.10">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e158" source="411.35" target="415.95">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e159" source="411.35" target="416.90">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e160" source="411.35" target="417.40">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e161" source="412.30" target="412">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e162" source="412.30" target="413.40">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e163" source="412.30" target="414.10">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e164" source="412.30" target="415.95">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e165" source="412.30" target="416.90">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e166" source="412.30" target="417.40">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e167" source="412" target="413.40">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e168" source="412" target="414.10">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e169" source="412" target="415.95">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e170" source="412" target="416.90">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e171" source="412" target="417.40">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e172" source="413.40" target="414.10">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e173" source="413.40" target="415.95">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e174" source="413.40" target="416.90">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e175" source="413.40" target="417.40">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e176" source="414.10" target="415.95">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e177" source="414.10" target="416.90">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e178" source="414.10" target="417.40">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e179" source="415.95" target="416.90">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e180" source="415.95" target="417.40">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e181" source="416.90" target="417.40">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Jurisdiction &amp; Service</data>
+    </edge>
+    <edge id="e182" source="418.11" target="762.090">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e183" source="418.11" target="80">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e184" source="418.11" target="834">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e185" source="418.11" target="95">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e186" source="420" target="421">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e187" source="420" target="422.40">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e188" source="420" target="425.55">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e189" source="420" target="426.70">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e190" source="420" target="427.10">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e191" source="420" target="428.80">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e192" source="420" target="429.30">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e193" source="420" target="430.90">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e194" source="420" target="430">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e195" source="420" target="431.70">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e196" source="420" target="432.10">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e197" source="420" target="432">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e198" source="420" target="437">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e199" source="420" target="439">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e200" source="420" target="440">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e201" source="420" target="446">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e202" source="420" target="450">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e203" source="420" target="465">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e204" source="420" target="470">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e205" source="420" target="475">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e206" source="421" target="422.40">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e207" source="421" target="425.55">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e208" source="421" target="426.70">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e209" source="421" target="427.10">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e210" source="421" target="428.80">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e211" source="421" target="429.30">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e212" source="421" target="430.90">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e213" source="421" target="430">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e214" source="421" target="431.70">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e215" source="421" target="432.10">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e216" source="421" target="432">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e217" source="421" target="437">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e218" source="421" target="439">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e219" source="421" target="440">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e220" source="421" target="446">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e221" source="421" target="450">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e222" source="421" target="465">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e223" source="421" target="470">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e224" source="421" target="475">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e225" source="422.40" target="425.55">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e226" source="422.40" target="426.70">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e227" source="422.40" target="427.10">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e228" source="422.40" target="428.80">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e229" source="422.40" target="429.30">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e230" source="422.40" target="430.90">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e231" source="422.40" target="430">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e232" source="422.40" target="431.70">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e233" source="422.40" target="432.10">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e234" source="422.40" target="432">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e235" source="422.40" target="437">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e236" source="422.40" target="439">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e237" source="422.40" target="440">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e238" source="422.40" target="446">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e239" source="422.40" target="450">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e240" source="422.40" target="465">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e241" source="422.40" target="470">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e242" source="422.40" target="475">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e243" source="425.55" target="426.70">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e244" source="425.55" target="427.10">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e245" source="425.55" target="428.80">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e246" source="425.55" target="429.30">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e247" source="425.55" target="430.90">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e248" source="425.55" target="430">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e249" source="425.55" target="431.70">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e250" source="425.55" target="432.10">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e251" source="425.55" target="432">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e252" source="425.55" target="437">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e253" source="425.55" target="439">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e254" source="425.55" target="440">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e255" source="425.55" target="446">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e256" source="425.55" target="450">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e257" source="425.55" target="465">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e258" source="425.55" target="470">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e259" source="425.55" target="475">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e260" source="426.70" target="427.10">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e261" source="426.70" target="428.80">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e262" source="426.70" target="429.30">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e263" source="426.70" target="430.90">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e264" source="426.70" target="430">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e265" source="426.70" target="431.70">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e266" source="426.70" target="432.10">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e267" source="426.70" target="432">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e268" source="426.70" target="437">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e269" source="426.70" target="439">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e270" source="426.70" target="440">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e271" source="426.70" target="446">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e272" source="426.70" target="450">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e273" source="426.70" target="465">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e274" source="426.70" target="470">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e275" source="426.70" target="475">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e276" source="427.10" target="428.80">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e277" source="427.10" target="429.30">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e278" source="427.10" target="430.90">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e279" source="427.10" target="430">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e280" source="427.10" target="431.70">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e281" source="427.10" target="432.10">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e282" source="427.10" target="432">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e283" source="427.10" target="437">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e284" source="427.10" target="439">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e285" source="427.10" target="440">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e286" source="427.10" target="446">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e287" source="427.10" target="450">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e288" source="427.10" target="465">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e289" source="427.10" target="470">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e290" source="427.10" target="475">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e291" source="428.80" target="429.30">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e292" source="428.80" target="430.90">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e293" source="428.80" target="430">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e294" source="428.80" target="431.70">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e295" source="428.80" target="432.10">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e296" source="428.80" target="432">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e297" source="428.80" target="437">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e298" source="428.80" target="439">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e299" source="428.80" target="440">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e300" source="428.80" target="446">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e301" source="428.80" target="450">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e302" source="428.80" target="465">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e303" source="428.80" target="470">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e304" source="428.80" target="475">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e305" source="429.30" target="430.90">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e306" source="429.30" target="430">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e307" source="429.30" target="431.70">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e308" source="429.30" target="432.10">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e309" source="429.30" target="432">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e310" source="429.30" target="437">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e311" source="429.30" target="439">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e312" source="429.30" target="440">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e313" source="429.30" target="446">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e314" source="429.30" target="450">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e315" source="429.30" target="465">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e316" source="429.30" target="470">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e317" source="429.30" target="475">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e318" source="430.90" target="430">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e319" source="430.90" target="431.70">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e320" source="430.90" target="432.10">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e321" source="430.90" target="432">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e322" source="430.90" target="437">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e323" source="430.90" target="439">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e324" source="430.90" target="440">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e325" source="430.90" target="446">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e326" source="430.90" target="450">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e327" source="430.90" target="465">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e328" source="430.90" target="470">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e329" source="430.90" target="475">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e330" source="430" target="431.70">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e331" source="430" target="432.10">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e332" source="430" target="432">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e333" source="430" target="437">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e334" source="430" target="439">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e335" source="430" target="440">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e336" source="430" target="446">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e337" source="430" target="450">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e338" source="430" target="465">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e339" source="430" target="470">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e340" source="430" target="475">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e341" source="431.70" target="432.10">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e342" source="431.70" target="432">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e343" source="431.70" target="437">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e344" source="431.70" target="439">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e345" source="431.70" target="440">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e346" source="431.70" target="446">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e347" source="431.70" target="450">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e348" source="431.70" target="465">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e349" source="431.70" target="470">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e350" source="431.70" target="475">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e351" source="432.10" target="432">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e352" source="432.10" target="437">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e353" source="432.10" target="439">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e354" source="432.10" target="440">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e355" source="432.10" target="446">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e356" source="432.10" target="450">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e357" source="432.10" target="465">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e358" source="432.10" target="470">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e359" source="432.10" target="475">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e360" source="432" target="437">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e361" source="432" target="439">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e362" source="432" target="440">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e363" source="432" target="446">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e364" source="432" target="450">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e365" source="432" target="465">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e366" source="432" target="470">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e367" source="432" target="475">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e368" source="437" target="439">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e369" source="437" target="440">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e370" source="437" target="446">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e371" source="437" target="450">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e372" source="437" target="465">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e373" source="437" target="470">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e374" source="437" target="475">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e375" source="439" target="440">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e376" source="439" target="446">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e377" source="439" target="450">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e378" source="439" target="465">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e379" source="439" target="470">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e380" source="439" target="475">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e381" source="440" target="446">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e382" source="440" target="450">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e383" source="440" target="465">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e384" source="440" target="470">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e385" source="440" target="475">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e386" source="446" target="450">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e387" source="446" target="465">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e388" source="446" target="470">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e389" source="446" target="475">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e390" source="450" target="465">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e391" source="450" target="470">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e392" source="450" target="475">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e393" source="465" target="470">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e394" source="465" target="475">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e395" source="470" target="475">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Pleadings</data>
+    </edge>
+    <edge id="e396" source="703.150" target="706.109">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: Judgment Enforcement</data>
+    </edge>
+    <edge id="e397" source="762.090" target="80">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e398" source="762.090" target="834">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e399" source="762.090" target="95">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e400" source="80" target="834">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e401" source="80" target="95">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+    <edge id="e402" source="834" target="95">
+      <data key="type">category_similarity</data>
+      <data key="weight">2</data>
+      <data key="description">Both sections belong to category: General Procedures</data>
+    </edge>
+  </graph>
+</graphml>

@@ -1,17 +1,52 @@
-# macOS system files
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
 .DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# macOS system files
 .DS_Store?
 ._*
 .Spotlight-V100
 .Trashes
 ehthumbs.db
 Thumbs.db
-
-# Node.js dependencies
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 
 # Python
 __pycache__/
@@ -37,7 +72,6 @@ wheels/
 MANIFEST
 
 # Virtual environments
-.env
 .venv
 env/
 venv/
@@ -68,16 +102,12 @@ logs/
 .npm/
 .yarn/
 
-# OS generated files
-*.lock
-
 # Large data files that shouldn't be in version control
-*.pdf
 *.zip
 *.tar.gz
 *.rar
 
-# Keep small example PDFs but exclude large downloads
+# Large PDFs - keep small example PDFs but exclude large downloads
 ccp-scraper/downloaded_pdfs/
 ccp-scraper/ccp_pdfs/
 knowledge-graph/*/node_modules/
@@ -88,4 +118,4 @@ knowledge-graph/*/node_modules/
 
 # Keep documentation
 !README.md
-!*.md 
+!*.md

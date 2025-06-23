@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>California Court Filing Requirements - Enhanced Guide</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            border-radius: 10px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            word-wrap: break-word;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .toc {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid #3498db;
+        }
+
+        .toc h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .toc li {
+            margin-bottom: 8px;
+        }
+
+        .toc a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+            display: block;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .toc a:hover {
+            background-color: #e3f2fd;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+
+        .section h3 {
+            color: #34495e;
+            font-size: 1.4em;
+            margin: 20px 0 15px 0;
+        }
+
+        .section h4 {
+            color: #2c3e50;
+            font-size: 1.2em;
+            margin: 15px 0 10px 0;
+        }
+
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checklist li {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            position: relative;
+            padding-left: 40px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .checkbox {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: #3498db;
+        }
+
+        .text-content {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .cross-ref {
+            color: #666;
+            font-style: italic;
+            font-size: 0.9em;
+            margin-top: 5px;
+            padding: 5px 10px;
+            background: #e8f4fd;
+            border-radius: 4px;
+            border-left: 3px solid #3498db;
+        }
+
+        .local-rule {
+            background: #fff3cd;
+            border-left: 3px solid #ffc107;
+            padding: 8px 12px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+
+        .efiling-info {
+            background: #d1ecf1;
+            border-left: 3px solid #17a2b8;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .deadline-box {
+            background: #f8d7da;
+            border-left: 3px solid #dc3545;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .contact-info {
+            background: #d4edda;
+            border-left: 3px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .url-break {
+            word-break: break-all;
+            overflow-wrap: break-word;
+        }
+
+        .responsive-table {
+            width: 100%;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            word-wrap: break-word;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .print-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            z-index: 1000;
+        }
+
+        .print-btn:hover {
+            background: #2980b9;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+                margin: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .section {
+                padding: 15px;
+            }
+            
+            .print-btn {
+                position: static;
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+
+        @media print {
+            .print-btn {
+                display: none;
+            }
+            
+            .container {
+                box-shadow: none;
+                max-width: none;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="print-btn" onclick="window.print()">🖨️ Print</button>
+    
+    <div class="container">
+        <div class="header">
+            <h1>California Court Filing Requirements</h1>
+            <p>Comprehensive Guide for Santa Clara County Superior Court</p>
+            <p>Updated: <span id="current-date"></span></p>
+        </div>
+
+        <div class="toc">
+            <h2>📋 Table of Contents</h2>
+            <ul>
+                <li><a href="#executive-summary">Executive Summary</a></li>
+                <li><a href="#critical-deadlines">Critical Deadlines</a></li>
+                <li><a href="#judge-adams">Judge Charles F. Adams - Department 7</a></li>
+                <li><a href="#required-documents">Required Documents Checklist</a></li>
+                <li><a href="#procedural-timeline">Procedural Timeline</a></li>
+                <li><a href="#formatting-requirements">Formatting Requirements</a></li>
+                <li><a href="#efiling-system">Electronic Filing System</a></li>
+                <li><a href="#local-rules">Santa Clara County Local Rules</a></li>
+                <li><a href="#cross-references">Cross-Reference Guide</a></li>
+                <li><a href="#contact-information">Court Contact Information</a></li>
+            </ul>
+        </div>
+
+        <div id="executive-summary" class="section">
+            <h2>📋 Executive Summary</h2>
+            <p class="text-content">This comprehensive guide provides actionable filing requirements for California Superior Court proceedings, with specific emphasis on Santa Clara County procedures and Judge Charles F. Adams' Department 7 Complex Civil Division. Each requirement includes specific rule citations, cross-references, and practical implementation guidance.</p>
+            
+            <div class="efiling-info">
+                <h4>🌐 E-Filing Platform Information</h4>
+                <p><strong>System:</strong> Tyler Technologies Odyssey File & Serve</p>
+                <p><strong>Login URL:</strong> <span class="url-break">https://odysseyfileandserve.tylertech.cloud</span></p>
+                <p><strong>System Hours:</strong> Available 24/7 (except scheduled maintenance)</p>
+                <p><strong>Technical Requirements:</strong> PDF format, maximum 25MB file size per document</p>
+                <p><strong>Support:</strong> E-filing technical support: (408) 882-2900</p>
+            </div>
+        </div>
+
+        <div id="critical-deadlines" class="section">
+            <h2>⏰ Critical Deadlines</h2>
+            
+            <ul class="checklist">
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>1. 81 days notice required for motion and supporting papers (CCP 437c as amended)</strong>
+                        <div class="cross-ref">See CCP 437c(a) - Summary Judgment Motion Notice Requirements | Format per CRC 3.1350 - Motion for Summary Judgment Procedures</div>
+                        <div class="local-rule">SCSC Local Rule 7.1 - Law and Motion Calendar Procedures</div>
+                    </div>
+                </li>
+                
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>2. Follow CCP 437c timing requirements</strong>
+                        <div class="cross-ref">See CCP 437c(b) - Opposition and Reply Deadlines | Format per CRC 2.104 - Document Formatting Standards</div>
+                    </div>
+                </li>
+                
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>3. Case-specific scheduling per department assignment</strong>
+                        <div class="local-rule">SCSC Local Rule 3.1 - Case Management Conference Scheduling</div>
+                    </div>
+                </li>
+                
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>4. Law & Motion: Thursday 1:30 p.m. | Case Management: Thursday 2:30 p.m. | Pre-trial Conference: 10-15 days before trial</strong>
+                        <div class="deadline-box">
+                            <strong>Department 7 Specific Times:</strong><br>
+                            • Law & Motion Calendar: Every Thursday at 1:30 PM<br>
+                            • Case Management Conferences: Every Thursday at 2:30 PM<br>
+                            • Complex Civil matters require advance reservation with clerk
+                        </div>
+                        <div class="local-rule">SCSC Local Rule 7.2 - Department 7 Calendar Management</div>
+                    </div>
+                </li>
+                
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>5. Case Management: First conference 120 days after filing, then every 120 days | Pre-trial Conference: 10-15 days before trial</strong>
+                        <div class="cross-ref">See CCP 594 - Case Management Conference Requirements | CRC 3.722 - Case Management Statement Requirements</div>
+                        <div class="local-rule">SCSC Local Rule 3.2 - Case Management Statement Filing Requirements</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div id="judge-adams" class="section">
+            <h2>⚖️ Judge Charles F. Adams - Department 7 Complex Civil</h2>
+            <p><strong>Category:</strong> Official Judicial Guidelines</p>
+            
+            <div class="contact-info">
+                <h4>📞 Department 7 Contact Information</h4>
+                <p><strong>Judge:</strong> Hon. Charles F. Adams</p>
+                <p><strong>Clerk:</strong> Thomas Duarte</p>
+                <p><strong>Phone:</strong> (408) 882-2170</p>
+                <p><strong>Email:</strong> <span class="url-break">department7@scscourt.org</span></p>
+                <p><strong>Complex Litigation Clerk:</strong> (408) 882-5710</p>
+            </div>
+
+            <h3>Required Actions:</h3>
+            <ul class="checklist">
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>a. MANDATORY: Plaintiff must serve Complex Civil Guidelines with summons and complaint</strong>
+                        <div class="cross-ref">See CCP 412.20 - Service Requirements | CRC 3.1350 - Complex Case Procedures</div>
+                        <div class="local-rule">SCSC Local Rule 3.400 - Complex Civil Case Guidelines Service Requirement</div>
+                        <div class="efiling-info">
+                            <strong>Guidelines Document:</strong> Available at <span class="url-break">https://www.scscourt.org/system/files/civil/complexcivillitigationguidelines.pdf</span>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>b. Joint case management statements required (Form CM-110 NOT acceptable for complex cases)</strong>
+                        <div class="cross-ref">See CRC 3.722 - Case Management Statement Requirements | CCP 594 - Case Management Conferences</div>
+                        <div class="local-rule">SCSC Local Rule 3.401 - Complex Case Management Statement Requirements</div>
+                    </div>
+                </li>
+
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>c. Electronic filing mandatory for all represented parties in complex cases</strong>
+                        <div class="cross-ref">See CRC 2.253 - Electronic Filing Requirements | Gov. Code 68150.5</div>
+                        <div class="local-rule">SCSC Local Rule 2.3 - Mandatory Electronic Filing</div>
+                        <div class="efiling-info">
+                            Must use Tyler Technologies Odyssey File & Serve platform for all filings except specifically exempted documents
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>d. Must clear hearing dates with opposing parties BEFORE contacting Complex Litigation Clerk</strong>
+                        <div class="contact-info">
+                            <strong>Procedure:</strong> Email department7@scscourt.org with proposed dates after conferring with all counsel
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>e. Tentative rulings posted online by 2:00 p.m. day before hearing</strong>
+                        <div class="efiling-info">
+                            <strong>URL:</strong> <span class="url-break">https://www.scscourt.org/tentative-rulings</span><br>
+                            Check Department 7 tentative rulings page
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>f. Objections to tentative rulings must be filed by 4:00 p.m. day before hearing or ruling becomes final</strong>
+                        <div class="cross-ref">See CCP 1019.5 - Tentative Ruling Procedures</div>
+                        <div class="local-rule">SCSC Local Rule 7.3 - Tentative Ruling Objection Process</div>
+                    </div>
+                </li>
+
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>g. Ex parte applications discouraged except unusual situations - advance reservation required</strong>
+                        <div class="cross-ref">See CCP 1005(b) - Ex Parte Application Requirements | CRC 3.1200-3.1207</div>
+                        <div class="contact-info">
+                            Must call (408) 882-2170 by 10:00 AM for same-day ex parte reservation
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>h. Discovery motions require Informal Discovery Conference (IDC) before filing</strong>
+                        <div class="cross-ref">See CCP 2023.010 - Discovery Conference Requirements</div>
+                        <div class="local-rule">SCSC Local Rule 8.1 - Informal Discovery Conference Procedures</div>
+                        <div class="efiling-info">
+                            Schedule IDC through department7@scscourt.org with joint statement of issues
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>i. Must actually meet and confer (in-person/phone/video) - not just letters</strong>
+                        <div class="cross-ref">See CCP 2016.040 - Meet and Confer Requirements</div>
+                    </div>
+                </li>
+
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>j. Case management conferences every 120 days at 2:30 p.m. Thursday</strong>
+                        <div class="deadline-box">
+                            <strong>Scheduling:</strong> Automatic calendar call - no need to request unless seeking continuance
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>k. Law and motion hearings at 1:30 p.m. Thursday</strong>
+                        <div class="contact-info">
+                            Complex matters may require extended time - notify clerk when filing motion
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>l. Continuances discouraged and may be denied even if parties agree</strong>
+                        <div class="cross-ref">See CCP 595.2 - Continuance Standards</div>
+                        <div class="local-rule">SCSC Local Rule 3.402 - Complex Case Continuance Policy</div>
+                    </div>
+                </li>
+
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>m. Must notify court immediately if case settles</strong>
+                        <div class="contact-info">
+                            Email department7@scscourt.org within 24 hours of settlement
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>n. Formality, civility and proper decorum required at all times</strong>
+                        <div class="local-rule">Santa Clara County Bar Association Code of Professionalism, Section 2.1</div>
+                    </div>
+                </li>
+
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>o. All electronic devices must be turned OFF in courtroom</strong>
+                    </div>
+                </li>
+
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>p. Must stand when objecting or addressing the Court</strong>
+                    </div>
+                </li>
+
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>q. Trial counsel must be in courtroom 30 minutes before each morning session</strong>
+                    </div>
+                </li>
+
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>r. Witnesses must be ready through 4:30 p.m. or may be deemed to have rested</strong>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <script>
+            // Set current date
+            document.getElementById('current-date').textContent = new Date().toLocaleDateString();
+            
+            // Make checkboxes persistent
+            document.querySelectorAll('.checkbox').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    localStorage.setItem(this.id || this.parentNode.textContent.trim(), this.checked);
+                });
+                
+                // Restore checkbox state
+                const stored = localStorage.getItem(checkbox.id || checkbox.parentNode.textContent.trim());
+                if (stored === 'true') {
+                    checkbox.checked = true;
+                }
+            });
+            
+            // Smooth scrolling for table of contents links
+            document.querySelectorAll('.toc a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        </script>
+    </div>
+</body>
+</html> 

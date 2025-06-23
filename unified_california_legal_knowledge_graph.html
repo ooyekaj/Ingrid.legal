@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unified California Legal Knowledge Graph</title>
+    <script src="https://unpkg.com/cytoscape@3.26.0/dist/cytoscape.min.js"></script>
+    <script src="https://unpkg.com/cytoscape-cose-bilkent@4.1.0/cytoscape-cose-bilkent.js"></script>
+    <script src="https://unpkg.com/cytoscape-qtip@2.8.0/cytoscape-qtip.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/qtip2@3.0.3/dist/jquery.qtip.min.css">
+    <script src="https://unpkg.com/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://unpkg.com/qtip2@3.0.3/dist/jquery.qtip.min.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 700;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+        
+        .subtitle {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 1.2em;
+            color: #666;
+        }
+        
+        .controls {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px;
+            margin: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .filter-group label {
+            font-weight: 600;
+            color: #555;
+        }
+        
+        select, input, button {
+            padding: 8px 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        select:focus, input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .stats {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px;
+            margin: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .stat-item {
+            padding: 10px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        
+        .stat-number {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .legend {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            margin: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .legend h3 {
+            margin-top: 0;
+            color: #333;
+            font-size: 1.3em;
+        }
+        
+        .legend-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.5);
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        #cy {
+            height: 800px;
+            margin: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            background: white;
+        }
+        
+        .node-info {
+            position: fixed;
+            top: 120px;
+            right: 20px;
+            width: 300px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: none;
+        }
+        
+        .node-info h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        .loading {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            text-align: center;
+            z-index: 1000;
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .qtip-custom {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            max-width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Unified California Legal Knowledge Graph</h1>
+        <div class="subtitle">CCP • CRC • Santa Clara County Rules & Judges Orders</div>
+    </div>
+    
+    <div class="controls">
+        <div class="filter-group">
+            <label>Source:</label>
+            <select id="sourceFilter">
+                <option value="all">All Sources</option>
+                <option value="ccp">CCP Only</option>
+                <option value="crc">CRC Only</option>
+                <option value="county">Santa Clara County</option>
+            </select>
+        </div>
+        
+        <div class="filter-group">
+            <label>Category:</label>
+            <select id="categoryFilter">
+                <option value="all">All Categories</option>
+                <option value="filing">Filing Procedures</option>
+                <option value="discovery">Discovery</option>
+                <option value="motion">Motions</option>
+                <option value="judgment">Judgments</option>
+                <option value="service">Service & Notice</option>
+                <option value="court">Court Procedures</option>
+                <option value="judges">Judges & Orders</option>
+            </select>
+        </div>
+        
+        <div class="filter-group">
+            <label>Relevance:</label>
+            <input type="range" id="relevanceFilter" min="0" max="10" value="0" step="1">
+            <span id="relevanceValue">0+</span>
+        </div>
+        
+        <button onclick="resetFilters()">Reset Filters</button>
+        <button onclick="exportGraph()">Export Data</button>
+        <button onclick="toggleLayout()">Change Layout</button>
+    </div>
+    
+    <div class="stats">
+        <h3>Graph Statistics</h3>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number" id="totalNodes">0</div>
+                <div class="stat-label">Total Nodes</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="totalEdges">0</div>
+                <div class="stat-label">Total Edges</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="ccpNodes">0</div>
+                <div class="stat-label">CCP Rules</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="crcNodes">0</div>
+                <div class="stat-label">CRC Rules</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="countyNodes">0</div>
+                <div class="stat-label">County Rules</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="judgeNodes">0</div>
+                <div class="stat-label">Judges</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="legend">
+        <h3>Node Types & Colors</h3>
+        <div class="legend-grid">
+            <div class="legend-item">
+                <div class="legend-color" style="background: #FF6B6B;"></div>
+                <span><strong>CCP Rules</strong> - California Code of Civil Procedure</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #4ECDC4;"></div>
+                <span><strong>CRC Rules</strong> - California Rules of Court</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #45B7D1;"></div>
+                <span><strong>County Rules</strong> - Santa Clara Local Rules</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #F7DC6F;"></div>
+                <span><strong>Judges</strong> - Judicial Officers</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #BB8FCE;"></div>
+                <span><strong>Procedures</strong> - General Procedures</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #85C1E9;"></div>
+                <span><strong>Requirements</strong> - Specific Requirements</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #F8C471;"></div>
+                <span><strong>Departments</strong> - Court Departments</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #82E0AA;"></div>
+                <span><strong>Organizations</strong> - Legal Organizations</span>
+            </div>
+        </div>
+    </div>
+    
+    <div id="cy"></div>
+    
+    <div class="node-info" id="nodeInfo">
+        <h3 id="nodeTitle">Node Details</h3>
+        <div id="nodeDetails"></div>
+    </div>
+    
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <div>Loading Knowledge Graph...</div>
+    </div>
+
+    <script>
+        let cy;
+        let currentLayout = 'cose-bilkent';
+        
+        // Unified dataset combining all three sources
+        const unifiedGraphData = {
+            elements: [
+                // CCP Rules
+                { data: { id: 'ccp_020', label: 'CCP 020', title: 'General Filing Procedures', category: 'filing', source: 'ccp', color: '#FF6B6B', filingRelevance: 9, type: 'ccp_rule', wordCount: 51 }},
+                { data: { id: 'ccp_1008', label: 'CCP 1008', title: 'Motion to Reconsider', category: 'motion', source: 'ccp', color: '#FF6B6B', filingRelevance: 8, type: 'ccp_rule', wordCount: 526 }},
+                { data: { id: 'ccp_2025_340', label: 'CCP 2025.340', title: 'Deposition Procedures', category: 'discovery', source: 'ccp', color: '#FF6B6B', filingRelevance: 8, type: 'ccp_rule', wordCount: 983 }},
+                { data: { id: 'ccp_2031_320', label: 'CCP 2031.320', title: 'Document Production', category: 'discovery', source: 'ccp', color: '#FF6B6B', filingRelevance: 8, type: 'ccp_rule', wordCount: 290 }},
+                { data: { id: 'ccp_340', label: 'CCP 340', title: 'Statute of Limitations', category: 'filing', source: 'ccp', color: '#FF6B6B', filingRelevance: 8, type: 'ccp_rule', wordCount: 302 }},
+                { data: { id: 'ccp_437c', label: 'CCP 437c', title: 'Summary Judgment Motion', category: 'motion', source: 'ccp', color: '#FF6B6B', filingRelevance: 9, type: 'ccp_rule', wordCount: 1250 }},
+                { data: { id: 'ccp_425_16', label: 'CCP 425.16', title: 'Anti-SLAPP Motion', category: 'motion', source: 'ccp', color: '#FF6B6B', filingRelevance: 8, type: 'ccp_rule', wordCount: 890 }},
+                
+                // CRC Rules
+                { data: { id: 'crc_2_100', label: 'CRC 2.100', title: 'Form and Format of Papers', category: 'filing', source: 'crc', color: '#4ECDC4', filingRelevance: 9, type: 'crc_rule', wordCount: 800 }},
+                { data: { id: 'crc_3_1345', label: 'CRC 3.1345', title: 'Discovery Motion Format', category: 'discovery', source: 'crc', color: '#4ECDC4', filingRelevance: 9, type: 'crc_rule', wordCount: 1200 }},
+                { data: { id: 'crc_8_74', label: 'CRC 8.74', title: 'Electronic Document Format', category: 'filing', source: 'crc', color: '#4ECDC4', filingRelevance: 8, type: 'crc_rule', wordCount: 900 }},
+                { data: { id: 'crc_2_259', label: 'CRC 2.259', title: 'Electronic Filing Confirmation', category: 'filing', source: 'crc', color: '#4ECDC4', filingRelevance: 7, type: 'crc_rule', wordCount: 600 }},
+                { data: { id: 'crc_3_1350', label: 'CRC 3.1350', title: 'Motion Hearing Requirements', category: 'motion', source: 'crc', color: '#4ECDC4', filingRelevance: 8, type: 'crc_rule', wordCount: 750 }},
+                
+                // Santa Clara County Rules
+                { data: { id: 'sc_general_1', label: 'SC General 1', title: 'Local Filing Requirements', category: 'filing', source: 'county', color: '#45B7D1', filingRelevance: 9, type: 'county_rule', wordCount: 450 }},
+                { data: { id: 'sc_civil_2', label: 'SC Civil 2', title: 'Case Management Conference', category: 'court', source: 'county', color: '#45B7D1', filingRelevance: 8, type: 'county_rule', wordCount: 320 }},
+                { data: { id: 'sc_discovery_1', label: 'SC Discovery 1', title: 'Local Discovery Rules', category: 'discovery', source: 'county', color: '#45B7D1', filingRelevance: 8, type: 'county_rule', wordCount: 380 }},
+                { data: { id: 'sc_motion_1', label: 'SC Motion 1', title: 'Motion Calendar Procedures', category: 'motion', source: 'county', color: '#45B7D1', filingRelevance: 8, type: 'county_rule', wordCount: 290 }},
+                { data: { id: 'sc_complex_1', label: 'SC Complex 1', title: 'Complex Civil Case Rules', category: 'court', source: 'county', color: '#45B7D1', filingRelevance: 9, type: 'county_rule', wordCount: 520 }},
+                
+                // Judges
+                { data: { id: 'judge_johnson', label: 'Judge Johnson', title: 'Judge Patricia Johnson', category: 'judges', source: 'county', color: '#F7DC6F', filingRelevance: 7, type: 'judge', department: 'Department 1' }},
+                { data: { id: 'judge_smith', label: 'Judge Smith', title: 'Judge Robert Smith', category: 'judges', source: 'county', color: '#F7DC6F', filingRelevance: 7, type: 'judge', department: 'Department 2' }},
+                { data: { id: 'judge_williams', label: 'Judge Williams', title: 'Judge Maria Williams', category: 'judges', source: 'county', color: '#F7DC6F', filingRelevance: 6, type: 'judge', department: 'Complex Department' }},
+                { data: { id: 'judge_chen', label: 'Judge Chen', title: 'Judge David Chen', category: 'judges', source: 'county', color: '#F7DC6F', filingRelevance: 8, type: 'judge', department: 'Complex Department' }},
+                
+                // Departments
+                { data: { id: 'dept_1', label: 'Department 1', title: 'Civil Department 1', category: 'court', source: 'county', color: '#F8C471', filingRelevance: 6, type: 'department' }},
+                { data: { id: 'dept_2', label: 'Department 2', title: 'Civil Department 2', category: 'court', source: 'county', color: '#F8C471', filingRelevance: 6, type: 'department' }},
+                { data: { id: 'dept_complex', label: 'Complex Dept', title: 'Complex Civil Department', category: 'court', source: 'county', color: '#F8C471', filingRelevance: 7, type: 'department' }},
+                
+                // Cross-Source Edges
+                { data: { id: 'e1', source: 'ccp_020', target: 'crc_2_100', label: 'implemented by', weight: 9, color: '#E74C3C' }},
+                { data: { id: 'e2', source: 'ccp_1008', target: 'crc_3_1350', label: 'procedure defined by', weight: 8, color: '#E74C3C' }},
+                { data: { id: 'e3', source: 'ccp_2025_340', target: 'crc_3_1345', label: 'format required by', weight: 8, color: '#E74C3C' }},
+                { data: { id: 'e4', source: 'ccp_437c', target: 'crc_3_1350', label: 'hearing rules', weight: 8, color: '#E74C3C' }},
+                
+                { data: { id: 'e5', source: 'crc_2_100', target: 'sc_general_1', label: 'local requirements', weight: 9, color: '#3498DB' }},
+                { data: { id: 'e6', source: 'crc_3_1345', target: 'sc_discovery_1', label: 'local discovery rules', weight: 8, color: '#3498DB' }},
+                { data: { id: 'e7', source: 'crc_3_1350', target: 'sc_motion_1', label: 'local motion calendar', weight: 8, color: '#3498DB' }},
+                
+                { data: { id: 'e8', source: 'judge_johnson', target: 'dept_1', label: 'presides in', weight: 8, color: '#F39C12' }},
+                { data: { id: 'e9', source: 'judge_smith', target: 'dept_2', label: 'presides in', weight: 8, color: '#F39C12' }},
+                { data: { id: 'e10', source: 'judge_williams', target: 'dept_complex', label: 'presides in', weight: 8, color: '#F39C12' }},
+                { data: { id: 'e11', source: 'judge_chen', target: 'dept_complex', label: 'presides in', weight: 8, color: '#F39C12' }},
+                
+                { data: { id: 'e12', source: 'dept_complex', target: 'sc_complex_1', label: 'follows', weight: 9, color: '#1ABC9C' }},
+                { data: { id: 'e13', source: 'dept_1', target: 'sc_civil_2', label: 'case management', weight: 7, color: '#1ABC9C' }},
+                { data: { id: 'e14', source: 'dept_2', target: 'sc_civil_2', label: 'case management', weight: 7, color: '#1ABC9C' }}
+            ]
+        };
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeGraph();
+        });
+        
+        function initializeGraph() {
+            cy = cytoscape({
+                container: document.getElementById('cy'),
+                elements: unifiedGraphData.elements,
+                
+                style: [
+                    {
+                        selector: 'node',
+                        style: {
+                            'background-color': 'data(color)',
+                            'label': 'data(label)',
+                            'width': 'mapData(filingRelevance, 0, 10, 40, 100)',
+                            'height': 'mapData(filingRelevance, 0, 10, 40, 100)',
+                            'font-size': '14px',
+                            'text-valign': 'center',
+                            'text-halign': 'center',
+                            'text-wrap': 'wrap',
+                            'text-max-width': '120px',
+                            'border-width': 3,
+                            'border-color': '#ffffff',
+                            'box-shadow': '0 4px 8px rgba(0,0,0,0.3)',
+                            'transition-property': 'background-color, border-color, box-shadow',
+                            'transition-duration': '0.3s'
+                        }
+                    },
+                    {
+                        selector: 'node:selected',
+                        style: {
+                            'border-width': 5,
+                            'border-color': '#667eea',
+                            'box-shadow': '0 6px 12px rgba(102, 126, 234, 0.4)'
+                        }
+                    },
+                    {
+                        selector: 'edge',
+                        style: {
+                            'width': 'mapData(weight, 0, 10, 2, 8)',
+                            'line-color': 'data(color)',
+                            'target-arrow-color': 'data(color)',
+                            'target-arrow-shape': 'triangle',
+                            'curve-style': 'bezier',
+                            'opacity': 0.8,
+                            'label': 'data(label)',
+                            'font-size': '11px',
+                            'text-rotation': 'autorotate',
+                            'text-background-color': 'white',
+                            'text-background-opacity': 0.8,
+                            'text-background-padding': '2px'
+                        }
+                    },
+                    {
+                        selector: 'edge:selected',
+                        style: {
+                            'width': 6,
+                            'line-color': '#667eea',
+                            'target-arrow-color': '#667eea',
+                            'opacity': 1
+                        }
+                    },
+                    {
+                        selector: '.highlighted',
+                        style: {
+                            'border-width': 5,
+                            'border-color': '#ff4757',
+                            'box-shadow': '0 8px 16px rgba(255, 71, 87, 0.4)'
+                        }
+                    },
+                    {
+                        selector: '.faded',
+                        style: {
+                            'opacity': 0.3
+                        }
+                    }
+                ],
+                
+                layout: {
+                    name: 'cose-bilkent',
+                    idealEdgeLength: 200,
+                    nodeOverlap: 20,
+                    refresh: 30,
+                    fit: true,
+                    padding: 50,
+                    randomize: false,
+                    componentSpacing: 150,
+                    nodeRepulsion: 5000,
+                    edgeElasticity: 100,
+                    nestingFactor: 5,
+                    gravity: 0.25,
+                    numIter: 2500,
+                    tile: true,
+                    animate: 'end',
+                    animationDuration: 1000
+                }
+            });
+            
+            setupEventListeners();
+            updateStatistics();
+            document.getElementById('loading').style.display = 'none';
+        }
+        
+        function setupEventListeners() {
+            // Node click event
+            cy.on('tap', 'node', function(evt) {
+                const node = evt.target;
+                highlightConnectedNodes(node);
+                showNodeInfo(node);
+            });
+            
+            // Background click event
+            cy.on('tap', function(evt) {
+                if (evt.target === cy) {
+                    cy.elements().removeClass('highlighted faded');
+                    hideNodeInfo();
+                }
+            });
+            
+            // Filter event listeners
+            document.getElementById('sourceFilter').addEventListener('change', applyFilters);
+            document.getElementById('categoryFilter').addEventListener('change', applyFilters);
+            document.getElementById('relevanceFilter').addEventListener('input', function() {
+                document.getElementById('relevanceValue').textContent = this.value + '+';
+                applyFilters();
+            });
+        }
+        
+        function highlightConnectedNodes(node) {
+            const connectedNodes = node.neighborhood().nodes();
+            const connectedEdges = node.connectedEdges();
+            
+            // Fade all elements
+            cy.elements().addClass('faded');
+            
+            // Highlight selected node and connected elements
+            node.removeClass('faded').addClass('highlighted');
+            connectedNodes.removeClass('faded').addClass('highlighted');
+            connectedEdges.removeClass('faded');
+        }
+        
+        function showNodeInfo(node) {
+            const data = node.data();
+            const infoPanel = document.getElementById('nodeInfo');
+            const titleElement = document.getElementById('nodeTitle');
+            const detailsElement = document.getElementById('nodeDetails');
+            
+            titleElement.textContent = data.title || data.label;
+            
+            let detailsHTML = `
+                <p><strong>Type:</strong> ${data.type.replace('_', ' ').toUpperCase()}</p>
+                <p><strong>Source:</strong> ${data.source.toUpperCase()}</p>
+                <p><strong>Category:</strong> ${data.category || 'N/A'}</p>
+                <p><strong>Filing Relevance:</strong> ${data.filingRelevance || 0}/10</p>
+            `;
+            
+            if (data.wordCount) {
+                detailsHTML += `<p><strong>Word Count:</strong> ${data.wordCount}</p>`;
+            }
+            
+            if (data.department) {
+                detailsHTML += `<p><strong>Department:</strong> ${data.department}</p>`;
+            }
+            
+            // Add connected nodes info
+            const connectedNodes = node.neighborhood().nodes();
+            if (connectedNodes.length > 0) {
+                detailsHTML += `<p><strong>Connected to:</strong> ${connectedNodes.length} other nodes</p>`;
+            }
+            
+            detailsElement.innerHTML = detailsHTML;
+            infoPanel.style.display = 'block';
+        }
+        
+        function hideNodeInfo() {
+            document.getElementById('nodeInfo').style.display = 'none';
+        }
+        
+        function applyFilters() {
+            const sourceFilter = document.getElementById('sourceFilter').value;
+            const categoryFilter = document.getElementById('categoryFilter').value;
+            const relevanceFilter = parseInt(document.getElementById('relevanceFilter').value);
+            
+            cy.nodes().forEach(node => {
+                const data = node.data();
+                let show = true;
+                
+                if (sourceFilter !== 'all' && data.source !== sourceFilter) {
+                    show = false;
+                }
+                
+                if (categoryFilter !== 'all' && data.category !== categoryFilter) {
+                    show = false;
+                }
+                
+                if (data.filingRelevance < relevanceFilter) {
+                    show = false;
+                }
+                
+                if (show) {
+                    node.show();
+                } else {
+                    node.hide();
+                }
+            });
+            
+            // Hide edges where either node is hidden
+            cy.edges().forEach(edge => {
+                const source = edge.source();
+                const target = edge.target();
+                
+                if (source.visible() && target.visible()) {
+                    edge.show();
+                } else {
+                    edge.hide();
+                }
+            });
+            
+            updateStatistics();
+        }
+        
+        function resetFilters() {
+            document.getElementById('sourceFilter').value = 'all';
+            document.getElementById('categoryFilter').value = 'all';
+            document.getElementById('relevanceFilter').value = '0';
+            document.getElementById('relevanceValue').textContent = '0+';
+            
+            cy.elements().show();
+            cy.elements().removeClass('highlighted faded');
+            hideNodeInfo();
+            updateStatistics();
+        }
+        
+        function updateStatistics() {
+            const visibleNodes = cy.nodes(':visible');
+            const visibleEdges = cy.edges(':visible');
+            
+            document.getElementById('totalNodes').textContent = visibleNodes.length;
+            document.getElementById('totalEdges').textContent = visibleEdges.length;
+            
+            document.getElementById('ccpNodes').textContent = visibleNodes.filter('[type="ccp_rule"]').length;
+            document.getElementById('crcNodes').textContent = visibleNodes.filter('[type="crc_rule"]').length;
+            document.getElementById('countyNodes').textContent = visibleNodes.filter('[type="county_rule"]').length;
+            document.getElementById('judgeNodes').textContent = visibleNodes.filter('[type="judge"]').length;
+        }
+        
+        function toggleLayout() {
+            const layouts = ['cose-bilkent', 'circle', 'grid', 'breadthfirst'];
+            const currentIndex = layouts.indexOf(currentLayout);
+            const nextIndex = (currentIndex + 1) % layouts.length;
+            currentLayout = layouts[nextIndex];
+            
+            const layoutOptions = {
+                'cose-bilkent': {
+                    name: 'cose-bilkent',
+                    idealEdgeLength: 200,
+                    nodeOverlap: 20,
+                    refresh: 30,
+                    fit: true,
+                    padding: 50,
+                    randomize: false,
+                    componentSpacing: 150,
+                    animate: 'end',
+                    animationDuration: 1000
+                },
+                'circle': {
+                    name: 'circle',
+                    fit: true,
+                    padding: 50,
+                    animate: true,
+                    animationDuration: 1000
+                },
+                'grid': {
+                    name: 'grid',
+                    fit: true,
+                    padding: 50,
+                    animate: true,
+                    animationDuration: 1000
+                },
+                'breadthfirst': {
+                    name: 'breadthfirst',
+                    fit: true,
+                    padding: 50,
+                    directed: true,
+                    animate: true,
+                    animationDuration: 1000
+                }
+            };
+            
+            cy.layout(layoutOptions[currentLayout]).run();
+        }
+        
+        function exportGraph() {
+            const graphData = {
+                nodes: cy.nodes().map(node => node.data()),
+                edges: cy.edges().map(edge => edge.data()),
+                generated_at: new Date().toISOString(),
+                statistics: {
+                    total_nodes: cy.nodes().length,
+                    total_edges: cy.edges().length,
+                    ccp_rules: cy.nodes('[type="ccp_rule"]').length,
+                    crc_rules: cy.nodes('[type="crc_rule"]').length,
+                    county_rules: cy.nodes('[type="county_rule"]').length,
+                    judges: cy.nodes('[type="judge"]').length,
+                    departments: cy.nodes('[type="department"]').length
+                },
+                metadata: {
+                    description: 'Unified California Legal Knowledge Graph',
+                    sources: ['CCP', 'CRC', 'Santa Clara County'],
+                    version: '1.0.0'
+                }
+            };
+            
+            const dataStr = JSON.stringify(graphData, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'unified_california_legal_knowledge_graph_export.json';
+            link.click();
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html> 

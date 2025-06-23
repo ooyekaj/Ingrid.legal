@@ -1,0 +1,183 @@
+{
+  "elements": [
+    {
+      "data": {
+        "id": "ccp_020",
+        "label": "CCP 020",
+        "title": "General Filing",
+        "category": "filing",
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "filingRelevance": 9,
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_1008",
+        "label": "CCP 1008",
+        "title": "Motion Practice",
+        "category": "motion",
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "filingRelevance": 8,
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_437c",
+        "label": "CCP 437c",
+        "title": "Summary Judgment",
+        "category": "motion",
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "filingRelevance": 9,
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "crc_2_100",
+        "label": "CRC 2.100",
+        "title": "Form and Format",
+        "category": "filing",
+        "source": "crc",
+        "color": "#4ECDC4",
+        "filingRelevance": 9,
+        "type": "crc_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "crc_3_1345",
+        "label": "CRC 3.1345",
+        "title": "Discovery Format",
+        "category": "discovery",
+        "source": "crc",
+        "color": "#4ECDC4",
+        "filingRelevance": 9,
+        "type": "crc_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "sc_general_1",
+        "label": "SC General 1",
+        "title": "Local Filing",
+        "category": "filing",
+        "source": "county",
+        "color": "#45B7D1",
+        "filingRelevance": 9,
+        "type": "county_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "sc_complex_1",
+        "label": "SC Complex 1",
+        "title": "Complex Civil",
+        "category": "court",
+        "source": "county",
+        "color": "#45B7D1",
+        "filingRelevance": 8,
+        "type": "county_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "judge_johnson",
+        "label": "Judge Johnson",
+        "title": "Patricia Johnson",
+        "category": "judges",
+        "source": "county",
+        "color": "#F7DC6F",
+        "filingRelevance": 7,
+        "type": "judge"
+      }
+    },
+    {
+      "data": {
+        "id": "judge_chen",
+        "label": "Judge Chen",
+        "title": "David Chen",
+        "category": "judges",
+        "source": "county",
+        "color": "#F7DC6F",
+        "filingRelevance": 8,
+        "type": "judge"
+      }
+    },
+    {
+      "data": {
+        "id": "dept_complex",
+        "label": "Complex Dept",
+        "title": "Complex Civil Dept",
+        "category": "court",
+        "source": "county",
+        "color": "#F8C471",
+        "filingRelevance": 7,
+        "type": "department"
+      }
+    },
+    {
+      "data": {
+        "id": "e1",
+        "source": "ccp_020",
+        "target": "crc_2_100",
+        "label": "implemented by",
+        "weight": 9,
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "e2",
+        "source": "crc_2_100",
+        "target": "sc_general_1",
+        "label": "local rules",
+        "weight": 8,
+        "color": "#3498DB"
+      }
+    },
+    {
+      "data": {
+        "id": "e3",
+        "source": "judge_johnson",
+        "target": "dept_complex",
+        "label": "presides in",
+        "weight": 8,
+        "color": "#F39C12"
+      }
+    },
+    {
+      "data": {
+        "id": "e4",
+        "source": "judge_chen",
+        "target": "dept_complex",
+        "label": "presides in",
+        "weight": 8,
+        "color": "#F39C12"
+      }
+    },
+    {
+      "data": {
+        "id": "e5",
+        "source": "dept_complex",
+        "target": "sc_complex_1",
+        "label": "follows",
+        "weight": 9,
+        "color": "#1ABC9C"
+      }
+    }
+  ],
+  "statistics": {
+    "total_nodes": 10,
+    "total_edges": 5,
+    "ccp": 3,
+    "crc": 2,
+    "county": 2,
+    "judges": 2,
+    "departments": 1
+  }
+}

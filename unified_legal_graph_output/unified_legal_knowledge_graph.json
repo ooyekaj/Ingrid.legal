@@ -1,0 +1,5941 @@
+{
+  "elements": [
+    {
+      "data": {
+        "id": "ccp_020",
+        "label": "CCP 020",
+        "title": "CCP Section 020",
+        "category": "General Procedures",
+        "wordCount": 51,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 0,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_1002.7",
+        "label": "CCP 1002.7",
+        "title": "CCP Section 1002.7",
+        "category": "Service & Notice",
+        "wordCount": 352,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 4,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_1008",
+        "label": "CCP 1008",
+        "title": "CCP Section 1008",
+        "category": "Service & Notice",
+        "wordCount": 526,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 2,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_109",
+        "label": "CCP 109",
+        "title": "CCP Section 109",
+        "category": "General Procedures",
+        "wordCount": 51,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 0,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_116.630",
+        "label": "CCP 116.630",
+        "title": "CCP Section 116.630",
+        "category": "General Procedures",
+        "wordCount": 94,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_1250.250",
+        "label": "CCP 1250.250",
+        "title": "CCP Section 1250.250",
+        "category": "General Procedures",
+        "wordCount": 229,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_150",
+        "label": "CCP 150",
+        "title": "CCP Section 150",
+        "category": "General Procedures",
+        "wordCount": 51,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 0,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_161",
+        "label": "CCP 161",
+        "title": "CCP Section 161",
+        "category": "General Procedures",
+        "wordCount": 51,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 0,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_2025.340",
+        "label": "CCP 2025.340",
+        "title": "CCP Section 2025.340",
+        "category": "Depositions",
+        "wordCount": 983,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 2,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_2031.320",
+        "label": "CCP 2031.320",
+        "title": "CCP Section 2031.320",
+        "category": "Document Production",
+        "wordCount": 290,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 2,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_2033.740",
+        "label": "CCP 2033.740",
+        "title": "CCP Section 2033.740",
+        "category": "Requests for Admission",
+        "wordCount": 101,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_2034.010",
+        "label": "CCP 2034.010",
+        "title": "CCP Section 2034.010",
+        "category": "General Procedures",
+        "wordCount": 70,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 2,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_2034.630",
+        "label": "CCP 2034.630",
+        "title": "CCP Section 2034.630",
+        "category": "General Procedures",
+        "wordCount": 98,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 2,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_2035.060",
+        "label": "CCP 2035.060",
+        "title": "CCP Section 2035.060",
+        "category": "General Procedures",
+        "wordCount": 122,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 2,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_30",
+        "label": "CCP 30",
+        "title": "CCP Section 30",
+        "category": "General Procedures",
+        "wordCount": 50,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_340",
+        "label": "CCP 340",
+        "title": "CCP Section 340",
+        "category": "General Procedures",
+        "wordCount": 302,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 3,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_405.8",
+        "label": "CCP 405.8",
+        "title": "CCP Section 405.8",
+        "category": "General Procedures",
+        "wordCount": 60,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_410.10",
+        "label": "CCP 410.10",
+        "title": "CCP Section 410.10",
+        "category": "Jurisdiction & Service",
+        "wordCount": 47,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_410.42",
+        "label": "CCP 410.42",
+        "title": "CCP Section 410.42",
+        "category": "Jurisdiction & Service",
+        "wordCount": 204,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 4,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_410.70",
+        "label": "CCP 410.70",
+        "title": "CCP Section 410.70",
+        "category": "Jurisdiction & Service",
+        "wordCount": 70,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_411.35",
+        "label": "CCP 411.35",
+        "title": "CCP Section 411.35",
+        "category": "Jurisdiction & Service",
+        "wordCount": 1016,
+        "filingRelevance": 8,
+        "proceduralRequirements": 2,
+        "crossReferences": 8,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_412.30",
+        "label": "CCP 412.30",
+        "title": "CCP Section 412.30",
+        "category": "Jurisdiction & Service",
+        "wordCount": 197,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 2,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_412",
+        "label": "CCP 412",
+        "title": "CCP Section 412",
+        "category": "Jurisdiction & Service",
+        "wordCount": 51,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 0,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_413.40",
+        "label": "CCP 413.40",
+        "title": "CCP Section 413.40",
+        "category": "Jurisdiction & Service",
+        "wordCount": 67,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 2,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_414.10",
+        "label": "CCP 414.10",
+        "title": "CCP Section 414.10",
+        "category": "Jurisdiction & Service",
+        "wordCount": 46,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_415.95",
+        "label": "CCP 415.95",
+        "title": "CCP Section 415.95",
+        "category": "Jurisdiction & Service",
+        "wordCount": 150,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_416.90",
+        "label": "CCP 416.90",
+        "title": "CCP Section 416.90",
+        "category": "Jurisdiction & Service",
+        "wordCount": 63,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_417.40",
+        "label": "CCP 417.40",
+        "title": "CCP Section 417.40",
+        "category": "Jurisdiction & Service",
+        "wordCount": 81,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 3,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_418.11",
+        "label": "CCP 418.11",
+        "title": "CCP Section 418.11",
+        "category": "General Procedures",
+        "wordCount": 76,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 2,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_420",
+        "label": "CCP 420",
+        "title": "CCP Section 420",
+        "category": "Pleadings",
+        "wordCount": 40,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_421",
+        "label": "CCP 421",
+        "title": "CCP Section 421",
+        "category": "Pleadings",
+        "wordCount": 46,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_422.40",
+        "label": "CCP 422.40",
+        "title": "CCP Section 422.40",
+        "category": "Pleadings",
+        "wordCount": 76,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_425.55",
+        "label": "CCP 425.55",
+        "title": "CCP Section 425.55",
+        "category": "Pleadings",
+        "wordCount": 531,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 5,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_426.70",
+        "label": "CCP 426.70",
+        "title": "CCP Section 426.70",
+        "category": "Pleadings",
+        "wordCount": 95,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 3,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_427.10",
+        "label": "CCP 427.10",
+        "title": "CCP Section 427.10",
+        "category": "Pleadings",
+        "wordCount": 83,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_428.80",
+        "label": "CCP 428.80",
+        "title": "CCP Section 428.80",
+        "category": "Pleadings",
+        "wordCount": 89,
+        "filingRelevance": 8,
+        "proceduralRequirements": 1,
+        "crossReferences": 1,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_429.30",
+        "label": "CCP 429.30",
+        "title": "CCP Section 429.30",
+        "category": "Pleadings",
+        "wordCount": 269,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 2,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_430.90",
+        "label": "CCP 430.90",
+        "title": "CCP Section 430.90",
+        "category": "Pleadings",
+        "wordCount": 315,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 3,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_430",
+        "label": "CCP 430",
+        "title": "CCP Section 430",
+        "category": "Pleadings",
+        "wordCount": 51,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 0,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_431.70",
+        "label": "CCP 431.70",
+        "title": "CCP Section 431.70",
+        "category": "Pleadings",
+        "wordCount": 244,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 3,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_432.10",
+        "label": "CCP 432.10",
+        "title": "CCP Section 432.10",
+        "category": "Pleadings",
+        "wordCount": 52,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_432",
+        "label": "CCP 432",
+        "title": "CCP Section 432",
+        "category": "Pleadings",
+        "wordCount": 51,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 0,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_437",
+        "label": "CCP 437",
+        "title": "CCP Section 437",
+        "category": "Pleadings",
+        "wordCount": 3199,
+        "filingRelevance": 8,
+        "proceduralRequirements": 5,
+        "crossReferences": 6,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_439",
+        "label": "CCP 439",
+        "title": "CCP Section 439",
+        "category": "Pleadings",
+        "wordCount": 935,
+        "filingRelevance": 8,
+        "proceduralRequirements": 3,
+        "crossReferences": 4,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_440",
+        "label": "CCP 440",
+        "title": "CCP Section 440",
+        "category": "Pleadings",
+        "wordCount": 51,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 0,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_446",
+        "label": "CCP 446",
+        "title": "CCP Section 446",
+        "category": "Pleadings",
+        "wordCount": 642,
+        "filingRelevance": 8,
+        "proceduralRequirements": 1,
+        "crossReferences": 1,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_450",
+        "label": "CCP 450",
+        "title": "CCP Section 450",
+        "category": "Pleadings",
+        "wordCount": 51,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 0,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_465",
+        "label": "CCP 465",
+        "title": "CCP Section 465",
+        "category": "Pleadings",
+        "wordCount": 69,
+        "filingRelevance": 8,
+        "proceduralRequirements": 1,
+        "crossReferences": 1,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_470",
+        "label": "CCP 470",
+        "title": "CCP Section 470",
+        "category": "Pleadings",
+        "wordCount": 57,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 2,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_475",
+        "label": "CCP 475",
+        "title": "CCP Section 475",
+        "category": "Pleadings",
+        "wordCount": 158,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_583.161",
+        "label": "CCP 583.161",
+        "title": "CCP Section 583.161",
+        "category": "Dismissal Procedures",
+        "wordCount": 224,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 4,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_703.150",
+        "label": "CCP 703.150",
+        "title": "CCP Section 703.150",
+        "category": "Judgment Enforcement",
+        "wordCount": 319,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 5,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_706.109",
+        "label": "CCP 706.109",
+        "title": "CCP Section 706.109",
+        "category": "Judgment Enforcement",
+        "wordCount": 50,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_762.090",
+        "label": "CCP 762.090",
+        "title": "CCP Section 762.090",
+        "category": "General Procedures",
+        "wordCount": 55,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_80",
+        "label": "CCP 80",
+        "title": "CCP Section 80",
+        "category": "General Procedures",
+        "wordCount": 51,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 0,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_834",
+        "label": "CCP 834",
+        "title": "CCP Section 834",
+        "category": "General Procedures",
+        "wordCount": 131,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_95",
+        "label": "CCP 95",
+        "title": "CCP Section 95",
+        "category": "General Procedures",
+        "wordCount": 125,
+        "filingRelevance": 8,
+        "proceduralRequirements": 0,
+        "crossReferences": 1,
+        "source": "ccp",
+        "color": "#FF6B6B",
+        "type": "ccp_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "crc_2_100",
+        "label": "CRC 2.100",
+        "title": "Form and Format of Papers",
+        "category": "filing",
+        "filingRelevance": 9,
+        "source": "crc",
+        "color": "#4ECDC4",
+        "type": "crc_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "crc_3_1345",
+        "label": "CRC 3.1345",
+        "title": "Discovery Motion Format",
+        "category": "discovery",
+        "filingRelevance": 9,
+        "source": "crc",
+        "color": "#4ECDC4",
+        "type": "crc_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "crc_3_1350",
+        "label": "CRC 3.1350",
+        "title": "Motion Hearing Requirements",
+        "category": "motion",
+        "filingRelevance": 8,
+        "source": "crc",
+        "color": "#4ECDC4",
+        "type": "crc_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "crc_8_74",
+        "label": "CRC 8.74",
+        "title": "Electronic Document Format",
+        "category": "filing",
+        "filingRelevance": 8,
+        "source": "crc",
+        "color": "#4ECDC4",
+        "type": "crc_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "county_general_1",
+        "label": "SC General 1",
+        "title": "Local Filing Requirements",
+        "category": "filing",
+        "filingRelevance": 9,
+        "source": "county",
+        "color": "#45B7D1",
+        "type": "county_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "county_civil_2",
+        "label": "SC Civil 2",
+        "title": "Case Management Conference",
+        "category": "court",
+        "filingRelevance": 8,
+        "source": "county",
+        "color": "#45B7D1",
+        "type": "county_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "county_discovery_1",
+        "label": "SC Discovery 1",
+        "title": "Local Discovery Rules",
+        "category": "discovery",
+        "filingRelevance": 8,
+        "source": "county",
+        "color": "#45B7D1",
+        "type": "county_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "county_complex_1",
+        "label": "SC Complex 1",
+        "title": "Complex Civil Rules",
+        "category": "court",
+        "filingRelevance": 9,
+        "source": "county",
+        "color": "#45B7D1",
+        "type": "county_rule"
+      }
+    },
+    {
+      "data": {
+        "id": "judge_johnson",
+        "label": "Judge Johnson",
+        "title": "Patricia Johnson",
+        "category": "judges",
+        "filingRelevance": 7,
+        "source": "county",
+        "color": "#F7DC6F",
+        "type": "judge"
+      }
+    },
+    {
+      "data": {
+        "id": "judge_chen",
+        "label": "Judge Chen",
+        "title": "David Chen",
+        "category": "judges",
+        "filingRelevance": 8,
+        "source": "county",
+        "color": "#F7DC6F",
+        "type": "judge"
+      }
+    },
+    {
+      "data": {
+        "id": "judge_williams",
+        "label": "Judge Williams",
+        "title": "Maria Williams",
+        "category": "judges",
+        "filingRelevance": 6,
+        "source": "county",
+        "color": "#F7DC6F",
+        "type": "judge"
+      }
+    },
+    {
+      "data": {
+        "id": "dept_dept_1",
+        "label": "Department 1",
+        "title": "Civil Department 1",
+        "category": "court",
+        "filingRelevance": 6,
+        "source": "county",
+        "color": "#F8C471",
+        "type": "department"
+      }
+    },
+    {
+      "data": {
+        "id": "dept_dept_complex",
+        "label": "Complex Dept",
+        "title": "Complex Civil Department",
+        "category": "court",
+        "filingRelevance": 7,
+        "source": "county",
+        "color": "#F8C471",
+        "type": "department"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e0",
+        "source": "ccp_020",
+        "target": "ccp_109",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e1",
+        "source": "ccp_020",
+        "target": "ccp_116.630",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e2",
+        "source": "ccp_020",
+        "target": "ccp_1250.250",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e3",
+        "source": "ccp_020",
+        "target": "ccp_150",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e4",
+        "source": "ccp_020",
+        "target": "ccp_161",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e5",
+        "source": "ccp_020",
+        "target": "ccp_2034.010",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e6",
+        "source": "ccp_020",
+        "target": "ccp_2034.630",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e7",
+        "source": "ccp_020",
+        "target": "ccp_2035.060",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e8",
+        "source": "ccp_020",
+        "target": "ccp_30",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e9",
+        "source": "ccp_020",
+        "target": "ccp_340",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e10",
+        "source": "ccp_020",
+        "target": "ccp_405.8",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e11",
+        "source": "ccp_020",
+        "target": "ccp_418.11",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e12",
+        "source": "ccp_020",
+        "target": "ccp_762.090",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e13",
+        "source": "ccp_020",
+        "target": "ccp_80",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e14",
+        "source": "ccp_020",
+        "target": "ccp_834",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e15",
+        "source": "ccp_020",
+        "target": "ccp_95",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e16",
+        "source": "ccp_1002.7",
+        "target": "ccp_1008",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Service & Notice",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e17",
+        "source": "ccp_109",
+        "target": "ccp_116.630",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e18",
+        "source": "ccp_109",
+        "target": "ccp_1250.250",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e19",
+        "source": "ccp_109",
+        "target": "ccp_150",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e20",
+        "source": "ccp_109",
+        "target": "ccp_161",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e21",
+        "source": "ccp_109",
+        "target": "ccp_2034.010",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e22",
+        "source": "ccp_109",
+        "target": "ccp_2034.630",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e23",
+        "source": "ccp_109",
+        "target": "ccp_2035.060",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e24",
+        "source": "ccp_109",
+        "target": "ccp_30",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e25",
+        "source": "ccp_109",
+        "target": "ccp_340",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e26",
+        "source": "ccp_109",
+        "target": "ccp_405.8",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e27",
+        "source": "ccp_109",
+        "target": "ccp_418.11",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e28",
+        "source": "ccp_109",
+        "target": "ccp_762.090",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e29",
+        "source": "ccp_109",
+        "target": "ccp_80",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e30",
+        "source": "ccp_109",
+        "target": "ccp_834",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e31",
+        "source": "ccp_109",
+        "target": "ccp_95",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e32",
+        "source": "ccp_116.630",
+        "target": "ccp_1250.250",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e33",
+        "source": "ccp_116.630",
+        "target": "ccp_150",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e34",
+        "source": "ccp_116.630",
+        "target": "ccp_161",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e35",
+        "source": "ccp_116.630",
+        "target": "ccp_2034.010",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e36",
+        "source": "ccp_116.630",
+        "target": "ccp_2034.630",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e37",
+        "source": "ccp_116.630",
+        "target": "ccp_2035.060",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e38",
+        "source": "ccp_116.630",
+        "target": "ccp_30",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e39",
+        "source": "ccp_116.630",
+        "target": "ccp_340",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e40",
+        "source": "ccp_116.630",
+        "target": "ccp_405.8",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e41",
+        "source": "ccp_116.630",
+        "target": "ccp_418.11",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e42",
+        "source": "ccp_116.630",
+        "target": "ccp_762.090",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e43",
+        "source": "ccp_116.630",
+        "target": "ccp_80",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e44",
+        "source": "ccp_116.630",
+        "target": "ccp_834",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e45",
+        "source": "ccp_116.630",
+        "target": "ccp_95",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e46",
+        "source": "ccp_1250.250",
+        "target": "ccp_150",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e47",
+        "source": "ccp_1250.250",
+        "target": "ccp_161",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e48",
+        "source": "ccp_1250.250",
+        "target": "ccp_2034.010",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e49",
+        "source": "ccp_1250.250",
+        "target": "ccp_2034.630",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e50",
+        "source": "ccp_1250.250",
+        "target": "ccp_2035.060",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e51",
+        "source": "ccp_1250.250",
+        "target": "ccp_30",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e52",
+        "source": "ccp_1250.250",
+        "target": "ccp_340",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e53",
+        "source": "ccp_1250.250",
+        "target": "ccp_405.8",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e54",
+        "source": "ccp_1250.250",
+        "target": "ccp_418.11",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e55",
+        "source": "ccp_1250.250",
+        "target": "ccp_762.090",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e56",
+        "source": "ccp_1250.250",
+        "target": "ccp_80",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e57",
+        "source": "ccp_1250.250",
+        "target": "ccp_834",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e58",
+        "source": "ccp_1250.250",
+        "target": "ccp_95",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e59",
+        "source": "ccp_150",
+        "target": "ccp_161",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e60",
+        "source": "ccp_150",
+        "target": "ccp_2034.010",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e61",
+        "source": "ccp_150",
+        "target": "ccp_2034.630",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e62",
+        "source": "ccp_150",
+        "target": "ccp_2035.060",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e63",
+        "source": "ccp_150",
+        "target": "ccp_30",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e64",
+        "source": "ccp_150",
+        "target": "ccp_340",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e65",
+        "source": "ccp_150",
+        "target": "ccp_405.8",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e66",
+        "source": "ccp_150",
+        "target": "ccp_418.11",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e67",
+        "source": "ccp_150",
+        "target": "ccp_762.090",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e68",
+        "source": "ccp_150",
+        "target": "ccp_80",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e69",
+        "source": "ccp_150",
+        "target": "ccp_834",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e70",
+        "source": "ccp_150",
+        "target": "ccp_95",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e71",
+        "source": "ccp_161",
+        "target": "ccp_2034.010",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e72",
+        "source": "ccp_161",
+        "target": "ccp_2034.630",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e73",
+        "source": "ccp_161",
+        "target": "ccp_2035.060",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e74",
+        "source": "ccp_161",
+        "target": "ccp_30",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e75",
+        "source": "ccp_161",
+        "target": "ccp_340",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e76",
+        "source": "ccp_161",
+        "target": "ccp_405.8",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e77",
+        "source": "ccp_161",
+        "target": "ccp_418.11",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e78",
+        "source": "ccp_161",
+        "target": "ccp_762.090",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e79",
+        "source": "ccp_161",
+        "target": "ccp_80",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e80",
+        "source": "ccp_161",
+        "target": "ccp_834",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e81",
+        "source": "ccp_161",
+        "target": "ccp_95",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e82",
+        "source": "ccp_2034.010",
+        "target": "ccp_2034.630",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e83",
+        "source": "ccp_2034.010",
+        "target": "ccp_2035.060",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e84",
+        "source": "ccp_2034.010",
+        "target": "ccp_30",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e85",
+        "source": "ccp_2034.010",
+        "target": "ccp_340",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e86",
+        "source": "ccp_2034.010",
+        "target": "ccp_405.8",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e87",
+        "source": "ccp_2034.010",
+        "target": "ccp_418.11",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e88",
+        "source": "ccp_2034.010",
+        "target": "ccp_762.090",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e89",
+        "source": "ccp_2034.010",
+        "target": "ccp_80",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e90",
+        "source": "ccp_2034.010",
+        "target": "ccp_834",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e91",
+        "source": "ccp_2034.010",
+        "target": "ccp_95",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e92",
+        "source": "ccp_2034.630",
+        "target": "ccp_2035.060",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e93",
+        "source": "ccp_2034.630",
+        "target": "ccp_30",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e94",
+        "source": "ccp_2034.630",
+        "target": "ccp_340",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e95",
+        "source": "ccp_2034.630",
+        "target": "ccp_405.8",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e96",
+        "source": "ccp_2034.630",
+        "target": "ccp_418.11",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e97",
+        "source": "ccp_2034.630",
+        "target": "ccp_762.090",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e98",
+        "source": "ccp_2034.630",
+        "target": "ccp_80",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e99",
+        "source": "ccp_2034.630",
+        "target": "ccp_834",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e100",
+        "source": "ccp_2034.630",
+        "target": "ccp_95",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e101",
+        "source": "ccp_2035.060",
+        "target": "ccp_30",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e102",
+        "source": "ccp_2035.060",
+        "target": "ccp_340",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e103",
+        "source": "ccp_2035.060",
+        "target": "ccp_405.8",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e104",
+        "source": "ccp_2035.060",
+        "target": "ccp_418.11",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e105",
+        "source": "ccp_2035.060",
+        "target": "ccp_762.090",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e106",
+        "source": "ccp_2035.060",
+        "target": "ccp_80",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e107",
+        "source": "ccp_2035.060",
+        "target": "ccp_834",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e108",
+        "source": "ccp_2035.060",
+        "target": "ccp_95",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e109",
+        "source": "ccp_30",
+        "target": "ccp_340",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e110",
+        "source": "ccp_30",
+        "target": "ccp_405.8",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e111",
+        "source": "ccp_30",
+        "target": "ccp_418.11",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e112",
+        "source": "ccp_30",
+        "target": "ccp_762.090",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e113",
+        "source": "ccp_30",
+        "target": "ccp_80",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e114",
+        "source": "ccp_30",
+        "target": "ccp_834",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e115",
+        "source": "ccp_30",
+        "target": "ccp_95",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e116",
+        "source": "ccp_340",
+        "target": "ccp_405.8",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e117",
+        "source": "ccp_340",
+        "target": "ccp_418.11",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e118",
+        "source": "ccp_340",
+        "target": "ccp_762.090",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e119",
+        "source": "ccp_340",
+        "target": "ccp_80",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e120",
+        "source": "ccp_340",
+        "target": "ccp_834",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e121",
+        "source": "ccp_340",
+        "target": "ccp_95",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e122",
+        "source": "ccp_405.8",
+        "target": "ccp_418.11",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e123",
+        "source": "ccp_405.8",
+        "target": "ccp_762.090",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e124",
+        "source": "ccp_405.8",
+        "target": "ccp_80",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e125",
+        "source": "ccp_405.8",
+        "target": "ccp_834",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e126",
+        "source": "ccp_405.8",
+        "target": "ccp_95",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e127",
+        "source": "ccp_410.10",
+        "target": "ccp_410.42",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e128",
+        "source": "ccp_410.10",
+        "target": "ccp_410.70",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e129",
+        "source": "ccp_410.10",
+        "target": "ccp_411.35",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e130",
+        "source": "ccp_410.10",
+        "target": "ccp_412.30",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e131",
+        "source": "ccp_410.10",
+        "target": "ccp_412",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e132",
+        "source": "ccp_410.10",
+        "target": "ccp_413.40",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e133",
+        "source": "ccp_410.10",
+        "target": "ccp_414.10",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e134",
+        "source": "ccp_410.10",
+        "target": "ccp_415.95",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e135",
+        "source": "ccp_410.10",
+        "target": "ccp_416.90",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e136",
+        "source": "ccp_410.10",
+        "target": "ccp_417.40",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e137",
+        "source": "ccp_410.42",
+        "target": "ccp_410.70",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e138",
+        "source": "ccp_410.42",
+        "target": "ccp_411.35",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e139",
+        "source": "ccp_410.42",
+        "target": "ccp_412.30",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e140",
+        "source": "ccp_410.42",
+        "target": "ccp_412",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e141",
+        "source": "ccp_410.42",
+        "target": "ccp_413.40",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e142",
+        "source": "ccp_410.42",
+        "target": "ccp_414.10",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e143",
+        "source": "ccp_410.42",
+        "target": "ccp_415.95",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e144",
+        "source": "ccp_410.42",
+        "target": "ccp_416.90",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e145",
+        "source": "ccp_410.42",
+        "target": "ccp_417.40",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e146",
+        "source": "ccp_410.70",
+        "target": "ccp_411.35",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e147",
+        "source": "ccp_410.70",
+        "target": "ccp_412.30",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e148",
+        "source": "ccp_410.70",
+        "target": "ccp_412",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e149",
+        "source": "ccp_410.70",
+        "target": "ccp_413.40",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e150",
+        "source": "ccp_410.70",
+        "target": "ccp_414.10",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e151",
+        "source": "ccp_410.70",
+        "target": "ccp_415.95",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e152",
+        "source": "ccp_410.70",
+        "target": "ccp_416.90",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e153",
+        "source": "ccp_410.70",
+        "target": "ccp_417.40",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e154",
+        "source": "ccp_411.35",
+        "target": "ccp_412.30",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e155",
+        "source": "ccp_411.35",
+        "target": "ccp_412",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e156",
+        "source": "ccp_411.35",
+        "target": "ccp_413.40",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e157",
+        "source": "ccp_411.35",
+        "target": "ccp_414.10",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e158",
+        "source": "ccp_411.35",
+        "target": "ccp_415.95",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e159",
+        "source": "ccp_411.35",
+        "target": "ccp_416.90",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e160",
+        "source": "ccp_411.35",
+        "target": "ccp_417.40",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e161",
+        "source": "ccp_412.30",
+        "target": "ccp_412",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e162",
+        "source": "ccp_412.30",
+        "target": "ccp_413.40",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e163",
+        "source": "ccp_412.30",
+        "target": "ccp_414.10",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e164",
+        "source": "ccp_412.30",
+        "target": "ccp_415.95",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e165",
+        "source": "ccp_412.30",
+        "target": "ccp_416.90",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e166",
+        "source": "ccp_412.30",
+        "target": "ccp_417.40",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e167",
+        "source": "ccp_412",
+        "target": "ccp_413.40",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e168",
+        "source": "ccp_412",
+        "target": "ccp_414.10",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e169",
+        "source": "ccp_412",
+        "target": "ccp_415.95",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e170",
+        "source": "ccp_412",
+        "target": "ccp_416.90",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e171",
+        "source": "ccp_412",
+        "target": "ccp_417.40",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e172",
+        "source": "ccp_413.40",
+        "target": "ccp_414.10",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e173",
+        "source": "ccp_413.40",
+        "target": "ccp_415.95",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e174",
+        "source": "ccp_413.40",
+        "target": "ccp_416.90",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e175",
+        "source": "ccp_413.40",
+        "target": "ccp_417.40",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e176",
+        "source": "ccp_414.10",
+        "target": "ccp_415.95",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e177",
+        "source": "ccp_414.10",
+        "target": "ccp_416.90",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e178",
+        "source": "ccp_414.10",
+        "target": "ccp_417.40",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e179",
+        "source": "ccp_415.95",
+        "target": "ccp_416.90",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e180",
+        "source": "ccp_415.95",
+        "target": "ccp_417.40",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e181",
+        "source": "ccp_416.90",
+        "target": "ccp_417.40",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Jurisdiction & Service",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e182",
+        "source": "ccp_418.11",
+        "target": "ccp_762.090",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e183",
+        "source": "ccp_418.11",
+        "target": "ccp_80",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e184",
+        "source": "ccp_418.11",
+        "target": "ccp_834",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e185",
+        "source": "ccp_418.11",
+        "target": "ccp_95",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e186",
+        "source": "ccp_420",
+        "target": "ccp_421",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e187",
+        "source": "ccp_420",
+        "target": "ccp_422.40",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e188",
+        "source": "ccp_420",
+        "target": "ccp_425.55",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e189",
+        "source": "ccp_420",
+        "target": "ccp_426.70",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e190",
+        "source": "ccp_420",
+        "target": "ccp_427.10",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e191",
+        "source": "ccp_420",
+        "target": "ccp_428.80",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e192",
+        "source": "ccp_420",
+        "target": "ccp_429.30",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e193",
+        "source": "ccp_420",
+        "target": "ccp_430.90",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e194",
+        "source": "ccp_420",
+        "target": "ccp_430",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e195",
+        "source": "ccp_420",
+        "target": "ccp_431.70",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e196",
+        "source": "ccp_420",
+        "target": "ccp_432.10",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e197",
+        "source": "ccp_420",
+        "target": "ccp_432",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e198",
+        "source": "ccp_420",
+        "target": "ccp_437",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e199",
+        "source": "ccp_420",
+        "target": "ccp_439",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e200",
+        "source": "ccp_420",
+        "target": "ccp_440",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e201",
+        "source": "ccp_420",
+        "target": "ccp_446",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e202",
+        "source": "ccp_420",
+        "target": "ccp_450",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e203",
+        "source": "ccp_420",
+        "target": "ccp_465",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e204",
+        "source": "ccp_420",
+        "target": "ccp_470",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e205",
+        "source": "ccp_420",
+        "target": "ccp_475",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e206",
+        "source": "ccp_421",
+        "target": "ccp_422.40",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e207",
+        "source": "ccp_421",
+        "target": "ccp_425.55",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e208",
+        "source": "ccp_421",
+        "target": "ccp_426.70",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e209",
+        "source": "ccp_421",
+        "target": "ccp_427.10",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e210",
+        "source": "ccp_421",
+        "target": "ccp_428.80",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e211",
+        "source": "ccp_421",
+        "target": "ccp_429.30",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e212",
+        "source": "ccp_421",
+        "target": "ccp_430.90",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e213",
+        "source": "ccp_421",
+        "target": "ccp_430",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e214",
+        "source": "ccp_421",
+        "target": "ccp_431.70",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e215",
+        "source": "ccp_421",
+        "target": "ccp_432.10",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e216",
+        "source": "ccp_421",
+        "target": "ccp_432",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e217",
+        "source": "ccp_421",
+        "target": "ccp_437",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e218",
+        "source": "ccp_421",
+        "target": "ccp_439",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e219",
+        "source": "ccp_421",
+        "target": "ccp_440",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e220",
+        "source": "ccp_421",
+        "target": "ccp_446",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e221",
+        "source": "ccp_421",
+        "target": "ccp_450",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e222",
+        "source": "ccp_421",
+        "target": "ccp_465",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e223",
+        "source": "ccp_421",
+        "target": "ccp_470",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e224",
+        "source": "ccp_421",
+        "target": "ccp_475",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e225",
+        "source": "ccp_422.40",
+        "target": "ccp_425.55",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e226",
+        "source": "ccp_422.40",
+        "target": "ccp_426.70",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e227",
+        "source": "ccp_422.40",
+        "target": "ccp_427.10",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e228",
+        "source": "ccp_422.40",
+        "target": "ccp_428.80",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e229",
+        "source": "ccp_422.40",
+        "target": "ccp_429.30",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e230",
+        "source": "ccp_422.40",
+        "target": "ccp_430.90",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e231",
+        "source": "ccp_422.40",
+        "target": "ccp_430",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e232",
+        "source": "ccp_422.40",
+        "target": "ccp_431.70",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e233",
+        "source": "ccp_422.40",
+        "target": "ccp_432.10",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e234",
+        "source": "ccp_422.40",
+        "target": "ccp_432",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e235",
+        "source": "ccp_422.40",
+        "target": "ccp_437",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e236",
+        "source": "ccp_422.40",
+        "target": "ccp_439",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e237",
+        "source": "ccp_422.40",
+        "target": "ccp_440",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e238",
+        "source": "ccp_422.40",
+        "target": "ccp_446",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e239",
+        "source": "ccp_422.40",
+        "target": "ccp_450",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e240",
+        "source": "ccp_422.40",
+        "target": "ccp_465",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e241",
+        "source": "ccp_422.40",
+        "target": "ccp_470",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e242",
+        "source": "ccp_422.40",
+        "target": "ccp_475",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e243",
+        "source": "ccp_425.55",
+        "target": "ccp_426.70",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e244",
+        "source": "ccp_425.55",
+        "target": "ccp_427.10",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e245",
+        "source": "ccp_425.55",
+        "target": "ccp_428.80",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e246",
+        "source": "ccp_425.55",
+        "target": "ccp_429.30",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e247",
+        "source": "ccp_425.55",
+        "target": "ccp_430.90",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e248",
+        "source": "ccp_425.55",
+        "target": "ccp_430",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e249",
+        "source": "ccp_425.55",
+        "target": "ccp_431.70",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e250",
+        "source": "ccp_425.55",
+        "target": "ccp_432.10",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e251",
+        "source": "ccp_425.55",
+        "target": "ccp_432",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e252",
+        "source": "ccp_425.55",
+        "target": "ccp_437",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e253",
+        "source": "ccp_425.55",
+        "target": "ccp_439",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e254",
+        "source": "ccp_425.55",
+        "target": "ccp_440",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e255",
+        "source": "ccp_425.55",
+        "target": "ccp_446",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e256",
+        "source": "ccp_425.55",
+        "target": "ccp_450",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e257",
+        "source": "ccp_425.55",
+        "target": "ccp_465",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e258",
+        "source": "ccp_425.55",
+        "target": "ccp_470",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e259",
+        "source": "ccp_425.55",
+        "target": "ccp_475",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e260",
+        "source": "ccp_426.70",
+        "target": "ccp_427.10",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e261",
+        "source": "ccp_426.70",
+        "target": "ccp_428.80",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e262",
+        "source": "ccp_426.70",
+        "target": "ccp_429.30",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e263",
+        "source": "ccp_426.70",
+        "target": "ccp_430.90",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e264",
+        "source": "ccp_426.70",
+        "target": "ccp_430",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e265",
+        "source": "ccp_426.70",
+        "target": "ccp_431.70",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e266",
+        "source": "ccp_426.70",
+        "target": "ccp_432.10",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e267",
+        "source": "ccp_426.70",
+        "target": "ccp_432",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e268",
+        "source": "ccp_426.70",
+        "target": "ccp_437",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e269",
+        "source": "ccp_426.70",
+        "target": "ccp_439",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e270",
+        "source": "ccp_426.70",
+        "target": "ccp_440",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e271",
+        "source": "ccp_426.70",
+        "target": "ccp_446",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e272",
+        "source": "ccp_426.70",
+        "target": "ccp_450",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e273",
+        "source": "ccp_426.70",
+        "target": "ccp_465",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e274",
+        "source": "ccp_426.70",
+        "target": "ccp_470",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e275",
+        "source": "ccp_426.70",
+        "target": "ccp_475",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e276",
+        "source": "ccp_427.10",
+        "target": "ccp_428.80",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e277",
+        "source": "ccp_427.10",
+        "target": "ccp_429.30",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e278",
+        "source": "ccp_427.10",
+        "target": "ccp_430.90",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e279",
+        "source": "ccp_427.10",
+        "target": "ccp_430",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e280",
+        "source": "ccp_427.10",
+        "target": "ccp_431.70",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e281",
+        "source": "ccp_427.10",
+        "target": "ccp_432.10",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e282",
+        "source": "ccp_427.10",
+        "target": "ccp_432",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e283",
+        "source": "ccp_427.10",
+        "target": "ccp_437",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e284",
+        "source": "ccp_427.10",
+        "target": "ccp_439",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e285",
+        "source": "ccp_427.10",
+        "target": "ccp_440",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e286",
+        "source": "ccp_427.10",
+        "target": "ccp_446",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e287",
+        "source": "ccp_427.10",
+        "target": "ccp_450",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e288",
+        "source": "ccp_427.10",
+        "target": "ccp_465",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e289",
+        "source": "ccp_427.10",
+        "target": "ccp_470",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e290",
+        "source": "ccp_427.10",
+        "target": "ccp_475",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e291",
+        "source": "ccp_428.80",
+        "target": "ccp_429.30",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e292",
+        "source": "ccp_428.80",
+        "target": "ccp_430.90",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e293",
+        "source": "ccp_428.80",
+        "target": "ccp_430",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e294",
+        "source": "ccp_428.80",
+        "target": "ccp_431.70",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e295",
+        "source": "ccp_428.80",
+        "target": "ccp_432.10",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e296",
+        "source": "ccp_428.80",
+        "target": "ccp_432",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e297",
+        "source": "ccp_428.80",
+        "target": "ccp_437",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e298",
+        "source": "ccp_428.80",
+        "target": "ccp_439",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e299",
+        "source": "ccp_428.80",
+        "target": "ccp_440",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e300",
+        "source": "ccp_428.80",
+        "target": "ccp_446",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e301",
+        "source": "ccp_428.80",
+        "target": "ccp_450",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e302",
+        "source": "ccp_428.80",
+        "target": "ccp_465",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e303",
+        "source": "ccp_428.80",
+        "target": "ccp_470",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e304",
+        "source": "ccp_428.80",
+        "target": "ccp_475",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e305",
+        "source": "ccp_429.30",
+        "target": "ccp_430.90",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e306",
+        "source": "ccp_429.30",
+        "target": "ccp_430",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e307",
+        "source": "ccp_429.30",
+        "target": "ccp_431.70",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e308",
+        "source": "ccp_429.30",
+        "target": "ccp_432.10",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e309",
+        "source": "ccp_429.30",
+        "target": "ccp_432",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e310",
+        "source": "ccp_429.30",
+        "target": "ccp_437",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e311",
+        "source": "ccp_429.30",
+        "target": "ccp_439",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e312",
+        "source": "ccp_429.30",
+        "target": "ccp_440",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e313",
+        "source": "ccp_429.30",
+        "target": "ccp_446",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e314",
+        "source": "ccp_429.30",
+        "target": "ccp_450",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e315",
+        "source": "ccp_429.30",
+        "target": "ccp_465",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e316",
+        "source": "ccp_429.30",
+        "target": "ccp_470",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e317",
+        "source": "ccp_429.30",
+        "target": "ccp_475",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e318",
+        "source": "ccp_430.90",
+        "target": "ccp_430",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e319",
+        "source": "ccp_430.90",
+        "target": "ccp_431.70",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e320",
+        "source": "ccp_430.90",
+        "target": "ccp_432.10",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e321",
+        "source": "ccp_430.90",
+        "target": "ccp_432",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e322",
+        "source": "ccp_430.90",
+        "target": "ccp_437",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e323",
+        "source": "ccp_430.90",
+        "target": "ccp_439",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e324",
+        "source": "ccp_430.90",
+        "target": "ccp_440",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e325",
+        "source": "ccp_430.90",
+        "target": "ccp_446",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e326",
+        "source": "ccp_430.90",
+        "target": "ccp_450",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e327",
+        "source": "ccp_430.90",
+        "target": "ccp_465",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e328",
+        "source": "ccp_430.90",
+        "target": "ccp_470",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e329",
+        "source": "ccp_430.90",
+        "target": "ccp_475",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e330",
+        "source": "ccp_430",
+        "target": "ccp_431.70",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e331",
+        "source": "ccp_430",
+        "target": "ccp_432.10",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e332",
+        "source": "ccp_430",
+        "target": "ccp_432",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e333",
+        "source": "ccp_430",
+        "target": "ccp_437",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e334",
+        "source": "ccp_430",
+        "target": "ccp_439",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e335",
+        "source": "ccp_430",
+        "target": "ccp_440",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e336",
+        "source": "ccp_430",
+        "target": "ccp_446",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e337",
+        "source": "ccp_430",
+        "target": "ccp_450",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e338",
+        "source": "ccp_430",
+        "target": "ccp_465",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e339",
+        "source": "ccp_430",
+        "target": "ccp_470",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e340",
+        "source": "ccp_430",
+        "target": "ccp_475",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e341",
+        "source": "ccp_431.70",
+        "target": "ccp_432.10",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e342",
+        "source": "ccp_431.70",
+        "target": "ccp_432",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e343",
+        "source": "ccp_431.70",
+        "target": "ccp_437",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e344",
+        "source": "ccp_431.70",
+        "target": "ccp_439",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e345",
+        "source": "ccp_431.70",
+        "target": "ccp_440",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e346",
+        "source": "ccp_431.70",
+        "target": "ccp_446",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e347",
+        "source": "ccp_431.70",
+        "target": "ccp_450",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e348",
+        "source": "ccp_431.70",
+        "target": "ccp_465",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e349",
+        "source": "ccp_431.70",
+        "target": "ccp_470",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e350",
+        "source": "ccp_431.70",
+        "target": "ccp_475",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e351",
+        "source": "ccp_432.10",
+        "target": "ccp_432",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e352",
+        "source": "ccp_432.10",
+        "target": "ccp_437",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e353",
+        "source": "ccp_432.10",
+        "target": "ccp_439",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e354",
+        "source": "ccp_432.10",
+        "target": "ccp_440",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e355",
+        "source": "ccp_432.10",
+        "target": "ccp_446",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e356",
+        "source": "ccp_432.10",
+        "target": "ccp_450",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e357",
+        "source": "ccp_432.10",
+        "target": "ccp_465",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e358",
+        "source": "ccp_432.10",
+        "target": "ccp_470",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e359",
+        "source": "ccp_432.10",
+        "target": "ccp_475",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e360",
+        "source": "ccp_432",
+        "target": "ccp_437",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e361",
+        "source": "ccp_432",
+        "target": "ccp_439",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e362",
+        "source": "ccp_432",
+        "target": "ccp_440",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e363",
+        "source": "ccp_432",
+        "target": "ccp_446",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e364",
+        "source": "ccp_432",
+        "target": "ccp_450",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e365",
+        "source": "ccp_432",
+        "target": "ccp_465",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e366",
+        "source": "ccp_432",
+        "target": "ccp_470",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e367",
+        "source": "ccp_432",
+        "target": "ccp_475",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e368",
+        "source": "ccp_437",
+        "target": "ccp_439",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e369",
+        "source": "ccp_437",
+        "target": "ccp_440",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e370",
+        "source": "ccp_437",
+        "target": "ccp_446",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e371",
+        "source": "ccp_437",
+        "target": "ccp_450",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e372",
+        "source": "ccp_437",
+        "target": "ccp_465",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e373",
+        "source": "ccp_437",
+        "target": "ccp_470",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e374",
+        "source": "ccp_437",
+        "target": "ccp_475",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e375",
+        "source": "ccp_439",
+        "target": "ccp_440",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e376",
+        "source": "ccp_439",
+        "target": "ccp_446",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e377",
+        "source": "ccp_439",
+        "target": "ccp_450",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e378",
+        "source": "ccp_439",
+        "target": "ccp_465",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e379",
+        "source": "ccp_439",
+        "target": "ccp_470",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e380",
+        "source": "ccp_439",
+        "target": "ccp_475",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e381",
+        "source": "ccp_440",
+        "target": "ccp_446",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e382",
+        "source": "ccp_440",
+        "target": "ccp_450",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e383",
+        "source": "ccp_440",
+        "target": "ccp_465",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e384",
+        "source": "ccp_440",
+        "target": "ccp_470",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e385",
+        "source": "ccp_440",
+        "target": "ccp_475",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e386",
+        "source": "ccp_446",
+        "target": "ccp_450",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e387",
+        "source": "ccp_446",
+        "target": "ccp_465",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e388",
+        "source": "ccp_446",
+        "target": "ccp_470",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e389",
+        "source": "ccp_446",
+        "target": "ccp_475",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e390",
+        "source": "ccp_450",
+        "target": "ccp_465",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e391",
+        "source": "ccp_450",
+        "target": "ccp_470",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e392",
+        "source": "ccp_450",
+        "target": "ccp_475",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e393",
+        "source": "ccp_465",
+        "target": "ccp_470",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e394",
+        "source": "ccp_465",
+        "target": "ccp_475",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e395",
+        "source": "ccp_470",
+        "target": "ccp_475",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Pleadings",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e396",
+        "source": "ccp_703.150",
+        "target": "ccp_706.109",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: Judgment Enforcement",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e397",
+        "source": "ccp_762.090",
+        "target": "ccp_80",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e398",
+        "source": "ccp_762.090",
+        "target": "ccp_834",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e399",
+        "source": "ccp_762.090",
+        "target": "ccp_95",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e400",
+        "source": "ccp_80",
+        "target": "ccp_834",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e401",
+        "source": "ccp_80",
+        "target": "ccp_95",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "ccp_e402",
+        "source": "ccp_834",
+        "target": "ccp_95",
+        "type": "category_similarity",
+        "weight": 2,
+        "label": "Similar Category",
+        "description": "Both sections belong to category: General Procedures",
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "edge_ccp_020_crc_2_100",
+        "source": "ccp_020",
+        "target": "crc_2_100",
+        "label": "implemented by",
+        "weight": 9,
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "edge_ccp_1008_crc_3_1350",
+        "source": "ccp_1008",
+        "target": "crc_3_1350",
+        "label": "procedure defined by",
+        "weight": 8,
+        "color": "#E74C3C"
+      }
+    },
+    {
+      "data": {
+        "id": "edge_crc_2_100_county_general_1",
+        "source": "crc_2_100",
+        "target": "county_general_1",
+        "label": "local requirements",
+        "weight": 9,
+        "color": "#3498DB"
+      }
+    },
+    {
+      "data": {
+        "id": "edge_crc_3_1345_county_discovery_1",
+        "source": "crc_3_1345",
+        "target": "county_discovery_1",
+        "label": "local discovery rules",
+        "weight": 8,
+        "color": "#3498DB"
+      }
+    },
+    {
+      "data": {
+        "id": "edge_judge_johnson_dept_dept_1",
+        "source": "judge_johnson",
+        "target": "dept_dept_1",
+        "label": "presides in",
+        "weight": 8,
+        "color": "#F39C12"
+      }
+    },
+    {
+      "data": {
+        "id": "edge_judge_chen_dept_dept_complex",
+        "source": "judge_chen",
+        "target": "dept_dept_complex",
+        "label": "presides in",
+        "weight": 8,
+        "color": "#F39C12"
+      }
+    },
+    {
+      "data": {
+        "id": "edge_dept_dept_complex_county_complex_1",
+        "source": "dept_dept_complex",
+        "target": "county_complex_1",
+        "label": "follows",
+        "weight": 9,
+        "color": "#1ABC9C"
+      }
+    }
+  ],
+  "generated_at": "2025-06-23T17:01:52.332Z",
+  "statistics": {
+    "total_nodes": 70,
+    "total_edges": 410,
+    "ccp": 57,
+    "crc": 4,
+    "county": 4,
+    "judges": 3,
+    "departments": 2,
+    "procedures": 0
+  },
+  "metadata": {
+    "description": "Unified California Legal Knowledge Graph",
+    "sources": [
+      "CCP",
+      "CRC",
+      "Santa Clara County"
+    ],
+    "version": "1.0.0"
+  }
+}

@@ -3,817 +3,1113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>California Court Filing Requirements Checklist - Santa Clara County Superior Court</title>
+    <title>California Court Filing Requirements - Enhanced Guide</title>
     <style>
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
-        
+
         body {
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: Arial, sans-serif;
             line-height: 1.6;
             color: #333;
-            background-color: #f9f9f9;
-            margin: 0;
-            padding: 20px;
+            background-color: #f8f9fa;
+            overflow-x: hidden;
         }
-        
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 20px;
             background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
         }
-        
+
         .header {
             text-align: center;
             margin-bottom: 30px;
-            border-bottom: 3px solid #2c5aa0;
-            padding-bottom: 20px;
+            padding: 20px;
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            border-radius: 10px;
         }
-        
+
         .header h1 {
-            color: #2c5aa0;
-            font-size: 2.2em;
+            font-size: 2.5em;
             margin-bottom: 10px;
             word-wrap: break-word;
         }
-        
-        .header .subtitle {
-            color: #666;
-            font-size: 1.1em;
-            margin-bottom: 5px;
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
         }
-        
-        .generated-info {
-            color: #888;
-            font-size: 0.9em;
-            margin-top: 10px;
-        }
-        
+
         .toc {
-            background: #f5f7fa;
-            border: 1px solid #ddd;
-            border-radius: 6px;
+            background: #f8f9fa;
             padding: 20px;
+            border-radius: 8px;
             margin-bottom: 30px;
+            border-left: 4px solid #3498db;
         }
-        
+
         .toc h2 {
-            color: #2c5aa0;
+            color: #2c3e50;
             margin-bottom: 15px;
-            font-size: 1.4em;
         }
-        
+
         .toc ul {
             list-style: none;
-            columns: 2;
-            column-gap: 30px;
+            padding: 0;
         }
-        
+
         .toc li {
             margin-bottom: 8px;
-            break-inside: avoid;
         }
-        
+
         .toc a {
-            color: #2c5aa0;
+            color: #3498db;
             text-decoration: none;
+            font-weight: 500;
             display: block;
-            padding: 5px 0;
-            word-wrap: break-word;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
         }
-        
+
         .toc a:hover {
-            text-decoration: underline;
-            background: rgba(44, 90, 160, 0.1);
-            border-radius: 3px;
-            padding-left: 5px;
+            background-color: #e3f2fd;
         }
-        
+
         .section {
             margin-bottom: 40px;
-            page-break-inside: avoid;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
         }
-        
+
         .section h2 {
-            color: #2c5aa0;
-            font-size: 1.6em;
+            color: #2c3e50;
+            font-size: 1.8em;
             margin-bottom: 20px;
             padding-bottom: 10px;
-            border-bottom: 2px solid #e0e0e0;
-            word-wrap: break-word;
+            border-bottom: 2px solid #3498db;
         }
-        
+
         .section h3 {
-            color: #444;
-            font-size: 1.3em;
+            color: #34495e;
+            font-size: 1.4em;
             margin: 20px 0 15px 0;
-            word-wrap: break-word;
         }
-        
+
         .section h4 {
-            color: #555;
-            font-size: 1.1em;
+            color: #2c3e50;
+            font-size: 1.2em;
             margin: 15px 0 10px 0;
-            font-weight: bold;
-            word-wrap: break-word;
         }
-        
-        .deadline-list {
-            background: #fff3cd;
-            border: 1px solid #ffc107;
-            border-radius: 6px;
-            padding: 20px;
-            margin: 15px 0;
-        }
-        
-        .deadline-item {
-            margin-bottom: 12px;
-            padding: 8px 0;
-            border-bottom: 1px solid #f0f0f0;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-        }
-        
-        .deadline-item:last-child {
-            border-bottom: none;
-        }
-        
+
         .checklist {
-            background: #f8f9fa;
-            border: 1px solid #e9ecef;
-            border-radius: 6px;
-            padding: 20px;
-            margin: 15px 0;
+            list-style: none;
+            padding: 0;
         }
-        
-        .checklist-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 12px;
+
+        .checklist li {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            position: relative;
+            padding-left: 40px;
             word-wrap: break-word;
             overflow-wrap: break-word;
         }
-        
-        .checklist-item input[type="checkbox"] {
-            margin-right: 12px;
-            margin-top: 3px;
-            min-width: 16px;
-            transform: scale(1.2);
-        }
-        
-        .checklist-item label {
-            flex: 1;
+
+        .checkbox {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
             cursor: pointer;
+            accent-color: #3498db;
+        }
+
+        .text-content {
             word-wrap: break-word;
             overflow-wrap: break-word;
             hyphens: auto;
         }
-        
+
         .cross-ref {
-            color: #007bff;
+            color: #666;
             font-style: italic;
             font-size: 0.9em;
-            display: block;
-            margin-top: 4px;
-            word-wrap: break-word;
+            margin-top: 5px;
+            padding: 5px 10px;
+            background: #e8f4fd;
+            border-radius: 4px;
+            border-left: 3px solid #3498db;
+        }
+
+        .local-rule {
+            background: #fff3cd;
+            border-left: 3px solid #ffc107;
+            padding: 8px 12px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+
+        .efiling-info {
+            background: #d1ecf1;
+            border-left: 3px solid #17a2b8;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .deadline-box {
+            background: #f8d7da;
+            border-left: 3px solid #dc3545;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .contact-info {
+            background: #d4edda;
+            border-left: 3px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .url-break {
+            word-break: break-all;
             overflow-wrap: break-word;
         }
-        
-        .local-rule {
-            background: #e7f3ff;
-            border-left: 4px solid #0066cc;
-            padding: 10px 15px;
-            margin: 10px 0;
-            border-radius: 0 4px 4px 0;
-        }
-        
-        .local-rule .rule-number {
-            font-weight: bold;
+
+        .rule-link {
             color: #0066cc;
-        }
-        
-        .e-filing-box {
-            background: #e8f5e8;
-            border: 1px solid #28a745;
-            border-radius: 6px;
-            padding: 20px;
-            margin: 15px 0;
-        }
-        
-        .e-filing-box h4 {
-            color: #155724;
-            margin-bottom: 15px;
-        }
-        
-        .platform-info {
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 15px;
-            margin: 10px 0;
-        }
-        
-        .url-link {
-            color: #007bff;
-            word-break: break-all;
             text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted #0066cc;
+            transition: all 0.3s ease;
         }
-        
-        .url-link:hover {
+
+        .rule-link:hover {
+            color: #004499;
+            text-decoration: underline;
+            background-color: #f0f8ff;
+            padding: 1px 3px;
+            border-radius: 3px;
+        }
+
+        .rule-link:visited {
+            color: #663399;
+        }
+
+        .external-link {
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: normal;
+            font-size: 0.9em;
+        }
+
+        .external-link:hover {
             text-decoration: underline;
         }
-        
-        .important-note {
-            background: #f8d7da;
-            border: 1px solid #f5c6cb;
-            color: #721c24;
-            padding: 15px;
-            border-radius: 4px;
-            margin: 15px 0;
+
+        .external-link::after {
+            content: " 🔗";
+            font-size: 0.8em;
         }
-        
-        .success-note {
-            background: #d4edda;
-            border: 1px solid #c3e6cb;
-            color: #155724;
-            padding: 15px;
+
+        .rule-box {
+            background: #f8f9ff;
+            border: 1px solid #ddd;
+            border-left: 3px solid #0066cc;
+            padding: 10px;
+            margin: 10px 0;
             border-radius: 4px;
-            margin: 15px 0;
         }
-        
+
+        .rule-box h5 {
+            margin: 0 0 5px 0;
+            color: #0066cc;
+            font-size: 1em;
+        }
+
+        .responsive-table {
+            width: 100%;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            word-wrap: break-word;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .print-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            z-index: 1000;
+        }
+
+        .print-btn:hover {
+            background: #2980b9;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+                margin: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .section {
+                padding: 15px;
+            }
+            
+            .print-btn {
+                position: static;
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+
         @media print {
-            body {
-                background: white;
-                padding: 0;
+            .print-btn {
+                display: none;
             }
             
             .container {
                 box-shadow: none;
-                border: none;
                 max-width: none;
-                padding: 20px;
             }
             
             .section {
                 page-break-inside: avoid;
+                break-inside: avoid;
             }
-            
-            .toc ul {
-                columns: 1;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-            
-            .container {
-                padding: 20px;
-            }
-            
-            .header h1 {
-                font-size: 1.8em;
-            }
-            
-            .toc ul {
-                columns: 1;
-            }
-            
-            .checklist-item {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .checklist-item input[type="checkbox"] {
-                margin-bottom: 5px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .header h1 {
-                font-size: 1.5em;
-                word-break: break-word;
-            }
-            
-            .section h2 {
-                font-size: 1.3em;
-            }
-            
-            .toc, .checklist, .deadline-list, .e-filing-box {
-                padding: 15px;
-            }
-        }
-        
-        /* Text wrapping and overflow handling */
-        p, li, div, span {
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            hyphens: auto;
-        }
-        
-        /* Ensure long content breaks properly */
-        .long-content {
-            word-break: break-word;
-            overflow-wrap: break-word;
-            hyphens: auto;
         }
     </style>
 </head>
 <body>
+    <button class="print-btn" onclick="window.print()">🖨️ Print</button>
+    
     <div class="container">
         <div class="header">
-            <h1>California Court Filing Requirements Checklist</h1>
-            <div class="subtitle">Superior Court of California, County of Santa Clara</div>
-            <div class="subtitle">Complex Civil Litigation - Department 7</div>
-            <div class="generated-info">
-                Generated: <span id="current-date"></span> | 
-                Enhanced with Cross-References & E-Filing Details
-            </div>
+            <h1>California Court Filing Requirements</h1>
+            <p>Comprehensive Guide for Santa Clara County Superior Court</p>
+            <p>Updated: <span id="current-date"></span></p>
         </div>
 
-        <!-- Table of Contents -->
         <div class="toc">
             <h2>📋 Table of Contents</h2>
             <ul>
+                <li><a href="#executive-summary">Executive Summary</a></li>
+                <li><a href="#legal-resources">📚 Legal Resources & Rule Links</a></li>
                 <li><a href="#critical-deadlines">Critical Deadlines</a></li>
-                <li><a href="#judge-adams">Judge Adams Requirements</a></li>
-                <li><a href="#required-documents">Required Documents</a></li>
+                <li><a href="#judge-adams">Judge Charles F. Adams - Department 7</a></li>
+                <li><a href="#required-documents">Required Documents Checklist</a></li>
                 <li><a href="#procedural-timeline">Procedural Timeline</a></li>
-                <li><a href="#e-filing">Electronic Filing Requirements</a></li>
-                <li><a href="#formatting">Formatting Requirements</a></li>
-                <li><a href="#local-rules">Santa Clara Local Rules</a></li>
-                <li><a href="#cross-references">Cross-References Guide</a></li>
-                <li><a href="#contact-info">Contact Information</a></li>
+                <li><a href="#formatting-requirements">Formatting Requirements</a></li>
+                <li><a href="#efiling-system">Electronic Filing System</a></li>
+                <li><a href="#local-rules">Santa Clara County Local Rules</a></li>
+                <li><a href="#cross-references">Cross-Reference Guide</a></li>
+                <li><a href="#contact-information">Court Contact Information</a></li>
             </ul>
         </div>
 
-        <!-- Critical Deadlines Section -->
-        <div class="section" id="critical-deadlines">
-            <h2>⏰ Critical Deadlines</h2>
-            <div class="deadline-list">
-                <div class="deadline-item">
-                    <strong>1. 81 days notice required for motion and supporting papers (CCP 437c as amended)</strong>
-                    <div class="cross-ref">(See CRC 3.1350 - Motion for Summary Judgment Format Requirements)</div>
-                </div>
-                <div class="deadline-item">
-                    <strong>2. Follow CCP 437c timing</strong>
-                    <div class="cross-ref">(See CCP 437c - Summary Judgment Procedures)</div>
-                </div>
-                <div class="deadline-item">
-                    <strong>3. Case-specific scheduling</strong>
-                    <div class="cross-ref">(See SCSC Local Rule 3.10 - Case Management)</div>
-                </div>
-                <div class="deadline-item">
-                    <strong>4. Law & Motion: Thursday 1:30 p.m. | Case Management: Thursday 2:30 p.m. | Pre-trial Conference: 10-15 days before trial</strong>
-                    <div class="cross-ref">(See SCSC Local Rule 7.1 - Motion Calendar)</div>
-                </div>
-                <div class="deadline-item">
-                    <strong>5. Case Management: First conference 120 days after filing, then every 120 days | Pre-trial Conference: 10-15 days before trial</strong>
-                    <div class="cross-ref">(See CCP 583.310 - Case Management Requirements)</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Judge Adams Section -->
-        <div class="section" id="judge-adams">
-            <h2>⚖️ Judge Adams - Judge Charles F. Adams - Dept. 7 Complex Civil</h2>
-            <div class="local-rule">
-                <div class="rule-number">Category:</div>
-                Official Judicial Guidelines
-            </div>
+        <div id="executive-summary" class="section">
+            <h2>📋 Executive Summary</h2>
+            <p class="text-content">This comprehensive guide provides actionable filing requirements for California Superior Court proceedings, with specific emphasis on Santa Clara County procedures and Judge Charles F. Adams' Department 7 Complex Civil Division. Each requirement includes specific rule citations, cross-references, and practical implementation guidance.</p>
             
-            <h3>Required Actions:</h3>
-            <div class="checklist">
-                <div class="checklist-item">
-                    <input type="checkbox" id="mandatory-service">
-                    <label for="mandatory-service">
-                        <strong>MANDATORY:</strong> Plaintiff must serve Complex Civil Guidelines with summons and complaint
-                        <div class="cross-ref">(See CCP 412.20 - Service Requirements & SCSC Local Rule 2.1 - Complex Civil Guidelines)</div>
-                    </label>
-                </div>
-                
-                <div class="checklist-item">
-                    <input type="checkbox" id="joint-cms">
-                    <label for="joint-cms">
-                        Joint case management statements required (Form CM-110 NOT acceptable for complex cases)
-                        <div class="cross-ref">(See CRC 3.724 - Case Management Statements & SCSC Local Rule 3.11 - Complex Civil CMS)</div>
-                    </label>
-                </div>
-                
-                <div class="checklist-item">
-                    <input type="checkbox" id="e-filing-mandatory">
-                    <label for="e-filing-mandatory">
-                        Electronic filing mandatory for all represented parties in complex cases
-                        <div class="cross-ref">(See CRC 2.253 - Electronic Filing Requirements & SCSC Local Rule 2.3 - E-Filing Mandate)</div>
-                    </label>
-                </div>
-                
-                <div class="checklist-item">
-                    <input type="checkbox" id="hearing-dates">
-                    <label for="hearing-dates">
-                        Must clear hearing dates with opposing parties BEFORE contacting Complex Litigation Clerk
-                        <div class="cross-ref">(See SCSC Local Rule 7.2 - Hearing Date Coordination)</div>
-                    </label>
-                </div>
-                
-                <div class="checklist-item">
-                    <input type="checkbox" id="tentative-rulings">
-                    <label for="tentative-rulings">
-                        Tentative rulings posted online by 2:00 p.m. day before hearing
-                        <div class="cross-ref">(See SCSC Local Rule 7.3 - Tentative Ruling Procedures)</div>
-                    </label>
-                </div>
-                
-                <div class="checklist-item">
-                    <input type="checkbox" id="objections">
-                    <label for="objections">
-                        Objections to tentative rulings must be filed by 4:00 p.m. day before hearing or ruling becomes final
-                        <div class="cross-ref">(See CRC 3.1308 - Tentative Ruling Procedures)</div>
-                    </label>
-                </div>
-                
-                <div class="checklist-item">
-                    <input type="checkbox" id="ex-parte">
-                    <label for="ex-parte">
-                        Ex parte applications discouraged except unusual situations - advance reservation required
-                        <div class="cross-ref">(See CRC 3.1202 - Ex Parte Applications & SCSC Local Rule 5.1 - Ex Parte Procedures)</div>
-                    </label>
-                </div>
-                
-                <div class="checklist-item">
-                    <input type="checkbox" id="discovery-conference">
-                    <label for="discovery-conference">
-                        Discovery motions require Informal Discovery Conference (IDC) before filing
-                        <div class="cross-ref">(See CCP 2016.080 - Meet and Confer Requirements & SCSC Local Rule 8.1 - IDC Procedures)</div>
-                    </label>
-                </div>
-                
-                <div class="checklist-item">
-                    <input type="checkbox" id="meet-confer">
-                    <label for="meet-confer">
-                        Must actually meet and confer (in-person/phone/video) - not just letters
-                        <div class="cross-ref">(See CCP 2016.040 - Meet and Confer Definition)</div>
-                    </label>
-                </div>
-                
-                <div class="checklist-item">
-                    <input type="checkbox" id="cms-schedule">
-                    <label for="cms-schedule">
-                        Case management conferences every 120 days at 2:30 p.m. Thursday
-                        <div class="cross-ref">(See CCP 583.310 - Case Management Schedule)</div>
-                    </label>
-                </div>
-                
-                <div class="checklist-item">
-                    <input type="checkbox" id="law-motion">
-                    <label for="law-motion">
-                        Law and motion hearings at 1:30 p.m. Thursday
-                        <div class="cross-ref">(See SCSC Local Rule 7.1 - Motion Calendar)</div>
-                    </label>
-                </div>
-                
-                <div class="checklist-item">
-                    <input type="checkbox" id="continuances">
-                    <label for="continuances">
-                        Continuances discouraged and may be denied even if parties agree
-                        <div class="cross-ref">(See CRC 3.1332 - Continuance Standards)</div>
-                    </label>
-                </div>
-                
-                <div class="checklist-item">
-                    <input type="checkbox" id="settlement-notice">
-                    <label for="settlement-notice">
-                        Must notify court immediately if case settles
-                        <div class="cross-ref">(See CCP 664.6 - Settlement Agreements)</div>
-                    </label>
-                </div>
-                
-                <div class="checklist-item">
-                    <input type="checkbox" id="civility">
-                    <label for="civility">
-                        Formality, civility and proper decorum required at all times
-                        <div class="cross-ref">(See California Attorney Guidelines of Civility and Professionalism)</div>
-                    </label>
-                </div>
-                
-                <div class="checklist-item">
-                    <input type="checkbox" id="electronic-devices">
-                    <label for="electronic-devices">
-                        All electronic devices must be turned OFF in courtroom
-                        <div class="cross-ref">(See SCSC Local Rule 1.9 - Courtroom Technology)</div>
-                    </label>
-                </div>
-                
-                <div class="checklist-item">
-                    <input type="checkbox" id="standing">
-                    <label for="standing">
-                        Must stand when objecting or addressing the Court
-                        <div class="cross-ref">(See California Rules of Professional Conduct - Courtroom Decorum)</div>
-                    </label>
-                </div>
-                
-                <div class="checklist-item">
-                    <input type="checkbox" id="trial-counsel">
-                    <label for="trial-counsel">
-                        Trial counsel must be in courtroom 30 minutes before each morning session
-                        <div class="cross-ref">(See SCSC Local Rule 10.1 - Trial Procedures)</div>
-                    </label>
-                </div>
-                
-                <div class="checklist-item">
-                    <input type="checkbox" id="witnesses">
-                    <label for="witnesses">
-                        Witnesses must be ready through 4:30 p.m. or may be deemed to have rested
-                        <div class="cross-ref">(See CCP 2025.470 - Witness Availability)</div>
-                    </label>
-                </div>
+            <div class="efiling-info">
+                <h4>🌐 E-Filing Platform Information</h4>
+                <p><strong>System:</strong> Tyler Technologies Odyssey File & Serve</p>
+                <p><strong>Login URL:</strong> <span class="url-break">https://odysseyfileandserve.tylertech.cloud</span></p>
+                <p><strong>System Hours:</strong> Available 24/7 (except scheduled maintenance)</p>
+                <p><strong>Technical Requirements:</strong> PDF format, maximum 25MB file size per document</p>
+                <p><strong>Support:</strong> E-filing technical support: (408) 882-2900</p>
             </div>
         </div>
 
-        <!-- Required Documents Section -->
-        <div class="section" id="required-documents">
+        <div id="legal-resources" class="section">
+            <h2>📚 Legal Resources & Rule Links</h2>
+            <p class="text-content">Click on any rule reference below to access the full text of the rule from official sources.</p>
+            
+            <h3>🏛️ California Code of Civil Procedure (CCP)</h3>
+            <div class="rule-box">
+                <h5>Summary Judgment & Motion Practice</h5>
+                <p><a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=437c&lawCode=CCP" target="_blank" class="rule-link">CCP § 437c</a> - Summary Judgment Procedures <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=437c&lawCode=CCP" target="_blank" class="external-link">View Full Text</a></p>
+                <p><a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=1005&lawCode=CCP" target="_blank" class="rule-link">CCP § 1005</a> - Notice of Motion Requirements <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=1005&lawCode=CCP" target="_blank" class="external-link">View Full Text</a></p>
+                <p><a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=1013&lawCode=CCP" target="_blank" class="rule-link">CCP § 1013</a> - Service by Mail <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=1013&lawCode=CCP" target="_blank" class="external-link">View Full Text</a></p>
+                <p><a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=1019.5&lawCode=CCP" target="_blank" class="rule-link">CCP § 1019.5</a> - Tentative Rulings <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=1019.5&lawCode=CCP" target="_blank" class="external-link">View Full Text</a></p>
+            </div>
+
+            <div class="rule-box">
+                <h5>Case Management & Discovery</h5>
+                <p><a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=594&lawCode=CCP" target="_blank" class="rule-link">CCP § 594</a> - Case Management Conferences <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=594&lawCode=CCP" target="_blank" class="external-link">View Full Text</a></p>
+                <p><a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=2023.010&lawCode=CCP" target="_blank" class="rule-link">CCP § 2023.010</a> - Discovery Sanctions <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=2023.010&lawCode=CCP" target="_blank" class="external-link">View Full Text</a></p>
+                <p><a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=2016.040&lawCode=CCP" target="_blank" class="rule-link">CCP § 2016.040</a> - Meet and Confer Requirements <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=2016.040&lawCode=CCP" target="_blank" class="external-link">View Full Text</a></p>
+                <p><a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=2030.410&lawCode=CCP" target="_blank" class="rule-link">CCP § 2030.410</a> - Interrogatory Responses <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=2030.410&lawCode=CCP" target="_blank" class="external-link">View Full Text</a></p>
+            </div>
+
+            <div class="rule-box">
+                <h5>Service & Electronic Filing</h5>
+                <p><a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=412.20&lawCode=CCP" target="_blank" class="rule-link">CCP § 412.20</a> - Service of Summons <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=412.20&lawCode=CCP" target="_blank" class="external-link">View Full Text</a></p>
+                <p><a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=1010.6&lawCode=CCP" target="_blank" class="rule-link">CCP § 1010.6</a> - Electronic Service <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=1010.6&lawCode=CCP" target="_blank" class="external-link">View Full Text</a></p>
+                <p><a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=2015.5&lawCode=CCP" target="_blank" class="rule-link">CCP § 2015.5</a> - Declarations Under Penalty of Perjury <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=2015.5&lawCode=CCP" target="_blank" class="external-link">View Full Text</a></p>
+            </div>
+
+            <h3>⚖️ California Rules of Court (CRC)</h3>
+            <div class="rule-box">
+                <h5>Document Formatting & Filing</h5>
+                <p><a href="https://www.courts.ca.gov/cms/rules/index.cfm?title=two&linkid=rule2_104" target="_blank" class="rule-link">CRC 2.104</a> - Format of Documents <a href="https://www.courts.ca.gov/cms/rules/index.cfm?title=two&linkid=rule2_104" target="_blank" class="external-link">View Full Text</a></p>
+                <p><a href="https://www.courts.ca.gov/cms/rules/index.cfm?title=two&linkid=rule2_111" target="_blank" class="rule-link">CRC 2.111</a> - Pleading Format <a href="https://www.courts.ca.gov/cms/rules/index.cfm?title=two&linkid=rule2_111" target="_blank" class="external-link">View Full Text</a></p>
+                <p><a href="https://www.courts.ca.gov/cms/rules/index.cfm?title=two&linkid=rule2_118" target="_blank" class="rule-link">CRC 2.118</a> - Paper Filing Requirements <a href="https://www.courts.ca.gov/cms/rules/index.cfm?title=two&linkid=rule2_118" target="_blank" class="external-link">View Full Text</a></p>
+                <p><a href="https://www.courts.ca.gov/cms/rules/index.cfm?title=two&linkid=rule2_253" target="_blank" class="rule-link">CRC 2.253</a> - Electronic Filing <a href="https://www.courts.ca.gov/cms/rules/index.cfm?title=two&linkid=rule2_253" target="_blank" class="external-link">View Full Text</a></p>
+            </div>
+
+            <div class="rule-box">
+                <h5>Civil Procedures</h5>
+                <p><a href="https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1113" target="_blank" class="rule-link">CRC 3.1113</a> - Law and Motion Page Limits <a href="https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1113" target="_blank" class="external-link">View Full Text</a></p>
+                <p><a href="https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1200" target="_blank" class="rule-link">CRC 3.1200</a> - Ex Parte Applications <a href="https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1200" target="_blank" class="external-link">View Full Text</a></p>
+                <p><a href="https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1345" target="_blank" class="rule-link">CRC 3.1345</a> - Discovery Motions <a href="https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1345" target="_blank" class="external-link">View Full Text</a></p>
+                <p><a href="https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1350" target="_blank" class="rule-link">CRC 3.1350</a> - Summary Judgment Format <a href="https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1350" target="_blank" class="external-link">View Full Text</a></p>
+            </div>
+
+            <div class="rule-box">
+                <h5>Case Management</h5>
+                <p><a href="https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_722" target="_blank" class="rule-link">CRC 3.722</a> - Case Management Statements <a href="https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_722" target="_blank" class="external-link">View Full Text</a></p>
+                <p><a href="https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_750" target="_blank" class="rule-link">CRC 3.750-3.771</a> - Complex Civil Litigation <a href="https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_750" target="_blank" class="external-link">View Full Text</a></p>
+            </div>
+
+            <h3>🏛️ Santa Clara County Superior Court Local Rules</h3>
+            <div class="rule-box">
+                <h5>Electronic Filing & General Practice</h5>
+                <p><a href="https://www.scscourt.org/self_help/civil/docs/local_rules.pdf" target="_blank" class="rule-link">SCSC Local Rule 2.3</a> - Mandatory Electronic Filing <a href="https://www.scscourt.org/self_help/civil/docs/local_rules.pdf" target="_blank" class="external-link">View Full Text</a></p>
+                <p><a href="https://www.scscourt.org/self_help/civil/docs/local_rules.pdf" target="_blank" class="rule-link">SCSC Local Rule 3.1</a> - Case Management Scheduling <a href="https://www.scscourt.org/self_help/civil/docs/local_rules.pdf" target="_blank" class="external-link">View Full Text</a></p>
+                <p><a href="https://www.scscourt.org/self_help/civil/docs/local_rules.pdf" target="_blank" class="rule-link">SCSC Local Rule 7.1-7.3</a> - Law and Motion Practice <a href="https://www.scscourt.org/self_help/civil/docs/local_rules.pdf" target="_blank" class="external-link">View Full Text</a></p>
+                <p><a href="https://www.scscourt.org/self_help/civil/docs/local_rules.pdf" target="_blank" class="rule-link">SCSC Local Rule 8.1</a> - Informal Discovery Conference <a href="https://www.scscourt.org/self_help/civil/docs/local_rules.pdf" target="_blank" class="external-link">View Full Text</a></p>
+            </div>
+
+            <div class="rule-box">
+                <h5>Complex Civil Procedures</h5>
+                <p><a href="https://www.scscourt.org/self_help/civil/docs/local_rules.pdf" target="_blank" class="rule-link">SCSC Local Rule 3.400-3.402</a> - Complex Civil Case Management <a href="https://www.scscourt.org/self_help/civil/docs/local_rules.pdf" target="_blank" class="external-link">View Full Text</a></p>
+                <p><a href="https://www.scscourt.org/system/files/civil/complexcivillitigationguidelines.pdf" target="_blank" class="rule-link">Complex Civil Guidelines</a> - Judge Adams Department 7 <a href="https://www.scscourt.org/system/files/civil/complexcivillitigationguidelines.pdf" target="_blank" class="external-link">View Full Text</a></p>
+            </div>
+
+            <h3>📖 Additional Legal Resources</h3>
+            <div class="rule-box">
+                <h5>Government Code & Evidence Code</h5>
+                <p><a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=68150.5&lawCode=GOV" target="_blank" class="rule-link">Gov. Code § 68150.5</a> - Court Technology <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=68150.5&lawCode=GOV" target="_blank" class="external-link">View Full Text</a></p>
+                <p><a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=350&lawCode=EVID" target="_blank" class="rule-link">Evidence Code § 350</a> - Relevance <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=350&lawCode=EVID" target="_blank" class="external-link">View Full Text</a></p>
+                <p><a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=450&lawCode=EVID" target="_blank" class="rule-link">Evidence Code § 450-460</a> - Judicial Notice <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=450&lawCode=EVID" target="_blank" class="external-link">View Full Text</a></p>
+                <p><a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=702&lawCode=EVID" target="_blank" class="rule-link">Evidence Code § 702</a> - Personal Knowledge <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=702&lawCode=EVID" target="_blank" class="external-link">View Full Text</a></p>
+                <p><a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=1400&lawCode=EVID" target="_blank" class="rule-link">Evidence Code § 1400-1402</a> - Authentication <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=1400&lawCode=EVID" target="_blank" class="external-link">View Full Text</a></p>
+            </div>
+
+            <h3>🔍 Professional Resources</h3>
+            <div class="rule-box">
+                <h5>Legal Research & Practice Guides</h5>
+                <p><a href="https://www.scscourt.org" target="_blank" class="rule-link">Santa Clara County Superior Court</a> - Official Court Website <a href="https://www.scscourt.org" target="_blank" class="external-link">Visit Site</a></p>
+                <p><a href="https://www.courts.ca.gov" target="_blank" class="rule-link">California Courts</a> - Official State Court System <a href="https://www.courts.ca.gov" target="_blank" class="external-link">Visit Site</a></p>
+                <p><a href="https://leginfo.legislature.ca.gov" target="_blank" class="rule-link">California Legislative Information</a> - Official Code Database <a href="https://leginfo.legislature.ca.gov" target="_blank" class="external-link">Visit Site</a></p>
+                <p><a href="https://www.sccba.com" target="_blank" class="rule-link">Santa Clara County Bar Association</a> - Professional Code <a href="https://www.sccba.com" target="_blank" class="external-link">Visit Site</a></p>
+            </div>
+        </div>
+
+        <div id="critical-deadlines" class="section">
+            <h2>⏰ Critical Deadlines</h2>
+            
+            <ul class="checklist">
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>1. 81 days notice required for motion and supporting papers (<a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=437c&lawCode=CCP" target="_blank" class="rule-link">CCP 437c</a> as amended)</strong>
+                        <div class="cross-ref">See <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=437c&lawCode=CCP" target="_blank" class="rule-link">CCP 437c(a)</a> - Summary Judgment Motion Notice Requirements | Format per <a href="https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1350" target="_blank" class="rule-link">CRC 3.1350</a> - Motion for Summary Judgment Procedures</div>
+                        <div class="local-rule"><a href="https://www.scscourt.org/self_help/civil/docs/local_rules.pdf" target="_blank" class="rule-link">SCSC Local Rule 7.1</a> - Law and Motion Calendar Procedures</div>
+                    </div>
+                </li>
+                
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>2. Follow <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=437c&lawCode=CCP" target="_blank" class="rule-link">CCP 437c</a> timing requirements</strong>
+                        <div class="cross-ref">See <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=437c&lawCode=CCP" target="_blank" class="rule-link">CCP 437c(b)</a> - Opposition and Reply Deadlines | Format per <a href="https://www.courts.ca.gov/cms/rules/index.cfm?title=two&linkid=rule2_104" target="_blank" class="rule-link">CRC 2.104</a> - Document Formatting Standards</div>
+                    </div>
+                </li>
+                
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>3. Case-specific scheduling per department assignment</strong>
+                        <div class="local-rule">SCSC Local Rule 3.1 - Case Management Conference Scheduling</div>
+                    </div>
+                </li>
+                
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>4. Law & Motion: Thursday 1:30 p.m. | Case Management: Thursday 2:30 p.m. | Pre-trial Conference: 10-15 days before trial</strong>
+                        <div class="deadline-box">
+                            <strong>Department 7 Specific Times:</strong><br>
+                            • Law & Motion Calendar: Every Thursday at 1:30 PM<br>
+                            • Case Management Conferences: Every Thursday at 2:30 PM<br>
+                            • Complex Civil matters require advance reservation with clerk
+                        </div>
+                        <div class="local-rule">SCSC Local Rule 7.2 - Department 7 Calendar Management</div>
+                    </div>
+                </li>
+                
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>5. Case Management: First conference 120 days after filing, then every 120 days | Pre-trial Conference: 10-15 days before trial</strong>
+                        <div class="cross-ref">See CCP 594 - Case Management Conference Requirements | CRC 3.722 - Case Management Statement Requirements</div>
+                        <div class="local-rule">SCSC Local Rule 3.2 - Case Management Statement Filing Requirements</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div id="judge-adams" class="section">
+            <h2>⚖️ Judge Charles F. Adams - Department 7 Complex Civil</h2>
+            <p><strong>Category:</strong> Official Judicial Guidelines</p>
+            
+            <div class="contact-info">
+                <h4>📞 Department 7 Contact Information</h4>
+                <p><strong>Judge:</strong> Hon. Charles F. Adams</p>
+                <p><strong>Clerk:</strong> Thomas Duarte</p>
+                <p><strong>Phone:</strong> (408) 882-2170</p>
+                <p><strong>Email:</strong> <span class="url-break">department7@scscourt.org</span></p>
+                <p><strong>Complex Litigation Clerk:</strong> (408) 882-5710</p>
+            </div>
+
+            <h3>Required Actions:</h3>
+            <ul class="checklist">
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>a. MANDATORY: Plaintiff must serve Complex Civil Guidelines with summons and complaint</strong>
+                        <div class="cross-ref">See <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=412.20&lawCode=CCP" target="_blank" class="rule-link">CCP 412.20</a> - Service Requirements | <a href="https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1350" target="_blank" class="rule-link">CRC 3.1350</a> - Complex Case Procedures</div>
+                        <div class="local-rule"><a href="https://www.scscourt.org/self_help/civil/docs/local_rules.pdf" target="_blank" class="rule-link">SCSC Local Rule 3.400</a> - Complex Civil Case Guidelines Service Requirement</div>
+                        <div class="efiling-info">
+                            <strong>Guidelines Document:</strong> Available at <a href="https://www.scscourt.org/system/files/civil/complexcivillitigationguidelines.pdf" target="_blank" class="url-break external-link">https://www.scscourt.org/system/files/civil/complexcivillitigationguidelines.pdf</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>b. Joint case management statements required (Form CM-110 NOT acceptable for complex cases)</strong>
+                        <div class="cross-ref">See CRC 3.722 - Case Management Statement Requirements | CCP 594 - Case Management Conferences</div>
+                        <div class="local-rule">SCSC Local Rule 3.401 - Complex Case Management Statement Requirements</div>
+                    </div>
+                </li>
+
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>c. Electronic filing mandatory for all represented parties in complex cases</strong>
+                        <div class="cross-ref">See CRC 2.253 - Electronic Filing Requirements | Gov. Code 68150.5</div>
+                        <div class="local-rule">SCSC Local Rule 2.3 - Mandatory Electronic Filing</div>
+                        <div class="efiling-info">
+                            Must use Tyler Technologies Odyssey File & Serve platform for all filings except specifically exempted documents
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>d. Must clear hearing dates with opposing parties BEFORE contacting Complex Litigation Clerk</strong>
+                        <div class="contact-info">
+                            <strong>Procedure:</strong> Email department7@scscourt.org with proposed dates after conferring with all counsel
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>e. Tentative rulings posted online by 2:00 p.m. day before hearing</strong>
+                        <div class="efiling-info">
+                            <strong>URL:</strong> <span class="url-break">https://www.scscourt.org/tentative-rulings</span><br>
+                            Check Department 7 tentative rulings page
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>f. Objections to tentative rulings must be filed by 4:00 p.m. day before hearing or ruling becomes final</strong>
+                        <div class="cross-ref">See CCP 1019.5 - Tentative Ruling Procedures</div>
+                        <div class="local-rule">SCSC Local Rule 7.3 - Tentative Ruling Objection Process</div>
+                    </div>
+                </li>
+
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>g. Ex parte applications discouraged except unusual situations - advance reservation required</strong>
+                        <div class="cross-ref">See CCP 1005(b) - Ex Parte Application Requirements | CRC 3.1200-3.1207</div>
+                        <div class="contact-info">
+                            Must call (408) 882-2170 by 10:00 AM for same-day ex parte reservation
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>h. Discovery motions require Informal Discovery Conference (IDC) before filing</strong>
+                        <div class="cross-ref">See CCP 2023.010 - Discovery Conference Requirements</div>
+                        <div class="local-rule">SCSC Local Rule 8.1 - Informal Discovery Conference Procedures</div>
+                        <div class="efiling-info">
+                            Schedule IDC through department7@scscourt.org with joint statement of issues
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>i. Must actually meet and confer (in-person/phone/video) - not just letters</strong>
+                        <div class="cross-ref">See CCP 2016.040 - Meet and Confer Requirements</div>
+                    </div>
+                </li>
+
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>j. Case management conferences every 120 days at 2:30 p.m. Thursday</strong>
+                        <div class="deadline-box">
+                            <strong>Scheduling:</strong> Automatic calendar call - no need to request unless seeking continuance
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div id="required-documents" class="section">
             <h2>📄 Required Documents Checklist</h2>
             
             <h3>1. Notice of Motion</h3>
-            <div class="checklist">
-                <div class="checklist-item">
-                    <input type="checkbox" id="motion-grounds">
-                    <label for="motion-grounds">
-                        Specify grounds and hearing date 81+ days out
-                        <div class="cross-ref">(See CCP 1005 - Notice Requirements & CRC 3.1110 - Motion Format)</div>
-                    </label>
-                </div>
-            </div>
-            
-            <h3>2. Separate Statement of Undisputed Material Facts</h3>
-            <div class="checklist">
-                <div class="checklist-item">
-                    <input type="checkbox" id="two-column">
-                    <label for="two-column">
-                        Two-column format required per CRC 3.1350
-                        <div class="cross-ref">(See CRC 3.1350(d) - Separate Statement Format Requirements)</div>
-                    </label>
-                </div>
-                <div class="checklist-item">
-                    <input type="checkbox" id="numbered-facts">
-                    <label for="numbered-facts">
-                        Left column: numbered material facts with supporting evidence citations
-                        <div class="cross-ref">(Format per CRC 2.104 - Document Formatting)</div>
-                    </label>
-                </div>
-            </div>
-            
-            <h3>3. Memorandum of Points and Authorities</h3>
-            <div class="checklist">
-                <div class="checklist-item">
-                    <input type="checkbox" id="page-limit">
-                    <label for="page-limit">
-                        Maximum 20 pages (CRC 3.1113)
-                        <div class="cross-ref">(See CRC 3.1113(d) - Page Limits for Briefs)</div>
-                    </label>
-                </div>
-                <div class="checklist-item">
-                    <input type="checkbox" id="table-contents">
-                    <label for="table-contents">
-                        Table of contents if over 10 pages
-                        <div class="cross-ref">(See CRC 3.1113(f) - Brief Format Requirements)</div>
-                    </label>
-                </div>
-            </div>
-        </div>
-
-        <!-- E-Filing Section -->
-        <div class="section" id="e-filing">
-            <h2>💻 Electronic Filing Requirements</h2>
-            
-            <div class="e-filing-box">
-                <h4>🔗 Platform Information</h4>
-                <div class="platform-info">
-                    <p><strong>System:</strong> Tyler Technologies Odyssey File & Serve</p>
-                    <p><strong>Login URL:</strong> <a href="https://odysseyfileandserve.tylertech.cloud" class="url-link" target="_blank">https://odysseyfileandserve.tylertech.cloud</a></p>
-                    <p><strong>Technical Requirements:</strong></p>
-                    <ul style="margin-left: 20px; margin-top: 10px;">
-                        <li>PDF format required (no Word documents)</li>
-                        <li>Maximum 25MB file size per document</li>
-                        <li>Text-searchable PDFs preferred</li>
-                        <li>All exhibits must be bookmarked</li>
-                    </ul>
-                    
-                    <div class="local-rule" style="margin-top: 15px;">
-                        <div class="rule-number">SCSC Local Rule 2.3:</div>
-                        Electronic filing mandatory for all represented parties in complex civil cases
+            <ul class="checklist">
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>Specify grounds for motion and hearing date (81+ days out)</strong>
+                        <div class="cross-ref">See <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=1005&lawCode=CCP" target="_blank" class="rule-link">CCP 1005(b)</a> - Notice Requirements | Format per <a href="https://www.courts.ca.gov/cms/rules/index.cfm?title=two&linkid=rule2_104" target="_blank" class="rule-link">CRC 2.104</a> - Document Formatting Standards</div>
+                        <div class="local-rule"><a href="https://www.scscourt.org/self_help/civil/docs/local_rules.pdf" target="_blank" class="rule-link">SCSC Local Rule 7.1</a> - Motion Notice Requirements</div>
                     </div>
-                </div>
-            </div>
+                </li>
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>Include case caption and all party information</strong>
+                        <div class="cross-ref">See CRC 2.111 - Pleading Format Requirements</div>
+                    </div>
+                </li>
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>State specific relief requested</strong>
+                    </div>
+                </li>
+            </ul>
+
+            <h3>2. Separate Statement of Undisputed Material Facts</h3>
+            <ul class="checklist">
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>Two-column format required per CRC 3.1350</strong>
+                        <div class="cross-ref">See CRC 3.1350(f) - Separate Statement Format Requirements | CCP 437c(b)(1) - Material Facts Statement</div>
+                    </div>
+                </li>
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>Left column: numbered material facts</strong>
+                    </div>
+                </li>
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>Right column: supporting evidence with page/line citations</strong>
+                    </div>
+                </li>
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>Each fact must be followed by evidence reference</strong>
+                    </div>
+                </li>
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>Cannot incorporate by reference</strong>
+                    </div>
+                </li>
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>Must be filed as separate document</strong>
+                    </div>
+                </li>
+            </ul>
+
+            <h3>3. Memorandum of Points and Authorities</h3>
+            <ul class="checklist">
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>Maximum 20 pages (CRC 3.1113)</strong>
+                        <div class="cross-ref">See CRC 3.1113(d) - Page Limitations | CRC 2.104 - Document Formatting Requirements</div>
+                    </div>
+                </li>
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>Table of contents if over 10 pages</strong>
+                        <div class="cross-ref">See CRC 3.1113(f) - Table of Contents Requirement</div>
+                    </div>
+                </li>
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>Table of authorities</strong>
+                    </div>
+                </li>
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>Statement of facts</strong>
+                    </div>
+                </li>
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>Legal argument with case citations</strong>
+                    </div>
+                </li>
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>Conclusion with specific relief requested</strong>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div id="procedural-timeline" class="section">
+            <h2>📅 Procedural Timeline</h2>
             
-            <div class="checklist">
-                <div class="checklist-item">
-                    <input type="checkbox" id="register-efsp">
-                    <label for="register-efsp">
-                        Register with Electronic Filing Service Provider (EFSP)
-                        <div class="cross-ref">(See CRC 2.253(b) - EFSP Registration Requirements)</div>
-                    </label>
-                </div>
-                
-                <div class="checklist-item">
-                    <input type="checkbox" id="system-hours">
-                    <label for="system-hours">
-                        System available 24/7 except maintenance windows (typically Sunday 12-6 AM)
-                        <div class="cross-ref">(See SCSC Local Rule 2.3(c) - System Availability)</div>
-                    </label>
-                </div>
-                
-                <div class="checklist-item">
-                    <input type="checkbox" id="filing-deadline">
-                    <label for="filing-deadline">
-                        Documents must be received by 11:59 PM for same-day filing
-                        <div class="cross-ref">(See CRC 2.253(d) - Filing Deadlines)</div>
-                    </label>
-                </div>
-                
-                <div class="checklist-item">
-                    <input type="checkbox" id="service-electronic">
-                    <label for="service-electronic">
-                        Electronic service automatic for registered parties
-                        <div class="cross-ref">(See CRC 2.251 - Electronic Service Requirements)</div>
-                    </label>
-                </div>
-            </div>
-            
-            <div class="success-note">
-                <strong>E-Filing Technical Support:</strong><br>
-                Phone: (408) 882-2900<br>
-                Email: efiling.support@scscourt.org<br>
-                Hours: Monday-Friday 8:00 AM - 4:00 PM
+            <div class="responsive-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Deadline</th>
+                            <th>Action Required</th>
+                            <th>Details & Cross-References</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Day 0</strong></td>
+                            <td>File and serve motion papers</td>
+                            <td>
+                                Serve all parties at least 81 days before hearing<br>
+                                <div class="cross-ref">CCP 437c(a) - Notice Requirements</div>
+                                <div class="local-rule">SCSC Local Rule 7.1 - Filing Procedures</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 61</strong></td>
+                            <td>Opposition papers due</td>
+                            <td>
+                                Served and filed 20 days before hearing<br>
+                                <div class="cross-ref">CCP 437c(b)(2) - Opposition Requirements</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 70</strong></td>
+                            <td>Reply papers due</td>
+                            <td>
+                                Filed 11 days before hearing<br>
+                                <div class="cross-ref">CCP 437c(b)(3) - Reply Limitations</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 80</strong></td>
+                            <td>Check tentative ruling</td>
+                            <td>
+                                If court publishes tentative rulings<br>
+                                <div class="efiling-info">URL: https://www.scscourt.org/tentative-rulings</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 81</strong></td>
+                            <td>Hearing date</td>
+                            <td>
+                                Appear if tentative ruling contested<br>
+                                <div class="local-rule">SCSC Local Rule 7.3 - Hearing Procedures</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
 
-        <!-- Formatting Requirements -->
-        <div class="section" id="formatting">
-            <h2>📐 Formatting Requirements</h2>
+        <div id="formatting-requirements" class="section">
+            <h2>📝 Formatting Requirements</h2>
             
-            <div class="checklist">
-                <div class="checklist-item">
-                    <input type="checkbox" id="double-space">
-                    <label for="double-space">
-                        Double-spaced text (CRC 2.104)
-                        <div class="cross-ref">(See CRC 2.104(a) - Document Formatting Standards)</div>
-                    </label>
-                </div>
+            <ul class="checklist">
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>Double-spaced text (CRC 2.104)</strong>
+                        <div class="cross-ref">See CRC 2.104(a) - Line Spacing Requirements</div>
+                    </div>
+                </li>
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>12-point Times New Roman font</strong>
+                        <div class="cross-ref">See CRC 2.104(b) - Font Requirements</div>
+                    </div>
+                </li>
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>One-inch margins on all sides</strong>
+                        <div class="cross-ref">See CRC 2.104(d) - Margin Requirements</div>
+                    </div>
+                </li>
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>Line numbers on left margin</strong>
+                        <div class="cross-ref">See CRC 2.104(e) - Line Numbering Requirements</div>
+                    </div>
+                </li>
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>Page numbers at bottom center</strong>
+                    </div>
+                </li>
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>Electronic filing in PDF format (if available)</strong>
+                        <div class="cross-ref">See CRC 2.253 - Electronic Filing Requirements</div>
+                        <div class="local-rule">SCSC Local Rule 2.3 - E-filing Format Standards</div>
+                    </div>
+                </li>
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>Blue-backed or bound if paper filing</strong>
+                        <div class="cross-ref">See CRC 2.118 - Paper Filing Requirements</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div id="efiling-system" class="section">
+            <h2>🌐 Electronic Filing System</h2>
+            
+            <div class="efiling-info">
+                <h3>Tyler Technologies Odyssey File & Serve</h3>
+                <p><strong>Login URL:</strong> <span class="url-break">https://odysseyfileandserve.tylertech.cloud</span></p>
+                <p><strong>System Requirements:</strong></p>
+                <ul>
+                    <li>PDF format documents only</li>
+                    <li>Maximum 25MB per document</li>
+                    <li>Internet Explorer 11+, Chrome, Firefox, Safari supported</li>
+                    <li>JavaScript must be enabled</li>
+                </ul>
                 
-                <div class="checklist-item">
-                    <input type="checkbox" id="font-size">
-                    <label for="font-size">
-                        12-point Times New Roman font minimum
-                        <div class="cross-ref">(See CRC 2.104(b) - Font Requirements)</div>
-                    </label>
-                </div>
+                <p><strong>System Hours:</strong> Available 24/7 except scheduled maintenance</p>
+                <p><strong>Maintenance Windows:</strong> Typically Sunday 2:00 AM - 6:00 AM PST</p>
                 
-                <div class="checklist-item">
-                    <input type="checkbox" id="margins">
-                    <label for="margins">
-                        One-inch margins on all sides
-                        <div class="cross-ref">(See CRC 2.104(c) - Margin Requirements)</div>
-                    </label>
-                </div>
+                <h4>Filing Fees Payment Options:</h4>
+                <ul>
+                    <li>Credit/Debit Cards (Visa, MasterCard, American Express, Discover)</li>
+                    <li>ACH/Bank Transfer</li>
+                    <li>Firm Account (pre-approved users only)</li>
+                </ul>
                 
-                <div class="checklist-item">
-                    <input type="checkbox" id="line-numbers">
-                    <label for="line-numbers">
-                        Line numbers on left margin for all pleadings over 25 pages
-                        <div class="cross-ref">(See CRC 2.104(d) - Line Numbering Requirements)</div>
-                    </label>
-                </div>
-                
-                <div class="checklist-item">
-                    <input type="checkbox" id="page-numbers">
-                    <label for="page-numbers">
-                        Page numbers at bottom center
-                        <div class="cross-ref">(See CRC 2.104(e) - Page Numbering)</div>
-                    </label>
-                </div>
+                <h4>Technical Support:</h4>
+                <p><strong>Phone:</strong> (408) 882-2900</p>
+                <p><strong>Email:</strong> <span class="url-break">efiling-support@scscourt.org</span></p>
+                <p><strong>Hours:</strong> Monday-Friday 8:00 AM - 5:00 PM</p>
+            </div>
+
+            <h3>E-Filing Requirements Checklist:</h3>
+            <ul class="checklist">
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>Register with Electronic Filing Service Provider (EFSP)</strong>
+                        <div class="cross-ref">See CRC 2.253(b) - EFSP Registration Requirements</div>
+                    </div>
+                </li>
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>File by 5:00 PM for same-day filing</strong>
+                        <div class="local-rule">SCSC Local Rule 2.3 - Filing Cutoff Times</div>
+                    </div>
+                </li>
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>Separate documents as you would at clerk window</strong>
+                    </div>
+                </li>
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>Pay filing fees electronically</strong>
+                    </div>
+                </li>
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>Serve electronically on consenting parties</strong>
+                        <div class="cross-ref">See CCP 1010.6 - Electronic Service Requirements</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div id="local-rules" class="section">
+            <h2>🏛️ Santa Clara County Local Rules</h2>
+            
+            <h3>Key Local Rules for Civil Practice:</h3>
+            
+            <div class="local-rule">
+                <h4>SCSC Local Rule 2.3 - Mandatory Electronic Filing</h4>
+                <p>All attorneys must file electronically except for documents specifically exempted by court order.</p>
+                <div class="cross-ref">Cross-reference: CRC 2.253 - Statewide Electronic Filing Rules</div>
+            </div>
+
+            <div class="local-rule">
+                <h4>SCSC Local Rule 3.1 - Case Management Conference Scheduling</h4>
+                <p>Initial case management conference scheduled within 120 days of filing. Subsequent conferences every 120 days unless court orders otherwise.</p>
+                <div class="cross-ref">Cross-reference: CCP 594 - Case Management Requirements</div>
+            </div>
+
+            <div class="local-rule">
+                <h4>SCSC Local Rule 3.400-3.402 - Complex Civil Case Procedures</h4>
+                <p>Special procedures for complex civil litigation including mandatory service of guidelines and enhanced case management.</p>
+                <div class="cross-ref">Cross-reference: CRC 3.750-3.771 - Complex Civil Litigation</div>
+            </div>
+
+            <div class="local-rule">
+                <h4>SCSC Local Rule 7.1-7.3 - Law and Motion Practice</h4>
+                <p>Procedures for law and motion calendar, tentative rulings, and hearing requirements.</p>
+                <div class="cross-ref">Cross-reference: CCP 1005-1013 - Notice and Service Requirements</div>
+            </div>
+
+            <div class="local-rule">
+                <h4>SCSC Local Rule 8.1 - Informal Discovery Conference</h4>
+                <p>Required before filing discovery motions. Must include joint statement of issues and meet and confer certification.</p>
+                <div class="cross-ref">Cross-reference: CCP 2023.010 - Discovery Conference Requirements</div>
             </div>
         </div>
 
-        <!-- Local Rules Section -->
-        <div class="section" id="local-rules">
-            <h2>🏛️ Santa Clara County Superior Court Local Rules</h2>
-            
-            <div class="local-rule">
-                <div class="rule-number">SCSC Local Rule 2.1:</div>
-                Complex Civil Litigation Guidelines - Mandatory service with initial pleadings
-            </div>
-            
-            <div class="local-rule">
-                <div class="rule-number">SCSC Local Rule 2.3:</div>
-                Electronic Filing Requirements - Mandatory for represented parties
-            </div>
-            
-            <div class="local-rule">
-                <div class="rule-number">SCSC Local Rule 3.10:</div>
-                Case Management Procedures - 120-day conference cycle
-            </div>
-            
-            <div class="local-rule">
-                <div class="rule-number">SCSC Local Rule 7.1:</div>
-                Law and Motion Calendar - Thursday 1:30 PM
-            </div>
-            
-            <div class="local-rule">
-                <div class="rule-number">SCSC Local Rule 8.1:</div>
-                Informal Discovery Conference (IDC) - Required before discovery motions
-            </div>
-        </div>
-
-        <!-- Cross-References Section -->
-        <div class="section" id="cross-references">
-            <h2>🔗 Cross-References Guide</h2>
+        <div id="cross-references" class="section">
+            <h2>📖 Cross-Reference Guide</h2>
             
             <h3>CCP to CRC Cross-References:</h3>
-            <div style="background: #f8f9fa; padding: 15px; border-radius: 6px; margin: 15px 0;">
-                <p><strong>CCP 437c (Summary Judgment)</strong> → <strong>CRC 3.1350 (Format Requirements)</strong></p>
-                <p><strong>CCP 1005 (Notice Requirements)</strong> → <strong>CRC 3.1110 (Motion Format)</strong></p>
-                <p><strong>CCP 2016.040 (Meet and Confer)</strong> → <strong>CRC 3.1345 (Discovery Procedures)</strong></p>
-                <p><strong>CCP 583.310 (Case Management)</strong> → <strong>CRC 3.724 (CMS Requirements)</strong></p>
-            </div>
-            
-            <h3>State Rules to Local Rules:</h3>
-            <div style="background: #f8f9fa; padding: 15px; border-radius: 6px; margin: 15px 0;">
-                <p><strong>CRC 2.253 (E-Filing)</strong> → <strong>SCSC Local Rule 2.3 (Local E-Filing Requirements)</strong></p>
-                <p><strong>CRC 3.724 (Case Management)</strong> → <strong>SCSC Local Rule 3.10 (Local CMS Procedures)</strong></p>
-                <p><strong>CRC 3.1202 (Ex Parte)</strong> → <strong>SCSC Local Rule 5.1 (Local Ex Parte Procedures)</strong></p>
-            </div>
-        </div>
-
-        <!-- Contact Information -->
-        <div class="section" id="contact-info">
-            <h2>📞 Contact Information</h2>
-            
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-                <div class="platform-info">
-                    <h4>Complex Litigation Clerk</h4>
-                    <p><strong>Email:</strong> complex@scscourt.org</p>
-                    <p><strong>Phone:</strong> (408) 882-5710</p>
-                </div>
-                
-                <div class="platform-info">
-                    <h4>Department 7 - Judge Adams</h4>
-                    <p><strong>Clerk:</strong> Thomas Duarte</p>
-                    <p><strong>Phone:</strong> (408) 882-2170</p>
-                    <p><strong>Email:</strong> department7@scscourt.org</p>
-                </div>
-                
-                <div class="platform-info">
-                    <h4>E-Filing Technical Support</h4>
-                    <p><strong>Phone:</strong> (408) 882-2900</p>
-                    <p><strong>Email:</strong> efiling.support@scscourt.org</p>
-                    <p><strong>Hours:</strong> Monday-Friday 8:00 AM - 4:00 PM</p>
-                </div>
-                
-                <div class="platform-info">
-                    <h4>Court Main Number</h4>
-                    <p><strong>Phone:</strong> (408) 882-2100</p>
-                    <p><strong>Address:</strong> 191 N. First Street, San Jose, CA 95113</p>
-                    <p><strong>Hours:</strong> Monday-Friday 8:00 AM - 4:00 PM</p>
-                </div>
+            <div class="responsive-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>CCP Section</th>
+                            <th>Topic</th>
+                            <th>Related CRC Rule</th>
+                            <th>SCSC Local Rule</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=437c&lawCode=CCP" target="_blank" class="rule-link">CCP 437c</a></td>
+                            <td>Summary Judgment</td>
+                            <td><a href="https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1350" target="_blank" class="rule-link">CRC 3.1350</a> - Format Requirements</td>
+                            <td><a href="https://www.scscourt.org/self_help/civil/docs/local_rules.pdf" target="_blank" class="rule-link">SCSC Local Rule 7.1</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=1005&lawCode=CCP" target="_blank" class="rule-link">CCP 1005</a></td>
+                            <td>Notice Requirements</td>
+                            <td><a href="https://www.courts.ca.gov/cms/rules/index.cfm?title=two&linkid=rule2_104" target="_blank" class="rule-link">CRC 2.104</a> - Document Format</td>
+                            <td><a href="https://www.scscourt.org/self_help/civil/docs/local_rules.pdf" target="_blank" class="rule-link">SCSC Local Rule 7.1</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=594&lawCode=CCP" target="_blank" class="rule-link">CCP 594</a></td>
+                            <td>Case Management</td>
+                            <td><a href="https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_722" target="_blank" class="rule-link">CRC 3.722</a> - Case Management Statement</td>
+                            <td><a href="https://www.scscourt.org/self_help/civil/docs/local_rules.pdf" target="_blank" class="rule-link">SCSC Local Rule 3.1</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=2023.010&lawCode=CCP" target="_blank" class="rule-link">CCP 2023.010</a></td>
+                            <td>Discovery Conferences</td>
+                            <td><a href="https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1345" target="_blank" class="rule-link">CRC 3.1345</a> - Discovery Motions</td>
+                            <td><a href="https://www.scscourt.org/self_help/civil/docs/local_rules.pdf" target="_blank" class="rule-link">SCSC Local Rule 8.1</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=1010.6&lawCode=CCP" target="_blank" class="rule-link">CCP 1010.6</a></td>
+                            <td>Electronic Service</td>
+                            <td><a href="https://www.courts.ca.gov/cms/rules/index.cfm?title=two&linkid=rule2_253" target="_blank" class="rule-link">CRC 2.253</a> - Electronic Filing</td>
+                            <td><a href="https://www.scscourt.org/self_help/civil/docs/local_rules.pdf" target="_blank" class="rule-link">SCSC Local Rule 2.3</a></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
 
-        <div style="border-top: 2px solid #e0e0e0; padding-top: 20px; margin-top: 40px; text-align: center; color: #666; font-size: 0.9em;">
-            <p><strong>California Court Filing Requirements Checklist</strong></p>
-            <p>Generated by Unified Knowledge Graph System | Enhanced with Cross-References & E-Filing Details</p>
-            <p>⚠️ This checklist is for informational purposes only. Always verify current rules and requirements.</p>
+        <div id="contact-information" class="section">
+            <h2>📞 Court Contact Information</h2>
+            
+            <div class="contact-info">
+                <h3>Santa Clara County Superior Court</h3>
+                <p><strong>Address:</strong> 191 N. First Street, San Jose, CA 95113</p>
+                <p><strong>Main Phone:</strong> (408) 882-2100</p>
+                <p><strong>Hours:</strong> Monday-Friday 8:00 AM - 4:00 PM</p>
+                <p><strong>Website:</strong> <span class="url-break">https://www.scscourt.org</span></p>
+            </div>
+
+            <div class="contact-info">
+                <h3>Department 7 - Complex Civil (Judge Adams)</h3>
+                <p><strong>Judge:</strong> Hon. Charles F. Adams</p>
+                <p><strong>Clerk:</strong> Thomas Duarte</p>
+                <p><strong>Phone:</strong> (408) 882-2170</p>
+                <p><strong>Email:</strong> <span class="url-break">department7@scscourt.org</span></p>
+                <p><strong>Complex Litigation Clerk:</strong> (408) 882-5710</p>
+                <p><strong>Email:</strong> <span class="url-break">complex@scscourt.org</span></p>
+            </div>
+
+            <div class="contact-info">
+                <h3>Electronic Filing Support</h3>
+                <p><strong>Phone:</strong> (408) 882-2900</p>
+                <p><strong>Email:</strong> <span class="url-break">efiling-support@scscourt.org</span></p>
+                <p><strong>Hours:</strong> Monday-Friday 8:00 AM - 5:00 PM</p>
+            </div>
+
+            <div class="contact-info">
+                <h3>Filing Questions & General Information</h3>
+                <p><strong>Civil Clerk's Office:</strong> (408) 882-2100 ext. 2</p>
+                <p><strong>Self-Help Center:</strong> (408) 882-4738</p>
+                <p><strong>ADA Accommodations:</strong> (408) 882-2700</p>
+            </div>
         </div>
+
+        <div class="section">
+            <h2>✅ Completion Checklist</h2>
+            <p>Use this final checklist to ensure you've addressed all WHO, WHAT, WHEN, WHERE, HOW questions:</p>
+            
+            <ul class="checklist">
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>WHO:</strong> Identified all parties, their counsel, and court personnel involved
+                    </div>
+                </li>
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>WHAT:</strong> Specified exact documents needed and procedural requirements
+                    </div>
+                </li>
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>WHEN:</strong> Confirmed all deadlines and timing requirements
+                    </div>
+                </li>
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>WHERE:</strong> Verified correct department, filing location, and service addresses
+                    </div>
+                </li>
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <div class="text-content">
+                        <strong>HOW:</strong> Confirmed proper formatting, service methods, and filing procedures
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <footer style="text-align: center; margin-top: 40px; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+            <p><strong>Generated by Unified Knowledge Graph System</strong></p>
+            <p>This document contains official court requirements and should be verified against current rules.</p>
+            <p>Last updated: <span id="footer-date"></span></p>
+        </footer>
     </div>
 
     <script>
         // Set current date
         document.getElementById('current-date').textContent = new Date().toLocaleDateString();
         
-        // Save checkbox states to localStorage
-        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-        checkboxes.forEach(checkbox => {
-            // Load saved state
-            const saved = localStorage.getItem(checkbox.id);
-            if (saved === 'true') {
+        // Set footer date
+        document.getElementById('footer-date').textContent = new Date().toLocaleDateString();
+        
+        // Make checkboxes persistent
+        document.querySelectorAll('.checkbox').forEach((checkbox, index) => {
+            const key = `checkbox_${index}`;
+            checkbox.addEventListener('change', function() {
+                localStorage.setItem(key, this.checked);
+            });
+            
+            // Restore checkbox state
+            const stored = localStorage.getItem(key);
+            if (stored === 'true') {
                 checkbox.checked = true;
             }
-            
-            // Save state when changed
-            checkbox.addEventListener('change', function() {
-                localStorage.setItem(this.id, this.checked);
-            });
         });
         
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        // Smooth scrolling for table of contents links
+        document.querySelectorAll('.toc a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
@@ -825,28 +1121,6 @@
                 }
             });
         });
-        
-        // Print functionality
-        function printChecklist() {
-            window.print();
-        }
-        
-        // Add print button
-        const header = document.querySelector('.header');
-        const printButton = document.createElement('button');
-        printButton.textContent = '🖨️ Print Checklist';
-        printButton.style.cssText = `
-            background: #2c5aa0;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            margin-top: 15px;
-        `;
-        printButton.onclick = printChecklist;
-        header.appendChild(printButton);
     </script>
 </body>
 </html> 

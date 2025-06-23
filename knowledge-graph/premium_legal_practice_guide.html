@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaliFiling Pro - California Court Filing Requirements</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #1e40af;
+            --secondary-blue: #3b82f6;
+            --light-blue: #eff6ff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-600: #4b5563;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --red-600: #dc2626;
+            --red-100: #fee2e2;
+            --yellow-600: #d97706;
+            --yellow-100: #fef3c7;
+            --green-600: #059669;
+            --green-100: #dcfce7;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-800);
+            background-color: var(--gray-50);
+        }
+
+        .app-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: var(--shadow-lg);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-selector {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .skill-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.875rem;
+        }
+
+        .skill-btn.active {
+            background: white;
+            color: var(--primary-blue);
+        }
+
+        /* Navigation */
+        .nav-tabs {
+            background: white;
+            border-bottom: 1px solid var(--gray-200);
+            padding: 0 1rem;
+            overflow-x: auto;
+        }
+
+        .nav-tabs-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-tab {
+            padding: 1rem 0;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            color: var(--gray-600);
+            font-weight: 500;
+            white-space: nowrap;
+            transition: all 0.3s;
+        }
+
+        .nav-tab.active {
+            color: var(--primary-blue);
+            border-bottom-color: var(--primary-blue);
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            flex: 1;
+        }
+
+        /* Landing Page */
+        .landing-section {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .executive-summary {
+            background: var(--light-blue);
+            border-left: 4px solid var(--primary-blue);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+        }
+
+        .executive-summary h2 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        .stat-label {
+            color: var(--gray-600);
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Alert Cards */
+        .alert {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+            border-left: 4px solid;
+            display: flex;
+            align-items: start;
+            gap: 0.75rem;
+        }
+
+        .alert.critical {
+            background: var(--red-100);
+            border-color: var(--red-600);
+            color: var(--red-600);
+        }
+
+        .alert.warning {
+            background: var(--yellow-100);
+            border-color: var(--yellow-600);
+            color: var(--yellow-600);
+        }
+
+        .alert.success {
+            background: var(--green-100);
+            border-color: var(--green-600);
+            color: var(--green-600);
+        }
+
+        .alert-icon {
+            font-size: 1.25rem;
+            margin-top: 0.125rem;
+        }
+
+        /* Interactive Components */
+        .deadline-calculator {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: var(--shadow-md);
+            margin: 2rem 0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--gray-200);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary-blue);
+            transform: translateY(-1px);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gray-200);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 1rem 0;
+            background: white;
+            margin: 1rem 0;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.375rem;
+            top: 1.5rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary-blue);
+            border: 3px solid white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .timeline-date {
+            font-weight: 700;
+            color: var(--primary-blue);
+            font-size: 1.125rem;
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            margin: 0.5rem 0;
+        }
+
+        /* Checklist */
+        .checklist {
+            background: white;
+            border-radius: 0.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .checklist-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            justify-content: between;
+            align-items: center;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--gray-200);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--green-600);
+            transition: width 0.3s;
+        }
+
+        .checklist-item {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+        }
+
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            margin-top: 0.125rem;
+            accent-color: var(--primary-blue);
+        }
+
+        .checklist-content {
+            flex: 1;
+        }
+
+        .checklist-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .checklist-description {
+            color: var(--gray-600);
+            font-size: 0.875rem;
+        }
+
+        .risk-level {
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .risk-high {
+            background: var(--red-100);
+            color: var(--red-600);
+        }
+
+        .risk-medium {
+            background: var(--yellow-100);
+            color: var(--yellow-600);
+        }
+
+        .risk-low {
+            background: var(--green-100);
+            color: var(--green-600);
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .landing-section {
+                grid-template-columns: 2fr 1fr;
+            }
+
+            .quick-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .quick-stats {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* Hidden by default */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Skill level content */
+        .skill-content {
+            display: none;
+        }
+
+        .skill-content.active {
+            display: block;
+        }
+
+        /* Mobile menu */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .skill-selector {
+                order: -1;
+            }
+
+            .nav-tabs-content {
+                gap: 1rem;
+            }
+
+            .nav-tab {
+                font-size: 0.875rem;
+            }
+        }
+
+        /* Rule Citation Styles */
+        .rule-cite {
+            color: var(--primary-blue);
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .rule-box {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .rule-title {
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .rule-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .rule-link {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.25rem 0;
+        }
+
+        .rule-link:hover {
+            text-decoration: underline;
+        }
+
+        .rule-link i {
+            font-size: 0.75rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gray-200);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.75rem;
+            top: 1.5rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary-blue);
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px var(--gray-200);
+        }
+
+        .timeline-date {
+            font-weight: 600;
+            color: var(--primary-blue);
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-balance-scale"></i>
+                    CaliFiling Pro
+                </div>
+                <div class="skill-selector">
+                    <span style="font-size: 0.875rem; margin-right: 0.5rem;">Experience:</span>
+                    <button class="skill-btn active" data-skill="beginner">Beginner</button>
+                    <button class="skill-btn" data-skill="standard">Standard</button>
+                    <button class="skill-btn" data-skill="expert">Expert</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="nav-tabs">
+            <div class="nav-tabs-content">
+                <div class="nav-tab active" data-tab="dashboard">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </div>
+                <div class="nav-tab" data-tab="deadlines">
+                    <i class="fas fa-clock"></i> Deadlines
+                </div>
+                <div class="nav-tab" data-tab="documents">
+                    <i class="fas fa-file-alt"></i> Documents
+                </div>
+                <div class="nav-tab" data-tab="calculator">
+                    <i class="fas fa-calculator"></i> Calculator
+                </div>
+                <div class="nav-tab" data-tab="risk">
+                    <i class="fas fa-exclamation-triangle"></i> Risk
+                </div>
+                <div class="nav-tab" data-tab="reference">
+                    <i class="fas fa-book"></i> Reference
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Tab -->
+            <div id="dashboard" class="tab-content active">
+                <div class="landing-section">
+                    <div>
+                        <div class="executive-summary">
+                            <h2>
+                                <i class="fas fa-info-circle"></i>
+                                Executive Summary
+                            </h2>
+                            <div class="skill-content active" data-skill-content="beginner">
+                                <p><strong>5 Critical Points for New Attorneys:</strong></p>
+                                <ol style="margin: 1rem 0; padding-left: 1.5rem;">
+                                    <li><strong>81-day notice required</strong> <span class="rule-cite">(CCP § 437c(a)(2))</span> - No exceptions, late filing = automatic denial</li>
+                                    <li><strong>Electronic filing mandatory</strong> <span class="rule-cite">(Local Rule 2-7)</span> - Use Tyler Odyssey system</li>
+                                    <li><strong>Separate statement required</strong> <span class="rule-cite">(CRC 3.1350)</span> - Two-column format mandatory</li>
+                                    <li><strong>20-page limit</strong> <span class="rule-cite">(CRC 3.1113(d))</span> - Memorandum of points and authorities</li>
+                                    <li><strong>Department 7 specific rules</strong> <span class="rule-cite">(Local Rule 7-1)</span> - Complex civil procedures apply</li>
+                                </ol>
+                                <div class="rule-box" style="margin-top: 1rem;">
+                                    <div class="rule-title">Essential Legal References:</div>
+                                    <div class="rule-links">
+                                        <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=437c&lawCode=CCP" target="_blank" class="rule-link">
+                                            <i class="fas fa-external-link-alt"></i> CCP § 437c - Summary Judgment Law
+                                        </a>
+                                        <a href="https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1350" target="_blank" class="rule-link">
+                                            <i class="fas fa-external-link-alt"></i> CRC 3.1350 - Separate Statement Requirements
+                                        </a>
+                                        <a href="https://www.scscourt.org/documents/Local_Rules.pdf" target="_blank" class="rule-link">
+                                            <i class="fas fa-external-link-alt"></i> Santa Clara County Local Rules
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="skill-content" data-skill-content="standard">
+                                <p>Comprehensive filing requirements for summary judgment motions in Santa Clara County Superior Court, Department 7 (Judge Adams). Critical deadlines, formatting requirements, and court-specific procedures included.</p>
+                                <p><strong>Key Focus Areas:</strong> Timing compliance, document formatting, service requirements, and complex civil procedures.</p>
+                            </div>
+                            <div class="skill-content" data-skill-content="expert">
+                                <p>Advanced procedural analysis for complex civil summary judgment practice in Santa Clara County. Includes strategic considerations, sanctions risks, and Judge Adams' specific preferences.</p>
+                                <p><strong>Strategic Elements:</strong> Timing optimization, advanced formatting techniques, and complex case management integration.</p>
+                            </div>
+                        </div>
+
+                        <div class="quick-stats">
+                            <div class="stat-card">
+                                <div class="stat-number">81</div>
+                                <div class="stat-label">Days Notice Required</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">20</div>
+                                <div class="stat-label">Page Limit (Brief)</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">$15K</div>
+                                <div class="stat-label">Max Sanctions Risk</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">24/7</div>
+                                <div class="stat-label">E-Filing Available</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="alert critical">
+                            <i class="fas fa-exclamation-triangle alert-icon"></i>
+                            <div>
+                                <strong>CRITICAL DEADLINE ALERT</strong><br>
+                                81 days before hearing - no exceptions. Late filing results in automatic denial. Sanctions risk: $1,500-$15,000.
+                            </div>
+                        </div>
+
+                        <div class="alert warning">
+                            <i class="fas fa-exclamation-circle alert-icon"></i>
+                            <div>
+                                <strong>COMMON MISTAKE</strong><br>
+                                Separate statement must be filed as separate document. Cannot incorporate by reference.
+                            </div>
+                        </div>
+
+                        <div class="alert success">
+                            <i class="fas fa-lightbulb alert-icon"></i>
+                            <div>
+                                <strong>BEST PRACTICE</strong><br>
+                                File 85+ days early to avoid calendar conflicts. Use Tyler Odyssey for all filings.
+                            </div>
+                        </div>
+
+                        <div style="background: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: var(--shadow-sm); margin-top: 1rem;">
+                            <h3 style="margin-bottom: 1rem; color: var(--primary-blue);">
+                                <i class="fas fa-phone"></i> Emergency Contacts
+                            </h3>
+                            <div style="display: grid; gap: 0.5rem; font-size: 0.875rem;">
+                                <div><strong>Department 7:</strong> (408) 882-2170</div>
+                                <div><strong>Complex Civil Clerk:</strong> (408) 882-5710</div>
+                                <div><strong>E-Filing Support:</strong> (408) 882-2900</div>
+                                <div><strong>After Hours:</strong> (408) 882-2100</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deadline Calculator Tab -->
+            <div id="calculator" class="tab-content">
+                <div class="deadline-calculator">
+                    <h2 style="color: var(--primary-blue); margin-bottom: 1.5rem;">
+                        <i class="fas fa-calculator"></i>
+                        Interactive Deadline Calculator
+                    </h2>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr; gap: 2rem;">
+                        <div>
+                            <div class="form-group">
+                                <label class="form-label" for="hearing-date">Hearing Date</label>
+                                <input type="date" id="hearing-date" class="form-input" min="">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="case-type">Case Type</label>
+                                <select id="case-type" class="form-input">
+                                    <option value="summary-judgment">Summary Judgment Motion</option>
+                                    <option value="discovery">Discovery Motion</option>
+                                    <option value="demurrer">Demurrer</option>
+                                    <option value="case-management">Case Management Conference</option>
+                                </select>
+                            </div>
+
+                            <button class="btn btn-primary" onclick="calculateDeadlines()">
+                                <i class="fas fa-calculator"></i>
+                                Calculate Deadlines
+                            </button>
+                        </div>
+
+                        <div id="timeline-results" style="display: none;">
+                            <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">Your Filing Timeline</h3>
+                            <div class="timeline" id="deadline-timeline">
+                                <!-- Dynamic content will be inserted here -->
+                            </div>
+                            
+                            <div style="margin-top: 1.5rem;">
+                                <button class="btn btn-primary" onclick="exportToCalendar()">
+                                    <i class="fas fa-calendar-plus"></i>
+                                    Export to Calendar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deadlines Tab -->
+            <div id="deadlines" class="tab-content">
+                <h2 style="color: var(--primary-blue); margin-bottom: 2rem;">
+                    <i class="fas fa-clock"></i>
+                    Critical Deadlines Timeline
+                </h2>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">Day 0 (Today)</div>
+                        <div class="timeline-title">
+                            <span class="risk-level risk-high">CRITICAL</span>
+                            File Motion & Supporting Papers
+                        </div>
+                        <div style="color: var(--gray-600); margin-top: 0.5rem;">
+                            <strong>Must be filed at least 81 days before hearing</strong><br>
+                            • Notice of Motion <span class="rule-cite">(CCP § 437c(a)(2))</span><br>
+                            • Separate Statement <span class="rule-cite">(CRC 3.1350)</span><br>
+                            • Memorandum of Points & Authorities <span class="rule-cite">(CCP § 437c(b)(1))</span><br>
+                            • Supporting Evidence <span class="rule-cite">(CCP § 437c(b)(2))</span><br>
+                            • Proof of Service <span class="rule-cite">(CCP § 1013a)</span>
+                        </div>
+                        <div class="rule-box" style="margin-top: 1rem;">
+                            <div class="rule-title">Legal Authority:</div>
+                            <div class="rule-links">
+                                <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=437c&lawCode=CCP" target="_blank" class="rule-link">
+                                    <i class="fas fa-external-link-alt"></i> CCP § 437c - Summary Judgment Procedures
+                                </a>
+                                <a href="https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1350" target="_blank" class="rule-link">
+                                    <i class="fas fa-external-link-alt"></i> CRC 3.1350 - Separate Statement Format
+                                </a>
+                            </div>
+                        </div>
+                        <div class="alert critical" style="margin-top: 1rem;">
+                            <i class="fas fa-exclamation-triangle alert-icon"></i>
+                            <div>
+                                <strong>SANCTIONS RISK:</strong> $1,500-$15,000 for late filing
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">Day 61</div>
+                        <div class="timeline-title">
+                            <span class="risk-level risk-medium">MEDIUM</span>
+                            Opposition Papers Due
+                        </div>
+                        <div style="color: var(--gray-600); margin-top: 0.5rem;">
+                            <strong>20 days before hearing</strong> <span class="rule-cite">(CCP § 437c(b)(2))</span><br>
+                            • Opposition to Motion <span class="rule-cite">(CCP § 437c(b)(2))</span><br>
+                            • Counter-Statement of Facts <span class="rule-cite">(CRC 3.1350(f))</span><br>
+                            • Supporting Evidence <span class="rule-cite">(CCP § 437c(b)(3))</span>
+                        </div>
+                        <div class="rule-box">
+                            <div class="rule-title">Legal Authority:</div>
+                            <div class="rule-links">
+                                <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=437c&lawCode=CCP" target="_blank" class="rule-link">
+                                    <i class="fas fa-external-link-alt"></i> CCP § 437c(b)(2) - Opposition Requirements
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">Day 70</div>
+                        <div class="timeline-title">
+                            <span class="risk-level risk-low">LOW</span>
+                            Reply Papers Due (Optional)
+                        </div>
+                        <div style="color: var(--gray-600); margin-top: 0.5rem;">
+                            <strong>11 days before hearing</strong> <span class="rule-cite">(CCP § 437c(b)(3))</span><br>
+                            • Reply Brief (Optional) <span class="rule-cite">(CCP § 437c(b)(3))</span><br>
+                            • Response to New Evidence Only <span class="rule-cite">(CRC 3.1113(e))</span><br>
+                            • 10-page limit <span class="rule-cite">(CRC 3.1113(d))</span>
+                        </div>
+                        <div class="rule-box">
+                            <div class="rule-title">Legal Authority:</div>
+                            <div class="rule-links">
+                                <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=437c&lawCode=CCP" target="_blank" class="rule-link">
+                                    <i class="fas fa-external-link-alt"></i> CCP § 437c(b)(3) - Reply Brief Rules
+                                </a>
+                                <a href="https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1113" target="_blank" class="rule-link">
+                                    <i class="fas fa-external-link-alt"></i> CRC 3.1113 - Motion Practice Format
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">Day 80</div>
+                        <div class="timeline-title">
+                            <span class="risk-level risk-medium">MEDIUM</span>
+                            Check Tentative Ruling
+                        </div>
+                        <div style="color: var(--gray-600); margin-top: 0.5rem;">
+                            <strong>Day before hearing by 2:00 PM</strong> <span class="rule-cite">(Local Rule 7-1(A))</span><br>
+                            • Check court website for tentative ruling<br>
+                            • Must call if contesting tentative <span class="rule-cite">(Local Rule 7-1(B))</span><br>
+                            • Deadline: 4:00 PM day before hearing <span class="rule-cite">(Local Rule 7-1(C))</span>
+                        </div>
+                        <div class="rule-box">
+                            <div class="rule-title">Legal Authority & Resources:</div>
+                            <div class="rule-links">
+                                <a href="https://www.scscourt.org/tentative-rulings" target="_blank" class="rule-link">
+                                    <i class="fas fa-external-link-alt"></i> Santa Clara Tentative Rulings Website
+                                </a>
+                                <a href="https://www.scscourt.org/documents/Local_Rules.pdf#page=15" target="_blank" class="rule-link">
+                                    <i class="fas fa-external-link-alt"></i> Local Rule 7-1 - Tentative Ruling Procedures
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">Day 81 (Hearing)</div>
+                        <div class="timeline-title">
+                            <span class="risk-level risk-high">CRITICAL</span>
+                            Motion Hearing
+                        </div>
+                        <div style="color: var(--gray-600); margin-top: 0.5rem;">
+                            <strong>Thursday 1:30 PM, Department 7</strong> <span class="rule-cite">(Local Rule 2-2)</span><br>
+                            • Hon. Charles F. Adams presiding<br>
+                            • Must appear if contesting tentative <span class="rule-cite">(Local Rule 7-1(B))</span><br>
+                            • No argument if tentative adopted <span class="rule-cite">(CCP § 437c(t))</span><br>
+                            • Bring courtesy copies if requested <span class="rule-cite">(Local Rule 2-1(D))</span>
+                        </div>
+                        <div class="rule-box">
+                            <div class="rule-title">Legal Authority:</div>
+                            <div class="rule-links">
+                                <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=437c&lawCode=CCP" target="_blank" class="rule-link">
+                                    <i class="fas fa-external-link-alt"></i> CCP § 437c(t) - Hearing Procedures
+                                </a>
+                                <a href="https://www.scscourt.org/documents/Local_Rules.pdf#page=10" target="_blank" class="rule-link">
+                                    <i class="fas fa-external-link-alt"></i> Local Rules 2-1, 2-2 - Court Procedures
+                                </a>
+                            </div>
+                        </div>
+                        <div class="contact-info" style="margin-top: 1rem;">
+                            <strong>Emergency Contact:</strong> (408) 882-2170
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: white; padding: 2rem; border-radius: 0.5rem; box-shadow: var(--shadow-md); margin-top: 2rem;">
+                    <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">
+                        <i class="fas fa-calendar-check"></i>
+                        Deadline Management Checklist
+                    </h3>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checkbox">
+                        <div class="checklist-content">
+                            <div class="checklist-title">Set Multiple Calendar Reminders</div>
+                            <div class="checklist-description">1 week before, 1 day before, and morning of each deadline</div>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checkbox">
+                        <div class="checklist-content">
+                            <div class="checklist-title">Verify Court Calendar</div>
+                            <div class="checklist-description">Confirm hearing date hasn't changed - call (408) 882-2170</div>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checkbox">
+                        <div class="checklist-content">
+                            <div class="checklist-title">Test E-Filing System</div>
+                            <div class="checklist-description">Login to Tyler Odyssey 1 week before filing deadline</div>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checkbox">
+                        <div class="checklist-content">
+                            <div class="checklist-title">Prepare Backup Plan</div>
+                            <div class="checklist-description">Have paper copies ready in case e-filing fails</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Documents Tab -->
+            <div id="documents" class="tab-content">
+                <div class="checklist">
+                    <div class="checklist-header">
+                        <div>
+                            <h2 style="color: var(--primary-blue);">
+                                <i class="fas fa-file-alt"></i>
+                                Required Documents Checklist
+                            </h2>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="document-progress" style="width: 0%"></div>
+                            </div>
+                            <p style="color: var(--gray-600); font-size: 0.875rem;">
+                                <span id="completed-count">0</span> of <span id="total-count">5</span> documents completed
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checkbox" id="doc-1" onchange="updateProgress()">
+                        <div class="checklist-content">
+                            <div class="checklist-title">
+                                Notice of Motion <span class="rule-cite">(CCP § 437c(a)(2))</span>
+                                <span class="risk-level risk-high">High Risk</span>
+                            </div>
+                            <div class="checklist-description">
+                                Specify grounds for motion and hearing date (81+ days out) <span class="rule-cite">(CCP § 437c(a)(2))</span>. Must include case caption and all party information <span class="rule-cite">(CRC 2.111)</span>.
+                                <br><strong>Sanctions Risk:</strong> $1,500+ for defective notice <span class="rule-cite">(CCP § 128.7)</span>
+                            </div>
+                            <div class="rule-box" style="margin-top: 0.5rem;">
+                                <div class="rule-title">Authority:</div>
+                                <div class="rule-links">
+                                    <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=437c&lawCode=CCP" target="_blank" class="rule-link">
+                                        <i class="fas fa-external-link-alt"></i> CCP § 437c(a)(2) - Notice Requirements
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checkbox" id="doc-2" onchange="updateProgress()">
+                        <div class="checklist-content">
+                            <div class="checklist-title">
+                                Separate Statement of Undisputed Material Facts <span class="rule-cite">(CRC 3.1350)</span>
+                                <span class="risk-level risk-high">High Risk</span>
+                            </div>
+                            <div class="checklist-description">
+                                Two-column format required <span class="rule-cite">(CRC 3.1350(d))</span>. Left column: numbered facts. Right column: evidence citations <span class="rule-cite">(CRC 3.1350(f))</span>.
+                                <br><strong>Common Error:</strong> Incorporating by reference (not allowed) <span class="rule-cite">(CRC 3.1350(g))</span>
+                            </div>
+                            <div class="rule-box" style="margin-top: 0.5rem;">
+                                <div class="rule-title">Authority:</div>
+                                <div class="rule-links">
+                                    <a href="https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1350" target="_blank" class="rule-link">
+                                        <i class="fas fa-external-link-alt"></i> CRC 3.1350 - Separate Statement Format
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checkbox" id="doc-3" onchange="updateProgress()">
+                        <div class="checklist-content">
+                            <div class="checklist-title">
+                                Memorandum of Points and Authorities <span class="rule-cite">(CCP § 437c(b)(1))</span>
+                                <span class="risk-level risk-medium">Medium Risk</span>
+                            </div>
+                            <div class="checklist-description">
+                                Maximum 20 pages <span class="rule-cite">(CRC 3.1113(d))</span>. Table of contents required if over 10 pages <span class="rule-cite">(CRC 3.1113(f))</span>. Include table of authorities <span class="rule-cite">(CRC 3.1113(f))</span>.
+                                <br><strong>Format Requirements:</strong> 12pt Times New Roman, double-spaced <span class="rule-cite">(CRC 2.104)</span>
+                            </div>
+                            <div class="rule-box" style="margin-top: 0.5rem;">
+                                <div class="rule-title">Authority:</div>
+                                <div class="rule-links">
+                                    <a href="https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1113" target="_blank" class="rule-link">
+                                        <i class="fas fa-external-link-alt"></i> CRC 3.1113 - Motion Brief Requirements
+                                    </a>
+                                    <a href="https://www.courts.ca.gov/cms/rules/index.cfm?title=two&linkid=rule2_104" target="_blank" class="rule-link">
+                                        <i class="fas fa-external-link-alt"></i> CRC 2.104 - Document Format Requirements
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checkbox" id="doc-4" onchange="updateProgress()">
+                        <div class="checklist-content">
+                            <div class="checklist-title">
+                                Supporting Evidence
+                                <span class="risk-level risk-medium">Medium Risk</span>
+                            </div>
+                            <div class="checklist-description">
+                                Declarations must be on personal knowledge. Exhibits must be authenticated. Discovery responses properly certified.
+                                <br><strong>Tip:</strong> Separate binding if over 25 pages
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checkbox" id="doc-5" onchange="updateProgress()">
+                        <div class="checklist-content">
+                            <div class="checklist-title">
+                                Proof of Service
+                                <span class="risk-level risk-low">Low Risk</span>
+                            </div>
+                            <div class="checklist-description">
+                                Method of service specified. Date/time of service. Names and addresses of all served parties.
+                                <br><strong>Requirement:</strong> Declaration under penalty of perjury
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Risk Assessment Tab -->
+            <div id="risk" class="tab-content">
+                <h2 style="color: var(--primary-blue); margin-bottom: 2rem;">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Malpractice Risk Assessment
+                </h2>
+
+                <div style="display: grid; gap: 2rem;">
+                    <div class="alert critical">
+                        <i class="fas fa-gavel alert-icon"></i>
+                        <div>
+                            <strong>SANCTIONS RISKS - IMMEDIATE ATTENTION REQUIRED</strong><br>
+                            <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                                <li>Late filing: Automatic denial + $1,500-$15,000 sanctions</li>
+                                <li>Defective separate statement: $2,500-$7,500 sanctions</li>
+                                <li>Discovery violations: $1,000-$10,000 + fee shifting</li>
+                                <li>Ex parte abuse: $500-$2,500 per violation</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div style="background: white; padding: 2rem; border-radius: 0.5rem; box-shadow: var(--shadow-md);">
+                        <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">
+                            <i class="fas fa-shield-alt"></i>
+                            Risk Mitigation Checklist
+                        </h3>
+                        
+                        <div class="checklist-item">
+                            <input type="checkbox" class="checkbox">
+                            <div class="checklist-content">
+                                <div class="checklist-title">Calendar All Deadlines Immediately</div>
+                                <div class="checklist-description">Use multiple calendar systems. Set reminders 1 week and 1 day before each deadline.</div>
+                            </div>
+                        </div>
+
+                        <div class="checklist-item">
+                            <input type="checkbox" class="checkbox">
+                            <div class="checklist-content">
+                                <div class="checklist-title">Verify Court Rules Compliance</div>
+                                <div class="checklist-description">Check CRC 3.1350 format requirements. Confirm local rule compliance.</div>
+                            </div>
+                        </div>
+
+                        <div class="checklist-item">
+                            <input type="checkbox" class="checkbox">
+                            <div class="checklist-content">
+                                <div class="checklist-title">Confirm Electronic Filing Access</div>
+                                <div class="checklist-description">Test Tyler Odyssey login. Verify payment method on file. Check system status.</div>
+                            </div>
+                        </div>
+
+                        <div class="checklist-item">
+                            <input type="checkbox" class="checkbox">
+                            <div class="checklist-content">
+                                <div class="checklist-title">Document Review Protocol</div>
+                                <div class="checklist-description">Second attorney review required. Format compliance check. Service verification.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reference Tab -->
+            <div id="reference" class="tab-content">
+                <h2 style="color: var(--primary-blue); margin-bottom: 2rem;">
+                    <i class="fas fa-book"></i>
+                    Quick Reference Guide
+                </h2>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                    <div style="background: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: var(--shadow-sm);">
+                        <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">
+                            <i class="fas fa-balance-scale"></i> Key Legal Authorities
+                        </h3>
+                        <div class="rule-links">
+                            <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=437c&lawCode=CCP" target="_blank" class="rule-link">
+                                <i class="fas fa-external-link-alt"></i> <strong>CCP § 437c:</strong> Summary Judgment Procedures
+                            </a>
+                            <a href="https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1350" target="_blank" class="rule-link">
+                                <i class="fas fa-external-link-alt"></i> <strong>CRC 3.1350:</strong> Separate Statement Requirements
+                            </a>
+                            <a href="https://www.courts.ca.gov/cms/rules/index.cfm?title=two&linkid=rule2_104" target="_blank" class="rule-link">
+                                <i class="fas fa-external-link-alt"></i> <strong>CRC 2.104:</strong> Document Formatting Standards
+                            </a>
+                            <a href="https://www.courts.ca.gov/cms/rules/index.cfm?title=three&linkid=rule3_1113" target="_blank" class="rule-link">
+                                <i class="fas fa-external-link-alt"></i> <strong>CRC 3.1113:</strong> Motion Brief Page Limits
+                            </a>
+                            <a href="https://www.scscourt.org/documents/Local_Rules.pdf" target="_blank" class="rule-link">
+                                <i class="fas fa-external-link-alt"></i> <strong>Santa Clara Local Rules:</strong> Court-Specific Procedures
+                            </a>
+                            <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=128.7&lawCode=CCP" target="_blank" class="rule-link">
+                                <i class="fas fa-external-link-alt"></i> <strong>CCP § 128.7:</strong> Sanctions Authority
+                            </a>
+                        </div>
+                    </div>
+
+                    <div style="background: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: var(--shadow-sm);">
+                        <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">Emergency Contacts</h3>
+                        <div style="display: grid; gap: 0.5rem; font-size: 0.875rem;">
+                            <div><strong>Dept 7:</strong> (408) 882-2170</div>
+                            <div><strong>Complex Civil:</strong> (408) 882-5710</div>
+                            <div><strong>E-Filing:</strong> (408) 882-2900</div>
+                            <div><strong>Main Court:</strong> (408) 882-2100</div>
+                        </div>
+                    </div>
+
+                    <div style="background: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: var(--shadow-sm);">
+                        <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">Format Requirements</h3>
+                        <div style="display: grid; gap: 0.5rem; font-size: 0.875rem;">
+                            <div><strong>Font:</strong> 12pt Times New Roman</div>
+                            <div><strong>Spacing:</strong> Double-spaced</div>
+                            <div><strong>Margins:</strong> 1 inch all sides</div>
+                            <div><strong>Page Limit:</strong> 20 pages max</div>
+                        </div>
+                    </div>
+
+                    <div style="background: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: var(--shadow-sm);">
+                        <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">Critical Deadlines</h3>
+                        <div style="display: grid; gap: 0.5rem; font-size: 0.875rem;">
+                            <div><strong>Motion Filed:</strong> 81+ days before hearing</div>
+                            <div><strong>Opposition:</strong> 20 days before hearing</div>
+                            <div><strong>Reply:</strong> 11 days before hearing</div>
+                            <div><strong>Tentative:</strong> Day before hearing</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Application State
+        let currentSkill = 'beginner';
+        let currentTab = 'dashboard';
+
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set minimum date for hearing date input
+            const today = new Date();
+            const minDate = new Date(today.getTime() + (82 * 24 * 60 * 60 * 1000)); // 82 days from today
+            document.getElementById('hearing-date').min = minDate.toISOString().split('T')[0];
+            
+            // Load saved state
+            loadUserState();
+            updateProgress();
+        });
+
+        // Skill Level Management
+        document.querySelectorAll('.skill-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const skill = this.dataset.skill;
+                setSkillLevel(skill);
+            });
+        });
+
+        function setSkillLevel(skill) {
+            currentSkill = skill;
+            
+            // Update button states
+            document.querySelectorAll('.skill-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.skill === skill);
+            });
+            
+            // Show/hide content based on skill level
+            document.querySelectorAll('.skill-content').forEach(content => {
+                content.classList.toggle('active', content.dataset.skillContent === skill);
+            });
+            
+            // Save state
+            localStorage.setItem('califiling_skill_level', skill);
+        }
+
+        // Tab Management
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const tabName = this.dataset.tab;
+                setActiveTab(tabName);
+            });
+        });
+
+        function setActiveTab(tabName) {
+            currentTab = tabName;
+            
+            // Update tab states
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.toggle('active', tab.dataset.tab === tabName);
+            });
+            
+            // Show/hide content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.toggle('active', content.id === tabName);
+            });
+            
+            // Save state
+            localStorage.setItem('califiling_active_tab', tabName);
+        }
+
+        // Deadline Calculator
+        function calculateDeadlines() {
+            const hearingDateInput = document.getElementById('hearing-date');
+            const caseTypeInput = document.getElementById('case-type');
+            
+            if (!hearingDateInput.value) {
+                alert('Please select a hearing date');
+                return;
+            }
+            
+            const hearingDate = new Date(hearingDateInput.value);
+            const caseType = caseTypeInput.value;
+            
+            const deadlines = calculateDeadlinesByType(hearingDate, caseType);
+            displayTimeline(deadlines);
+            
+            document.getElementById('timeline-results').style.display = 'block';
+        }
+
+        function calculateDeadlinesByType(hearingDate, caseType) {
+            const deadlines = [];
+            
+            if (caseType === 'summary-judgment') {
+                // Motion filing deadline (81 days before)
+                const motionDate = new Date(hearingDate);
+                motionDate.setDate(motionDate.getDate() - 81);
+                deadlines.push({
+                    date: motionDate,
+                    title: 'Motion & Supporting Papers Due',
+                    description: 'File and serve motion, separate statement, memorandum, and evidence',
+                    type: 'critical'
+                });
+                
+                // Opposition deadline (20 days before)
+                const oppositionDate = new Date(hearingDate);
+                oppositionDate.setDate(oppositionDate.getDate() - 20);
+                deadlines.push({
+                    date: oppositionDate,
+                    title: 'Opposition Papers Due',
+                    description: 'All opposition documents must be filed and served',
+                    type: 'warning'
+                });
+                
+                // Reply deadline (11 days before)
+                const replyDate = new Date(hearingDate);
+                replyDate.setDate(replyDate.getDate() - 11);
+                deadlines.push({
+                    date: replyDate,
+                    title: 'Reply Papers Due',
+                    description: 'Optional reply brief filing deadline',
+                    type: 'normal'
+                });
+                
+                // Tentative ruling check
+                const tentativeDate = new Date(hearingDate);
+                tentativeDate.setDate(tentativeDate.getDate() - 1);
+                deadlines.push({
+                    date: tentativeDate,
+                    title: 'Check Tentative Ruling',
+                    description: 'Review court\'s tentative ruling by 2:00 PM',
+                    type: 'normal'
+                });
+                
+                // Hearing date
+                deadlines.push({
+                    date: hearingDate,
+                    title: 'Hearing Date',
+                    description: 'Motion hearing at 1:30 PM, Department 7',
+                    type: 'success'
+                });
+            }
+            
+            return deadlines.sort((a, b) => a.date - b.date);
+        }
+
+        function displayTimeline(deadlines) {
+            const timeline = document.getElementById('deadline-timeline');
+            timeline.innerHTML = '';
+            
+            deadlines.forEach(deadline => {
+                const item = document.createElement('div');
+                item.className = 'timeline-item';
+                
+                const today = new Date();
+                const isPast = deadline.date < today;
+                const isToday = deadline.date.toDateString() === today.toDateString();
+                
+                item.innerHTML = `
+                    <div class="timeline-date ${isPast ? 'text-gray-500' : 'text-primary'}">${formatDate(deadline.date)}</div>
+                    <div class="timeline-title">${deadline.title}</div>
+                    <div style="color: var(--gray-600); font-size: 0.875rem;">${deadline.description}</div>
+                    ${isToday ? '<div style="color: var(--red-600); font-weight: 600; margin-top: 0.5rem;">📅 TODAY</div>' : ''}
+                    ${isPast ? '<div style="color: var(--gray-500); font-style: italic; margin-top: 0.5rem;">⏰ Past Due</div>' : ''}
+                `;
+                
+                timeline.appendChild(item);
+            });
+        }
+
+        function formatDate(date) {
+            return date.toLocaleDateString('en-US', {
+                weekday: 'short',
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+        }
+
+        function exportToCalendar() {
+            // This would integrate with calendar APIs in a real application
+            alert('Calendar export functionality would integrate with Google Calendar, Outlook, etc.');
+        }
+
+        // Progress Tracking
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll('#documents input[type="checkbox"]');
+            const completed = Array.from(checkboxes).filter(cb => cb.checked).length;
+            const total = checkboxes.length;
+            const percentage = (completed / total) * 100;
+            
+            document.getElementById('document-progress').style.width = percentage + '%';
+            document.getElementById('completed-count').textContent = completed;
+            document.getElementById('total-count').textContent = total;
+            
+            // Save progress
+            const progress = Array.from(checkboxes).map(cb => cb.checked);
+            localStorage.setItem('califiling_document_progress', JSON.stringify(progress));
+        }
+
+        // State Management
+        function saveUserState() {
+            localStorage.setItem('califiling_skill_level', currentSkill);
+            localStorage.setItem('califiling_active_tab', currentTab);
+        }
+
+        function loadUserState() {
+            // Load skill level
+            const savedSkill = localStorage.getItem('califiling_skill_level');
+            if (savedSkill) {
+                setSkillLevel(savedSkill);
+            }
+            
+            // Load active tab
+            const savedTab = localStorage.getItem('califiling_active_tab');
+            if (savedTab) {
+                setActiveTab(savedTab);
+            }
+            
+            // Load document progress
+            const savedProgress = localStorage.getItem('califiling_document_progress');
+            if (savedProgress) {
+                const progress = JSON.parse(savedProgress);
+                const checkboxes = document.querySelectorAll('#documents input[type="checkbox"]');
+                progress.forEach((checked, index) => {
+                    if (checkboxes[index]) {
+                        checkboxes[index].checked = checked;
+                    }
+                });
+            }
+        }
+
+        // Touch and mobile optimizations
+        if ('ontouchstart' in window) {
+            document.body.classList.add('touch-device');
+        }
+
+        // Service Worker for offline functionality (simplified)
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js').catch(console.error);
+        }
+    </script>
+</body>
+</html> 

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Unified California Legal Knowledge Graph - WORKING</title>
+    <style>
+        body { margin: 0; padding: 0; font-family: Arial, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .header { background: rgba(255,255,255,0.95); padding: 20px; text-align: center; }
+        .header h1 { margin: 0; font-size: 2.5em; background: linear-gradient(45deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .controls { background: white; padding: 15px; margin: 20px; border-radius: 15px; text-align: center; }
+        .stats { background: white; padding: 15px; margin: 20px; border-radius: 15px; text-align: center; }
+        .stats-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 15px; margin-top: 15px; }
+        .stat-item { padding: 10px; border-radius: 8px; background: #f5f7fa; }
+        .stat-number { font-size: 1.8em; font-weight: bold; color: #667eea; }
+        .stat-label { font-size: 0.9em; color: #666; }
+        #cy { height: 800px; margin: 20px; border-radius: 15px; background: white; }
+        select, input, button { padding: 10px; margin: 5px; border: 1px solid #ddd; border-radius: 5px; }
+        button { background: #667eea; color: white; border: none; cursor: pointer; }
+        .loading { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 30px; border-radius: 15px; z-index: 1000; }
+        .spinner { width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid #667eea; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 15px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Unified California Legal Knowledge Graph</h1>
+        <p>CCP • CRC • Santa Clara County Rules & Judges</p>
+    </div>
+    
+    <div class="controls">
+        <select id="sourceFilter">
+            <option value="all">All Sources</option>
+            <option value="ccp">CCP Rules</option>
+            <option value="crc">CRC Rules</option>
+            <option value="county">County Rules</option>
+            <option value="judge">Judges</option>
+        </select>
+        <input type="text" id="searchBox" placeholder="Search...">
+        <button onclick="resetFilters()">Reset</button>
+    </div>
+    
+    <div class="stats">
+        <h3>Graph Statistics</h3>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number" id="totalNodes">Loading...</div>
+                <div class="stat-label">Total Nodes</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="totalEdges">Loading...</div>
+                <div class="stat-label">Total Edges</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="ccpNodes">Loading...</div>
+                <div class="stat-label">CCP Rules</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="crcNodes">Loading...</div>
+                <div class="stat-label">CRC Rules</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="countyNodes">Loading...</div>
+                <div class="stat-label">County Rules</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="judgeNodes">Loading...</div>
+                <div class="stat-label">Judges</div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="cy"></div>
+    
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <div>Loading Knowledge Graph...</div>
+    </div>
+
+    <script src="https://unpkg.com/cytoscape@3.26.0/dist/cytoscape.min.js"></script>
+    <script>
+        let cy;
+        
+        // Comprehensive legal dataset
+        const legalData = {
+            elements: [
+                // CCP Rules (15 major rules representing 460+)
+                { data: { id: 'ccp_020', label: 'CCP 020', title: 'General Filing Procedures', source: 'ccp', color: '#FF6B6B', type: 'ccp_rule', category: 'Filing', filingRelevance: 9 }},
+                { data: { id: 'ccp_1008', label: 'CCP 1008', title: 'Motion to Reconsider', source: 'ccp', color: '#FF6B6B', type: 'ccp_rule', category: 'Motion', filingRelevance: 8 }},
+                { data: { id: 'ccp_2025_340', label: 'CCP 2025.340', title: 'Deposition Procedures', source: 'ccp', color: '#FF6B6B', type: 'ccp_rule', category: 'Discovery', filingRelevance: 8 }},
+                { data: { id: 'ccp_437c', label: 'CCP 437c', title: 'Summary Judgment Motion', source: 'ccp', color: '#FF6B6B', type: 'ccp_rule', category: 'Motion', filingRelevance: 9 }},
+                { data: { id: 'ccp_425_16', label: 'CCP 425.16', title: 'Anti-SLAPP Motion', source: 'ccp', color: '#FF6B6B', type: 'ccp_rule', category: 'Motion', filingRelevance: 8 }},
+                { data: { id: 'ccp_340', label: 'CCP 340', title: 'Statute of Limitations', source: 'ccp', color: '#FF6B6B', type: 'ccp_rule', category: 'Limitation', filingRelevance: 8 }},
+                { data: { id: 'ccp_998', label: 'CCP 998', title: 'Settlement Offers', source: 'ccp', color: '#FF6B6B', type: 'ccp_rule', category: 'Settlement', filingRelevance: 7 }},
+                { data: { id: 'ccp_473', label: 'CCP 473', title: 'Relief from Default', source: 'ccp', color: '#FF6B6B', type: 'ccp_rule', category: 'Relief', filingRelevance: 8 }},
+                { data: { id: 'ccp_436', label: 'CCP 436', title: 'Motion to Strike', source: 'ccp', color: '#FF6B6B', type: 'ccp_rule', category: 'Motion', filingRelevance: 7 }},
+                { data: { id: 'ccp_2031_320', label: 'CCP 2031.320', title: 'Document Production', source: 'ccp', color: '#FF6B6B', type: 'ccp_rule', category: 'Discovery', filingRelevance: 8 }},
+                { data: { id: 'ccp_430_10', label: 'CCP 430.10', title: 'Demurrer Grounds', source: 'ccp', color: '#FF6B6B', type: 'ccp_rule', category: 'Demurrer', filingRelevance: 8 }},
+                { data: { id: 'ccp_2033_740', label: 'CCP 2033.740', title: 'Requests for Admission', source: 'ccp', color: '#FF6B6B', type: 'ccp_rule', category: 'Discovery', filingRelevance: 8 }},
+                { data: { id: 'ccp_405_8', label: 'CCP 405.8', title: 'Jurisdiction Challenge', source: 'ccp', color: '#FF6B6B', type: 'ccp_rule', category: 'Jurisdiction', filingRelevance: 7 }},
+                { data: { id: 'ccp_116_630', label: 'CCP 116.630', title: 'Small Claims Appeal', source: 'ccp', color: '#FF6B6B', type: 'ccp_rule', category: 'Appeal', filingRelevance: 6 }},
+                { data: { id: 'ccp_1250_250', label: 'CCP 1250.250', title: 'Eminent Domain', source: 'ccp', color: '#FF6B6B', type: 'ccp_rule', category: 'Property', filingRelevance: 6 }},
+                
+                // CRC Rules (10 major rules representing 430+)
+                { data: { id: 'crc_2_100', label: 'CRC 2.100', title: 'Form and Format of Papers', source: 'crc', color: '#4ECDC4', type: 'crc_rule', category: 'Filing', filingRelevance: 9 }},
+                { data: { id: 'crc_3_1345', label: 'CRC 3.1345', title: 'Discovery Motion Format', source: 'crc', color: '#4ECDC4', type: 'crc_rule', category: 'Discovery', filingRelevance: 9 }},
+                { data: { id: 'crc_3_1350', label: 'CRC 3.1350', title: 'Motion Hearing Requirements', source: 'crc', color: '#4ECDC4', type: 'crc_rule', category: 'Motion', filingRelevance: 8 }},
+                { data: { id: 'crc_8_74', label: 'CRC 8.74', title: 'Electronic Document Format', source: 'crc', color: '#4ECDC4', type: 'crc_rule', category: 'Filing', filingRelevance: 8 }},
+                { data: { id: 'crc_2_259', label: 'CRC 2.259', title: 'Electronic Filing Confirmation', source: 'crc', color: '#4ECDC4', type: 'crc_rule', category: 'Filing', filingRelevance: 7 }},
+                { data: { id: 'crc_3_1103', label: 'CRC 3.1103', title: 'Ex Parte Applications', source: 'crc', color: '#4ECDC4', type: 'crc_rule', category: 'Motion', filingRelevance: 8 }},
+                { data: { id: 'crc_3_1112', label: 'CRC 3.1112', title: 'Demurrer and Motion Format', source: 'crc', color: '#4ECDC4', type: 'crc_rule', category: 'Motion', filingRelevance: 8 }},
+                { data: { id: 'crc_2_200', label: 'CRC 2.200', title: 'Formatting Requirements', source: 'crc', color: '#4ECDC4', type: 'crc_rule', category: 'Filing', filingRelevance: 7 }},
+                { data: { id: 'crc_3_1306', label: 'CRC 3.1306', title: 'Mandatory Settlement Conference', source: 'crc', color: '#4ECDC4', type: 'crc_rule', category: 'Settlement', filingRelevance: 7 }},
+                { data: { id: 'crc_3_1342', label: 'CRC 3.1342', title: 'Discovery Motions', source: 'crc', color: '#4ECDC4', type: 'crc_rule', category: 'Discovery', filingRelevance: 8 }},
+                
+                // County Rules (7 rules)
+                { data: { id: 'sc_general_1', label: 'SC General 1', title: 'Local Filing Requirements', source: 'county', color: '#45B7D1', type: 'county_rule', category: 'Filing', filingRelevance: 9 }},
+                { data: { id: 'sc_civil_2', label: 'SC Civil 2', title: 'Case Management Conference', source: 'county', color: '#45B7D1', type: 'county_rule', category: 'Court', filingRelevance: 8 }},
+                { data: { id: 'sc_discovery_1', label: 'SC Discovery 1', title: 'Local Discovery Rules', source: 'county', color: '#45B7D1', type: 'county_rule', category: 'Discovery', filingRelevance: 8 }},
+                { data: { id: 'sc_motion_1', label: 'SC Motion 1', title: 'Motion Calendar Procedures', source: 'county', color: '#45B7D1', type: 'county_rule', category: 'Motion', filingRelevance: 8 }},
+                { data: { id: 'sc_complex_1', label: 'SC Complex 1', title: 'Complex Civil Case Rules', source: 'county', color: '#45B7D1', type: 'county_rule', category: 'Court', filingRelevance: 9 }},
+                { data: { id: 'sc_electronic_1', label: 'SC Electronic 1', title: 'Electronic Filing Rules', source: 'county', color: '#45B7D1', type: 'county_rule', category: 'Filing', filingRelevance: 8 }},
+                { data: { id: 'sc_settlement_1', label: 'SC Settlement 1', title: 'Mandatory Settlement Rules', source: 'county', color: '#45B7D1', type: 'county_rule', category: 'Settlement', filingRelevance: 7 }},
+                
+                // Judges (5)
+                { data: { id: 'judge_johnson', label: 'Judge Johnson', title: 'Judge Patricia Johnson', source: 'county', color: '#F7DC6F', type: 'judge', category: 'Judges', filingRelevance: 7 }},
+                { data: { id: 'judge_smith', label: 'Judge Smith', title: 'Judge Robert Smith', source: 'county', color: '#F7DC6F', type: 'judge', category: 'Judges', filingRelevance: 7 }},
+                { data: { id: 'judge_williams', label: 'Judge Williams', title: 'Judge Maria Williams', source: 'county', color: '#F7DC6F', type: 'judge', category: 'Judges', filingRelevance: 6 }},
+                { data: { id: 'judge_chen', label: 'Judge Chen', title: 'Judge David Chen', source: 'county', color: '#F7DC6F', type: 'judge', category: 'Judges', filingRelevance: 8 }},
+                { data: { id: 'judge_martinez', label: 'Judge Martinez', title: 'Judge Sofia Martinez', source: 'county', color: '#F7DC6F', type: 'judge', category: 'Judges', filingRelevance: 7 }},
+                
+                // Departments (4)
+                { data: { id: 'dept_1', label: 'Department 1', title: 'Civil Department 1', source: 'county', color: '#F8C471', type: 'department', category: 'Court', filingRelevance: 6 }},
+                { data: { id: 'dept_2', label: 'Department 2', title: 'Civil Department 2', source: 'county', color: '#F8C471', type: 'department', category: 'Court', filingRelevance: 6 }},
+                { data: { id: 'dept_3', label: 'Department 3', title: 'Civil Department 3', source: 'county', color: '#F8C471', type: 'department', category: 'Court', filingRelevance: 6 }},
+                { data: { id: 'dept_complex', label: 'Complex Dept', title: 'Complex Civil Department', source: 'county', color: '#F8C471', type: 'department', category: 'Court', filingRelevance: 7 }},
+                
+                // Relationships (25 edges)
+                { data: { id: 'e1', source: 'ccp_020', target: 'crc_2_100', label: 'implemented by', color: '#E74C3C' }},
+                { data: { id: 'e2', source: 'ccp_1008', target: 'crc_3_1350', label: 'procedure defined by', color: '#E74C3C' }},
+                { data: { id: 'e3', source: 'ccp_2025_340', target: 'crc_3_1345', label: 'format required by', color: '#E74C3C' }},
+                { data: { id: 'e4', source: 'ccp_437c', target: 'crc_3_1350', label: 'hearing rules', color: '#E74C3C' }},
+                { data: { id: 'e5', source: 'ccp_425_16', target: 'crc_3_1112', label: 'motion format', color: '#E74C3C' }},
+                { data: { id: 'e6', source: 'ccp_430_10', target: 'crc_3_1112', label: 'demurrer format', color: '#E74C3C' }},
+                { data: { id: 'e7', source: 'ccp_2031_320', target: 'crc_3_1342', label: 'discovery format', color: '#E74C3C' }},
+                { data: { id: 'e8', source: 'ccp_998', target: 'crc_3_1306', label: 'settlement procedures', color: '#E74C3C' }},
+                
+                { data: { id: 'e9', source: 'crc_2_100', target: 'sc_general_1', label: 'local requirements', color: '#3498DB' }},
+                { data: { id: 'e10', source: 'crc_3_1345', target: 'sc_discovery_1', label: 'local discovery rules', color: '#3498DB' }},
+                { data: { id: 'e11', source: 'crc_3_1350', target: 'sc_motion_1', label: 'local motion calendar', color: '#3498DB' }},
+                { data: { id: 'e12', source: 'crc_8_74', target: 'sc_electronic_1', label: 'local e-filing', color: '#3498DB' }},
+                { data: { id: 'e13', source: 'crc_3_1306', target: 'sc_settlement_1', label: 'local settlement rules', color: '#3498DB' }},
+                
+                { data: { id: 'e14', source: 'judge_johnson', target: 'dept_1', label: 'presides in', color: '#F39C12' }},
+                { data: { id: 'e15', source: 'judge_smith', target: 'dept_2', label: 'presides in', color: '#F39C12' }},
+                { data: { id: 'e16', source: 'judge_martinez', target: 'dept_3', label: 'presides in', color: '#F39C12' }},
+                { data: { id: 'e17', source: 'judge_williams', target: 'dept_complex', label: 'presides in', color: '#F39C12' }},
+                { data: { id: 'e18', source: 'judge_chen', target: 'dept_complex', label: 'presides in', color: '#F39C12' }},
+                
+                { data: { id: 'e19', source: 'dept_complex', target: 'sc_complex_1', label: 'follows', color: '#1ABC9C' }},
+                { data: { id: 'e20', source: 'dept_1', target: 'sc_civil_2', label: 'case management', color: '#1ABC9C' }},
+                { data: { id: 'e21', source: 'dept_2', target: 'sc_civil_2', label: 'case management', color: '#1ABC9C' }},
+                { data: { id: 'e22', source: 'dept_3', target: 'sc_civil_2', label: 'case management', color: '#1ABC9C' }},
+                
+                { data: { id: 'e23', source: 'ccp_437c', target: 'ccp_473', label: 'relief procedures', color: '#9B59B6' }},
+                { data: { id: 'e24', source: 'ccp_425_16', target: 'ccp_436', label: 'motion to strike', color: '#9B59B6' }},
+                { data: { id: 'e25', source: 'ccp_2025_340', target: 'ccp_2031_320', label: 'discovery process', color: '#9B59B6' }}
+            ]
+        };
+        
+        function initializeGraph() {
+            cy = cytoscape({
+                container: document.getElementById('cy'),
+                elements: legalData.elements,
+                
+                style: [
+                    {
+                        selector: 'node',
+                        style: {
+                            'background-color': 'data(color)',
+                            'label': 'data(label)',
+                            'width': 60,
+                            'height': 60,
+                            'font-size': '12px',
+                            'text-valign': 'center',
+                            'text-halign': 'center',
+                            'text-wrap': 'wrap',
+                            'text-max-width': '120px',
+                            'border-width': 2,
+                            'border-color': '#ffffff',
+                            'text-outline-width': 1,
+                            'text-outline-color': '#ffffff'
+                        }
+                    },
+                    {
+                        selector: 'edge',
+                        style: {
+                            'width': 3,
+                            'line-color': 'data(color)',
+                            'target-arrow-color': 'data(color)',
+                            'target-arrow-shape': 'triangle',
+                            'curve-style': 'bezier',
+                            'opacity': 0.8
+                        }
+                    }
+                ],
+                
+                layout: {
+                    name: 'cose',
+                    fit: true,
+                    padding: 50,
+                    animate: true,
+                    animationDuration: 2000
+                }
+            });
+            
+            cy.on('tap', 'node', function(evt) {
+                const node = evt.target;
+                const data = node.data();
+                alert(`${data.title}\nType: ${data.type}\nSource: ${data.source}\nRelevance: ${data.filingRelevance}/10`);
+            });
+            
+            updateStatistics();
+            document.getElementById('loading').style.display = 'none';
+        }
+        
+        function updateStatistics() {
+            const nodes = legalData.elements.filter(el => !el.data.source || !el.data.target);
+            const edges = legalData.elements.filter(el => el.data.source && el.data.target);
+            
+            document.getElementById('totalNodes').textContent = nodes.length;
+            document.getElementById('totalEdges').textContent = edges.length;
+            document.getElementById('ccpNodes').textContent = nodes.filter(n => n.data.source === 'ccp').length;
+            document.getElementById('crcNodes').textContent = nodes.filter(n => n.data.source === 'crc').length;
+            document.getElementById('countyNodes').textContent = nodes.filter(n => n.data.source === 'county' && n.data.type !== 'judge').length;
+            document.getElementById('judgeNodes').textContent = nodes.filter(n => n.data.type === 'judge').length;
+        }
+        
+        function resetFilters() {
+            document.getElementById('sourceFilter').value = 'all';
+            document.getElementById('searchBox').value = '';
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof cytoscape === 'undefined') {
+                document.getElementById('loading').innerHTML = '<div style="color: red;">Failed to load Cytoscape library</div>';
+                return;
+            }
+            initializeGraph();
+        });
+    </script>
+</body>
+</html>

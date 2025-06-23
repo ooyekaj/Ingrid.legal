@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unified California Legal Knowledge Graph</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 700;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .subtitle {
+            margin-top: 10px;
+            font-size: 1.2em;
+            color: #666;
+        }
+        
+        .controls {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px;
+            margin: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .stats {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px;
+            margin: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .stat-item {
+            padding: 10px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        
+        .stat-number {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        #cy {
+            height: 800px;
+            margin: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            background: white;
+        }
+        
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            text-align: center;
+            z-index: 1000;
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .error {
+            color: #e74c3c;
+            padding: 20px;
+            background: rgba(231, 76, 60, 0.1);
+            border-radius: 8px;
+            margin: 20px;
+        }
+        
+        select, button {
+            padding: 8px 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .fallback-visualization {
+            display: none;
+            padding: 20px;
+            margin: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .node-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .node-item {
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid;
+        }
+        
+        .node-item.ccp { border-left-color: #FF6B6B; background: rgba(255, 107, 107, 0.1); }
+        .node-item.crc { border-left-color: #4ECDC4; background: rgba(78, 205, 196, 0.1); }
+        .node-item.county { border-left-color: #45B7D1; background: rgba(69, 183, 209, 0.1); }
+        .node-item.judge { border-left-color: #F7DC6F; background: rgba(247, 220, 111, 0.1); }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Unified California Legal Knowledge Graph</h1>
+        <div class="subtitle">CCP • CRC • Santa Clara County Rules & Judges Orders</div>
+    </div>
+    
+    <div class="controls">
+        <select id="sourceFilter">
+            <option value="all">All Sources</option>
+            <option value="ccp">CCP Only</option>
+            <option value="crc">CRC Only</option>
+            <option value="county">Santa Clara County</option>
+        </select>
+        
+        <select id="categoryFilter">
+            <option value="all">All Categories</option>
+            <option value="filing">Filing Procedures</option>
+            <option value="discovery">Discovery</option>
+            <option value="motion">Motions</option>
+            <option value="court">Court Procedures</option>
+            <option value="judges">Judges & Orders</option>
+        </select>
+        
+        <button onclick="resetFilters()">Reset Filters</button>
+        <button onclick="showFallback()">Show List View</button>
+    </div>
+    
+    <div class="stats">
+        <h3>Graph Statistics</h3>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number" id="totalNodes">23</div>
+                <div class="stat-label">Total Nodes</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="totalEdges">14</div>
+                <div class="stat-label">Total Edges</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="ccpNodes">7</div>
+                <div class="stat-label">CCP Rules</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="crcNodes">5</div>
+                <div class="stat-label">CRC Rules</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="countyNodes">5</div>
+                <div class="stat-label">County Rules</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="judgeNodes">4</div>
+                <div class="stat-label">Judges</div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="cy"></div>
+    
+    <div class="fallback-visualization" id="fallbackViz">
+        <h3>Legal Rules and Relationships</h3>
+        <div class="node-list" id="nodeList"></div>
+    </div>
+    
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <div>Loading Knowledge Graph...</div>
+        <div style="margin-top: 10px; font-size: 0.9em; color: #666;">
+            If this takes too long, click "Show List View" above
+        </div>
+    </div>
+
+    <!-- Load Cytoscape from CDN with fallback -->
+    <script>
+        // Embedded simplified dataset
+        const graphData = {
+            elements: [
+                // CCP Rules
+                { data: { id: 'ccp_020', label: 'CCP 020', title: 'General Filing Procedures', category: 'filing', source: 'ccp', color: '#FF6B6B', filingRelevance: 9, type: 'ccp_rule' }},
+                { data: { id: 'ccp_1008', label: 'CCP 1008', title: 'Motion to Reconsider', category: 'motion', source: 'ccp', color: '#FF6B6B', filingRelevance: 8, type: 'ccp_rule' }},
+                { data: { id: 'ccp_2025_340', label: 'CCP 2025.340', title: 'Deposition Procedures', category: 'discovery', source: 'ccp', color: '#FF6B6B', filingRelevance: 8, type: 'ccp_rule' }},
+                { data: { id: 'ccp_437c', label: 'CCP 437c', title: 'Summary Judgment Motion', category: 'motion', source: 'ccp', color: '#FF6B6B', filingRelevance: 9, type: 'ccp_rule' }},
+                { data: { id: 'ccp_425_16', label: 'CCP 425.16', title: 'Anti-SLAPP Motion', category: 'motion', source: 'ccp', color: '#FF6B6B', filingRelevance: 8, type: 'ccp_rule' }},
+                { data: { id: 'ccp_340', label: 'CCP 340', title: 'Statute of Limitations', category: 'filing', source: 'ccp', color: '#FF6B6B', filingRelevance: 8, type: 'ccp_rule' }},
+                { data: { id: 'ccp_998', label: 'CCP 998', title: 'Settlement Offers', category: 'settlement', source: 'ccp', color: '#FF6B6B', filingRelevance: 7, type: 'ccp_rule' }},
+                
+                // CRC Rules
+                { data: { id: 'crc_2_100', label: 'CRC 2.100', title: 'Form and Format of Papers', category: 'filing', source: 'crc', color: '#4ECDC4', filingRelevance: 9, type: 'crc_rule' }},
+                { data: { id: 'crc_3_1345', label: 'CRC 3.1345', title: 'Discovery Motion Format', category: 'discovery', source: 'crc', color: '#4ECDC4', filingRelevance: 9, type: 'crc_rule' }},
+                { data: { id: 'crc_3_1350', label: 'CRC 3.1350', title: 'Motion Hearing Requirements', category: 'motion', source: 'crc', color: '#4ECDC4', filingRelevance: 8, type: 'crc_rule' }},
+                { data: { id: 'crc_8_74', label: 'CRC 8.74', title: 'Electronic Document Format', category: 'filing', source: 'crc', color: '#4ECDC4', filingRelevance: 8, type: 'crc_rule' }},
+                { data: { id: 'crc_2_259', label: 'CRC 2.259', title: 'Electronic Filing Confirmation', category: 'filing', source: 'crc', color: '#4ECDC4', filingRelevance: 7, type: 'crc_rule' }},
+                
+                // County Rules
+                { data: { id: 'sc_general_1', label: 'SC General 1', title: 'Local Filing Requirements', category: 'filing', source: 'county', color: '#45B7D1', filingRelevance: 9, type: 'county_rule' }},
+                { data: { id: 'sc_civil_2', label: 'SC Civil 2', title: 'Case Management Conference', category: 'court', source: 'county', color: '#45B7D1', filingRelevance: 8, type: 'county_rule' }},
+                { data: { id: 'sc_discovery_1', label: 'SC Discovery 1', title: 'Local Discovery Rules', category: 'discovery', source: 'county', color: '#45B7D1', filingRelevance: 8, type: 'county_rule' }},
+                { data: { id: 'sc_motion_1', label: 'SC Motion 1', title: 'Motion Calendar Procedures', category: 'motion', source: 'county', color: '#45B7D1', filingRelevance: 8, type: 'county_rule' }},
+                { data: { id: 'sc_complex_1', label: 'SC Complex 1', title: 'Complex Civil Case Rules', category: 'court', source: 'county', color: '#45B7D1', filingRelevance: 9, type: 'county_rule' }},
+                
+                // Judges
+                { data: { id: 'judge_johnson', label: 'Judge Johnson', title: 'Judge Patricia Johnson', category: 'judges', source: 'county', color: '#F7DC6F', filingRelevance: 7, type: 'judge' }},
+                { data: { id: 'judge_smith', label: 'Judge Smith', title: 'Judge Robert Smith', category: 'judges', source: 'county', color: '#F7DC6F', filingRelevance: 7, type: 'judge' }},
+                { data: { id: 'judge_williams', label: 'Judge Williams', title: 'Judge Maria Williams', category: 'judges', source: 'county', color: '#F7DC6F', filingRelevance: 6, type: 'judge' }},
+                { data: { id: 'judge_chen', label: 'Judge Chen', title: 'Judge David Chen', category: 'judges', source: 'county', color: '#F7DC6F', filingRelevance: 8, type: 'judge' }},
+                
+                // Departments
+                { data: { id: 'dept_1', label: 'Department 1', title: 'Civil Department 1', category: 'court', source: 'county', color: '#F8C471', filingRelevance: 6, type: 'department' }},
+                { data: { id: 'dept_2', label: 'Department 2', title: 'Civil Department 2', category: 'court', source: 'county', color: '#F8C471', filingRelevance: 6, type: 'department' }},
+                { data: { id: 'dept_complex', label: 'Complex Dept', title: 'Complex Civil Department', category: 'court', source: 'county', color: '#F8C471', filingRelevance: 7, type: 'department' }},
+                
+                // Relationships
+                { data: { id: 'e1', source: 'ccp_020', target: 'crc_2_100', label: 'implemented by', weight: 9, color: '#E74C3C' }},
+                { data: { id: 'e2', source: 'ccp_1008', target: 'crc_3_1350', label: 'procedure defined by', weight: 8, color: '#E74C3C' }},
+                { data: { id: 'e3', source: 'ccp_2025_340', target: 'crc_3_1345', label: 'format required by', weight: 8, color: '#E74C3C' }},
+                { data: { id: 'e4', source: 'ccp_437c', target: 'crc_3_1350', label: 'hearing rules', weight: 8, color: '#E74C3C' }},
+                
+                { data: { id: 'e5', source: 'crc_2_100', target: 'sc_general_1', label: 'local requirements', weight: 9, color: '#3498DB' }},
+                { data: { id: 'e6', source: 'crc_3_1345', target: 'sc_discovery_1', label: 'local discovery rules', weight: 8, color: '#3498DB' }},
+                { data: { id: 'e7', source: 'crc_3_1350', target: 'sc_motion_1', label: 'local motion calendar', weight: 8, color: '#3498DB' }},
+                
+                { data: { id: 'e8', source: 'judge_johnson', target: 'dept_1', label: 'presides in', weight: 8, color: '#F39C12' }},
+                { data: { id: 'e9', source: 'judge_smith', target: 'dept_2', label: 'presides in', weight: 8, color: '#F39C12' }},
+                { data: { id: 'e10', source: 'judge_williams', target: 'dept_complex', label: 'presides in', weight: 8, color: '#F39C12' }},
+                { data: { id: 'e11', source: 'judge_chen', target: 'dept_complex', label: 'presides in', weight: 8, color: '#F39C12' }},
+                
+                { data: { id: 'e12', source: 'dept_complex', target: 'sc_complex_1', label: 'follows', weight: 9, color: '#1ABC9C' }},
+                { data: { id: 'e13', source: 'dept_1', target: 'sc_civil_2', label: 'case management', weight: 7, color: '#1ABC9C' }},
+                { data: { id: 'e14', source: 'dept_2', target: 'sc_civil_2', label: 'case management', weight: 7, color: '#1ABC9C' }}
+            ]
+        };
+        
+        let loadingTimeout;
+        let cytoscapeLoaded = false;
+        
+        // Set a timeout to show fallback if loading takes too long
+        loadingTimeout = setTimeout(function() {
+            console.log('Loading timeout - showing fallback');
+            showFallback();
+        }, 10000); // 10 seconds timeout
+        
+        // Try to load Cytoscape
+        function loadCytoscape() {
+            try {
+                // Create script element for Cytoscape
+                const script = document.createElement('script');
+                script.src = 'https://unpkg.com/cytoscape@3.26.0/dist/cytoscape.min.js';
+                script.onload = function() {
+                    console.log('Cytoscape loaded successfully');
+                    cytoscapeLoaded = true;
+                    initializeGraph();
+                };
+                script.onerror = function() {
+                    console.error('Failed to load Cytoscape from CDN');
+                    showFallback();
+                };
+                document.head.appendChild(script);
+            } catch (error) {
+                console.error('Error loading Cytoscape:', error);
+                showFallback();
+            }
+        }
+        
+        function initializeGraph() {
+            if (!window.cytoscape) {
+                console.error('Cytoscape not available');
+                showFallback();
+                return;
+            }
+            
+            try {
+                clearTimeout(loadingTimeout);
+                
+                const cy = cytoscape({
+                    container: document.getElementById('cy'),
+                    elements: graphData.elements,
+                    
+                    style: [
+                        {
+                            selector: 'node',
+                            style: {
+                                'background-color': 'data(color)',
+                                'label': 'data(label)',
+                                'width': 60,
+                                'height': 60,
+                                'font-size': '12px',
+                                'text-valign': 'center',
+                                'text-halign': 'center',
+                                'text-wrap': 'wrap',
+                                'text-max-width': '100px',
+                                'border-width': 2,
+                                'border-color': '#ffffff',
+                                'box-shadow': '0 4px 8px rgba(0,0,0,0.3)'
+                            }
+                        },
+                        {
+                            selector: 'edge',
+                            style: {
+                                'width': 3,
+                                'line-color': 'data(color)',
+                                'target-arrow-color': 'data(color)',
+                                'target-arrow-shape': 'triangle',
+                                'curve-style': 'bezier',
+                                'opacity': 0.8
+                            }
+                        }
+                    ],
+                    
+                    layout: {
+                        name: 'circle',
+                        fit: true,
+                        padding: 50,
+                        animate: true,
+                        animationDuration: 1000
+                    }
+                });
+                
+                // Add click handler
+                cy.on('tap', 'node', function(evt) {
+                    const node = evt.target;
+                    const data = node.data();
+                    alert(`${data.title}\nType: ${data.type}\nSource: ${data.source}\nRelevance: ${data.filingRelevance}/10`);
+                });
+                
+                // Hide loading screen
+                document.getElementById('loading').style.display = 'none';
+                console.log('Graph initialized successfully');
+                
+            } catch (error) {
+                console.error('Error initializing graph:', error);
+                showFallback();
+            }
+        }
+        
+        function showFallback() {
+            clearTimeout(loadingTimeout);
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('cy').style.display = 'none';
+            document.getElementById('fallbackViz').style.display = 'block';
+            
+            // Populate fallback list
+            const nodeList = document.getElementById('nodeList');
+            const nodes = graphData.elements.filter(el => el.data.source);
+            
+            nodeList.innerHTML = nodes.map(node => {
+                const data = node.data;
+                if (data.source) {
+                    return `
+                        <div class="node-item ${data.source}">
+                            <h4>${data.label}</h4>
+                            <p><strong>${data.title}</strong></p>
+                            <p>Type: ${data.type?.replace('_', ' ').toUpperCase()}</p>
+                            <p>Source: ${data.source.toUpperCase()}</p>
+                            <p>Category: ${data.category}</p>
+                            <p>Filing Relevance: ${data.filingRelevance}/10</p>
+                        </div>
+                    `;
+                }
+                return '';
+            }).join('');
+            
+            console.log('Fallback view displayed');
+        }
+        
+        function resetFilters() {
+            document.getElementById('sourceFilter').value = 'all';
+            document.getElementById('categoryFilter').value = 'all';
+        }
+        
+        // Start loading when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, starting Cytoscape load');
+            loadCytoscape();
+        });
+        
+        // Fallback for very slow connections
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                if (!cytoscapeLoaded) {
+                    console.log('Page fully loaded but Cytoscape still not ready - showing fallback');
+                    showFallback();
+                }
+            }, 5000);
+        });
+    </script>
+</body>
+</html> 

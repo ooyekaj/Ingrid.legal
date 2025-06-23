@@ -67,6 +67,8 @@ server.listen(PORT, HOST, () => {
     console.log(`📊 Knowledge Graph: http://${HOST}:${PORT}/interactive_knowledge_graph.html`);
     console.log(`📁 Files available:`);
     console.log(`   • Interactive Graph: /interactive_knowledge_graph.html`);
+    console.log(`   • Premium Legal Guide: /premium_legal_practice_guide.html`);
+    console.log(`   • Enhanced Filing Guide: /california_filing_requirements_enhanced.html`);
     console.log(`   • Demo Results: /unified_knowledge_graph_output/`);
     console.log(`   • Filing Guide: /comprehensive_filing_guide.md`);
     console.log('\n💡 Usage:');

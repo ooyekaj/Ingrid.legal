@@ -151,8 +151,6 @@ doc.render(context)
 import tempfile
 import os
 from docx import Document
-from docx.shared import Inches
-from docx.enum.text import WD_TAB_ALIGNMENT, WD_BREAK
 
 temp_file = tempfile.NamedTemporaryFile(delete=False, suffix='.docx')
 doc.save(temp_file.name)
@@ -174,7 +172,6 @@ for paragraph in final_doc.paragraphs:
         # Add TOC entries with proper formatting right after the placeholder
         from docx.shared import Inches
         from docx.enum.text import WD_TAB_ALIGNMENT
-        entry_count = 0
         
         for i, entry in enumerate(context["table_of_contents"]):
             # Create new paragraph for TOC entry
@@ -191,159 +188,35 @@ for paragraph in final_doc.paragraphs:
             
             # Add tab stops for right-aligned page numbers with dotted leader
             tab_stops = new_p.paragraph_format.tab_stops
-            tab_stops.add_tab_stop(Inches(6), WD_TAB_ALIGNMENT.RIGHT, leader=1)  # Dotted leader
+            tab_stops.add_tab_stop(Inches(6), WD_TAB_ALIGNMENT.RIGHT, leader=2)  # Dotted leader
             
             # Add tab and page number
             new_p.add_run(f'\t{entry["page"]}')
             
             # Move the paragraph to the correct position
             parent.insert(placeholder_index + 1 + i, new_p._element)
-            entry_count += 1
+            
+            # ADD NEW LINE AFTER EACH SECTION AND SUBSUBSECTION
+            if entry["level"] in ["main", "subsubsection"]:
+                # Add an empty paragraph for spacing
+                empty_p = final_doc.add_paragraph()
+                parent.insert(placeholder_index + 2 + i, empty_p._element)
         
-        # Add a page break after the TOC to ensure it takes up the whole page
-        # and the next content starts on a new page
-        page_break_p = final_doc.add_paragraph()
-        page_break_run = page_break_p.add_run()
-        page_break_run.add_break(WD_BREAK.PAGE)
-        parent.insert(placeholder_index + 1 + entry_count, page_break_p._element)
-
         toc_inserted = True
         break
 
 if not toc_inserted:
     print("Warning: TABLE_OF_CONTENTS_PLACEHOLDER not found in template")
 
-# Step 4: Find and replace ATTORNEY_SIGNATURE_PLACEHOLDER
-attorney_inserted = False
-for paragraph in final_doc.paragraphs:
-    if "ATTORNEY_SIGNATURE_PLACEHOLDER" in paragraph.text:
-        # Get the paragraph's position to insert attorney info after it
-        parent = paragraph._element.getparent()
-        placeholder_index = list(parent).index(paragraph._element)
-        
-        # Preserve original formatting before clearing
-        original_left_indent = paragraph.paragraph_format.left_indent
-        
-        # Clear the placeholder text
-        paragraph.clear()
-        
-        # Restore original formatting
-        paragraph.paragraph_format.left_indent = original_left_indent
-        
-        
-        # Add attorney signature blocks using python-docx
-        entry_count = 0
-        
-        # Loop through law firms
-        for firm in context["attorneys_plaintiffs"]:
-            # Group attorneys by location/office
-            ca_attorneys = []
-            other_attorneys = []
-            
-            for attorney in firm["attorneys"]:
-                if attorney.get("ca_bar_no"):
-                    ca_attorneys.append(attorney)
-                else:
-                    other_attorneys.append(attorney)
-            
-            # Add CA attorneys first
-            for attorney in ca_attorneys:
-                # Create new paragraph for attorney
-                new_p = final_doc.add_paragraph()
-                
-                # Apply original formatting to new paragraph
-                new_p.paragraph_format.left_indent = original_left_indent
-                
-                
-                # Attorney name and bar number
-                name_text = attorney["name"]
-                if attorney.get("ca_bar_no"):
-                    name_text += f" (CA Bar No. {attorney['ca_bar_no']})"
-                new_p.add_run(name_text).bold = False
-                new_p.add_run("\n")
-                
-                # Email
-                new_p.add_run(attorney["email"])
-                
-                # Move paragraph to correct position
-                parent.insert(placeholder_index + 1 + entry_count, new_p._element)
-                entry_count += 1
-            
-            # Add firm info for CA attorneys if any exist
-            if ca_attorneys:
-                firm_p = final_doc.add_paragraph()
-                
-                # Apply original formatting to firm paragraph
-                # firm_p.alignment = original_alignment
-                firm_p.paragraph_format.left_indent = original_left_indent
-                # firm_p.paragraph_format.right_indent = original_right_indent
-                #firm_p.paragraph_format.first_line_indent = original_first_line_indent
-                #firm_p.style = original_style
-                firm_p.add_run(f"{firm['firm']}\n")
-                
-                # Use first CA attorney's address as firm address
-                first_ca_attorney = ca_attorneys[0]
-                firm_p.add_run(f"{first_ca_attorney['address']}\n")
-                firm_p.add_run(f"Telephone: {first_ca_attorney['tel']}\n")
-                if first_ca_attorney.get('fax'):
-                    firm_p.add_run(f"Facsimile: {first_ca_attorney['fax']}")
-                
-                parent.insert(placeholder_index + 1 + entry_count, firm_p._element)
-                entry_count += 1
-                
-                # Add empty line after firm block
-                empty_p = final_doc.add_paragraph()
-                parent.insert(placeholder_index + 1 + entry_count, empty_p._element)
-                entry_count += 1
-            
-            # Add pro hac vice attorneys
-            for attorney in other_attorneys:
-                # Create new paragraph for pro hac vice attorney
-                new_p = final_doc.add_paragraph()
-                
-                # Apply original formatting to pro hac vice paragraph
-                new_p.paragraph_format.left_indent = original_left_indent
-                
-                # Attorney name and pro hac vice status
-                name_text = attorney["name"]
-                if attorney.get("pro_hac_vice"):
-                    name_text += " (admitted pro hac vice)"
-                new_p.add_run(name_text).bold = False
-                new_p.add_run("\n")
-                
-                # Email
-                new_p.add_run(f"{attorney['email']}\n")
-                
-                # Firm and address
-                new_p.add_run(f"{firm['firm']}\n")
-                new_p.add_run(f"{attorney['address']}\n")
-                new_p.add_run(f"Telephone: {attorney['tel']}")
-                if attorney.get('fax'):
-                    new_p.add_run(f"\nFacsimile: {attorney['fax']}")
-                
-                # Move paragraph to correct position
-                parent.insert(placeholder_index + 1 + entry_count, new_p._element)
-                entry_count += 1
-                
-                # Add empty line after each pro hac vice attorney
-                empty_p = final_doc.add_paragraph()
-                parent.insert(placeholder_index + 1 + entry_count, empty_p._element)
-                entry_count += 1
-        
-        attorney_inserted = True
-        break
-
-if not attorney_inserted:
-    print("Warning: ATTORNEY_SIGNATURE_PLACEHOLDER not found in template")
-
-# Step 5: Save final document
-final_doc.save("luna_v_google_opposition.docx")
+# Step 4: Save final document
+final_doc.save("luna_v_google_opposition_improved.docx")
 
 # Clean up temporary file
 os.unlink(temp_file.name)
 
-print("Document generated as luna_v_google_opposition.docx")
+print("Document generated as luna_v_google_opposition_improved.docx")
 print(f"Case: {context['case_info']['plaintiffs']} v. {context['case_info']['defendant']}")
 print(f"Case No.: {context['case_info']['case_no']}")
 print(f"Document: {context['case_info']['document_title']}")
 print(f"TOC entries: {len(context['table_of_contents'])}")
+print("✨ IMPROVEMENT: Added new lines after main sections and subsubsections for better spacing")

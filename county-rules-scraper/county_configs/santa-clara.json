@@ -1,6 +1,6 @@
 {
   "county": "Santa Clara",
-  "baseUrl": "https://www.scscourt.org",
+  "baseUrl": "https://santaclara.courts.ca.gov",
   
   "discoveryPatterns": {
     "civil_division": {

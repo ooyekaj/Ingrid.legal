@@ -1,0 +1,210 @@
+{
+  "county": "San Mateo",
+  "baseUrl": "https://sanmateo.courts.ca.gov",
+  "version": "2.0-enhanced",
+  "lastUpdated": "2025-06-24",
+  
+  "discoveryPatterns": {
+    "rules": [
+      "/local-rules", "/standing-orders", "/general-information/local-rules",
+      "/general-information/standing-orders", "/judicial-assignments"
+    ],
+    "orders": [
+      "/standing-orders", "/general-orders", "/judicial-orders",
+      "/amended-judicial-assignment-order", "/judicial-assignments"
+    ],
+    "procedures": [
+      "/procedures", "/forms-filing", "/self-help", "/divisions",
+      "/protocols-for-remote-appearances", "/civil-remote-appearance-protocol",
+      "/criminal-remote-appearance-protocol", "/family-law-remote-appearance-protocol"
+    ],
+    "forms": [
+      "/forms-filing", "/local-forms", "/self-prep-and-file",
+      "/fee-schedule", "/family-law-common-form-packets"
+    ],
+    "divisions": [
+      "/divisions", "/civil-division", "/family-law-division", 
+      "/criminal-division", "/probate", "/traffic", "/juvenile-division",
+      "/complex-civil-litigation", "/small-claims"
+    ],
+    "filing": [
+      "/forms-filing", "/e-filing", "/fee-schedule", "/eservice",
+      "/file-a-civil-case", "/self-prep-and-file"
+    ],
+    "self_help": [
+      "/self-help", "/self-help-center", "/being-your-own-lawyer",
+      "/family-law-facilitator", "/landlord-tenant-clinic", "/small-claims-self-help"
+    ],
+    "adr": [
+      "/appropriate-dispute-resolution-programs", "/civil-adr-program", 
+      "/mediation", "/judicial-arbitration-program", "/family-law-adr-program",
+      "/small-claims-mediation-program", "/probate-adr-program"
+    ],
+    "calendars": [
+      "/law-and-motion-calendars", "/tentative-rulings", "/hearing-schedules",
+      "/civil-law-motion", "/probate-department", "/complex-law-and-motion",
+      "/unlawful-detainer-calendars", "/family-law-direct-calendaring"
+    ],
+    "remote_appearances": [
+      "/protocols-for-remote-appearances", "/zoom-credentials-to-appear-remotely",
+      "/civil-remote-appearance-protocol", "/criminal-remote-appearance-protocol",
+      "/family-law-remote-appearance-protocol"
+    ]
+  },
+
+  "filingAreas": {
+    "local_rules": {
+      "selectors": [".rule-content", ".local-rule", ".court-rule", ".rule-text", ".local-rules"],
+      "url_patterns": ["/local-rules", "/standing-orders", "/general-information/local-rules"],
+      "keywords": ["local rule", "standing order", "court rule", "procedure", "filing requirement", "local court rule"]
+    },
+    "standing_orders": {
+      "selectors": [".order-content", ".standing-order", ".judicial-order", ".assignment-order"],
+      "url_patterns": ["/standing-orders", "/general-orders", "/judicial-assignments", "/amended-judicial-assignment"],
+      "keywords": ["standing order", "general order", "judicial order", "assignment order", "amended order"]
+    },
+    "case_management": {
+      "selectors": [".case-management", ".scheduling", ".calendar-info", ".hearing-info"],
+      "url_patterns": ["/case-management", "/scheduling", "/calendars", "/law-and-motion", "/hearing-schedules"],
+      "keywords": ["case management", "scheduling", "calendar", "hearing", "motion practice", "case scheduling"]
+    },
+    "filing_procedures": {
+      "selectors": [".filing-info", ".procedure-content", ".form-info", ".e-filing"],
+      "url_patterns": ["/forms-filing", "/e-filing", "/procedures", "/file-a-civil-case", "/eservice"],
+      "keywords": ["filing", "procedure", "e-filing", "electronic filing", "document filing", "eService"]
+    },
+    "civil_procedures": {
+      "selectors": [".civil-content", ".civil-procedure", ".civil-info", ".unlawful-detainer"],
+      "url_patterns": ["/civil-division", "/civil", "/unlawful-detainer", "/civil-restraining-orders", "/complex-civil"],
+      "keywords": ["civil procedure", "civil case", "unlawful detainer", "restraining order", "civil filing", "complex litigation"]
+    },
+    "family_procedures": {
+      "selectors": [".family-content", ".family-procedure", ".family-info", ".family-law"],
+      "url_patterns": ["/family-law-division", "/family", "/divorce", "/custody", "/child-support", "/family-court-services"],
+      "keywords": ["family law", "divorce", "custody", "child support", "domestic relations", "family court services"]
+    },
+    "probate_procedures": {
+      "selectors": [".probate-content", ".probate-procedure", ".probate-info"],
+      "url_patterns": ["/probate", "/guardianship", "/conservatorship", "/adoption", "/emancipation"],
+      "keywords": ["probate", "guardianship", "conservatorship", "adoption", "estate", "emancipation"]
+    },
+    "self_help_resources": {
+      "selectors": [".self-help-content", ".help-info", ".resource-info", ".facilitator"],
+      "url_patterns": ["/self-help", "/self-help-center", "/being-your-own-lawyer", "/family-law-facilitator"],
+      "keywords": ["self-help", "pro per", "self-represented", "assistance", "resources", "facilitator"]
+    },
+    "adr_information": {
+      "selectors": [".adr-content", ".mediation-info", ".arbitration-info"],
+      "url_patterns": ["/appropriate-dispute-resolution", "/mediation", "/arbitration", "/adr-program"],
+      "keywords": ["ADR", "mediation", "arbitration", "settlement", "dispute resolution", "alternative dispute"]
+    },
+    "remote_procedures": {
+      "selectors": [".remote-content", ".zoom-info", ".protocol-info"],
+      "url_patterns": ["/protocols-for-remote-appearances", "/zoom-credentials", "/remote-appearance"],
+      "keywords": ["remote appearance", "zoom", "protocol", "virtual hearing", "remote hearing"]
+    },
+    "traffic_procedures": {
+      "selectors": [".traffic-content", ".traffic-info", ".citation-info"],
+      "url_patterns": ["/traffic", "/traffic-tickets", "/citation", "/traffic-school"],
+      "keywords": ["traffic", "citation", "ticket", "traffic school", "traffic violation"]
+    },
+    "small_claims": {
+      "selectors": [".small-claims-content", ".small-claims-info"],
+      "url_patterns": ["/small-claims", "/small-claims-self-help", "/small-claims-mediation"],
+      "keywords": ["small claims", "small claims court", "mediation", "small claims procedure"]
+    }
+  },
+
+  "commonSelectors": {
+    "document_links": [
+      "a[href*='rule']", "a[href*='order']", "a[href*='pdf']", 
+      "a[href*='procedure']", "a[href*='form']", "a[href*='filing']",
+      "a[href*='local']", "a[href*='standing']", "a[href*='general']",
+      "a[href*='protocol']", "a[href*='calendar']", "a[href*='schedule']"
+    ],
+    "content_areas": [
+      ".content", ".main-content", ".page-content", 
+      ".rule-content", ".order-content", ".procedure-content",
+      "main", "article", ".text-content", "#content",
+      ".entry-content", ".post-content"
+    ],
+    "navigation_menus": [
+      "nav a", ".navigation a", ".menu a", ".nav a",
+      ".primary-nav a", ".main-nav a", "header a",
+      ".sidebar a", ".secondary-nav a", ".submenu a"
+    ]
+  },
+
+  "scraping_config": {
+    "rate_limit": 1500,
+    "user_agent": "Legal Research Tool - California County Rules Scraper",
+    "respect_robots": true,
+    "max_concurrent": 3,
+    "timeout": 45000,
+    "retries": 3,
+    "follow_redirects": true,
+    "max_depth": 4,
+    "enable_javascript": false
+  },
+
+  "document_types": {
+    "critical_priority": [
+      "local rules", "standing orders", "general orders",
+      "judicial assignment orders", "amended orders"
+    ],
+    "high_priority": [
+      "filing procedures", "e-filing requirements", "fee schedules",
+      "case management orders", "scheduling orders", "remote appearance protocols",
+      "civil procedures", "family law procedures", "probate procedures"
+    ],
+    "medium_priority": [
+      "division procedures", "self-help guides", "form instructions",
+      "ADR procedures", "calendar information", "hearing procedures",
+      "traffic procedures", "small claims procedures"
+    ],
+    "low_priority": [
+      "news articles", "press releases", "general information",
+      "contact information", "historical information", "career opportunities"
+    ]
+  },
+
+  "exclusion_patterns": [
+    "/news/", "/courtnews/", "/events/", "/careers/", "/employment/",
+    "/media/", "/press/", "/archive/", "/history/", "/news-archive/",
+    "/contact/", "/directions/", "/parking/", "/hours/", "/maps/",
+    "/phone-numbers/", "/office-hours/", "/community-outreach/"
+  ],
+
+  "inclusion_patterns": [
+    "/local-rules", "/standing-orders", "/forms-filing", "/e-filing",
+    "/divisions/", "/self-help", "/protocols", "/calendars", "/schedules",
+    "/procedures", "/adr", "/mediation", "/arbitration", "/fee-schedule"
+  ],
+
+  "special_handling": {
+    "pdf_extraction": true,
+    "form_recognition": true,
+    "table_extraction": true,
+    "multi_language": ["en", "es"],
+    "dynamic_content": false,
+    "extract_links": true,
+    "preserve_formatting": true
+  },
+
+  "validation": {
+    "min_content_length": 150,
+    "required_keywords": ["court", "san mateo", "superior court"],
+    "exclude_if_contains": ["404", "not found", "error", "maintenance", "under construction"],
+    "validate_urls": true,
+    "check_content_type": true
+  },
+
+  "enhanced_features": {
+    "judge_specific_rules": true,
+    "department_calendars": true,
+    "tentative_rulings": true,
+    "remote_appearance_info": true,
+    "fee_calculator": false,
+    "form_completion_guides": true
+  }
+} 

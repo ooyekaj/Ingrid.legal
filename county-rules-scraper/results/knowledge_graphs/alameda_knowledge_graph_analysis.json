@@ -1,0 +1,49 @@
+{
+  "county": "Alameda",
+  "generated_at": "2025-06-24T07:02:09.913Z",
+  "graph_statistics": {
+    "total_nodes": 1691,
+    "total_edges": 2835,
+    "node_types": {
+      "county_rule": 338,
+      "filing_question": 18,
+      "department": 108,
+      "court_department": 113,
+      "organization": 358,
+      "procedure": 351,
+      "requirement": 387,
+      "judge": 13,
+      "standing_order": 5
+    },
+    "edge_types": {
+      "answers filing question": 985,
+      "applies to department": 324,
+      "mentions department": 220,
+      "mentions organization": 519,
+      "specifies procedure": 351,
+      "specifies requirement": 387,
+      "mentions judge": 20,
+      "presides in department": 24,
+      "contains order": 5
+    }
+  },
+  "key_insights": [
+    "Found 13 judges with specific procedures or preferences",
+    "Identified 108 court departments with specific rules",
+    "Top document categories: General Civil (506), Filing Procedures (412), Court Procedures (351)",
+    "Documents address 18 common filing questions",
+    "539 documents have high filing relevance (score ≥ 7)"
+  ],
+  "recommendations": [
+    {
+      "type": "DATA_GAP",
+      "message": "Some departments may be missing judge-specific information",
+      "priority": "MEDIUM"
+    },
+    {
+      "type": "PROCESS_IMPROVEMENT",
+      "message": "52 documents contain many procedural requirements - consider creating summary guides",
+      "priority": "MEDIUM"
+    }
+  ]
+}

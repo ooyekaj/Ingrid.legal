@@ -1,0 +1,178 @@
+{
+  "county": "Alameda",
+  "baseUrl": "https://alameda.courts.ca.gov",
+  
+  "discoveryPatterns": {
+    "civil_division": {
+      "url": "/divisions/civil-division",
+      "subpages": [
+        "/civil/complex-civil-litigation",
+        "/civil/general-civil",
+        "/civil/unlimited-civil",
+        "/civil/limited-civil"
+      ]
+    },
+    "rules_and_orders": {
+      "url": "/rules",
+      "document_patterns": [
+        "a[href*=\"rule\"]",
+        "a[href*=\"order\"]",
+        "a[href*=\"pdf\"]",
+        "a[href*=\"procedure\"]"
+      ]
+    },
+    "case_management": {
+      "url": "/case-management",
+      "subpages": [
+        "/case-management/civil",
+        "/case-management/complex",
+        "/case-management/scheduling"
+      ]
+    },
+    "local_forms": {
+      "url": "/forms",
+      "subpages": [
+        "/forms/civil",
+        "/forms/local"
+      ]
+    }
+  },
+
+  "filingAreas": {
+    "local_rules": {
+      "selectors": [".rule-content", ".local-rule", ".court-rule", ".rule-text"],
+      "url_patterns": ["/rules/", "/local-rules/", "/court-rules/"]
+    },
+    "standing_orders": {
+      "selectors": [".order-content", ".standing-order", ".general-order"],
+      "url_patterns": ["/orders/", "/standing-orders/", "/general-orders/"]
+    },
+    "case_management": {
+      "selectors": [".case-management", ".scheduling", ".cmco"],
+      "url_patterns": ["/case-management/", "/scheduling/", "/cmco/"]
+    },
+    "civil_procedures": {
+      "selectors": [".civil-procedure", ".procedure-content", ".practice-guide"],
+      "url_patterns": ["/civil/", "/procedures/", "/practice/"]
+    },
+    "electronic_filing": {
+      "selectors": [".efiling", ".electronic-filing", ".online-filing"],
+      "url_patterns": ["/efiling/", "/electronic-filing/", "/online-services/"]
+    }
+  },
+
+  "documentFormats": {
+    "pdf": {
+      "selectors": ["a[href$=\".pdf\"]", ".pdf-link", "a[title*=\"PDF\"]", ".document-link"],
+      "processing": "pdf_extraction"
+    },
+    "html": {
+      "selectors": [".content", ".rule-text", ".order-text", ".main-content", ".page-content"],
+      "processing": "html_parsing"
+    },
+    "word": {
+      "selectors": ["a[href$=\".docx\"]", "a[href$=\".doc\"]", ".word-doc", ".document-download"],
+      "processing": "word_extraction"
+    },
+    "excel": {
+      "selectors": ["a[href$=\".xlsx\"]", "a[href$=\".xls\"]", ".spreadsheet"],
+      "processing": "excel_extraction"
+    }
+  },
+
+  "specificSelectors": {
+    "navigation_menus": [
+      ".main-nav", ".primary-nav", ".nav-menu", ".site-nav", 
+      ".header-nav", ".menu-main-navigation"
+    ],
+    "content_areas": [
+      ".entry-content", ".page-content", ".post-content", 
+      ".main-content", ".content-area", ".site-content"
+    ],
+    "document_links": [
+      ".document-list a", ".file-list a", ".attachment a",
+      ".download-link", ".resource-link", "a[href*=\"document\"]"
+    ],
+    "breadcrumbs": [
+      ".breadcrumb", ".breadcrumbs", ".nav-breadcrumb"
+    ]
+  },
+
+  "priorityPages": [
+    "/rules",
+    "/local-rules",
+    "/standing-orders",
+    "/case-management",
+    "/civil",
+    "/efiling",
+    "/forms",
+    "/procedures",
+    "/practice-guides"
+  ],
+
+  "scraping_config": {
+    "rate_limit": 3000,
+    "user_agent": "Legal Research Tool - Alameda County Rules Scraper",
+    "respect_robots": true,
+    "max_concurrent": 2,
+    "timeout": 30000,
+    "retries": 3,
+    "delay_between_pages": 2000,
+    "use_headless_browser": false,
+    "javascript_enabled": true
+  },
+
+  "exclusionPatterns": [
+    "/calendar/",
+    "/jury-service/",
+    "/contact/",
+    "/directions/",
+    "/employment/",
+    "/news/",
+    "/press-releases/",
+    "/about/",
+    "/history/"
+  ],
+
+  "filingSpecificKeywords": [
+    "filing deadline",
+    "electronic filing",
+    "e-filing",
+    "case management statement",
+    "proof of service",
+    "motion practice",
+    "pleading requirements",
+    "service of process",
+    "discovery deadlines",
+    "trial setting",
+    "scheduling order",
+    "case management conference",
+    "mandatory settlement conference",
+    "final status conference"
+  ],
+
+  "specialProcedures": {
+    "complex_civil": {
+      "identifier_keywords": ["complex litigation", "coordination", "JCCP"],
+      "special_requirements": ["case management order", "coordination motion", "complex case statement"]
+    },
+    "unlawful_detainer": {
+      "identifier_keywords": ["unlawful detainer", "eviction", "UD"],
+      "special_requirements": ["5-day notice", "3-day notice", "summary judgment"]
+    },
+    "personal_injury": {
+      "identifier_keywords": ["personal injury", "PI", "tort"],
+      "special_requirements": ["expert witness", "medical records", "settlement conference"]
+    }
+  },
+
+  "contactInfo": {
+    "court_address": "1225 Fallon Street, Oakland, CA 94612",
+    "phone": "(510) 891-6000",
+    "hours": "Monday-Friday 8:00 AM - 4:00 PM",
+    "efiling_support": "(510) 891-6002"
+  },
+
+  "lastUpdated": "2024-01-15T00:00:00Z",
+  "configVersion": "1.0"
+} 

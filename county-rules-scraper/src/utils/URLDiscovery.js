@@ -4,6 +4,96 @@ const { URL } = require('url');
 const xml2js = require('xml2js');
 const pLimit = require('p-limit');
 
+/**
+ * Safe URL resolution that validates the base URL and fixes common development URL issues
+ */
+function safeResolveURL(href, baseUrl) {
+  try {
+    // Ensure baseUrl is valid
+    const base = new URL(baseUrl);
+    
+    // If href is already absolute and valid, return it
+    if (href.startsWith('http://') || href.startsWith('https://')) {
+      let absoluteUrl = new URL(href);
+      
+      // Comprehensive fix for development URLs in production sitemaps
+      if (absoluteUrl.hostname.includes('.lndo.site') || 
+          absoluteUrl.hostname.includes('.dev.') ||
+          absoluteUrl.hostname.includes('.staging.') ||
+          absoluteUrl.hostname.includes('.test.') ||
+          absoluteUrl.hostname.includes('-dev.') ||
+          absoluteUrl.hostname.includes('-staging.') ||
+          absoluteUrl.hostname.includes('-test.')) {
+        
+        const originalUrl = href;
+        
+        // Extract county name and convert to proper courts.ca.gov URL
+        let fixedUrl = href;
+        
+        // Handle .lndo.site pattern (most common)
+        if (absoluteUrl.hostname.includes('.lndo.site')) {
+          const countyMatch = absoluteUrl.hostname.match(/([^.]+)\.lndo\.site/);
+          if (countyMatch) {
+            const county = countyMatch[1];
+            fixedUrl = href.replace(
+              `http://${county}.lndo.site`, 
+              `https://${county}.courts.ca.gov`
+            );
+          }
+        }
+        
+        // Handle other development patterns
+        else if (absoluteUrl.hostname.includes('.dev.') || absoluteUrl.hostname.includes('-dev.')) {
+          fixedUrl = href.replace(/https?:\/\/[^.]*\.?dev\.?[^.]*\.courts\.ca\.gov/g, 
+                                 `https://${base.hostname.split('.')[0]}.courts.ca.gov`);
+        }
+        
+        // Handle staging patterns  
+        else if (absoluteUrl.hostname.includes('.staging.') || absoluteUrl.hostname.includes('-staging.')) {
+          fixedUrl = href.replace(/https?:\/\/[^.]*\.?staging\.?[^.]*\.courts\.ca\.gov/g, 
+                                 `https://${base.hostname.split('.')[0]}.courts.ca.gov`);
+        }
+        
+        // Handle test patterns
+        else if (absoluteUrl.hostname.includes('.test.') || absoluteUrl.hostname.includes('-test.')) {
+          fixedUrl = href.replace(/https?:\/\/[^.]*\.?test\.?[^.]*\.courts\.ca\.gov/g, 
+                                 `https://${base.hostname.split('.')[0]}.courts.ca.gov`);
+        }
+        
+        try {
+          absoluteUrl = new URL(fixedUrl);
+          console.log(`Fixed development URL: ${originalUrl} -> ${fixedUrl}`);
+        } catch (e) {
+          console.warn(`Failed to fix development URL: ${originalUrl}`);
+          return null;
+        }
+      }
+      
+      // Only return if it's from the same domain or a courts.ca.gov domain
+      if (absoluteUrl.hostname === base.hostname || 
+          absoluteUrl.hostname.endsWith('.courts.ca.gov')) {
+        return absoluteUrl.href;
+      }
+      return null; // Don't follow external domains
+    }
+    
+    // Resolve relative URL
+    const resolved = new URL(href, base.href);
+    
+    // Validate that resolved URL has correct hostname
+    if (resolved.hostname !== base.hostname) {
+      console.warn(`URL resolution changed hostname from ${base.hostname} to ${resolved.hostname} for href: ${href}`);
+      // Force correct hostname
+      resolved.hostname = base.hostname;
+    }
+    
+    return resolved.href;
+  } catch (error) {
+    console.warn(`Failed to resolve URL ${href} with base ${baseUrl}:`, error.message);
+    return null;
+  }
+}
+
 class URLDiscovery {
   constructor(config = {}) {
     this.config = {
@@ -149,29 +239,78 @@ class URLDiscovery {
   }
 
   /**
-   * Extract URLs that might contain legal documents
+   * Extract URLs that might contain legal documents with comprehensive development URL fixing
    */
   extractRelevantUrls(urlEntries) {
     const relevantUrls = [];
     const filingKeywords = [
       'rule', 'order', 'procedure', 'practice', 'filing',
       'case-management', 'scheduling', 'civil', 'form',
-      'directive', 'local', 'standing', 'general'
+      'directive', 'local', 'standing', 'general', 'efiling',
+      'e-filing', 'court-rules', 'judicial', 'department',
+      'judge', 'guidelines', 'complex', 'self-help', 'fee'
     ];
 
+    let fixedUrlCount = 0;
+
     for (const urlEntry of urlEntries) {
-      const url = urlEntry.loc[0];
+      let url = urlEntry.loc[0];
+      let wasFixed = false;
+      
+      // Comprehensive fix for development URLs in sitemap (common issue with courts.ca.gov sites)
+      if (url.includes('.lndo.site') || 
+          url.includes('.dev.') ||
+          url.includes('.staging.') ||
+          url.includes('.test.') ||
+          url.includes('-dev.') ||
+          url.includes('-staging.') ||
+          url.includes('-test.')) {
+        
+        const originalUrl = url;
+        
+        // Handle .lndo.site pattern (most common)
+        if (url.includes('.lndo.site')) {
+          url = url.replace(/http:\/\/([^.]+)\.lndo\.site/g, 'https://$1.courts.ca.gov');
+          wasFixed = true;
+        }
+        
+        // Handle other development patterns
+        else if (url.includes('.dev.') || url.includes('-dev.')) {
+          // Extract county from development URL and fix it
+          const match = url.match(/https?:\/\/([^.]+)[\w.-]*\.courts\.ca\.gov/);
+          if (match) {
+            const county = match[1].replace(/-dev$/, '').replace(/\.dev$/, '');
+            url = url.replace(/https?:\/\/[^.]*[\w.-]*\.courts\.ca\.gov/, `https://${county}.courts.ca.gov`);
+            wasFixed = true;
+          }
+        }
+        
+        if (wasFixed) {
+          console.log(`Fixed development URL from sitemap: ${originalUrl} -> ${url}`);
+          fixedUrlCount++;
+        }
+      }
+      
       const urlLower = url.toLowerCase();
       
-      // Check if URL contains filing-relevant keywords
-      if (filingKeywords.some(keyword => urlLower.includes(keyword))) {
+      // Enhanced relevance checking with broader keyword matching
+      const isRelevant = filingKeywords.some(keyword => urlLower.includes(keyword)) ||
+                        url.match(/\/(rules?|orders?|procedures?|forms?|filing|efiling|e-filing|local|civil|departments?|judges?)\b/i) ||
+                        url.match(/\.(pdf|doc|docx)$/i);
+      
+      if (isRelevant) {
         relevantUrls.push({
           url: url,
           lastmod: urlEntry.lastmod ? urlEntry.lastmod[0] : null,
           priority: urlEntry.priority ? parseFloat(urlEntry.priority[0]) : 0.5,
-          source: 'sitemap'
+          source: 'sitemap',
+          was_development_url: wasFixed
         });
       }
+    }
+
+    if (fixedUrlCount > 0) {
+      console.log(`🔧 Fixed ${fixedUrlCount} development URLs in sitemap`);
     }
 
     return relevantUrls;
@@ -208,13 +347,15 @@ class URLDiscovery {
           const text = $(element).text().toLowerCase().trim();
           
           if (href && filingNavKeywords.some(keyword => text.includes(keyword))) {
-            const absoluteUrl = new URL(href, countyConfig.baseUrl).href;
-            navigationUrls.push({
-              url: absoluteUrl,
-              text: text,
-              source: 'navigation',
-              priority: 0.8
-            });
+            const absoluteUrl = safeResolveURL(href, countyConfig.baseUrl);
+            if (absoluteUrl) {
+              navigationUrls.push({
+                url: absoluteUrl,
+                text: text,
+                source: 'navigation',
+                priority: 0.8
+              });
+            }
           }
         });
       }
@@ -262,14 +403,16 @@ class URLDiscovery {
           const text = $(element).text().trim();
           
           if (href) {
-            const absoluteUrl = new URL(href, pageUrl).href;
-            documentUrls.push({
-              url: absoluteUrl,
-              title: text,
-              source: 'navigation_page',
-              parent_page: pageUrl,
-              priority: 0.7
-            });
+            const absoluteUrl = safeResolveURL(href, pageUrl);
+            if (absoluteUrl) {
+              documentUrls.push({
+                url: absoluteUrl,
+                title: text,
+                source: 'navigation_page',
+                parent_page: pageUrl,
+                priority: 0.7
+              });
+            }
           }
         });
       }
@@ -348,14 +491,16 @@ class URLDiscovery {
         const text = $(element).text().trim();
         
         if (href) {
-          const absoluteUrl = new URL(href, baseUrl).href;
-          searchUrls.push({
-            url: absoluteUrl,
-            title: text,
-            source: 'search',
-            search_term: searchTerm,
-            priority: 0.6
-          });
+          const absoluteUrl = safeResolveURL(href, baseUrl);
+          if (absoluteUrl) {
+            searchUrls.push({
+              url: absoluteUrl,
+              title: text,
+              source: 'search',
+              search_term: searchTerm,
+              priority: 0.6
+            });
+          }
         }
       });
 
@@ -392,26 +537,28 @@ class URLDiscovery {
     const patternUrls = [];
     
     for (const path of commonPaths) {
-      const testUrl = new URL(path, countyConfig.baseUrl).href;
+              const testUrl = safeResolveURL(path, countyConfig.baseUrl);
       
       try {
-        const response = await axios.head(testUrl, {
-          timeout: this.config.timeout,
-          headers: { 'User-Agent': this.config.userAgent }
-        });
+                  if (testUrl) {
+            const response = await axios.head(testUrl, {
+              timeout: this.config.timeout,
+              headers: { 'User-Agent': this.config.userAgent }
+            });
 
-        if (response.status === 200) {
-          patternUrls.push({
-            url: testUrl,
-            source: 'common_pattern',
-            pattern: path,
-            priority: 0.9
-          });
+            if (response.status === 200) {
+              patternUrls.push({
+                url: testUrl,
+                source: 'common_pattern',
+                pattern: path,
+                priority: 0.9
+              });
 
-          // If the page exists, explore it for documents
-          const pageDocuments = await this.explorePatternPage(testUrl, countyConfig);
-          patternUrls.push(...pageDocuments);
-        }
+              // If the page exists, explore it for documents
+              const pageDocuments = await this.explorePatternPage(testUrl, countyConfig);
+              patternUrls.push(...pageDocuments);
+            }
+          }
 
       } catch (error) {
         // Path doesn't exist, continue
@@ -450,14 +597,16 @@ class URLDiscovery {
           const text = $(element).text().trim();
           
           if (href && text) {
-            const absoluteUrl = new URL(href, pageUrl).href;
-            documentUrls.push({
-              url: absoluteUrl,
-              title: text,
-              source: 'pattern_page',
-              parent_page: pageUrl,
-              priority: 0.8
-            });
+            const absoluteUrl = safeResolveURL(href, pageUrl);
+            if (absoluteUrl) {
+              documentUrls.push({
+                url: absoluteUrl,
+                title: text,
+                source: 'pattern_page',
+                parent_page: pageUrl,
+                priority: 0.8
+              });
+            }
           }
         });
       }

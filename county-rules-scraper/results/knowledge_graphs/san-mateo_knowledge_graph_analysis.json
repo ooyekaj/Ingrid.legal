@@ -1,0 +1,49 @@
+{
+  "county": "San Mateo",
+  "generated_at": "2025-06-24T06:28:19.484Z",
+  "graph_statistics": {
+    "total_nodes": 1905,
+    "total_edges": 4213,
+    "node_types": {
+      "county_rule": 352,
+      "organization": 396,
+      "filing_question": 18,
+      "procedure": 388,
+      "requirement": 547,
+      "department": 74,
+      "court_department": 72,
+      "judge": 34,
+      "standing_order": 24
+    },
+    "edge_types": {
+      "mentions organization": 620,
+      "answers filing question": 1168,
+      "specifies procedure": 388,
+      "specifies requirement": 547,
+      "applies to department": 103,
+      "mentions department": 135,
+      "mentions judge": 41,
+      "presides in department": 1187,
+      "contains order": 24
+    }
+  },
+  "key_insights": [
+    "Found 34 judges with specific procedures or preferences",
+    "Identified 74 court departments with specific rules",
+    "Top document categories: Filing Procedures (576), General Civil (533), Court Procedures (388)",
+    "Documents address 18 common filing questions",
+    "700 documents have high filing relevance (score ≥ 7)"
+  ],
+  "recommendations": [
+    {
+      "type": "DATA_GAP",
+      "message": "Some departments may be missing judge-specific information",
+      "priority": "MEDIUM"
+    },
+    {
+      "type": "PROCESS_IMPROVEMENT",
+      "message": "95 documents contain many procedural requirements - consider creating summary guides",
+      "priority": "MEDIUM"
+    }
+  ]
+}

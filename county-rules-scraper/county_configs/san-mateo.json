@@ -1,0 +1,131 @@
+{
+  "county": "San Mateo",
+  "baseUrl": "https://sanmateo.courts.ca.gov",
+  "version": "1.0",
+  "lastUpdated": "2025-06-24",
+  
+  "discoveryPatterns": {
+    "rules": ["/local-rules", "/standing-orders", "/general-information/local-rules"],
+    "orders": ["/standing-orders", "/general-orders", "/judicial-orders"],
+    "procedures": ["/procedures", "/forms-filing", "/self-help", "/divisions"],
+    "forms": ["/forms-filing", "/local-forms", "/self-prep-and-file"],
+    "divisions": ["/divisions", "/civil-division", "/family-law-division", "/criminal-division", "/probate", "/traffic"],
+    "filing": ["/forms-filing", "/e-filing", "/fee-schedule"],
+    "self_help": ["/self-help", "/self-help-center", "/being-your-own-lawyer"],
+    "adr": ["/appropriate-dispute-resolution-programs", "/civil-adr-program", "/mediation"],
+    "calendars": ["/law-and-motion-calendars", "/tentative-rulings", "/hearing-schedules"]
+  },
+
+  "filingAreas": {
+    "local_rules": {
+      "selectors": [".rule-content", ".local-rule", ".court-rule", ".rule-text"],
+      "url_patterns": ["/local-rules", "/standing-orders", "/general-information/local-rules"],
+      "keywords": ["local rule", "standing order", "court rule", "procedure", "filing requirement"]
+    },
+    "standing_orders": {
+      "selectors": [".order-content", ".standing-order", ".judicial-order"],
+      "url_patterns": ["/standing-orders", "/general-orders", "/judicial-assignments"],
+      "keywords": ["standing order", "general order", "judicial order", "assignment order"]
+    },
+    "case_management": {
+      "selectors": [".case-management", ".scheduling", ".calendar-info"],
+      "url_patterns": ["/case-management", "/scheduling", "/calendars", "/law-and-motion"],
+      "keywords": ["case management", "scheduling", "calendar", "hearing", "motion practice"]
+    },
+    "filing_procedures": {
+      "selectors": [".filing-info", ".procedure-content", ".form-info"],
+      "url_patterns": ["/forms-filing", "/e-filing", "/procedures", "/how-to-file"],
+      "keywords": ["filing", "procedure", "e-filing", "electronic filing", "document filing"]
+    },
+    "civil_procedures": {
+      "selectors": [".civil-content", ".civil-procedure", ".civil-info"],
+      "url_patterns": ["/civil-division", "/civil", "/unlawful-detainer", "/restraining-orders"],
+      "keywords": ["civil procedure", "civil case", "unlawful detainer", "restraining order", "civil filing"]
+    },
+    "family_procedures": {
+      "selectors": [".family-content", ".family-procedure", ".family-info"],
+      "url_patterns": ["/family-law-division", "/family", "/divorce", "/custody", "/support"],
+      "keywords": ["family law", "divorce", "custody", "child support", "domestic relations"]
+    },
+    "probate_procedures": {
+      "selectors": [".probate-content", ".probate-procedure", ".probate-info"],
+      "url_patterns": ["/probate", "/guardianship", "/conservatorship", "/adoption"],
+      "keywords": ["probate", "guardianship", "conservatorship", "adoption", "estate"]
+    },
+    "self_help_resources": {
+      "selectors": [".self-help-content", ".help-info", ".resource-info"],
+      "url_patterns": ["/self-help", "/self-help-center", "/being-your-own-lawyer"],
+      "keywords": ["self-help", "pro per", "self-represented", "assistance", "resources"]
+    },
+    "adr_information": {
+      "selectors": [".adr-content", ".mediation-info", ".arbitration-info"],
+      "url_patterns": ["/appropriate-dispute-resolution", "/mediation", "/arbitration"],
+      "keywords": ["ADR", "mediation", "arbitration", "settlement", "dispute resolution"]
+    }
+  },
+
+  "commonSelectors": {
+    "document_links": [
+      "a[href*='rule']", "a[href*='order']", "a[href*='pdf']", 
+      "a[href*='procedure']", "a[href*='form']", "a[href*='filing']",
+      "a[href*='local']", "a[href*='standing']", "a[href*='general']"
+    ],
+    "content_areas": [
+      ".content", ".main-content", ".page-content", 
+      ".rule-content", ".order-content", ".procedure-content",
+      "main", "article", ".text-content", "#content"
+    ],
+    "navigation_menus": [
+      "nav a", ".navigation a", ".menu a", ".nav a",
+      ".primary-nav a", ".main-nav a", "header a",
+      ".sidebar a", ".secondary-nav a"
+    ]
+  },
+
+  "scraping_config": {
+    "rate_limit": 2000,
+    "user_agent": "Legal Research Tool - California County Rules Scraper",
+    "respect_robots": true,
+    "max_concurrent": 2,
+    "timeout": 30000,
+    "retries": 3,
+    "follow_redirects": true,
+    "max_depth": 3
+  },
+
+  "document_types": {
+    "high_priority": [
+      "local rules", "standing orders", "general orders",
+      "filing procedures", "e-filing requirements", "fee schedules",
+      "case management orders", "scheduling orders"
+    ],
+    "medium_priority": [
+      "division procedures", "self-help guides", "form instructions",
+      "ADR procedures", "calendar information", "hearing procedures"
+    ],
+    "low_priority": [
+      "news articles", "press releases", "general information",
+      "contact information", "historical information"
+    ]
+  },
+
+  "exclusion_patterns": [
+    "/news/", "/events/", "/careers/", "/employment/",
+    "/media/", "/press/", "/archive/", "/history/",
+    "/contact/", "/directions/", "/parking/", "/hours/"
+  ],
+
+  "special_handling": {
+    "pdf_extraction": true,
+    "form_recognition": true,
+    "table_extraction": true,
+    "multi_language": ["en", "es"],
+    "dynamic_content": false
+  },
+
+  "validation": {
+    "min_content_length": 100,
+    "required_keywords": ["court", "san mateo", "superior court"],
+    "exclude_if_contains": ["404", "not found", "error", "maintenance"]
+  }
+} 

@@ -1,0 +1,342 @@
+{
+  "county": "Alameda",
+  "baseUrl": "https://alameda.courts.ca.gov",
+  "version": "2.0-enhanced",
+  "last_updated": "2025-01-15",
+  
+  "discoveryPatterns": {
+    "civil_division": {
+      "url": "/divisions/civil-division",
+      "subpages": [
+        "/civil/complex-civil-litigation",
+        "/civil/general-civil",
+        "/civil/unlimited-civil",
+        "/civil/limited-civil"
+      ]
+    },
+    "rules_and_orders": {
+      "url": "/rules",
+      "document_patterns": [
+        "a[href*=\"rule\"]",
+        "a[href*=\"order\"]",
+        "a[href*=\"pdf\"]",
+        "a[href*=\"procedure\"]",
+        "a[href*=\"guidelines\"]",
+        "a[href*=\"standing\"]",
+        "a[href*=\"general\"]"
+      ]
+    },
+    "judge_specific_pages": {
+      "url_patterns": [
+        "/judges/",
+        "/judicial-officers/", 
+        "/departments/",
+        "/department-*/",
+        "/judge-*/",
+        "/judicial-*/",
+        "/biographies/",
+        "/assignments/"
+      ],
+      "selectors": [
+        "a[href*='judge']",
+        "a[href*='department']", 
+        "a[href*='judicial']",
+        "a[href*='assignment']",
+        "a[href*='biography']",
+        "a[href*='profile']"
+      ]
+    },
+    "self_help": {
+      "url": "/self-help",
+      "subpages": [
+        "/self-help/forms",
+        "/self-help/procedures",
+        "/self-help/filing",
+        "/self-help/civil"
+      ]
+    },
+    "case_management": {
+      "url": "/case-management",
+      "subpages": [
+        "/case-management/civil",
+        "/case-management/complex",
+        "/case-management/scheduling",
+        "/case-management/orders",
+        "/case-management/conferences"
+      ]
+    },
+    "local_forms": {
+      "url": "/forms",
+      "subpages": [
+        "/forms/civil",
+        "/forms/local",
+        "/forms/self-help",
+        "/forms/fee-schedules"
+      ]
+    },
+    "efiling": {
+      "url": "/efiling",
+      "subpages": [
+        "/efiling/requirements",
+        "/efiling/procedures",
+        "/efiling/support",
+        "/efiling/technical"
+      ]
+    },
+    "general_orders": {
+      "url": "/general-orders",
+      "subpages": [
+        "/general-orders/civil",
+        "/general-orders/administrative",
+        "/general-orders/emergency"
+      ]
+    }
+  },
+
+  "filingAreas": {
+    "local_rules": {
+      "selectors": [".rule-content", ".local-rule", ".court-rule", ".rule-text"],
+      "url_patterns": ["/rules/", "/local-rules/", "/court-rules/", "/rule-", "/civil-rules/"]
+    },
+    "standing_orders": {
+      "selectors": [".order-content", ".standing-order", ".general-order"],
+      "url_patterns": ["/orders/", "/standing-orders/", "/general-orders/", "/order-", "/administrative-orders/"]
+    },
+    "judge_orders": {
+      "selectors": [".judge-order", ".judicial-order", ".department-order"],
+      "url_patterns": ["/judge-orders/", "/judicial-orders/", "/department-orders/", "/departmental/"]
+    },
+    "case_management": {
+      "selectors": [".case-management", ".scheduling", ".cmco", ".cmo"],
+      "url_patterns": ["/case-management/", "/scheduling/", "/cmco/", "/cmo/", "/conferences/"]
+    },
+    "civil_procedures": {
+      "selectors": [".civil-procedure", ".procedure-content", ".practice-guide"],
+      "url_patterns": ["/civil/", "/procedures/", "/practice/", "/litigation/"]
+    },
+    "electronic_filing": {
+      "selectors": [".efiling", ".electronic-filing", ".online-filing"],
+      "url_patterns": ["/efiling/", "/electronic-filing/", "/online-services/", "/e-filing/"]
+    },
+    "fee_schedules": {
+      "selectors": [".fee-schedule", ".fees", ".costs"],
+      "url_patterns": ["/fees/", "/fee-schedule/", "/costs/", "/payment/"]
+    },
+    "self_help": {
+      "selectors": [".self-help", ".pro-se", ".unrepresented"],
+      "url_patterns": ["/self-help/", "/pro-se/", "/unrepresented/", "/assistance/"]
+    }
+  },
+
+  "documentFormats": {
+    "pdf": {
+      "selectors": [
+        "a[href$=\".pdf\"]", 
+        ".pdf-link", 
+        "a[title*=\"PDF\"]", 
+        ".document-link",
+        ".attachment-link",
+        "a[href*=\"document\"]"
+      ],
+      "processing": "pdf_extraction",
+      "priority_patterns": [
+        "local-rule",
+        "standing-order",
+        "general-order",
+        "case-management",
+        "fee-schedule",
+        "procedure"
+      ]
+    },
+    "html": {
+      "selectors": [".content", ".rule-text", ".order-text", ".main-content", ".page-content"],
+      "processing": "html_parsing"
+    },
+    "word": {
+      "selectors": ["a[href$=\".docx\"]", "a[href$=\".doc\"]", ".word-doc", ".document-download"],
+      "processing": "word_extraction"
+    },
+    "excel": {
+      "selectors": ["a[href$=\".xlsx\"]", "a[href$=\".xls\"]", ".spreadsheet"],
+      "processing": "excel_extraction"
+    }
+  },
+
+  "specificSelectors": {
+    "navigation_menus": [
+      ".main-nav", ".primary-nav", ".nav-menu", ".site-nav", 
+      ".header-nav", ".menu-main-navigation", ".navbar", ".navigation"
+    ],
+    "content_areas": [
+      ".entry-content", ".page-content", ".post-content", 
+      ".main-content", ".content-area", ".site-content", ".article-content"
+    ],
+    "document_links": [
+      ".document-list a", ".file-list a", ".attachment a",
+      ".download-link", ".resource-link", "a[href*=\"document\"]",
+      ".pdf-link", ".form-link", ".rule-link"
+    ],
+    "breadcrumbs": [
+      ".breadcrumb", ".breadcrumbs", ".nav-breadcrumb", ".page-path"
+    ],
+    "judge_info": [
+      ".judge-profile", ".judicial-officer", ".department-info",
+      ".judge-contact", ".biography", ".judge-bio", ".assignment"
+    ]
+  },
+
+  "priorityPages": [
+    "/rules",
+    "/local-rules",
+    "/standing-orders",
+    "/general-orders",
+    "/case-management",
+    "/civil",
+    "/efiling",
+    "/e-filing",
+    "/forms",
+    "/procedures",
+    "/practice-guides",
+    "/judges",
+    "/judicial-officers",
+    "/departments",
+    "/self-help",
+    "/fees",
+    "/fee-schedule"
+  ],
+
+  "criticalDocuments": [
+    {
+      "name": "Local Civil Rules",
+      "url_pattern": "local.*civil.*rule",
+      "mandatory_service": true,
+      "revision_tracking": true
+    },
+    {
+      "name": "Case Management Orders",
+      "url_pattern": "case.*management.*order",
+      "mandatory_service": true,
+      "revision_tracking": true
+    },
+    {
+      "name": "Electronic Filing Requirements",
+      "url_pattern": "electronic.*filing|e-filing",
+      "mandatory_service": true,
+      "revision_tracking": true
+    },
+    {
+      "name": "Fee Schedule",
+      "url_pattern": "fee.*schedule|fees",
+      "mandatory_service": true,
+      "revision_tracking": true
+    }
+  ],
+
+  "changeDetection": {
+    "enabled": true,
+    "track_revision_dates": true,
+    "compare_content": true,
+    "notification_threshold": "any_change",
+    "critical_patterns": [
+      "MUST SERVE",
+      "MANDATORY",
+      "REQUIRED",
+      "Revised \\d{2}/\\d{2}/\\d{4}",
+      "Effective \\d{2}/\\d{2}/\\d{4}",
+      "Standing Order",
+      "General Order",
+      "Local Rule",
+      "Department \\d+",
+      "Judge [A-Z][a-z]+ [A-Z][a-z]+"
+    ]
+  },
+
+  "scraping_config": {
+    "rate_limit": 2500,
+    "user_agent": "Legal Research Tool - Alameda County Enhanced Rules Scraper",
+    "respect_robots": true,
+    "max_concurrent": 3,
+    "timeout": 35000,
+    "retries": 4,
+    "delay_between_pages": 1500,
+    "use_headless_browser": false,
+    "javascript_enabled": true,
+    "follow_redirects": true,
+    "handle_lndo_site_urls": true
+  },
+
+  "exclusionPatterns": [
+    "/calendar/",
+    "/jury-service/",
+    "/contact/",
+    "/directions/",
+    "/employment/",
+    "/news/",
+    "/press-releases/",
+    "/about/",
+    "/history/",
+    "/media/",
+    "/events/",
+    "/careers/"
+  ],
+
+  "filingSpecificKeywords": [
+    "filing deadline",
+    "electronic filing",
+    "e-filing",
+    "case management statement",
+    "proof of service",
+    "motion practice",
+    "pleading requirements",
+    "service of process",
+    "discovery deadlines",
+    "trial setting",
+    "scheduling order",
+    "case management conference",
+    "mandatory settlement conference",
+    "final status conference",
+    "fast track",
+    "judicial arbitration",
+    "mediation requirements",
+    "alternative dispute resolution",
+    "meet and confer",
+    "ex parte applications",
+    "tentative rulings",
+    "law and motion calendar"
+  ],
+
+  "specialProcedures": {
+    "complex_civil": {
+      "identifier_keywords": ["complex litigation", "coordination", "JCCP", "complex case"],
+      "special_requirements": ["case management order", "coordination motion", "complex case statement", "judicial assignment"]
+    },
+    "unlawful_detainer": {
+      "identifier_keywords": ["unlawful detainer", "eviction", "UD", "landlord-tenant"],
+      "special_requirements": ["5-day notice", "3-day notice", "summary judgment", "default judgment"]
+    },
+    "personal_injury": {
+      "identifier_keywords": ["personal injury", "PI", "tort", "motor vehicle"],
+      "special_requirements": ["expert witness", "medical records", "settlement conference", "judicial arbitration"]
+    },
+    "probate": {
+      "identifier_keywords": ["probate", "estate", "conservatorship", "guardianship"],
+      "special_requirements": ["inventory and appraisal", "notice to creditors", "accounting"]
+    },
+    "family_law": {
+      "identifier_keywords": ["family law", "dissolution", "custody", "support"],
+      "special_requirements": ["financial disclosures", "child custody mediation", "support calculations"]
+    }
+  },
+
+  "contactInfo": {
+    "court_address": "1225 Fallon Street, Oakland, CA 94612",
+    "phone": "(510) 891-6000",
+    "hours": "Monday-Friday 8:00 AM - 4:00 PM",
+    "efiling_support": "(510) 891-6002",
+    "self_help_center": "(510) 891-6008",
+    "website": "https://alameda.courts.ca.gov"
+  },
+
+  "lastUpdated": "2025-01-15T00:00:00Z",
+  "configVersion": "2.0-enhanced"
+} 

@@ -6,6 +6,7 @@ import Image from "next/image";
 import { getApiUrl } from "@/lib/config";
 import { downloadDocument } from "@/lib/documentDownload";
 import jsPDF from "jspdf";
+import IngridLogo from "../Ingridlogo";
 
 // Password Protection Component
 const PasswordProtection = ({
@@ -54,13 +55,7 @@ const PasswordProtection = ({
 						<div className="relative mb-6">
 							<div className="absolute -inset-6 bg-gradient-to-r from-pink-500/20 to-purple-500/20 rounded-full blur-2xl animate-pulse" />
 							<div className="relative bg-gradient-to-br from-pink-500 to-pink-600 p-4 rounded-2xl shadow-2xl mx-auto w-fit group-hover:scale-110 transition-transform duration-500">
-								<Image
-									src="/Logo.svg"
-									alt="Ingrid Logo"
-									width={40}
-									height={45}
-									className="filter brightness-0 invert"
-								/>
+								<IngridLogo compact={true} width={40} height={45} />
 							</div>
 						</div>
 						<h1 className="text-4xl font-bold text-gray-800 mb-3">

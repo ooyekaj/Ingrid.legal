@@ -186,10 +186,25 @@ class UniversalScraper {
   }
 
   /**
-   * Process HTML documents
+   * Process HTML documents with enhanced URL validation
    */
   async processHTMLDocument(urlData, countyConfig) {
     try {
+      // Enhanced URL validation to handle corrected development URLs
+      const url = new URL(urlData.url);
+      
+      // Accept both courts.ca.gov and corrected URLs from development environments
+      if (!url.hostname.endsWith('.courts.ca.gov') && 
+          !url.hostname.includes('courts.ca.gov')) {
+        console.warn(`Skipping invalid URL (not a California court): ${urlData.url}`);
+        return null;
+      }
+      
+      // Log if this was a corrected development URL
+      if (urlData.was_development_url) {
+        console.log(`Processing corrected development URL: ${urlData.url}`);
+      }
+
       const response = await axios.get(urlData.url, {
         timeout: this.config.timeout,
         headers: { 'User-Agent': this.config.userAgent }
@@ -252,6 +267,13 @@ class UniversalScraper {
    */
   async processPDFDocument(urlData, countyConfig) {
     try {
+      // Validate URL before processing
+      const url = new URL(urlData.url);
+      if (!url.hostname.endsWith('.courts.ca.gov')) {
+        console.warn(`Skipping invalid PDF URL: ${urlData.url}`);
+        return null;
+      }
+
       // Download PDF
       const response = await axios.get(urlData.url, {
         responseType: 'arraybuffer',

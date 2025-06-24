@@ -7,6 +7,7 @@ import Image from "next/image";
 import { ParticleBackground } from "@/components/ParticleBackground";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import IngridLogo from "./Ingridlogo";
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
@@ -62,13 +63,7 @@ const PasswordProtection = ({
 						<div className="relative mb-6">
 							<div className="absolute -inset-6 bg-gradient-to-r from-pink-500/20 to-purple-500/20 rounded-full blur-2xl animate-pulse" />
 							<div className="relative bg-gradient-to-br from-pink-500 to-pink-600 p-4 rounded-2xl shadow-2xl mx-auto w-fit group-hover:scale-110 transition-transform duration-500">
-								<Image
-									src="/Logo.svg"
-									alt="Ingrid Logo"
-									width={40}
-									height={45}
-									className="filter brightness-0 invert"
-								/>
+								<IngridLogo compact={true} width={40} height={45} />
 							</div>
 						</div>
 						<h1 className="text-4xl font-bold text-gray-800 mb-3">
@@ -471,13 +466,7 @@ export default function Home() {
 									<div className="absolute -inset-4 bg-gradient-to-r from-pink-500/30 to-purple-600/30 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 animate-pulse" />
 									<div className="absolute -inset-2 bg-gradient-to-r from-pink-500/20 to-purple-600/20 rounded-2xl blur-md opacity-0 group-hover:opacity-100 transition-all duration-500" />
 									<div className="relative bg-gradient-to-br from-pink-500 via-pink-600 to-purple-600 p-4 rounded-3xl shadow-2xl group-hover:shadow-pink-500/40 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 border border-white/20">
-										<Image
-											src="/Logo.svg"
-											alt="Ingrid Logo"
-											width={32}
-											height={36}
-											className="filter brightness-0 invert group-hover:scale-110 transition-transform duration-300"
-										/>
+										<IngridLogo compact={true} width={32} height={36} className="group-hover:scale-110 transition-transform duration-300" />
 									</div>
 								</div>
 								<div className="flex flex-col">
@@ -1055,13 +1044,7 @@ export default function Home() {
 									<div className="relative group">
 										<div className="absolute -inset-3 bg-gradient-to-r from-pink-500/20 to-purple-600/20 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-all duration-500 animate-pulse" />
 										<div className="relative bg-gradient-to-br from-pink-500 to-pink-600 p-3 rounded-2xl shadow-2xl group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
-											<Image
-												src="/Logo.svg"
-												alt="Ingrid Logo"
-												width={28}
-												height={32}
-												className="filter brightness-0 invert"
-											/>
+											<IngridLogo compact={true} width={28} height={32} />
 										</div>
 									</div>
 																	<span className="text-2xl font-bold text-gray-800">

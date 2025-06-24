@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { getApiUrl } from "@/lib/config";
+import { downloadDocument } from "@/lib/documentDownload";
 import jsPDF from "jspdf";
 
 // Password Protection Component
@@ -258,6 +259,7 @@ export default function Demo() {
 	const [showPreviousQueries, setShowPreviousQueries] = useState(false);
 	// Add state to track current report date
 	const [currentReportDate, setCurrentReportDate] = useState<Date | null>(null);
+	const [downloadLoading, setDownloadLoading] = useState(false);
 
 	// Check authentication on component mount
 	useEffect(() => {
@@ -336,6 +338,24 @@ export default function Demo() {
 	// Handle password correct
 	const handlePasswordCorrect = () => {
 		setIsAuthenticated(true);
+	};
+
+	// Handle document download
+	const handleDownloadDocument = async () => {
+		if (!formData.state || !formData.county || !formData.division || !formData.judge || !formData.documentType) {
+			alert('Please fill in all form fields before downloading');
+			return;
+		}
+
+		setDownloadLoading(true);
+		try {
+			await downloadDocument(formData);
+		} catch (error) {
+			console.error('Download failed:', error);
+			alert('Failed to download document. Please try again.');
+		} finally {
+			setDownloadLoading(false);
+		}
 	};
 
 	// If not authenticated, show password protection
@@ -2022,20 +2042,36 @@ export default function Demo() {
 														<div className="flex-1">
 															<h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
 																<span className="mr-3 text-2xl">📄</span>
-																Notice of Motion and Motion Shell
+																Motion for Summary Judgment Shell
 															</h3>
 															<p className="text-sm text-gray-600 mb-4 leading-relaxed">
 																A pre-formatted .docx template for the notice of motion with proper formatting, headers, and required sections.
 															</p>
-															<div className="text-xs text-gray-500 bg-gray-100 px-3 py-1 rounded-full inline-block">
-																Coming Soon
+															<div className="text-xs text-green-600 bg-green-100 px-3 py-1 rounded-full inline-block">
+																Available Now
 															</div>
 														</div>
 														<button
-															disabled
-															className="bg-gray-200 text-gray-500 font-semibold py-3 px-6 rounded-xl text-sm cursor-not-allowed transition-all duration-200 ml-4"
+															onClick={handleDownloadDocument}
+															disabled={downloadLoading}
+															className="bg-pink-600 hover:bg-pink-700 disabled:bg-gray-200 disabled:text-gray-500 text-white font-semibold py-3 px-6 rounded-xl text-sm transition-all duration-200 ml-4 flex items-center"
 														>
-															Download
+															{downloadLoading ? (
+																<>
+																	<svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+																		<circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+																		<path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+																	</svg>
+																	Downloading...
+																</>
+															) : (
+																<>
+																	<svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+																		<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+																	</svg>
+																	Download
+																</>
+															)}
 														</button>
 													</div>
 												</div>

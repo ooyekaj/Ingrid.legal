@@ -31,9 +31,9 @@ const IngridLogo: React.FC<IngridLogoProps> = ({
         y: Math.random() * height
       }));
       
-      // Colors for chaotic background (darker purple)
-      const chaoticStrokeColor = isDark ? '#5B21B6' : '#6D28D9';
-      const chaoticFillColor = isDark ? '#6D28D9' : '#8B5CF6';
+      // Colors for chaotic background - use white/light colors for compact version on pink background
+      const chaoticStrokeColor = compact ? '#FFFFFF' : (isDark ? '#5B21B6' : '#6D28D9');
+      const chaoticFillColor = compact ? '#F8FAFC' : (isDark ? '#6D28D9' : '#8B5CF6');
       
       // Generate background graph
       for (let i = 0; i < nodes.length; i++) {
@@ -60,9 +60,9 @@ const IngridLogo: React.FC<IngridLogoProps> = ({
         bgElement.appendChild(circle);
       }
 
-      // Colors for focused foreground (lighter purple)
-      const focusedStrokeColor = isDark ? '#A78BFA' : '#C4B5FD'; 
-      const focusedFillColor = isDark ? '#C4B5FD' : '#DDD6FE';
+      // Colors for focused foreground - use bright white for compact version
+      const focusedStrokeColor = compact ? '#FFFFFF' : (isDark ? '#A78BFA' : '#C4B5FD'); 
+      const focusedFillColor = compact ? '#FFFFFF' : (isDark ? '#C4B5FD' : '#DDD6FE');
       
       // Generate foreground graph
       for (let i = 0; i < nodes.length; i++) {
@@ -104,7 +104,7 @@ const IngridLogo: React.FC<IngridLogoProps> = ({
         width={width} 
         height={height} 
         viewBox={`0 0 ${width} ${height}`} 
-        className={`${className} filter brightness-0 invert`}
+        className={`${className}`}
       >
         <defs>
           <filter id={`blur-filter-${width}-${height}`}>
@@ -138,10 +138,10 @@ const IngridLogo: React.FC<IngridLogoProps> = ({
           cx={centerX}
           cy={centerY}
           r={lensRadius}
-          stroke="#8B5CF6" 
-          strokeWidth="1.5" 
+          stroke="#FFFFFF" 
+          strokeWidth="2" 
           fill="none" 
-          opacity="0.6"
+          opacity="0.8"
         />
       </svg>
     );

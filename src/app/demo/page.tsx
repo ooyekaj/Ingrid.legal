@@ -155,6 +155,8 @@ interface Document {
 	item: string;
 	rule: string;
 	link: string;
+	fullRuleText?: string;
+	detailedFormatRequirements?: any;
 }
 
 interface Rule {
@@ -211,6 +213,11 @@ interface SearchResults {
 	rules: Rule[];
 	checklist: ChecklistItem[];
 	proceduralRoadmap?: ProceduralRoadmapData;
+	dataSource?: string;
+	isKnowledgeGraphData?: boolean;
+	source?: string;
+	county?: string;
+	last_updated?: string;
 }
 
 interface PreviousQuery {
@@ -557,6 +564,45 @@ export default function Demo() {
 		setActiveTab("Checklist");
 
 		try {
+			// First, try to get data from county knowledge graph
+			console.log(`Checking for knowledge graph data for ${formData.county} county...`);
+			const knowledgeGraphResponse = await fetch(getApiUrl("/api/countyKnowledgeGraph"), {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					state: formData.state,
+					county: formData.county,
+					division: formData.division,
+					judge: formData.judge,
+					department: formData.department,
+					document_type: formData.documentType,
+					court_type: formData.courtType,
+				}),
+			});
+
+			const knowledgeGraphResult = await knowledgeGraphResponse.json();
+
+			// If knowledge graph data is available, use it
+			if (knowledgeGraphResult.success && knowledgeGraphResult.hasKnowledgeGraph && knowledgeGraphResult.data) {
+				console.log(`✅ Knowledge graph data found for ${formData.county} county - using local data`);
+				const reportGenerationDate = new Date();
+				const dataWithSource = {
+					...knowledgeGraphResult.data,
+					dataSource: 'Knowledge Graph (Local)',
+					isKnowledgeGraphData: true
+				};
+				setSearchResults(dataWithSource);
+				setShowResults(true);
+				setActiveTab("Checklist");
+				setCurrentReportDate(reportGenerationDate);
+				saveQuery(formData, dataWithSource);
+				return; // Exit early since we have the data
+			}
+
+			// If no knowledge graph data, fall back to Gemini API
+			console.log(`❌ No knowledge graph data for ${formData.county} county - using Gemini API`);
 			const response = await fetch(getApiUrl("/api/prepareDocket"), {
 				method: "POST",
 				headers: {
@@ -581,7 +627,12 @@ export default function Demo() {
 
 			if (result.success && result.data) {
 				const reportGenerationDate = new Date();
-				setSearchResults(result.data);
+				const dataWithSource = {
+					...result.data,
+					dataSource: 'Gemini AI',
+					isKnowledgeGraphData: false
+				};
+				setSearchResults(dataWithSource);
 				setShowResults(true);
 				setActiveTab("Checklist");
 				setCurrentReportDate(reportGenerationDate);
@@ -589,7 +640,7 @@ export default function Demo() {
 				// const generatedProceduralRoadmapData = generateProceduralRoadmapData();
 				// setProceduralRoadmapData(generatedProceduralRoadmapData);
 				// Save this query to previous queries with the current timestamp
-				saveQuery(formData, result.data);
+				saveQuery(formData, dataWithSource);
 			} else {
 				throw new Error("No data received from server");
 			}
@@ -1563,6 +1614,30 @@ export default function Demo() {
 													</svg>
 													Report generated on {currentReportDate ? currentReportDate.toLocaleDateString() : new Date().toLocaleDateString()}
 												</span>
+												{/* Data source indicator */}
+												{searchResults && (
+													<span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${
+														searchResults.isKnowledgeGraphData 
+															? 'bg-green-100 text-green-800 border border-green-200' 
+															: 'bg-blue-100 text-blue-800 border border-blue-200'
+													}`}>
+														{searchResults.isKnowledgeGraphData ? (
+															<>
+																<svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+																	<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+																</svg>
+																Knowledge Graph Data
+															</>
+														) : (
+															<>
+																<svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+																	<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+																</svg>
+																AI Generated
+															</>
+														)}
+													</span>
+												)}
 									</div>
 										</div>
 										<div className="flex flex-col sm:flex-row gap-3">
@@ -1741,7 +1816,7 @@ export default function Demo() {
 																						</div>
 																					</td>
 																					<td className="px-6 py-5">
-																						<div className="text-sm text-gray-600 leading-relaxed">
+																						<div className="text-sm text-gray-600 leading-relaxed whitespace-pre-line">
 																							{item.notes}
 																						</div>
 																					</td>
@@ -1860,6 +1935,19 @@ export default function Demo() {
 																		</ul>
 																	</div>
 																)}
+																
+																{/* Full Rule Text */}
+																{doc.fullRuleText && (
+																	<div className="px-6 py-4 bg-gray-50 border-t border-gray-200">
+																		<h5 className="text-sm font-semibold text-gray-700 mb-3 uppercase tracking-wide flex items-center">
+																			<span className="mr-2">⚖️</span>
+																			Full Rule Text (Verbatim):
+																		</h5>
+																		<div className="bg-white border border-gray-200 rounded-lg p-4 text-sm text-gray-700 leading-relaxed font-mono">
+																			{doc.fullRuleText}
+																		</div>
+																	</div>
+																)}
 															</div>
 														);
 													})}
@@ -1939,6 +2027,19 @@ export default function Demo() {
 																				</li>
 																			))}
 																		</ul>
+																	</div>
+																)}
+																
+																{/* Full Rule Text */}
+																{doc.fullRuleText && (
+																	<div className="px-6 py-4 bg-amber-50 border-t border-gray-200">
+																		<h5 className="text-sm font-semibold text-gray-700 mb-3 uppercase tracking-wide flex items-center">
+																			<span className="mr-2">⚖️</span>
+																			Full Rule Text (Verbatim):
+																		</h5>
+																		<div className="bg-white border border-gray-200 rounded-lg p-4 text-sm text-gray-700 leading-relaxed font-mono">
+																			{doc.fullRuleText}
+																		</div>
 																	</div>
 																)}
 															</div>

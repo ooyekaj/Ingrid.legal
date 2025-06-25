@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>County Legal Knowledge Graph Interconnectivity</title>
+    <script src="https://unpkg.com/cytoscape@3.21.0/dist/cytoscape.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f5f7fa; }
+        #controls { 
+            position: fixed; top: 10px; left: 10px; z-index: 1000; 
+            background: white; padding: 20px; border-radius: 12px; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1); max-width: 350px; 
+            border: 1px solid #e1e5e9;
+        }
+        #cy { width: 100%; height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .filter-btn { 
+            margin: 4px; padding: 8px 12px; border: none; border-radius: 6px; 
+            cursor: pointer; font-size: 12px; font-weight: 600; 
+            transition: all 0.3s ease;
+        }
+        .filter-btn.active { background: #667eea; color: white; box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3); }
+        .filter-btn.inactive { background: #f1f3f4; color: #5f6368; }
+        .filter-btn:hover { transform: translateY(-1px); }
+        
+        #legend { margin-top: 15px; padding-top: 15px; border-top: 1px solid #e8eaed; }
+        .legend-item { display: flex; align-items: center; margin: 5px 0; font-size: 12px; }
+        .legend-color { width: 16px; height: 16px; border-radius: 50%; margin-right: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .edge-legend { width: 16px; height: 3px; margin-right: 8px; border-radius: 2px; }
+        
+        #stats { 
+            margin-top: 15px; padding-top: 15px; border-top: 1px solid #e8eaed; 
+            font-size: 11px; color: #5f6368; 
+        }
+        #status { 
+            margin-top: 12px; padding: 8px; background: #f8f9fa; 
+            border-radius: 6px; font-size: 11px; border: 1px solid #e8eaed;
+        }
+        .layer-controls { margin: 12px 0; }
+        .layer-btn { margin: 3px; padding: 6px 10px; font-size: 10px; }
+        
+        h3 { margin: 0 0 15px 0; font-size: 18px; color: #202124; font-weight: 600; }
+        .section-title { font-weight: 600; font-size: 13px; margin: 12px 0 6px 0; color: #3c4043; }
+        
+        .county-section { margin: 8px 0; }
+        .county-btn { 
+            display: block; width: 100%; margin: 3px 0; 
+            background: #f8f9fa; border: 1px solid #dadce0; 
+        }
+        .county-btn.active { background: #e8f0fe; border-color: #4285f4; color: #1a73e8; }
+    </style>
+</head>
+<body>
+    <div id="controls">
+        <h3>🏛️ County Legal Network</h3>
+        
+        <div class="section-title">Knowledge Graphs</div>
+        <div>
+            <button class="filter-btn active" onclick="filterSystem('all')">All Systems</button>
+            <button class="filter-btn inactive" onclick="filterSystem('CCP')">CCP Only</button>
+            <button class="filter-btn inactive" onclick="filterSystem('CRC')">CRC Only</button>
+        </div>
+
+        <div class="county-section">
+            <div class="section-title">Counties</div>
+            <button class="filter-btn county-btn active" onclick="filterCounty('all')">All Counties</button>
+            <button class="filter-btn county-btn inactive" onclick="filterCounty('santa-clara')">Santa Clara</button>
+            <button class="filter-btn county-btn inactive" onclick="filterCounty('alameda')">Alameda</button>
+            <button class="filter-btn county-btn inactive" onclick="filterCounty('san-mateo')">San Mateo</button>
+        </div>
+
+        <div class="layer-controls">
+            <div class="section-title">Connection Types</div>
+            <button class="filter-btn layer-btn active" onclick="toggleLayer('references')">Legal References</button>
+            <button class="filter-btn layer-btn active" onclick="toggleLayer('procedural')">Procedural Links</button>
+            <button class="filter-btn layer-btn active" onclick="toggleLayer('thematic')">Thematic Groups</button>
+            <button class="filter-btn layer-btn active" onclick="toggleLayer('jurisdictional')">Jurisdictional</button>
+        </div>
+        
+        <div id="legend">
+            <div class="section-title">Legal Systems</div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #4285f4;"></div>
+                <span>CCP (Civil Procedure)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #34a853;"></div>
+                <span>CRC (Court Rules)</span>
+            </div>
+            
+            <div class="section-title">Counties</div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #ea4335;"></div>
+                <span>Santa Clara County</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #fbbc04;"></div>
+                <span>Alameda County</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #9c27b0;"></div>
+                <span>San Mateo County</span>
+            </div>
+            
+            <div class="section-title">Relationships</div>
+            <div class="legend-item">
+                <div class="edge-legend" style="background: #ff6b6b;"></div>
+                <span>Legal References</span>
+            </div>
+            <div class="legend-item">
+                <div class="edge-legend" style="background: #4ecdc4;"></div>
+                <span>Procedural Links</span>
+            </div>
+            <div class="legend-item">
+                <div class="edge-legend" style="background: #45b7d1;"></div>
+                <span>Thematic Groups</span>
+            </div>
+            <div class="legend-item">
+                <div class="edge-legend" style="background: #f39c12;"></div>
+                <span>Jurisdictional</span>
+            </div>
+        </div>
+        
+        <div id="stats">
+            <div>Total Nodes: <span id="node-count">0</span></div>
+            <div>Total Edges: <span id="edge-count">0</span></div>
+            <div>County Rules: <span id="county-count">0</span></div>
+            <div>Legal Codes: <span id="code-count">0</span></div>
+        </div>
+        
+        <div id="status">Initializing visualization...</div>
+    </div>
+
+    <div id="cy"></div>
+
+    <script>
+        console.log('🏛️ Initializing County Legal Network...');
+        
+        // Sample knowledge graph data representing interconnections
+        const elements = [
+            // CCP Nodes
+            { data: { id: 'ccp_425', label: 'CCP §425.16', title: 'Anti-SLAPP Motion', source_system: 'CCP', category: 'motion_practice' }},
+            { data: { id: 'ccp_170', label: 'CCP §170.6', title: 'Judge Disqualification', source_system: 'CCP', category: 'judicial_admin' }},
+            { data: { id: 'ccp_1005', label: 'CCP §1005', title: 'Notice Requirements', source_system: 'CCP', category: 'procedural' }},
+            { data: { id: 'ccp_128', label: 'CCP §128.7', title: 'Sanctions', source_system: 'CCP', category: 'sanctions' }},
+            
+            // CRC Nodes  
+            { data: { id: 'crc_310', label: 'CRC 3.1010', title: 'Demurrer Practice', source_system: 'CRC', category: 'motion_practice' }},
+            { data: { id: 'crc_220', label: 'CRC 2.200', title: 'Filing Requirements', source_system: 'CRC', category: 'procedural' }},
+            { data: { id: 'crc_330', label: 'CRC 3.300', title: 'Case Management', source_system: 'CRC', category: 'case_mgmt' }},
+            
+            // Santa Clara County Nodes
+            { data: { id: 'sc_local_1', label: 'SC Local Rule 1.10', title: 'Local Filing Requirements', source_system: 'santa-clara', category: 'local_rules' }},
+            { data: { id: 'sc_local_2', label: 'SC Local Rule 2.05', title: 'Case Management Conference', source_system: 'santa-clara', category: 'case_mgmt' }},
+            { data: { id: 'sc_local_3', label: 'SC Local Rule 3.15', title: 'Motion Practice', source_system: 'santa-clara', category: 'motion_practice' }},
+            
+            // Alameda County Nodes
+            { data: { id: 'alameda_local_1', label: 'Alameda Local Rule 1.01', title: 'General Provisions', source_system: 'alameda', category: 'local_rules' }},
+            { data: { id: 'alameda_local_2', label: 'Alameda Local Rule 2.10', title: 'Discovery Management', source_system: 'alameda', category: 'discovery' }},
+            
+            // San Mateo County Nodes
+            { data: { id: 'sm_local_1', label: 'SM Local Rule 1.20', title: 'Electronic Filing', source_system: 'san-mateo', category: 'e_filing' }},
+            { data: { id: 'sm_local_2', label: 'SM Local Rule 2.30', title: 'Settlement Conferences', source_system: 'san-mateo', category: 'settlement' }},
+            
+            // Edges - Legal References
+            { data: { id: 'ref1', source: 'sc_local_3', target: 'ccp_425', relationship_type: 'references', weight: 'strong' }},
+            { data: { id: 'ref2', source: 'crc_310', target: 'ccp_425', relationship_type: 'references', weight: 'strong' }},
+            { data: { id: 'ref3', source: 'sc_local_1', target: 'crc_220', relationship_type: 'references', weight: 'medium' }},
+            { data: { id: 'ref4', source: 'alameda_local_1', target: 'crc_220', relationship_type: 'references', weight: 'medium' }},
+            { data: { id: 'ref5', source: 'sm_local_1', target: 'crc_220', relationship_type: 'references', weight: 'strong' }},
+            
+            // Procedural Links
+            { data: { id: 'proc1', source: 'sc_local_2', target: 'crc_330', relationship_type: 'procedural', weight: 'strong' }},
+            { data: { id: 'proc2', source: 'alameda_local_2', target: 'ccp_1005', relationship_type: 'procedural', weight: 'medium' }},
+            { data: { id: 'proc3', source: 'sm_local_2', target: 'crc_330', relationship_type: 'procedural', weight: 'medium' }},
+            
+            // Thematic Groups
+            { data: { id: 'theme1', source: 'sc_local_3', target: 'alameda_local_1', relationship_type: 'thematic', weight: 'medium' }},
+            { data: { id: 'theme2', source: 'ccp_170', target: 'crc_330', relationship_type: 'thematic', weight: 'weak' }},
+            
+            // Jurisdictional Links
+            { data: { id: 'juris1', source: 'sc_local_1', target: 'alameda_local_1', relationship_type: 'jurisdictional', weight: 'weak' }},
+            { data: { id: 'juris2', source: 'alameda_local_1', target: 'sm_local_1', relationship_type: 'jurisdictional', weight: 'weak' }},
+            { data: { id: 'juris3', source: 'sm_local_1', target: 'sc_local_1', relationship_type: 'jurisdictional', weight: 'weak' }}
+        ];
+
+        let cy;
+        let activeFilters = {
+            system: 'all',
+            county: 'all',
+            layers: ['references', 'procedural', 'thematic', 'jurisdictional']
+        };
+
+        function initializeCytoscape() {
+            cy = cytoscape({
+                container: document.getElementById('cy'),
+                elements: elements,
+                style: [
+                    {
+                        selector: 'node',
+                        style: {
+                            'background-color': function(ele) {
+                                const system = ele.data('source_system');
+                                if (system === 'CCP') return '#4285f4';
+                                if (system === 'CRC') return '#34a853';
+                                if (system === 'santa-clara') return '#ea4335';
+                                if (system === 'alameda') return '#fbbc04';
+                                if (system === 'san-mateo') return '#9c27b0';
+                                return '#757575';
+                            },
+                            'label': 'data(label)',
+                            'color': '#ffffff',
+                            'text-valign': 'center',
+                            'text-halign': 'center',
+                            'font-size': '10px',
+                            'font-weight': 'bold',
+                            'width': function(ele) {
+                                const system = ele.data('source_system');
+                                if (system === 'CCP' || system === 'CRC') return 60;
+                                return 80;
+                            },
+                            'height': function(ele) {
+                                const system = ele.data('source_system');
+                                if (system === 'CCP' || system === 'CRC') return 60;
+                                return 80;
+                            },
+                            'border-width': 2,
+                            'border-color': '#ffffff',
+                            'box-shadow': '0 4px 8px rgba(0,0,0,0.2)'
+                        }
+                    },
+                    {
+                        selector: 'edge',
+                        style: {
+                            'width': function(ele) {
+                                const weight = ele.data('weight');
+                                if (weight === 'strong') return 4;
+                                if (weight === 'medium') return 3;
+                                return 2;
+                            },
+                            'line-color': function(ele) {
+                                const type = ele.data('relationship_type');
+                                if (type === 'references') return '#ff6b6b';
+                                if (type === 'procedural') return '#4ecdc4';
+                                if (type === 'thematic') return '#45b7d1';
+                                if (type === 'jurisdictional') return '#f39c12';
+                                return '#bbb';
+                            },
+                            'target-arrow-color': function(ele) {
+                                return ele.style('line-color');
+                            },
+                            'target-arrow-shape': 'triangle',
+                            'curve-style': 'bezier',
+                            'opacity': 0.8
+                        }
+                    },
+                    {
+                        selector: 'node:selected',
+                        style: {
+                            'border-width': 4,
+                            'border-color': '#333',
+                            'box-shadow': '0 6px 12px rgba(0,0,0,0.3)'
+                        }
+                    }
+                ],
+                layout: {
+                    name: 'cose',
+                    idealEdgeLength: 100,
+                    nodeOverlap: 20,
+                    refresh: 20,
+                    fit: true,
+                    padding: 30,
+                    randomize: false,
+                    componentSpacing: 100,
+                    nodeRepulsion: 400000,
+                    edgeElasticity: 100,
+                    nestingFactor: 5,
+                    gravity: 80,
+                    numIter: 1000,
+                    initialTemp: 200,
+                    coolingFactor: 0.95,
+                    minTemp: 1.0
+                }
+            });
+
+            // Add tooltips
+            cy.on('mouseover', 'node', function(evt){
+                var node = evt.target;
+                node.qtip({
+                    content: `<strong>${node.data('label')}</strong><br>${node.data('title')}`,
+                    position: {
+                        my: 'bottom center',
+                        at: 'top center'
+                    },
+                    style: {
+                        classes: 'qtip-bootstrap',
+                        tip: {
+                            width: 16,
+                            height: 8
+                        }
+                    },
+                    show: {
+                        event: 'mouseover'
+                    },
+                    hide: {
+                        event: 'mouseout unfocus'
+                    }
+                });
+            });
+
+            updateStats();
+            document.getElementById('status').textContent = 'Graph loaded successfully';
+        }
+
+        function filterSystem(system) {
+            activeFilters.system = system;
+            applyFilters();
+            updateButtons();
+        }
+
+        function filterCounty(county) {
+            activeFilters.county = county;
+            applyFilters();
+            updateButtons();
+        }
+
+        function toggleLayer(layer) {
+            const index = activeFilters.layers.indexOf(layer);
+            if (index > -1) {
+                activeFilters.layers.splice(index, 1);
+            } else {
+                activeFilters.layers.push(layer);
+            }
+            applyFilters();
+            updateButtons();
+        }
+
+        function applyFilters() {
+            cy.elements().style('display', 'element');
+            
+            // Filter by system
+            if (activeFilters.system !== 'all') {
+                cy.nodes().forEach(function(node) {
+                    const system = node.data('source_system');
+                    if (activeFilters.system === 'CCP' && system !== 'CCP') {
+                        node.style('display', 'none');
+                    } else if (activeFilters.system === 'CRC' && system !== 'CRC') {
+                        node.style('display', 'none');
+                    }
+                });
+            }
+            
+            // Filter by county
+            if (activeFilters.county !== 'all') {
+                cy.nodes().forEach(function(node) {
+                    const system = node.data('source_system');
+                    if (system !== 'CCP' && system !== 'CRC' && system !== activeFilters.county) {
+                        node.style('display', 'none');
+                    }
+                });
+            }
+            
+            // Filter by relationship layers
+            cy.edges().forEach(function(edge) {
+                const type = edge.data('relationship_type');
+                if (!activeFilters.layers.includes(type)) {
+                    edge.style('display', 'none');
+                }
+            });
+            
+            // Hide edges connected to hidden nodes
+            cy.edges().forEach(function(edge) {
+                const source = cy.getElementById(edge.data('source'));
+                const target = cy.getElementById(edge.data('target'));
+                if (source.style('display') === 'none' || target.style('display') === 'none') {
+                    edge.style('display', 'none');
+                }
+            });
+            
+            updateStats();
+        }
+
+        function updateButtons() {
+            // System buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.onclick && btn.onclick.toString().includes('filterSystem')) {
+                    btn.className = btn.textContent.includes(activeFilters.system) || 
+                                   (activeFilters.system === 'all' && btn.textContent.includes('All Systems')) 
+                                   ? 'filter-btn active' : 'filter-btn inactive';
+                }
+            });
+            
+            // County buttons
+            document.querySelectorAll('.county-btn').forEach(btn => {
+                if (btn.onclick && btn.onclick.toString().includes('filterCounty')) {
+                    btn.className = btn.textContent.toLowerCase().includes(activeFilters.county) || 
+                                   (activeFilters.county === 'all' && btn.textContent.includes('All Counties'))
+                                   ? 'filter-btn county-btn active' : 'filter-btn county-btn inactive';
+                }
+            });
+            
+            // Layer buttons
+            document.querySelectorAll('.layer-btn').forEach(btn => {
+                if (btn.onclick && btn.onclick.toString().includes('toggleLayer')) {
+                    const layerName = btn.onclick.toString().match(/'([^']+)'/)[1];
+                    btn.className = activeFilters.layers.includes(layerName) 
+                                   ? 'filter-btn layer-btn active' : 'filter-btn layer-btn inactive';
+                }
+            });
+        }
+
+        function updateStats() {
+            const visibleNodes = cy.nodes(':visible');
+            const visibleEdges = cy.edges(':visible');
+            const countySystems = visibleNodes.filter('[source_system != "CCP"][source_system != "CRC"]');
+            const codeSystems = visibleNodes.filter('[source_system = "CCP"], [source_system = "CRC"]');
+            
+            document.getElementById('node-count').textContent = visibleNodes.length;
+            document.getElementById('edge-count').textContent = visibleEdges.length;
+            document.getElementById('county-count').textContent = countySystems.length;
+            document.getElementById('code-count').textContent = codeSystems.length;
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCytoscape();
+        });
+    </script>
+</body>
+</html>

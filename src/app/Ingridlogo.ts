@@ -1,6 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 
-const IngridLogo = () => {
+interface IngridLogoProps {
+  compact?: boolean;
+  width?: number;
+  height?: number;
+  className?: string;
+}
+
+const IngridLogo = ({ compact, width = 300, height = 300, className = "" }: IngridLogoProps) => {
   const bgGraphRef = useRef<SVGGElement>(null);
   const fgGraphRef = useRef<SVGGElement>(null);
 
@@ -81,17 +88,17 @@ const IngridLogo = () => {
   return (
     <div className="bg-gray-50 flex items-center justify-center min-h-screen p-4">
       <div className="w-80 h-80 flex items-center justify-center relative bg-white rounded-3xl p-10 shadow-xl border border-gray-200">
-        <svg width="300" height="300" viewBox="0 0 300 300" className="font-inter">
+        <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} className={`font-inter ${className}`}>
           <defs>
             <filter id="blur-filter-final">
               <feGaussianBlur stdDeviation="0.8"/>
             </filter>
             <mask id="focus-mask-final">
-              <rect width="300" height="300" fill="white"/>
-              <circle cx="150" cy="150" r="95" fill="black"/>
+              <rect width={width} height={height} fill="white"/>
+              <circle cx={width/2} cy={height/2} r={Math.min(width, height)/3.1578947368} fill="black"/>
             </mask>
             <clipPath id="focus-clip-final">
-              <circle cx="150" cy="150" r="90"/>
+              <circle cx={width/2} cy={height/2} r={Math.min(width, height)/3.3333333333}/>
             </clipPath>
           </defs>
           
@@ -113,9 +120,9 @@ const IngridLogo = () => {
           
           {/* Lens Effect */}
           <circle 
-            cx="150" 
-            cy="150" 
-            r="85" 
+            cx={width/2} 
+            cy={height/2} 
+            r={Math.min(width, height)/3.5294117647} 
             stroke="#8B5CF6" 
             strokeWidth="4" 
             fill="none" 
@@ -124,8 +131,8 @@ const IngridLogo = () => {
           
           {/* Central Text */}
           <text 
-            x="150" 
-            y="150" 
+            x={width/2} 
+            y={height/2} 
             textAnchor="middle" 
             dy=".35em" 
             className="text-5xl font-bold fill-pink-500"

@@ -7,6 +7,7 @@ import { getApiUrl } from "@/lib/config";
 import { downloadDocument } from "@/lib/documentDownload";
 import jsPDF from "jspdf";
 import IngridLogo from "../Ingridlogo";
+import AutoSuggestInput from "./_components/AutoSuggestInput";
 
 // Password Protection Component
 const PasswordProtection = ({
@@ -239,10 +240,170 @@ interface PreviousQuery {
 export default function Demo() {
 	const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 	const [showResults, setShowResults] = useState<boolean>(false);
+	const typingElRef = useRef<HTMLSpanElement | null>(null);
+	const tabContentRef = useRef<HTMLDivElement | null>(null);
+	const [checkedCount, setCheckedCount] = useState<number>(0);
+	const [totalCount, setTotalCount] = useState<number>(0);
 	const [activeTab, setActiveTab] = useState<string>("Checklist");
-	const [searchResults, setSearchResults] = useState<SearchResults | null>(
-		null
-	);
+	const [searchResults, setSearchResults] = useState<SearchResults | null>(null);
+	const [checkedItems, setCheckedItems] = useState<Set<string>>(new Set());
+	const [checklistCompletionTimes, setChecklistCompletionTimes] = useState<Map<string, Date>>(new Map());
+
+	// Typing indicator text near the pink icon
+	useEffect(() => {
+		let mounted = true;
+		const phrases = [
+			"Ingrid has got you covered",
+			"Any State",
+			"Any County",
+			"Any Court",
+			"Any Judge",
+			"Any Document",
+		];
+		const initialIndex = phrases.findIndex((p) => p.toLowerCase().startsWith("ingrid"));
+		let phraseIndex = initialIndex >= 0 ? initialIndex : 0;
+		let charIndex = 0;
+		let direction: 'forward' | 'back' = 'forward';
+		let timeout: number | undefined;
+
+		const tick = () => {
+			if (!mounted) return;
+			const target = typingElRef.current;
+			if (!target) {
+				timeout = window.setTimeout(tick, 200);
+				return;
+			}
+			const current = phrases[phraseIndex];
+			if (direction === 'forward') {
+				charIndex++;
+				if (charIndex >= current.length) {
+					direction = 'back';
+					timeout = window.setTimeout(tick, 1200); // pause at full
+					target.textContent = current;
+					return;
+				}
+			} else {
+				charIndex--;
+				if (charIndex <= 0) {
+					direction = 'forward';
+					phraseIndex = (phraseIndex + 1) % phrases.length;
+					timeout = window.setTimeout(tick, 300); // pause at empty
+					target.textContent = '';
+					return;
+				}
+			}
+			target.textContent = current.slice(0, Math.max(0, Math.min(current.length, charIndex)));
+			timeout = window.setTimeout(tick, direction === 'forward' ? 55 : 38);
+		};
+
+		timeout = window.setTimeout(tick, 600);
+		return () => {
+			mounted = false;
+			if (timeout) window.clearTimeout(timeout);
+		};
+	}, []);
+
+	// Compute checklist progress - only track Checklist tab checkboxes
+	useEffect(() => {
+		const handleChange = (e: Event) => {
+			const target = e.target as HTMLInputElement;
+			if (target.type === 'checkbox' && target.id) {
+				setCheckedItems((prev) => {
+					const next = new Set(prev);
+					if (target.checked) {
+						next.add(target.id);
+						// Record completion timestamp
+						setChecklistCompletionTimes((prevTimes) => {
+							const newTimes = new Map(prevTimes);
+							newTimes.set(target.id, new Date());
+							return newTimes;
+						});
+					} else {
+						next.delete(target.id);
+						// Remove timestamp when unchecked
+						setChecklistCompletionTimes((prevTimes) => {
+							const newTimes = new Map(prevTimes);
+							newTimes.delete(target.id);
+							return newTimes;
+						});
+					}
+					return next;
+				});
+			}
+		};
+
+		const container = tabContentRef.current;
+		if (!container) return;
+
+		// Restore checked state from memory whenever tab content renders
+		const inputs = Array.from(
+			container.querySelectorAll('input[type="checkbox"]')
+		) as HTMLInputElement[];
+		inputs.forEach((input) => {
+			if (input.id && checkedItems.has(input.id)) {
+				input.checked = true;
+			}
+		});
+
+		// React to checkbox changes
+		container.addEventListener('change', handleChange, true);
+
+		// React to DOM updates when tab content changes
+		const observer = new MutationObserver(() => {
+			// Restore checked state after DOM updates
+			const inputs = Array.from(
+				container.querySelectorAll('input[type="checkbox"]')
+			) as HTMLInputElement[];
+			inputs.forEach((input) => {
+				if (input.id && checkedItems.has(input.id)) {
+					input.checked = true;
+				}
+			});
+		});
+		observer.observe(container, { childList: true, subtree: true });
+
+		return () => {
+			container.removeEventListener('change', handleChange, true);
+			observer.disconnect();
+		};
+	}, [activeTab, searchResults, checkedItems]);
+
+	// Compute total and checked counts from checklist data (not from DOM)
+	useEffect(() => {
+		if (!searchResults?.checklist) {
+			setCheckedCount(0);
+			setTotalCount(0);
+			return;
+		}
+
+		// Group by phase first (same as checklistByPhase)
+		const byPhase = searchResults.checklist.reduce<Record<string, any[]>>(
+			(acc, item) => {
+				if (!acc[item.phase]) acc[item.phase] = [];
+				acc[item.phase].push(item);
+				return acc;
+			},
+			{}
+		);
+
+		let total = 0;
+		let checked = 0;
+
+		// Iterate through phases and items, matching the rendering logic
+		Object.entries(byPhase).forEach(([phase, items]) => {
+			items.forEach((item, index) => {
+				total++;
+				const itemId = `${phase}-${index}`;
+				if (checkedItems.has(itemId)) {
+					checked++;
+				}
+			});
+		});
+
+		setCheckedCount(checked);
+		setTotalCount(total);
+	}, [searchResults, checkedItems]);
+
 	const [loading, setLoading] = useState<boolean>(false);
 	const [error, setError] = useState<string | null>(null);
 	const [progress, setProgress] = useState(0);
@@ -658,6 +819,11 @@ export default function Demo() {
 		setError(null);
 		setCurrentReportDate(null);
 		setShowPreviousQueries(false);
+		// Clear checklist state for new search
+		setCheckedItems(new Set());
+		setChecklistCompletionTimes(new Map());
+		setCheckedCount(0);
+		setTotalCount(0);
 	};
 
 	const checklistByPhase = searchResults?.checklist.reduce<
@@ -674,171 +840,189 @@ export default function Demo() {
 		setLoading(true);
 
 		try {
-			const pdf = new jsPDF("p", "mm", "a4");
+			const pdf = new jsPDF("p", "mm", "letter"); // US Letter 8.5" x 11"
 			const pageWidth = pdf.internal.pageSize.getWidth();
 			const pageHeight = pdf.internal.pageSize.getHeight();
-			const margin = 20;
-			const contentWidth = pageWidth - margin * 2;
+			const margin = 15;
+			const contentWidth = pageWidth - margin * 2; // Safe print area
 			let yPosition = margin;
 
 			// Add title
-			pdf.setFontSize(24);
+			pdf.setFontSize(26);
 			pdf.setFont("helvetica", "bold");
 			pdf.text("Filing Requirements Report", margin, yPosition);
-			yPosition += 12;
+			yPosition += 10;
 
-			pdf.setFontSize(14);
+			// Subtitle with document info
+			pdf.setFontSize(11);
 			pdf.setFont("helvetica", "normal");
-			pdf.setTextColor(100);
-			pdf.text(`${formData.documentType} - Judge ${formData.judge}, ${formData.department}`, margin, yPosition);
-			yPosition += 8;
-
-			pdf.setFontSize(12);
-			pdf.text(
-				`${formData.division}, ${formData.county}, ${formData.state}`,
-				margin,
-				yPosition
+			pdf.setTextColor(80);
+			const subtitleLines = pdf.splitTextToSize(
+				`${formData.documentType} - Judge ${formData.judge}, ${formData.department}`,
+				contentWidth
 			);
-			yPosition += 15;
+			pdf.text(subtitleLines, margin, yPosition);
+			yPosition += subtitleLines.length * 5;
+
+			pdf.setFontSize(10);
+			pdf.text(`${formData.division}, ${formData.county}, ${formData.state}`, margin, yPosition);
+			yPosition += 12;
 
 			// Reset text color
 			pdf.setTextColor(0);
 
 			// Add Filing Checklist section
-			pdf.setFontSize(18);
+			pdf.setFontSize(20);
 			pdf.setFont("helvetica", "bold");
 			pdf.text("Filing Checklist", margin, yPosition);
 			yPosition += 10;
 
 			Object.entries(checklistByPhase || {}).forEach(([phase, items]) => {
-				// Check if we need a new page
-				if (yPosition > pageHeight - 60) {
+				// Check if we need a new page for phase header
+				if (yPosition > pageHeight - 80) {
 					pdf.addPage();
 					yPosition = margin;
 				}
 
-				// Phase header
-				pdf.setFontSize(14);
+				// Phase header with background
+				pdf.setFillColor(219, 39, 119);
+				pdf.rect(margin, yPosition - 5, contentWidth, 8, 'F');
+				pdf.setFontSize(13);
 				pdf.setFont("helvetica", "bold");
-				pdf.setTextColor(219, 39, 119); // Pink color
-				pdf.text(phase, margin, yPosition);
+				pdf.setTextColor(255, 255, 255);
+				pdf.text(phase, margin + 3, yPosition);
 				yPosition += 8;
 
-				// Define column positions and widths
-				const checkboxCol = margin;
-				const taskCol = margin + 15;
-				const notesCol = margin + 80;
-				const ruleCol = margin + 130;
-				const tableWidth = contentWidth;
-				const taskWidth = 60;
-				const notesWidth = 45;
-				const ruleWidth = 40;
-
-				// Table header
-				pdf.setFontSize(10);
-				pdf.setFont("helvetica", "bold");
+				// Reset colors
 				pdf.setTextColor(0);
-				pdf.text("Done", checkboxCol, yPosition);
-				pdf.text("Task", taskCol, yPosition);
-				pdf.text("Notes", notesCol, yPosition);
-				pdf.text("Rule Reference", ruleCol, yPosition);
-				yPosition += 6;
-
-				// Draw header line
-				pdf.setDrawColor(200);
-				pdf.line(margin, yPosition - 2, margin + tableWidth, yPosition - 2);
-
-				// Draw column dividers for header
-				pdf.line(taskCol - 2, yPosition - 8, taskCol - 2, yPosition - 2);
-				pdf.line(notesCol - 2, yPosition - 8, notesCol - 2, yPosition - 2);
-				pdf.line(ruleCol - 2, yPosition - 8, ruleCol - 2, yPosition - 2);
-
-				yPosition += 2;
-
-				// Table content
 				pdf.setFont("helvetica", "normal");
-				items.forEach((item) => {
-					if (yPosition > pageHeight - 30) {
+
+				// Each checklist item as a card
+				items.forEach((item, index) => {
+					const itemId = `${phase}-${index}`;
+					const isChecked = checkedItems.has(itemId);
+					const completionTime = checklistCompletionTimes.get(itemId);
+
+					// Prepare all text elements first
+					const textWidth = contentWidth - 10; // Account for card padding
+					const taskLines = pdf.splitTextToSize(item.task, textWidth);
+					const notesLines = pdf.splitTextToSize(item.notes, textWidth);
+					const rules = item.rule ? item.rule.split(',').map((r: string) => r.trim()) : [];
+					
+					// Pre-calculate wrapped rules
+					const wrappedRules = rules.map((rule) => pdf.splitTextToSize(`• ${rule}`, textWidth - 8));
+					
+					// Calculate actual card height with all components
+					let estimatedHeight = 6; // Top padding
+					estimatedHeight += 7; // Status badge height
+					estimatedHeight += taskLines.length * 4.5 + 3; // Task with spacing
+					estimatedHeight += notesLines.length * 4 + 3; // Notes with spacing
+					if (wrappedRules.length > 0) {
+						estimatedHeight += 4; // "RULE REFERENCES:" label
+						wrappedRules.forEach((wrapped) => {
+							estimatedHeight += wrapped.length * 3.5;
+						});
+					}
+					estimatedHeight += 3; // Bottom padding
+
+					// Check if we need a new page (leave 20mm margin at bottom)
+					if (yPosition + estimatedHeight > pageHeight - 20) {
 						pdf.addPage();
 						yPosition = margin;
 					}
 
-					const startY = yPosition;
+					const cardStartY = yPosition;
+					
+					// Draw card background
+					pdf.setFillColor(250, 250, 252);
+					pdf.setDrawColor(230, 230, 235);
+					pdf.roundedRect(margin, yPosition, contentWidth, estimatedHeight, 2, 2, 'FD');
 
-					// Checkbox - use simple [ ]
-					pdf.setTextColor(0);
-					pdf.text("[ ]", checkboxCol, yPosition);
+					yPosition += 6;
 
-					// Task (word wrap)
-					pdf.setFontSize(9);
-					const taskLines = pdf.splitTextToSize(item.task, taskWidth);
-					pdf.text(taskLines, taskCol, yPosition);
-
-					// Notes (word wrap)
-					pdf.setTextColor(100);
-					const notesLines = pdf.splitTextToSize(item.notes, notesWidth);
-					pdf.text(notesLines, notesCol, yPosition);
-
-					// Rule reference with link (word wrap)
-					pdf.setTextColor(219, 39, 119);
-					pdf.setFont("helvetica", "normal");
-					const ruleLines = pdf.splitTextToSize(item.rule, ruleWidth);
-					if (item.link) {
-						// For multi-line links, we'll just show the first line as a link
-						pdf.textWithLink(ruleLines[0] || item.rule, ruleCol, yPosition, {
-							url: item.link,
+					// Status badge or completion info
+					if (isChecked && completionTime) {
+						const formattedDate = completionTime.toLocaleDateString('en-US', {
+							month: 'short',
+							day: 'numeric',
+							year: 'numeric'
 						});
-						if (ruleLines.length > 1) {
-							pdf.setTextColor(219, 39, 119);
-							for (let i = 1; i < ruleLines.length; i++) {
-								pdf.text(ruleLines[i], ruleCol, yPosition + i * 4);
-							}
-						}
+						const formattedTime = completionTime.toLocaleTimeString('en-US', {
+							hour: 'numeric',
+							minute: '2-digit',
+							hour12: true
+						});
+						
+						pdf.setFillColor(34, 197, 94);
+						pdf.roundedRect(margin + 3, yPosition - 2, 45, 5, 1, 1, 'F');
+						pdf.setFontSize(7);
+						pdf.setFont("helvetica", "bold");
+						pdf.setTextColor(255, 255, 255);
+						pdf.text("✓ COMPLETED", margin + 4.5, yPosition + 1.5);
+						
+						pdf.setFontSize(7);
+						pdf.setFont("helvetica", "normal");
+						pdf.setTextColor(34, 197, 94);
+						pdf.text(`on ${formattedDate} at ${formattedTime}`, margin + 50, yPosition + 1.5);
+						yPosition += 7;
 					} else {
-						pdf.text(ruleLines, ruleCol, yPosition);
+						pdf.setDrawColor(200, 200, 200);
+						pdf.setFillColor(255, 255, 255);
+						pdf.roundedRect(margin + 3, yPosition - 1.5, 4, 4, 0.5, 0.5, 'D');
+						pdf.setFontSize(8);
+						pdf.setFont("helvetica", "normal");
+						pdf.setTextColor(120, 120, 120);
+						pdf.text("Not completed", margin + 10, yPosition + 1.5);
+						yPosition += 7;
 					}
 
-					// Calculate max lines for proper spacing
-					const maxLines = Math.max(
-						taskLines.length,
-						notesLines.length,
-						ruleLines.length,
-						1
-					);
-					const rowHeight = maxLines * 4 + 2;
+					// Task title
+					pdf.setFontSize(10);
+					pdf.setFont("helvetica", "bold");
+					pdf.setTextColor(30, 30, 30);
+					pdf.text(taskLines, margin + 3, yPosition);
+					yPosition += taskLines.length * 4.5 + 3;
 
-					// Draw column dividers for this row
-					pdf.setDrawColor(230);
-					pdf.line(
-						taskCol - 2,
-						startY - 2,
-						taskCol - 2,
-						startY + rowHeight - 2
-					);
-					pdf.line(
-						notesCol - 2,
-						startY - 2,
-						notesCol - 2,
-						startY + rowHeight - 2
-					);
-					pdf.line(
-						ruleCol - 2,
-						startY - 2,
-						ruleCol - 2,
-						startY + rowHeight - 2
-					);
-
-					yPosition += rowHeight;
-
-					pdf.setTextColor(0);
+					// Notes section
+					pdf.setFontSize(8.5);
 					pdf.setFont("helvetica", "normal");
+					pdf.setTextColor(100, 100, 100);
+					pdf.text(notesLines, margin + 3, yPosition);
+					yPosition += notesLines.length * 4 + 3;
+
+					// Rule references
+					if (wrappedRules.length > 0) {
+						const links = item.link ? item.link.split(',').map((l: string) => l.trim()) : [];
+						
+						pdf.setFontSize(7.5);
+						pdf.setFont("helvetica", "bold");
+						pdf.setTextColor(120, 120, 120);
+						pdf.text("RULE REFERENCES:", margin + 3, yPosition);
+						yPosition += 4;
+
+						wrappedRules.forEach((wrappedRule, ruleIndex) => {
+							const ruleLink = links.length === 1 ? links[0] : (links[ruleIndex] || links[0] || '');
+							pdf.setFontSize(8);
+							pdf.setFont("helvetica", "normal");
+							pdf.setTextColor(219, 39, 119);
+							
+							if (ruleLink) {
+								// Only make first line clickable to avoid link issues
+								pdf.textWithLink(wrappedRule[0], margin + 5, yPosition, { url: ruleLink });
+								for (let i = 1; i < wrappedRule.length; i++) {
+									pdf.text(wrappedRule[i], margin + 5, yPosition + i * 3.5);
+								}
+							} else {
+								pdf.text(wrappedRule, margin + 5, yPosition);
+							}
+							yPosition += wrappedRule.length * 3.5;
+						});
+					}
+
+					yPosition = cardStartY + estimatedHeight + 4; // Add spacing between cards
 				});
 
-				// Draw bottom border for table
-				pdf.setDrawColor(200);
-				pdf.line(margin, yPosition, margin + tableWidth, yPosition);
-
-				yPosition += 8;
+				yPosition += 3;
 			});
 
 			// Add new page for documents
@@ -846,85 +1030,41 @@ export default function Demo() {
 			yPosition = margin;
 
 			// Mandatory Documents section
-			pdf.setFontSize(18);
+			pdf.setFontSize(16);
 			pdf.setFont("helvetica", "bold");
 			pdf.setTextColor(0);
 			pdf.text("Mandatory Documents", margin, yPosition);
 			yPosition += 10;
 
-			// Define column positions for documents
-			const docCol = margin;
-			const docRuleCol = margin + 100;
-			const docWidth = 90;
-			const docRuleWidth = 70;
-
-			// Table header
-			pdf.setFontSize(10);
-			pdf.setFont("helvetica", "bold");
-			pdf.text("Document", docCol, yPosition);
-			pdf.text("Rule Reference", docRuleCol, yPosition);
-			yPosition += 6;
-
-			// Draw header line
-			pdf.setDrawColor(200);
-			pdf.line(margin, yPosition - 2, margin + contentWidth, yPosition - 2);
-
-			// Draw column divider for header
-			pdf.line(docRuleCol - 2, yPosition - 8, docRuleCol - 2, yPosition - 2);
-
-			yPosition += 2;
-
-			pdf.setFont("helvetica", "normal");
 			searchResults.documents.forEach((doc) => {
-				if (yPosition > pageHeight - 25) {
+				const textWidth = contentWidth;
+				
+				// Check if we need a new page
+				if (yPosition > pageHeight - 40) {
 					pdf.addPage();
 					yPosition = margin;
 				}
 
-				const startY = yPosition;
-
-				// Document name
-				pdf.setFontSize(9);
+				// Document item as bullet point
+				pdf.setFontSize(10);
+				pdf.setFont("helvetica", "normal");
 				pdf.setTextColor(0);
-				const docLines = pdf.splitTextToSize(doc.item, docWidth);
-				pdf.text(docLines, docCol, yPosition);
+				const docLines = pdf.splitTextToSize(`• ${doc.item}`, textWidth - 5);
+				pdf.text(docLines, margin + 5, yPosition);
+				yPosition += docLines.length * 5 + 3;
 
-				// Rule reference with link
-				pdf.setTextColor(219, 39, 119);
-				const ruleLines = pdf.splitTextToSize(doc.rule, docRuleWidth);
-				if (doc.link) {
-					pdf.textWithLink(ruleLines[0] || doc.rule, docRuleCol, yPosition, {
-						url: doc.link,
-					});
-					if (ruleLines.length > 1) {
-						for (let i = 1; i < ruleLines.length; i++) {
-							pdf.text(ruleLines[i], docRuleCol, yPosition + i * 4);
-						}
-					}
-				} else {
-					pdf.text(ruleLines, docRuleCol, yPosition);
+				// Rule reference
+				if (doc.rule) {
+					pdf.setFontSize(9);
+					pdf.setFont("helvetica", "italic");
+					pdf.setTextColor(100);
+					const ruleLines = pdf.splitTextToSize(`  Rule: ${doc.rule}`, textWidth - 5);
+					pdf.text(ruleLines, margin + 5, yPosition);
+					yPosition += ruleLines.length * 4.5 + 5;
 				}
-
-				const maxLines = Math.max(docLines.length, ruleLines.length, 1);
-				const rowHeight = maxLines * 4 + 2;
-
-				// Draw column divider
-				pdf.setDrawColor(230);
-				pdf.line(
-					docRuleCol - 2,
-					startY - 2,
-					docRuleCol - 2,
-					startY + rowHeight - 2
-				);
-
-				yPosition += rowHeight;
 			});
 
-			// Draw bottom border
-			pdf.setDrawColor(200);
-			pdf.line(margin, yPosition, margin + contentWidth, yPosition);
-
-			yPosition += 10;
+			yPosition += 5;
 
 			// Conditional Documents section
 			if (yPosition > pageHeight - 50) {
@@ -932,100 +1072,65 @@ export default function Demo() {
 				yPosition = margin;
 			}
 
-			pdf.setFontSize(18);
+			pdf.setFontSize(16);
 			pdf.setFont("helvetica", "bold");
 			pdf.setTextColor(0);
 			pdf.text("Conditional Documents", margin, yPosition);
 			yPosition += 10;
 
-			// Table header
-			pdf.setFontSize(10);
-			pdf.setFont("helvetica", "bold");
-			pdf.text("Document", docCol, yPosition);
-			pdf.text("Rule Reference", docRuleCol, yPosition);
-			yPosition += 6;
-
-			// Draw header line
-			pdf.setDrawColor(200);
-			pdf.line(margin, yPosition - 2, margin + contentWidth, yPosition - 2);
-
-			// Draw column divider for header
-			pdf.line(docRuleCol - 2, yPosition - 8, docRuleCol - 2, yPosition - 2);
-
-			yPosition += 2;
-
-			pdf.setFont("helvetica", "normal");
 			searchResults.conditional.forEach((doc) => {
-				if (yPosition > pageHeight - 25) {
+				const textWidth = contentWidth;
+				
+				// Check if we need a new page
+				if (yPosition > pageHeight - 40) {
 					pdf.addPage();
 					yPosition = margin;
 				}
 
-				const startY = yPosition;
-
-				// Document name
-				pdf.setFontSize(9);
+				// Document item as bullet point
+				pdf.setFontSize(10);
+				pdf.setFont("helvetica", "normal");
 				pdf.setTextColor(0);
-				const docLines = pdf.splitTextToSize(doc.item, docWidth);
-				pdf.text(docLines, docCol, yPosition);
+				const docLines = pdf.splitTextToSize(`• ${doc.item}`, textWidth - 5);
+				pdf.text(docLines, margin + 5, yPosition);
+				yPosition += docLines.length * 5 + 3;
 
-				// Rule reference with link
-				pdf.setTextColor(219, 39, 119);
-				const ruleLines = pdf.splitTextToSize(doc.rule, docRuleWidth);
-				if (doc.link) {
-					pdf.textWithLink(ruleLines[0] || doc.rule, docRuleCol, yPosition, {
-						url: doc.link,
-					});
-					if (ruleLines.length > 1) {
-						for (let i = 1; i < ruleLines.length; i++) {
-							pdf.text(ruleLines[i], docRuleCol, yPosition + i * 4);
-						}
-					}
-				} else {
-					pdf.text(ruleLines, docRuleCol, yPosition);
+				// Rule reference
+				if (doc.rule) {
+					pdf.setFontSize(9);
+					pdf.setFont("helvetica", "italic");
+					pdf.setTextColor(100);
+					const ruleLines = pdf.splitTextToSize(`  Rule: ${doc.rule}`, textWidth - 5);
+					pdf.text(ruleLines, margin + 5, yPosition);
+					yPosition += ruleLines.length * 4.5 + 5;
 				}
-
-				const maxLines = Math.max(docLines.length, ruleLines.length, 1);
-				const rowHeight = maxLines * 4 + 2;
-
-				// Draw column divider
-				pdf.setDrawColor(230);
-				pdf.line(
-					docRuleCol - 2,
-					startY - 2,
-					docRuleCol - 2,
-					startY + rowHeight - 2
-				);
-
-				yPosition += rowHeight;
 			});
-
-			// Draw bottom border
-			pdf.setDrawColor(200);
-			pdf.line(margin, yPosition, margin + contentWidth, yPosition);
 
 			// Add new page for governing rules
 			pdf.addPage();
 			yPosition = margin;
 
 			// Governing Rules section
-			pdf.setFontSize(18);
+			pdf.setFontSize(16);
 			pdf.setFont("helvetica", "bold");
 			pdf.setTextColor(0);
 			pdf.text("Governing Rules", margin, yPosition);
-			yPosition += 12;
+			yPosition += 10;
 
 			searchResults.rules.forEach((rule) => {
-				if (yPosition > pageHeight - 50) {
+				const textWidth = contentWidth;
+				
+				// Check if we need a new page
+				if (yPosition > pageHeight - 60) {
 					pdf.addPage();
 					yPosition = margin;
 				}
 
-				// Rule name
+				// Rule name as subheading
 				pdf.setFontSize(12);
 				pdf.setFont("helvetica", "bold");
 				pdf.setTextColor(0);
-				const nameLines = pdf.splitTextToSize(rule.name, contentWidth);
+				const nameLines = pdf.splitTextToSize(rule.name, textWidth);
 				pdf.text(nameLines, margin, yPosition);
 				yPosition += nameLines.length * 6 + 3;
 
@@ -1033,24 +1138,20 @@ export default function Demo() {
 				pdf.setFontSize(10);
 				pdf.setFont("helvetica", "normal");
 				pdf.setTextColor(60);
-				const textLines = pdf.splitTextToSize(rule.text, contentWidth);
+				const textLines = pdf.splitTextToSize(rule.text, textWidth);
 				pdf.text(textLines, margin, yPosition);
-				yPosition += textLines.length * 4 + 4;
+				yPosition += textLines.length * 5 + 5;
 
 				// Source link
 				if (rule.link) {
-					pdf.setFontSize(10);
-					pdf.setFont("helvetica", "normal");
-					pdf.setTextColor(219, 39, 119);
-					pdf.textWithLink("Source Link", margin, yPosition, {
-						url: rule.link,
-					});
-				} else {
+					pdf.setFontSize(9);
+					pdf.setFont("helvetica", "italic");
 					pdf.setTextColor(100);
-					pdf.text("Source Link", margin, yPosition);
+					pdf.text("Source: Official Rule", margin, yPosition);
+					yPosition += 8;
+				} else {
+					yPosition += 5;
 				}
-
-				yPosition += 12;
 			});
 
 			// Add footer to all pages
@@ -1087,13 +1188,13 @@ export default function Demo() {
 
 	return (
 		<div className="bg-gradient-to-br from-gray-50 via-white to-pink-50/30 font-sans text-gray-800 min-h-screen">
-			<div className="flex min-h-screen relative">
+			<div className="flex min-h-screen relative" style={{ ['--sidebar-width' as any]: 'clamp(18rem, 30vw, 32rem)' }}>
 				{/* Sidebar */}
-				<aside className={`fixed top-0 left-0 h-full w-full border-r border-white/20 bg-white/90 backdrop-blur-2xl p-8 overflow-y-auto shadow-2xl shadow-pink-500/5 transition-all duration-700 ease-in-out ${
+				<aside className={`fixed top-0 left-0 h-full w-full sm:w-[var(--sidebar-width)] z-30 border-r border-white/20 bg-white/90 backdrop-blur-2xl p-8 overflow-y-auto shadow-2xl shadow-pink-500/5 transition-all duration-700 ease-in-out ${
 					showResults 
-						? 'max-w-0 -translate-x-full opacity-0' 
-						: 'max-w-2xl'
-				}`}>
+						? '-translate-x-full opacity-0 pointer-events-none' 
+						: 'translate-x-0 opacity-100'
+				}`}> 
 					{/* Decorative gradient overlay */}
 					<div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 via-transparent to-purple-500/5 pointer-events-none" />
 					
@@ -1130,15 +1231,17 @@ export default function Demo() {
 						</Link>
 
 						{/* Form */}
-						<form onSubmit={handleSearch} className="space-y-8 flex-grow">
-							<div className="relative bg-white/60 backdrop-blur-xl rounded-3xl p-8 border border-white/40 shadow-xl shadow-pink-500/5">
+								<form onSubmit={handleSearch} className="space-y-8 flex-grow">
+									<div className="group relative bg-white/60 backdrop-blur-xl rounded-3xl p-8 border border-white/40 shadow-xl shadow-pink-500/5 transition-all duration-300 hover:shadow-2xl hover:shadow-pink-500/10 overflow-visible animate-fade-in">
 								{/* Decorative elements */}
-								<div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-pink-500 via-purple-500 to-pink-500 rounded-t-3xl" />
-								<div className="absolute -top-px left-1/2 transform -translate-x-1/2 w-20 h-px bg-gradient-to-r from-transparent via-white to-transparent" />
+										<div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-pink-500 via-purple-500 to-pink-500 rounded-t-3xl" />
+										<div className="absolute -top-px left-1/2 transform -translate-x-1/2 w-20 h-px bg-gradient-to-r from-transparent via-white to-transparent" />
+										{/* Shimmer accent on hover */}
+										<div className="absolute top-0 left-0 w-full h-[2px] rounded-t-3xl opacity-0 group-hover:opacity-100 animate-shimmer" />
 								
 								<div className="relative">
-									<h2 className="text-xl font-bold text-gray-900 tracking-tight mb-8 flex items-center">
-										<div className="w-8 h-8 bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg flex items-center justify-center mr-3 shadow-lg">
+										<h2 className="text-xl font-bold text-gray-900 tracking-tight mb-8 flex items-center animate-fade-in">
+											<div className="w-8 h-8 bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg flex items-center justify-center mr-3 shadow-lg animate-float group-hover:scale-110 transition-transform duration-500">
 											<svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 												<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
 											</svg>
@@ -1160,124 +1263,136 @@ export default function Demo() {
 									</div>
 								)}
 
-									<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-										{/* State */}
-										<div className="group relative">
-											<label htmlFor="state" className="block text-sm font-bold text-gray-800 mb-3 tracking-wide">
-										State
-									</label>
-											<div className="relative">
-												<input
-													type="text"
+									<div className="relative z-40 grid grid-cols-1 lg:grid-cols-2 gap-6">
+									<AutoSuggestInput
 										id="state"
-													value={formData.state}
-													onChange={(e) => setFormData({...formData, state: e.target.value})}
-													placeholder="e.g., California"
-													className="w-full px-5 py-4 border-0 rounded-2xl shadow-lg focus:outline-none focus:ring-4 focus:ring-pink-500/20 placeholder-gray-400 transition-all duration-300 group-hover:shadow-xl bg-gradient-to-br from-white to-gray-50/50 backdrop-blur-sm text-gray-800 font-medium"
-												/>
-												<div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-pink-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-								</div>
-										</div>
+										label="State"
+										placeholder="e.g., California"
+										value={formData.state}
+										onChange={(next) => setFormData({ ...formData, state: next })}
+										localStorageKey="ingrid_state_recents"
+										staticOptions={[
+											"California",
+											"New York",
+											"Texas",
+											"Florida",
+											"Illinois",
+										]}
+									/>
 
-										{/* County */}
-										<div className="group relative">
-											<label htmlFor="county" className="block text-sm font-bold text-gray-800 mb-3 tracking-wide">
-										County
-									</label>
-											<div className="relative">
-												<input
-													type="text"
+									<AutoSuggestInput
 										id="county"
-													value={formData.county}
-													onChange={(e) => setFormData({...formData, county: e.target.value})}
-													placeholder="e.g., Los Angeles County"
-													className="w-full px-5 py-4 border-0 rounded-2xl shadow-lg focus:outline-none focus:ring-4 focus:ring-pink-500/20 placeholder-gray-400 transition-all duration-300 group-hover:shadow-xl bg-gradient-to-br from-white to-gray-50/50 backdrop-blur-sm text-gray-800 font-medium"
-												/>
-												<div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-pink-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-								</div>
-										</div>
+										label="County"
+										placeholder="e.g., Los Angeles County"
+										value={formData.county}
+										onChange={(next) => setFormData({ ...formData, county: next })}
+										localStorageKey="ingrid_county_recents"
+										staticOptions={[
+											"Los Angeles County",
+											"San Francisco County",
+											"Santa Clara County",
+											"San Mateo County",
+											"Alameda County",
+										]}
+									/>
 
-										{/* Division */}
-										<div className="group relative">
-											<label htmlFor="division" className="block text-sm font-bold text-gray-800 mb-3 tracking-wide">
-										Division
-									</label>
-											<div className="relative">
-												<input
-													type="text"
+									<AutoSuggestInput
 										id="division"
-													value={formData.division}
-													onChange={(e) => setFormData({...formData, division: e.target.value})}
-													placeholder="e.g., Civil Division"
-													className="w-full px-5 py-4 border-0 rounded-2xl shadow-lg focus:outline-none focus:ring-4 focus:ring-pink-500/20 placeholder-gray-400 transition-all duration-300 group-hover:shadow-xl bg-gradient-to-br from-white to-gray-50/50 backdrop-blur-sm text-gray-800 font-medium"
-												/>
-												<div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-pink-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-								</div>
-										</div>
+										label="Division"
+										placeholder="e.g., Civil Division"
+										value={formData.division}
+										onChange={(next) => setFormData({ ...formData, division: next })}
+										localStorageKey="ingrid_division_recents"
+										staticOptions={[
+											"Civil Division",
+											"Complex Civil Litigation",
+											"Family Law",
+											"Probate",
+										]}
+									/>
 
-										{/* Department */}
-										<div className="group relative">
-											<label htmlFor="department" className="block text-sm font-bold text-gray-800 mb-3 tracking-wide">Department</label>
-											<div className="relative">
-												<input
-													type="text"
-													id="department"
-													value={formData.department}
-													onChange={(e) => setFormData({...formData, department: e.target.value})}
-													placeholder="e.g., Department 1, Dept. A, Room 101"
-													className="w-full px-5 py-4 border-0 rounded-2xl shadow-lg focus:outline-none focus:ring-4 focus:ring-pink-500/20 placeholder-gray-400 transition-all duration-300 group-hover:shadow-xl bg-gradient-to-br from-white to-gray-50/50 backdrop-blur-sm text-gray-800 font-medium"
-												/>
-												<div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-pink-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-											</div>
-										</div>
+									<AutoSuggestInput
+										id="department"
+										label="Department"
+										placeholder="e.g., Department 1, Dept. A, Room 101"
+										value={formData.department}
+										onChange={(next) => setFormData({ ...formData, department: next })}
+										localStorageKey="ingrid_department_recents"
+										staticOptions={[
+											"Department 1",
+											"Department 2",
+											"Dept. A",
+											"Room 101",
+										]}
+									/>
 
-										{/* Judge - Full Width */}
-										<div className="md:col-span-2 group relative">
-											<label htmlFor="judge" className="block text-sm font-bold text-gray-800 mb-3 tracking-wide">Judge</label>
-											<div className="relative">
-												<input
-													type="text"
-										id="judge"
-													value={formData.judge}
-													onChange={(e) => setFormData({...formData, judge: e.target.value})}
-													placeholder="e.g., Hon. Jane Smith"
-													className="w-full px-5 py-4 border-0 rounded-2xl shadow-lg focus:outline-none focus:ring-4 focus:ring-pink-500/20 placeholder-gray-400 transition-all duration-300 group-hover:shadow-xl bg-gradient-to-br from-white to-gray-50/50 backdrop-blur-sm text-gray-800 font-medium"
-												/>
-												<div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-pink-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-								</div>
-								</div>
-
-										{/* Document Type */}
-										<div className="md:col-span-2 group relative">
-											<label htmlFor="documentType" className="block text-sm font-bold text-gray-800 mb-3 tracking-wide">Document Type</label>
-											<div className="relative">
-												<input
-													type="text"
-													id="documentType"
-													value={formData.documentType}
-													onChange={(e) => setFormData({...formData, documentType: e.target.value})}
-													placeholder="e.g., Motion for Summary Judgment, Complaint, Answer, Discovery Motion"
-													className="w-full px-5 py-4 border-0 rounded-2xl shadow-lg focus:outline-none focus:ring-4 focus:ring-pink-500/20 placeholder-gray-400 transition-all duration-300 group-hover:shadow-xl bg-gradient-to-br from-white to-gray-50/50 backdrop-blur-sm text-gray-800 font-medium"
-												/>
-												<div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-pink-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-							</div>
-										</div>
+									<div className="lg:col-span-2">
+										<AutoSuggestInput
+											id="judge"
+											label="Judge"
+											placeholder="e.g., Hon. Jane Smith"
+											value={formData.judge}
+											onChange={(next) => setFormData({ ...formData, judge: next })}
+											localStorageKey="ingrid_judge_recents"
+											staticOptions={[
+												"Charles F. Adams",
+												"Carol Overton",
+												"Panteha E. Saban",
+												"Lori E. Pegg",
+												"JoAnne McCracken",
+												"Julia Alloggiamento",
+											]}
+											getDynamicOptions={async (q) => {
+												// If division provided, prefer API filtering
+												try {
+													const division = encodeURIComponent(formData.division || "");
+													const res = await fetch(`/api/judges?division=${division}`);
+													const data = await res.json();
+													const names: string[] = (data.judges || []).map((j: any) => j.name);
+													return names.filter((n) => n.toLowerCase().includes(q.toLowerCase()));
+												} catch {
+													return [];
+												}
+											}}
+										/>
 									</div>
-								</div>
+
+									<div className="lg:col-span-2">
+										<AutoSuggestInput
+											id="documentType"
+											label="Document Type"
+											placeholder="e.g., Motion for Summary Judgment, Complaint, Answer, Discovery Motion"
+											value={formData.documentType}
+											onChange={(next) => setFormData({ ...formData, documentType: next })}
+											localStorageKey="ingrid_document_type_recents"
+											staticOptions={[
+												"Complaint",
+												"Answer",
+												"Motion for Summary Judgment",
+												"Motion to Dismiss (Demurrer)",
+												"Motion to Compel Further Discovery Responses",
+												"Motion to Strike",
+											]}
+										/>
+									</div>
+									</div>
 							</div>
-							<div className="pt-8">
+							<div className="relative z-10 pt-8">
 								<button
 									type="submit"
 									disabled={loading}
 									className={`w-full relative overflow-hidden group ${
 										loading 
 											? 'bg-gradient-to-r from-pink-200 to-purple-200' 
-											: 'bg-gradient-to-r from-pink-500 via-pink-600 to-purple-600 hover:from-pink-600 hover:via-pink-700 hover:to-purple-700 active:scale-[0.98] shadow-2xl shadow-pink-500/25 hover:shadow-pink-500/40'
-									} disabled:cursor-not-allowed text-white font-bold py-5 px-8 rounded-2xl transition-all duration-500 ease-out focus:outline-none focus:ring-4 focus:ring-pink-500/30`}
+											: 'bg-gradient-to-r from-pink-500 via-pink-600 to-purple-600 hover:from-pink-600 hover:via-pink-700 hover:to-purple-700 active:translate-y-[1px] shadow-[0_18px_40px_-12px_rgba(236,72,153,0.45),0_12px_24px_-16px_rgba(147,51,234,0.45)] hover:shadow-[0_22px_48px_-12px_rgba(236,72,153,0.55),0_16px_30px_-16px_rgba(147,51,234,0.55)]'
+									} disabled:cursor-not-allowed text-white font-extrabold py-5 px-8 rounded-2xl transition-all duration-300 ease-out focus:outline-none focus:ring-4 focus:ring-pink-500/30 border border-white/20`}
 								>
+									{/* 3D base glow */}
+									<div className="absolute -bottom-3 left-6 right-6 h-6 bg-gradient-to-r from-pink-500/40 to-purple-600/40 blur-xl rounded-full pointer-events-none" />
 									{/* Animated background effects */}
-									<div className="absolute inset-0 bg-gradient-to-r from-white/20 via-transparent to-white/20 -skew-x-12 transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
+									<div className="absolute inset-0 bg-gradient-to-r from-white/25 via-transparent to-white/25 -skew-x-12 transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
+									{/* Subtle top gloss */}
+									<div className="pointer-events-none absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 									
 									{loading && (
 										<>
@@ -1308,7 +1423,7 @@ export default function Demo() {
 											</>
 										) : (
 											<>
-												<div className="relative mr-3 group-hover:scale-110 transition-transform duration-300">
+												<div className="relative mr-3 group-hover:scale-125 transition-transform duration-300">
 													<svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 														<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
 													</svg>
@@ -1320,7 +1435,9 @@ export default function Demo() {
 										)}
 									</span>
 								</button>
-							</div>
+									</div>
+									{/* Close form card container */}
+								</div>
 						</form>
 
 
@@ -1432,6 +1549,19 @@ export default function Demo() {
 												<svg className="w-4 h-4 text-gray-400 group-hover:text-pink-500 transition-colors duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 													<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
 												</svg>
+											</div>
+										</div>
+
+										{/* Interaction tip */}
+										<div className="mt-2 text-xs text-gray-600 flex items-center">
+											<div className="inline-flex items-center px-2 py-1 rounded-md bg-white/70 backdrop-blur-sm border border-gray-200 shadow-sm">
+												<svg className="w-3.5 h-3.5 text-pink-600 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+													<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+												</svg>
+												<span className="font-medium">Tip:</span>
+												<span className="ml-1">Start typing and press</span>
+												<kbd className="ml-1 px-1.5 py-0.5 rounded border border-gray-300 bg-white shadow-xs">Tab</kbd>
+												<span className="ml-1">to accept a suggestion</span>
 											</div>
 										</div>
 									</div>
@@ -1564,9 +1694,9 @@ export default function Demo() {
 				{/* Main Content */}
 				<main className={`ml-auto w-full max-w-none min-h-screen bg-gradient-to-br from-white via-gray-50/50 to-pink-50/20 transition-all duration-700 ease-in-out ${
 					showResults 
-						? showPreviousQueries ? 'pl-0 pr-80' : 'pl-0' 
-						: previousQueries.length > 0 ? 'pl-[32rem] pr-80' : 'pl-[32rem]'
-				}`}>
+						? (showPreviousQueries ? 'pl-0 sm:pr-80' : 'pl-0') 
+						: (previousQueries.length > 0 ? 'pl-0 sm:pl-[var(--sidebar-width)] sm:pr-80' : 'pl-0 sm:pl-[var(--sidebar-width)]')
+				}`}> 
 					{/* Decorative background elements */}
 					<div className="absolute inset-0 overflow-hidden pointer-events-none">
 						<div className="absolute top-20 right-20 w-72 h-72 bg-gradient-to-br from-pink-500/10 to-purple-500/10 rounded-full blur-3xl" />
@@ -1756,8 +1886,54 @@ export default function Demo() {
 									</nav>
 								</div>
 
+								{/* Progress indicator - Always visible when report is generated */}
+								{searchResults && (
+									<div className="bg-white/60 backdrop-blur-xl rounded-3xl p-4 border border-white/50 shadow-xl shadow-pink-500/5 mt-4">
+										<div className="flex items-center gap-4">
+											<div className="flex-1 bg-white/80 backdrop-blur-sm rounded-2xl border border-white/60 shadow-inner p-3 transition-all duration-500">
+												<div className="flex items-center justify-between mb-2">
+													<div className="flex items-center text-sm font-bold text-gray-700">
+														<svg className="w-4 h-4 mr-2 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+															<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+														</svg>
+														<span>Checklist Progress</span>
+													</div>
+													<div className="text-xs text-gray-600">
+														{totalCount > 0 ? `${checkedCount}/${totalCount} completed` : 'No items'}
+													</div>
+												</div>
+												<div className="h-3 w-full bg-gray-200/60 rounded-xl overflow-hidden">
+													<div
+														className="h-full bg-gradient-to-r from-pink-500 to-pink-600 transition-all duration-500"
+														style={{ width: totalCount > 0 ? `${Math.round((checkedCount / totalCount) * 100)}%` : '0%' }}
+													/>
+												</div>
+											</div>
+											
+											{/* Share button - appears when 100% complete */}
+											{totalCount > 0 && checkedCount === totalCount && (
+												<button
+													onClick={() => {
+														// TODO: Add share functionality
+														console.log('Share clicked');
+													}}
+													className="group relative overflow-hidden bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white font-bold py-3 px-6 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 flex items-center gap-2 animate-fade-in"
+												>
+													{/* Shimmer effect */}
+													<div className="absolute inset-0 bg-gradient-to-r from-white/20 via-transparent to-white/20 -skew-x-12 transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
+													
+													<svg className="w-5 h-5 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+														<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+													</svg>
+													<span className="relative z-10">Share</span>
+												</button>
+											)}
+										</div>
+									</div>
+								)}
+
 								{/* Tab Content */}
-								<div className="bg-white/60 backdrop-blur-xl rounded-3xl border border-white/50 shadow-xl shadow-pink-500/5 overflow-hidden">
+								<div ref={tabContentRef} className="bg-white/60 backdrop-blur-xl rounded-3xl border border-white/50 shadow-xl shadow-pink-500/5 overflow-hidden">
 									{activeTab === "Checklist" && (
 										<section className="p-8">
 											<h2 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-pink-800 bg-clip-text text-transparent pb-4 mb-8 border-b border-gray-200/50 flex items-center">
@@ -1780,79 +1956,103 @@ export default function Demo() {
 																	{phase}
 																</h3>
 																<div className="overflow-hidden rounded-xl border border-gray-200/50 shadow-sm">
-																	<table className="min-w-full bg-white/80 backdrop-blur-sm">
-																		<thead className="bg-gradient-to-r from-gray-50 to-pink-50/50">
-																			<tr>
-																				<th className="w-12 px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
-																					Done
-																				</th>
-																				<th className="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
-																					Task
-																				</th>
-																				<th className="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
-																					Notes
-																				</th>
-																				<th className="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
-																					Rule Reference
-																				</th>
-																			</tr>
-																		</thead>
-																		<tbody className="divide-y divide-gray-200/50">
-																			{items.map((item, index) => (
-																				<tr
-																					key={`${item.task}-${index}`}
-																					className="hover:bg-gradient-to-r hover:from-pink-50/50 hover:to-purple-50/50 transition-all duration-200"
-																				>
-																					<td className="px-6 py-5 whitespace-nowrap">
-																						<input
-																							type="checkbox"
-																							id={`${phase}-${index}`}
-																							className="h-5 w-5 rounded-lg border-gray-300 text-pink-600 focus:ring-pink-500 shadow-sm"
-																						/>
-																					</td>
-																					<td className="px-6 py-5">
-																						<div className="text-sm font-semibold text-gray-900">
-																							{item.task}
+																	{items.map((item, index) => {
+																		// Parse multiple rules and links separated by commas
+																		const rules = item.rule ? item.rule.split(',').map((r: string) => r.trim()) : [];
+																		const links = item.link ? item.link.split(',').map((l: string) => l.trim()) : [];
+																		
+																		// If there's only one link for multiple rules, use it for all
+																		// Otherwise, pair each rule with its corresponding link
+																		const ruleLinkPairs = rules.map((rule, idx) => ({
+																			rule,
+																			link: links.length === 1 ? links[0] : (links[idx] || links[0] || '')
+																		}));
+																		
+																		return (
+																			<div
+																				key={`${item.task}-${index}`}
+																				className="group relative bg-white/60 backdrop-blur-xl rounded-2xl p-6 border border-white/50 shadow-lg hover:shadow-xl hover:border-pink-200/50 transition-all duration-300 mb-4"
+																			>
+																				<div className="flex gap-6">
+																					{/* Main Content */}
+																					<div className="flex-1">
+																						{/* Checkbox and Task Header */}
+																						<div className="flex items-start gap-4 mb-4">
+																							<div className="flex-shrink-0 pt-1">
+																								<input
+																									type="checkbox"
+																									id={`${phase}-${index}`}
+																									className="h-6 w-6 rounded-lg border-gray-300 text-pink-600 focus:ring-pink-500 shadow-sm cursor-pointer transition-transform hover:scale-110"
+																								/>
+																							</div>
+																							<div className="flex-1">
+																								<h4 className="text-base font-bold text-gray-900 group-hover:text-pink-700 transition-colors duration-200">
+																									{item.task}
+																								</h4>
+																							</div>
 																						</div>
-																					</td>
-																					<td className="px-6 py-5">
-																						<div className="text-sm text-gray-600 leading-relaxed whitespace-pre-line">
-																							{item.notes}
-																						</div>
-																					</td>
-																					<td className="px-6 py-5">
-																						{item.link ? (
-																							<a
-																								href={item.link}
-																								target="_blank"
-																								rel="noopener noreferrer"
-																								className="text-sm text-pink-600 hover:text-pink-800 hover:underline flex items-center font-medium transition-colors duration-200"
-																							>
-																								{item.rule}
-																								<svg
-																									className="w-3 h-3 ml-2 flex-shrink-0"
-																									fill="none"
-																									stroke="currentColor"
-																									viewBox="0 0 24 24"
-																								>
-																									<path
-																										strokeLinecap="round"
-																										strokeLinejoin="round"
-																										strokeWidth={2}
-																										d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-																									/>
+																						
+																						{/* Notes Section */}
+																						<div className="ml-10 bg-gradient-to-br from-gray-50/80 to-white/80 rounded-xl p-4 border border-gray-200/50">
+																							<div className="flex items-center mb-2">
+																								<svg className="w-4 h-4 text-gray-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+																									<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
 																								</svg>
-																							</a>
-																						) : (
-																							<span className="text-sm text-gray-500 font-medium">
-																								{item.rule}
-																							</span>
-																						)}
-																					</td>
-																				</tr>
-																			))}
-																		</tbody>
-																	</table>
+																								<span className="text-xs font-semibold text-gray-600 uppercase tracking-wider">Notes</span>
+																							</div>
+																							<div className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">
+																								{item.notes}
+																							</div>
+																						</div>
+																					</div>
+																					
+																					{/* Rule References Sidebar */}
+																					<div className="w-64 flex-shrink-0">
+																						<div className="sticky top-4 bg-gradient-to-br from-pink-50/80 to-purple-50/80 backdrop-blur-sm rounded-xl p-4 border border-pink-200/50">
+																							<div className="flex items-center mb-3">
+																								<svg className="w-4 h-4 text-pink-600 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+																									<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+																								</svg>
+																								<span className="text-xs font-bold text-pink-900 uppercase tracking-wider">Rule References</span>
+																							</div>
+																							<div className="space-y-2">
+																								{ruleLinkPairs.map((pair, ruleIndex) => (
+																									pair.link ? (
+																										<a
+																											key={ruleIndex}
+																											href={pair.link}
+																											target="_blank"
+																											rel="noopener noreferrer"
+																											className="group/link flex items-start text-xs text-pink-700 hover:text-pink-900 font-medium transition-colors duration-200 py-1.5 px-2 rounded-lg hover:bg-white/60"
+																										>
+																											<svg
+																												className="w-3 h-3 mt-0.5 mr-1.5 flex-shrink-0 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform duration-200"
+																												fill="none"
+																												stroke="currentColor"
+																												viewBox="0 0 24 24"
+																											>
+																												<path
+																													strokeLinecap="round"
+																													strokeLinejoin="round"
+																													strokeWidth={2}
+																													d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+																												/>
+																											</svg>
+																											<span className="underline decoration-pink-300 group-hover/link:decoration-pink-600 leading-tight">{pair.rule}</span>
+																										</a>
+																									) : (
+																										<div key={ruleIndex} className="text-xs text-gray-700 font-medium py-1.5 px-2 leading-tight">
+																											{pair.rule}
+																										</div>
+																									)
+																								))}
+																							</div>
+																						</div>
+																					</div>
+																				</div>
+																			</div>
+																		);
+																	})}
 																</div>
 															</div>
 														)
@@ -1869,12 +2069,17 @@ export default function Demo() {
 
 									{activeTab === "Mandatory Docs" && (
 										<section className="p-8">
+											<h2 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-pink-800 bg-clip-text text-transparent pb-4 mb-8 border-b border-gray-200/50 flex items-center">
+												<div className="w-8 h-8 bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg flex items-center justify-center mr-3 shadow-lg">
+													<svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+														<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+													</svg>
+												</div>
+												Mandatory Documents
+											</h2>
 											<div className="mb-6">
-												<h2 className="text-2xl font-bold text-gray-900 mb-2">
+												<h3 className="text-lg font-semibold text-gray-600">
 													Document Type: {formData.documentType || 'Not specified'}
-												</h2>
-												<h3 className="text-xl font-semibold text-gray-700 pb-3 border-b border-gray-200">
-													Mandatory Documents
 												</h3>
 											</div>
 											{searchResults?.documents && searchResults.documents.length > 0 ? (
@@ -1963,12 +2168,17 @@ export default function Demo() {
 
 									{activeTab === "Conditional Docs" && (
 										<section className="p-8">
+											<h2 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-pink-800 bg-clip-text text-transparent pb-4 mb-8 border-b border-gray-200/50 flex items-center">
+												<div className="w-8 h-8 bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg flex items-center justify-center mr-3 shadow-lg">
+													<svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+														<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+													</svg>
+												</div>
+												Conditional Documents
+											</h2>
 											<div className="mb-6">
-												<h2 className="text-2xl font-bold text-gray-900 mb-2">
+												<h3 className="text-lg font-semibold text-gray-600">
 													Document Type: {formData.documentType || 'Not specified'}
-												</h2>
-												<h3 className="text-xl font-semibold text-gray-700 pb-3 border-b border-gray-200">
-													Conditional Documents
 												</h3>
 											</div>
 											{searchResults?.conditional && searchResults.conditional.length > 0 ? (
@@ -2510,10 +2720,10 @@ export default function Demo() {
 							<div className="space-y-8">
 								{/* Main Report Message */}
 								<div className="flex flex-col items-center justify-center h-[calc(50vh-3rem)] text-center px-8">
-									<div className="bg-white/60 backdrop-blur-xl rounded-3xl p-12 border border-white/50 shadow-xl shadow-pink-500/5 max-w-2xl">
+								<div className="group bg-white/60 backdrop-blur-xl rounded-3xl p-12 border border-white/50 shadow-xl shadow-pink-500/5 max-w-2xl animate-fade-in transition-all duration-300 hover:shadow-2xl hover:shadow-pink-500/10 hover:scale-[1.01]">
 										<div className="relative mb-8">
-											<div className="absolute -inset-4 bg-gradient-to-r from-pink-500/20 to-purple-500/20 rounded-full blur-2xl" />
-											<div className="relative bg-gradient-to-br from-pink-500 to-pink-600 p-4 rounded-2xl shadow-lg">
+										<div className="absolute -inset-4 bg-gradient-to-r from-pink-500/20 to-purple-500/20 rounded-full blur-2xl animate-elegant-glow" />
+										<div className="relative bg-gradient-to-br from-pink-500 to-pink-600 p-4 rounded-2xl shadow-lg animate-float transition-transform duration-300 group-hover:scale-105 flex items-center gap-3 pr-4">
 												<svg
 													width="48"
 													height="48"
@@ -2545,16 +2755,21 @@ export default function Demo() {
 														strokeLinecap="round"
 													/>
 												</svg>
-											</div>
+											{/* Typing text inside the pink block */}
+											<span className="ml-2 whitespace-nowrap text-3xl font-bold text-white select-none">
+												<span ref={typingElRef} />
+											</span>
+										</div>
 										</div>
 
-										<h2 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-pink-800 bg-clip-text text-transparent mb-4">
+										<h2 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-pink-800 bg-clip-text text-transparent mb-4 animate-fade-in">
 											Your Filing Requirements Report Will Appear Here
 										</h2>
-										<p className="text-gray-600 text-lg leading-relaxed mb-4">
+										<p className="text-gray-600 text-lg leading-relaxed mb-4 animate-fade-in">
 											Complete the search parameters to generate your comprehensive filing requirements report, procedural checklist, and mind map visualization.
 										</p>
-										<div className="bg-blue-50 border border-blue-200 rounded-xl p-4 text-sm">
+										<div className="relative overflow-hidden bg-blue-50 border border-blue-200 rounded-xl p-4 text-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md">
+											<div className="pointer-events-none absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 animate-shimmer" />
 											<div className="flex items-center mb-2">
 												<svg className="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 													<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -2567,7 +2782,7 @@ export default function Demo() {
 										</div>
 										
 										<div className="mt-8 flex items-center justify-center space-x-2 text-sm text-gray-500">
-											<div className="w-2 h-2 bg-pink-500 rounded-full animate-pulse" />
+											<div className="w-2 h-2 bg-pink-500 rounded-full animate-gentle-pulse" />
 											<span>Ready to generate your legal filing guide</span>
 										</div>
 									</div>

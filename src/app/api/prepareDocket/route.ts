@@ -17,7 +17,8 @@ IMPORTANT INSTRUCTIONS:
 5. If you cannot find specific information for a judge, provide general rules for that court/division
 6. Include practical, actionable guidance in checklists and notes
 7. CRITICAL: If the provided judge and department combination appears incorrect (e.g., judge is assigned to a different department), automatically correct the department number in your response to match the judge's actual assignment. Do not mention the correction - simply use the correct department throughout your response.
-8. CRITICAL: If the provided judge name is incomplete or informal (e.g., "Adams", "Smith", "Judge Johnson"), automatically expand it to the full formal name (e.g., "Hon. Charles F. Adams", "Hon. Patricia M. Smith") based on your knowledge of judges in that jurisdiction. Use the full formal name consistently throughout your response in all references, titles, and procedural guidance.`;
+8. CRITICAL: If the provided judge name is incomplete or informal (e.g., "Adams", "Smith", "Judge Johnson"), automatically expand it to the full formal name (e.g., "Hon. Charles F. Adams", "Hon. Patricia M. Smith") based on your knowledge of judges in that jurisdiction. Use the full formal name consistently throughout your response in all references, titles, and procedural guidance.
+9. CRITICAL LINKING RULE: When the "rule" field contains multiple comma-separated legal citations (e.g., "Local Rule 7-1, CRC 3.1350, CCP § 437c"), the "link" field MUST contain the same number of comma-separated URLs in the exact same order. Each rule citation must have its corresponding specific URL. Example: "rule": "Rule A, Rule B, Rule C" requires "link": "url-for-A, url-for-B, url-for-C".`;
 
 		// User prompt template
 		const userPrompt = `Generate a comprehensive legal docket preparation guide for:
@@ -123,7 +124,7 @@ Return ONLY a JSON object with this exact structure:
         "task": "Determine all required documents for ${document_type}",
         "notes": "Identify main document, supporting memorandum, required attachments (separate statement, declarations, exhibits), proof of service. Check local rules for jurisdiction-specific requirements.",
         "rule": "Local court rules and statutes governing ${document_type}",
-        "link": "Working URL to local court rules"
+        "link": "Working URL to local court rules (IMPORTANT: If 'rule' contains multiple comma-separated sources, provide corresponding comma-separated URLs in same order)"
       },
       {
         "phase": "Document Preparation",
